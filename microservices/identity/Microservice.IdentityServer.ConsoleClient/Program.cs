@@ -12,7 +12,7 @@ TokenResponse tokenResponse = await client.RequestPasswordTokenAsync(new Passwor
     UserName = "alice",
     Password = "alice",
 
-    Scope = "api1"
+    Scope = "api"
 });
 
 Console.WriteLine(tokenResponse.IsError ? tokenResponse.Error : tokenResponse.Json);
