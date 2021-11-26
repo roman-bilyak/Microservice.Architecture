@@ -2,11 +2,8 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddIdentityServer(options =>
-    {
-        // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
-        options.EmitStaticAudienceClaim = true;
-    })
+builder.Services.AddIdentityServer()
+    .AddTestUsers(Config.TestUsers.ToList())
     .AddInMemoryIdentityResources(Config.IdentityResources)
     .AddInMemoryApiScopes(Config.ApiScopes)
     .AddInMemoryClients(Config.Clients)
