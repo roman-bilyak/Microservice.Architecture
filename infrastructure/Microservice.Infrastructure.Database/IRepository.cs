@@ -1,6 +1,6 @@
 ﻿namespace Microservice.Infrastructure.Database;
 
-public interface IRepository<T> : IReadRepository<T, Guid>
+public interface IRepository<T> : IRepository<T, Guid>
     where T : class, IAggregateRoot
 {
 }
