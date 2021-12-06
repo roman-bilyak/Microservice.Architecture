@@ -2,9 +2,10 @@
 
 namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
 
-public abstract class BaseDbContext : DbContext
+public abstract class BaseDbContext<TDbContext> : DbContext
+    where TDbContext : DbContext
 {
-    public BaseDbContext(DbContextOptions<BaseDbContext> options)
+    public BaseDbContext(DbContextOptions<TDbContext> options)
       : base(options)
     {
     }

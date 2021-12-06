@@ -2,70 +2,80 @@
 
 namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
 
-public class BaseRepository<T> : BaseRepository<T, Guid> where T : class, IAggregateRoot
+public class BaseRepository<TDbContext, TEntity> : BaseRepository<TDbContext, TEntity, Guid>, IRepository<TEntity>
+    where TDbContext : BaseDbContext<TDbContext>
+    where TEntity : class, IAggregateRoot
 {
-    protected BaseRepository(BaseDbContext dbContext) : base(dbContext)
+    public BaseRepository(TDbContext dbContext) : base(dbContext)
     {
     }
 }
 
-public class BaseRepository<T, TId> : IRepository<T, TId> where T : class, IAggregateRoot where TId : notnull
+public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TKey>
+    where TDbContext : BaseDbContext<TDbContext>
+    where TEntity : class, IAggregateRoot
+    where TKey : notnull
 {
-    private readonly BaseDbContext _dbContext;
+    private readonly TDbContext _dbContext;
 
-    protected BaseRepository(BaseDbContext dbContext)
+    public BaseRepository(TDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public virtual async Task<T?> GetByIdAsync(TId id, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity> GetByIdAsync(TKey id, CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Set<T>().FindAsync(new object[] { id }, cancellationToken);
+        return await _dbContext.Set<TEntity>().FindAsync(new object[] { id }, cancellationToken);
     }
 
-    public virtual async Task<List<T>> ListAsync(CancellationToken cancellationToken = default)
+    public virtual async Task<List<TEntity>> ListAsync(CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Set<T>().ToListAsync(cancellationToken);
+        return await _dbContext.Set<TEntity>().ToListAsync(cancellationToken);
     }
 
-    public virtual async Task<List<T>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public virtual async Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public virtual async Task<List<TResult>> ListAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default)
+    public virtual async Task<List<TResult>> ListAsync<TResult>(ISpecification<TEntity, TResult> specification, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
     public virtual async Task<int> CountAsync(CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Set<T>().CountAsync(cancellationToken);
+        return await _dbContext.Set<TEntity>().CountAsync(cancellationToken);
     }
 
-    public virtual async Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public virtual async Task<int> CountAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public virtual Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
+    public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        _dbContext.Set<T>().Add(entity);
+        _dbContext.Set<TEntity>().Add(entity);
 
         return Task.FromResult(entity);
     }
 
-    public virtual Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    public virtual Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         _dbContext.Entry(entity).State = EntityState.Modified;
+
+        return Task.FromResult(entity);
+    }
+
+    public virtual Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
+    {
+        _dbContext.Set<TEntity>().Remove(entity);
 
         return Task.CompletedTask;
     }
 
-    public virtual Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+    public virtual async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        _dbContext.Set<T>().Remove(entity);
-
-        return Task.CompletedTask;
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }
