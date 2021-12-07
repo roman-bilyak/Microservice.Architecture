@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microservice.ProductService.Application.Abstractions\Microservice.ProductService.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\Microservice.ProductService.Domain\Microservice.ProductService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
