@@ -17,15 +17,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "product", "product", "{BED9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ProductService.Host", "microservices\product\Microservice.ProductService.Host\Microservice.ProductService.Host.csproj", "{F0FCFF45-B4D6-4A26-872D-32F5FAB5B930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityServer.Host", "microservices\identity\Microservice.IdentityServer.Host\Microservice.IdentityServer.Host.csproj", "{EEA29343-5176-441B-A93D-25D6001892AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServer.Host", "microservices\identity\Microservice.IdentityServer.Host\Microservice.IdentityServer.Host.csproj", "{EEA29343-5176-441B-A93D-25D6001892AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityServer.ConsoleClient", "microservices\identity\Microservice.IdentityServer.ConsoleClient\Microservice.IdentityServer.ConsoleClient.csproj", "{CD1915E9-26FA-4B82-8326-7956C237B15E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServer.ConsoleClient", "microservices\identity\Microservice.IdentityServer.ConsoleClient\Microservice.IdentityServer.ConsoleClient.csproj", "{CD1915E9-26FA-4B82-8326-7956C237B15E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{B06BB4C7-E451-479E-92C1-5DB2FEE970EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Infrastructure.Database", "infrastructure\Microservice.Infrastructure.Database\Microservice.Infrastructure.Database.csproj", "{98B6EBBD-336C-4431-AD3E-7B472C4F8E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.Database", "infrastructure\Microservice.Infrastructure.Database\Microservice.Infrastructure.Database.csproj", "{98B6EBBD-336C-4431-AD3E-7B472C4F8E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Infrastructure.Database.EntityFrameworkCore", "infrastructure\Microservice.Infrastructure.Database.EntityFrameworkCore\Microservice.Infrastructure.Database.EntityFrameworkCore.csproj", "{57F5F4E3-6594-4387-9AC3-3B3801C1FC03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.Database.EntityFrameworkCore", "infrastructure\Microservice.Infrastructure.Database.EntityFrameworkCore\Microservice.Infrastructure.Database.EntityFrameworkCore.csproj", "{57F5F4E3-6594-4387-9AC3-3B3801C1FC03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ProductService.Domain", "microservices\product\Microservice.ProductService.Domain\Microservice.ProductService.Domain.csproj", "{E8E38D39-95F1-4F50-965F-820CC8FA89B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ProductService.Infrastructure", "microservices\product\Microservice.ProductService.Infrastructure\Microservice.ProductService.Infrastructure.csproj", "{CC5ABE1D-8C3F-4FE1-9546-6722711E9FEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ProductService.Application", "microservices\product\Microservice.ProductService.Application\Microservice.ProductService.Application.csproj", "{E44401E3-6EE8-42F8-84C5-A2C80208E7E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ProductService.Domain.Share", "microservices\product\Microservice.ProductService.Domain.Share\Microservice.ProductService.Domain.Share.csproj", "{E7478DF1-0CA7-4F8F-BF9F-932C58C0E611}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core", "infrastructure\Microservice.Core\Microservice.Core.csproj", "{82BD2B7A-F029-4B6F-885B-5C3233D6998C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore", "infrastructure\Microservice.AspNetCore\Microservice.AspNetCore.csproj", "{DA38E4CE-7149-43AB-B3F4-17AABA0F6D05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ProductService.Application.Abstractions", "microservices\product\Microservice.ProductService.Application.Abstractions\Microservice.ProductService.Application.Abstractions.csproj", "{107162AD-7497-44FF-8C25-609000F3FCFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +71,34 @@ Global
 		{57F5F4E3-6594-4387-9AC3-3B3801C1FC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F5F4E3-6594-4387-9AC3-3B3801C1FC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F5F4E3-6594-4387-9AC3-3B3801C1FC03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E38D39-95F1-4F50-965F-820CC8FA89B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E38D39-95F1-4F50-965F-820CC8FA89B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E38D39-95F1-4F50-965F-820CC8FA89B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E38D39-95F1-4F50-965F-820CC8FA89B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5ABE1D-8C3F-4FE1-9546-6722711E9FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5ABE1D-8C3F-4FE1-9546-6722711E9FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5ABE1D-8C3F-4FE1-9546-6722711E9FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5ABE1D-8C3F-4FE1-9546-6722711E9FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E44401E3-6EE8-42F8-84C5-A2C80208E7E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E44401E3-6EE8-42F8-84C5-A2C80208E7E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E44401E3-6EE8-42F8-84C5-A2C80208E7E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E44401E3-6EE8-42F8-84C5-A2C80208E7E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7478DF1-0CA7-4F8F-BF9F-932C58C0E611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7478DF1-0CA7-4F8F-BF9F-932C58C0E611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7478DF1-0CA7-4F8F-BF9F-932C58C0E611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7478DF1-0CA7-4F8F-BF9F-932C58C0E611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82BD2B7A-F029-4B6F-885B-5C3233D6998C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82BD2B7A-F029-4B6F-885B-5C3233D6998C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82BD2B7A-F029-4B6F-885B-5C3233D6998C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82BD2B7A-F029-4B6F-885B-5C3233D6998C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA38E4CE-7149-43AB-B3F4-17AABA0F6D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA38E4CE-7149-43AB-B3F4-17AABA0F6D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA38E4CE-7149-43AB-B3F4-17AABA0F6D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA38E4CE-7149-43AB-B3F4-17AABA0F6D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107162AD-7497-44FF-8C25-609000F3FCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107162AD-7497-44FF-8C25-609000F3FCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107162AD-7497-44FF-8C25-609000F3FCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107162AD-7497-44FF-8C25-609000F3FCFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +112,13 @@ Global
 		{CD1915E9-26FA-4B82-8326-7956C237B15E} = {B5C74749-6B0E-4C4E-BE2A-061C43617B83}
 		{98B6EBBD-336C-4431-AD3E-7B472C4F8E87} = {B06BB4C7-E451-479E-92C1-5DB2FEE970EB}
 		{57F5F4E3-6594-4387-9AC3-3B3801C1FC03} = {B06BB4C7-E451-479E-92C1-5DB2FEE970EB}
+		{E8E38D39-95F1-4F50-965F-820CC8FA89B0} = {BED99374-05B1-4CA3-A839-62D5C7DFF0B7}
+		{CC5ABE1D-8C3F-4FE1-9546-6722711E9FEC} = {BED99374-05B1-4CA3-A839-62D5C7DFF0B7}
+		{E44401E3-6EE8-42F8-84C5-A2C80208E7E6} = {BED99374-05B1-4CA3-A839-62D5C7DFF0B7}
+		{E7478DF1-0CA7-4F8F-BF9F-932C58C0E611} = {BED99374-05B1-4CA3-A839-62D5C7DFF0B7}
+		{82BD2B7A-F029-4B6F-885B-5C3233D6998C} = {B06BB4C7-E451-479E-92C1-5DB2FEE970EB}
+		{DA38E4CE-7149-43AB-B3F4-17AABA0F6D05} = {B06BB4C7-E451-479E-92C1-5DB2FEE970EB}
+		{107162AD-7497-44FF-8C25-609000F3FCFE} = {BED99374-05B1-4CA3-A839-62D5C7DFF0B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4BAC162-4509-4CD1-A8B9-7AA3F5FFDF84}
