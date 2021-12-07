@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\infrastructure\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
+    <ProjectReference Include="..\Microservice.ProductService.Application\Microservice.ProductService.Application.csproj" />
+    <ProjectReference Include="..\Microservice.ProductService.Infrastructure\Microservice.ProductService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
