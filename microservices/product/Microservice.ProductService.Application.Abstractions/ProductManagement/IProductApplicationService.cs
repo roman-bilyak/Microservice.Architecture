@@ -1,10 +1,10 @@
 ﻿namespace Microservice.ProductService.Application;
 
-public interface IProductAppService
+public interface IProductApplicationService
 {
     public Task<ProductDto> GetAsync(Guid id, CancellationToken cancellationToken = default);
 
-    public Task<List<ProductDto>> GetAllAsync(CancellationToken cancellationToken = default);
+    public Task<List<ProductDto>> GetListAsync(CancellationToken cancellationToken = default);
 
     public Task<ProductDto> CreateAsync(CreateProductDto product, CancellationToken cancellationToken = default);
 

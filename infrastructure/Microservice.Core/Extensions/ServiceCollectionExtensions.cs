@@ -18,4 +18,14 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton<ObjectWrapper<T>>(new ObjectWrapper<T>());
     }
+
+    public static T GetSingletonServiceOrNull<T>(this IServiceCollection services)
+    {
+        return (T)(services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == typeof(T))?.ImplementationInstance);
+    }
+
+    public static T GetSingletonService<T>(this IServiceCollection services)
+    {
+        return services.GetSingletonServiceOrNull<T>() ?? throw new Exception("Can not find service: " + typeof(T).AssemblyQualifiedName);
+    }
 }
