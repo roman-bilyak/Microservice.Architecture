@@ -1,18 +1,19 @@
-﻿using Microservice.ProductService.Domain;
+﻿using Microservice.Core.Services;
+using Microservice.ProductService.Domain;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ProductService.Application;
 
-internal class ProductAppService : IProductAppService
+internal class ProductApplicationService : ApplicationService, IProductApplicationService
 {
     private readonly IProductManager _productManager;
 
-    public ProductAppService(IProductManager productManager)
+    public ProductApplicationService(IProductManager productManager)
     {
         _productManager = productManager;
     }
 
-    public async Task<ProductDto> GetAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<ProductDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         Product product = await _productManager.GetByIdAsync(id, cancellationToken);
         if (product == null)
@@ -27,7 +28,7 @@ internal class ProductAppService : IProductAppService
         };
     }
 
-    public async Task<List<ProductDto>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<ProductDto>> GetListAsync(CancellationToken cancellationToken)
     {
         List<ProductDto> result = new List<ProductDto>();
         List<Product> products = await _productManager.ListAsync(cancellationToken);
@@ -61,7 +62,7 @@ internal class ProductAppService : IProductAppService
         };
     }
 
-    public async Task<ProductDto> UpdateAsync(Guid id, UpdateProductDto product, CancellationToken cancellationToken)
+    public async Task<ProductDto> UpdateAsync([Required] Guid id, UpdateProductDto product, CancellationToken cancellationToken)
     {
         Product entity = await _productManager.GetByIdAsync(id, cancellationToken);
         if (entity == null)
@@ -81,7 +82,7 @@ internal class ProductAppService : IProductAppService
         };
     }
 
-    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         Product entity = await _productManager.GetByIdAsync(id, cancellationToken);
         if (entity == null)

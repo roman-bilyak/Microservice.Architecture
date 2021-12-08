@@ -9,6 +9,6 @@ public sealed class ProductServiceApplicationModule : Module
     {
         base.Configure(services);
 
-        services.AddTransient<IProductAppService, ProductAppService>();
+        services.AddTransient<IProductApplicationService, ProductApplicationService>();
     }
 }
