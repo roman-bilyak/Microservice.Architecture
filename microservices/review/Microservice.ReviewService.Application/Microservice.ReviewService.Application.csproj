@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Microservice.ReviewService.Application.Abstractions\Microservice.ReviewService.Application.Abstractions.csproj" />
     <ProjectReference Include="..\Microservice.ReviewService.Domain\Microservice.ReviewService.Domain.csproj" />
   </ItemGroup>
 

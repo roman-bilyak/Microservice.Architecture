@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "Microservice.ReviewService.Host": {
+    "Microservice.ReviewService.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\infrastructure\Microservice.Core\Microservice.Core.csproj" />
+    <ProjectReference Include="..\..\..\infrastructure\Microservice.Infrastructure.Database\Microservice.Infrastructure.Database.csproj" />
     <ProjectReference Include="..\Microservice.ReviewService.Domain.Share\Microservice.ReviewService.Domain.Share.csproj" />
   </ItemGroup>
 

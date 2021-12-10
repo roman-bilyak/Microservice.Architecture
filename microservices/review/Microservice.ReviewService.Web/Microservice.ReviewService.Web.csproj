@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\infrastructure\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.ReviewService.Application\Microservice.ReviewService.Application.csproj" />
     <ProjectReference Include="..\Microservice.ReviewService.Infrastructure\Microservice.ReviewService.Infrastructure.csproj" />
   </ItemGroup>
