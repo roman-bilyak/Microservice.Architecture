@@ -1,4 +1,12 @@
 ﻿{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://localhost:5002",
+      "sslPort": 0
+    }
+  },
   "profiles": {
     "Microservice.MovieService.Web": {
       "commandName": "Project",
