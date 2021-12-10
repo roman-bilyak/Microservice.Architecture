@@ -1,8 +1,8 @@
 ﻿using Microservice.Infrastructure.Database.EntityFrameworkCore;
-using Microservice.ReviewService.Domain.Reviews;
+using Microservice.ReviewService.Reviews;
 using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.ReviewService.Infrastructure.Database;
+namespace Microservice.ReviewService.Database;
 
 internal class ReviewServiceDbContext : BaseDbContext<ReviewServiceDbContext>
 {

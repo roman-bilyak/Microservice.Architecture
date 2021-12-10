@@ -1,7 +1,6 @@
 ﻿using Microservice.Core.Services;
-using Microservice.ReviewService.Domain.Reviews;
 
-namespace Microservice.ReviewService.Application.Reviews;
+namespace Microservice.ReviewService.Reviews;
 
 internal class UserApplicationService : ApplicationService, IUserApplicationService
 {

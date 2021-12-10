@@ -1,10 +1,9 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
-using Microservice.ReviewService.Application;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.OpenApi.Models;
 
-namespace Microservice.ReviewService.Web;
+namespace Microservice.ReviewService;
 
 public sealed class ReviewServiceWebModule : Module
 {

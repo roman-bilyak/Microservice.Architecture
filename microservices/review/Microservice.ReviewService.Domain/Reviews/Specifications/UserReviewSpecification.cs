@@ -1,7 +1,7 @@
 ﻿using Microservice.Infrastructure.Database;
 using System.Linq.Expressions;
 
-namespace Microservice.ReviewService.Domain.Reviews;
+namespace Microservice.ReviewService.Reviews;
 
 internal class UserReviewSpecification : Specification<Review>
 {

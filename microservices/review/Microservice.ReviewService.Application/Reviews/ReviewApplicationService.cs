@@ -1,8 +1,7 @@
 ﻿using Microservice.Core.Services;
-using Microservice.ReviewService.Domain.Reviews;
 using System.ComponentModel.DataAnnotations;
 
-namespace Microservice.ReviewService.Application.Reviews;
+namespace Microservice.ReviewService.Reviews;
 
 internal class ReviewApplicationService : ApplicationService, IReviewApplicationService
 {

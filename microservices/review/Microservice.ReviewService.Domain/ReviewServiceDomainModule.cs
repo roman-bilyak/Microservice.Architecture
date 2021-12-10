@@ -1,8 +1,8 @@
 ﻿using Microservice.Core.Modularity;
-using Microservice.ReviewService.Domain.Reviews;
+using Microservice.ReviewService.Reviews;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservice.ReviewService.Domain;
+namespace Microservice.ReviewService;
 
 public sealed class ReviewServiceDomainModule : Module
 {

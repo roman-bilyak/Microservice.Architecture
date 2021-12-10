@@ -1,9 +1,6 @@
 using Microservice.AspNetCore;
 using Microservice.Core;
-using Microservice.ReviewService.Application;
-using Microservice.ReviewService.Domain;
-using Microservice.ReviewService.Infrastructure;
-using Microservice.ReviewService.Web;
+using Microservice.ReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication()
