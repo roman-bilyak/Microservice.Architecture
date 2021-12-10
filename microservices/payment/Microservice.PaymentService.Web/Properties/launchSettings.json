@@ -1,10 +1,10 @@
 ﻿{
   "profiles": {
-    "Microservice.ReviewService.Host": {
+    "Microservice.PaymentService.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5004",
+      "applicationUrl": "https://localhost:5003",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
