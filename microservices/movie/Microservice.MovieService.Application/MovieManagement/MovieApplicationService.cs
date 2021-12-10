@@ -13,7 +13,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         _movieManager = movieManager;
     }
 
-    public async Task<MovieDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task<MovieDto> GetMovieAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         Movie movie = await _movieManager.GetByIdAsync(id, cancellationToken);
         if (movie == null)
@@ -28,7 +28,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         };
     }
 
-    public async Task<List<MovieDto>> GetListAsync(CancellationToken cancellationToken)
+    public async Task<List<MovieDto>> GetMoviesAsync(CancellationToken cancellationToken)
     {
         List<MovieDto> result = new List<MovieDto>();
         List<Movie> movies = await _movieManager.ListAsync(cancellationToken);
@@ -45,14 +45,14 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         return result;
     }
 
-    public async Task<MovieDto> CreateAsync(CreateMovieDto movie, CancellationToken cancellationToken)
+    public async Task<MovieDto> CreateMovieAsync(CreateMovieDto movie, CancellationToken cancellationToken)
     {
         Movie entity = new Movie
         {
             Title = movie.Title
         };
 
-        await _movieManager.AddAsync(entity, cancellationToken);
+        entity = await _movieManager.AddAsync(entity, cancellationToken);
         await _movieManager.SaveChangesAsync(cancellationToken);
 
         return new MovieDto
@@ -62,7 +62,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         };
     }
 
-    public async Task<MovieDto> UpdateAsync([Required] Guid id, UpdateMovieDto movie, CancellationToken cancellationToken)
+    public async Task<MovieDto> UpdateMovieAsync([Required] Guid id, UpdateMovieDto movie, CancellationToken cancellationToken)
     {
         Movie entity = await _movieManager.GetByIdAsync(id, cancellationToken);
         if (entity == null)
@@ -72,7 +72,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
 
         entity.Title = movie.Title;
 
-        await _movieManager.UpdateAsync(entity, cancellationToken);
+        entity = await _movieManager.UpdateAsync(entity, cancellationToken);
         await _movieManager.SaveChangesAsync(cancellationToken);
 
         return new MovieDto
@@ -82,7 +82,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         };
     }
 
-    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task DeleteMovieAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         Movie entity = await _movieManager.GetByIdAsync(id, cancellationToken);
         if (entity == null)

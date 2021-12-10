@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 
 namespace Microservice.MovieService.Web;
 
-public sealed class MovieServiceHostModule : Module
+public sealed class MovieServiceWebModule : Module
 {
     public override void Configure(IServiceCollection services)
     {

@@ -8,7 +8,8 @@ internal class MovieServiceDbContext : BaseDbContext<MovieServiceDbContext>
 {
     public DbSet<Movie> Movies { get; set; }
 
-    public MovieServiceDbContext(DbContextOptions<MovieServiceDbContext> options) : base(options)
+    public MovieServiceDbContext(DbContextOptions<MovieServiceDbContext> options)
+        : base(options)
     {
     }
 
