@@ -1,6 +1,21 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://localhost:5001",
+      "sslPort": 0
+    }
+  },
   "profiles": {
-    "Microservice.IdentityServer.Host": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Microservice.IdentityServer.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
