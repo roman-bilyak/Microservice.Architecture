@@ -1,5 +1,5 @@
 ﻿using Microservice.Infrastructure.Database.EntityFrameworkCore;
-using Microservice.MovieService.Domain;
+using Microservice.MovieService.Domain.MovieManagement;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microservice.MovieService.Infrastructure.Database;
