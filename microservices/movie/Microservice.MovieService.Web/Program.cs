@@ -11,7 +11,7 @@ builder.Services.AddApplication()
     .AddModule<MovieServiceDomainModule>()
     .AddModule<MovieServiceInfrastructureModule>()
     .AddModule<MovieServiceApplicationModule>()
-    .AddModule<MovieServiceHostModule>()
+    .AddModule<MovieServiceWebModule>()
     .Configure();
 
 var app = builder.Build();
