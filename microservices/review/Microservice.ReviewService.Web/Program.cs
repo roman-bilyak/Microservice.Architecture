@@ -1,6 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Microservice.AspNetCore;
+using Microservice.Core;
+using Microservice.ReviewService.Application;
+using Microservice.ReviewService.Domain;
+using Microservice.ReviewService.Infrastructure;
+using Microservice.ReviewService.Web;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddApplication()
+    .AddModule<AspNetCoreModule>()
+    .AddModule<ReviewServiceDomainModule>()
+    .AddModule<ReviewServiceInfrastructureModule>()
+    .AddModule<ReviewServiceApplicationModule>()
+    .AddModule<ReviewServiceWebModule>()
+    .Configure();
+
+var app = builder.Build();
+app.UseApplication();
 
 app.Run();

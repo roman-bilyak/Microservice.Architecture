@@ -1,0 +1,23 @@
+﻿using Microservice.ReviewService.Domain.Reviews;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Microservice.ReviewService.Infrastructure.Database;
+
+internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
+{
+    public void Configure(EntityTypeBuilder<Review> builder)
+    {
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.UserId)
+            .IsRequired();
+
+        builder.Property(x => x.MovieId)
+            .IsRequired();
+
+        builder.Property(x => x.Text)
+            .IsRequired()
+            .HasMaxLength(200);
+    }
+}
