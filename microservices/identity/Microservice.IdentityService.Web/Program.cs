@@ -1,4 +1,4 @@
-﻿using Microservice.IdentityServer.Host;
+﻿using Microservice.IdentityService.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
