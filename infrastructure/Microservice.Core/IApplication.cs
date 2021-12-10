@@ -4,7 +4,7 @@ namespace Microservice.Core;
 
 public interface IApplication : IDisposable
 {
-    IApplication AddModule<T>() where T : IModule;
+    IApplication AddModule<T>() where T : class, IModule, new();
 
     void Configure();
 

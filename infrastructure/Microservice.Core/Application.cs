@@ -19,7 +19,7 @@ public class Application : IApplication
         _modules = new List<IModule>();
     }
 
-    public IApplication AddModule<T>() where T : IModule
+    public IApplication AddModule<T>() where T : class, IModule, new()
     {
         _modules.Add(Activator.CreateInstance<T>());
 
