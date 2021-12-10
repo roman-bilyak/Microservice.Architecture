@@ -2,8 +2,8 @@ using Microservice.AspNetCore;
 using Microservice.Core;
 using Microservice.MovieService.Application;
 using Microservice.MovieService.Domain;
-using Microservice.MovieService.Host;
 using Microservice.MovieService.Infrastructure;
+using Microservice.MovieService.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication()

@@ -4,7 +4,7 @@ using Microservice.MovieService.Application;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.OpenApi.Models;
 
-namespace Microservice.MovieService.Host;
+namespace Microservice.MovieService.Web;
 
 public sealed class MovieServiceHostModule : Module
 {
