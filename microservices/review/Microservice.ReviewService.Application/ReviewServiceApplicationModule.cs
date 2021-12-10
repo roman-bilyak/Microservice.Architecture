@@ -1,8 +1,8 @@
 ﻿using Microservice.Core.Modularity;
-using Microservice.ReviewService.Application.Reviews;
+using Microservice.ReviewService.Reviews;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservice.ReviewService.Application;
+namespace Microservice.ReviewService;
 
 public sealed class ReviewServiceApplicationModule : Module
 {

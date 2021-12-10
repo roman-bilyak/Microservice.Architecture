@@ -1,6 +1,6 @@
 ﻿using Microservice.Infrastructure.Database;
 
-namespace Microservice.ReviewService.Domain.Reviews;
+namespace Microservice.ReviewService.Reviews;
 
 public class Review : Entity<Guid>, IAggregateRoot
 {

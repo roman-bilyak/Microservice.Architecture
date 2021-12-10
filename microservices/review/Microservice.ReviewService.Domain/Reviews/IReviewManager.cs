@@ -1,4 +1,4 @@
-﻿namespace Microservice.ReviewService.Domain.Reviews;
+﻿namespace Microservice.ReviewService.Reviews;
 
 public interface IReviewManager
 {

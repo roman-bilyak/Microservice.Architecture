@@ -1,4 +1,4 @@
-﻿namespace Microservice.ReviewService.Application.Reviews;
+﻿namespace Microservice.ReviewService.Reviews;
 
 public class GetUserReviewsDto : List<ReviewDto>
 {

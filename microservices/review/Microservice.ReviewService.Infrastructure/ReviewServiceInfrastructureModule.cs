@@ -1,12 +1,12 @@
 ﻿using Microservice.Core.Modularity;
 using Microservice.Infrastructure.Database;
 using Microservice.Infrastructure.Database.EntityFrameworkCore;
-using Microservice.ReviewService.Domain.Reviews;
-using Microservice.ReviewService.Infrastructure.Database;
+using Microservice.ReviewService.Reviews;
+using Microservice.ReviewService.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservice.ReviewService.Infrastructure;
+namespace Microservice.ReviewService;
 
 public sealed class ReviewServiceInfrastructureModule : Module
 {

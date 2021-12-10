@@ -1,7 +1,7 @@
 ﻿using Microservice.Core.Domain;
 using Microservice.Infrastructure.Database;
 
-namespace Microservice.ReviewService.Domain.Reviews;
+namespace Microservice.ReviewService.Reviews;
 
 internal class ReviewManager : DomainService, IReviewManager
 {
