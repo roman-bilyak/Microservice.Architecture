@@ -1,4 +1,5 @@
 ﻿using Microservice.Core.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
@@ -11,7 +12,7 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         _reviewManager = reviewManager;
     }
 
-    public async Task<GetUserReviewsDto> GetUserReviewsAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<GetUserReviewsDto> GetUserReviewsAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         GetUserReviewsDto result = new GetUserReviewsDto();
         foreach (Review review in await _reviewManager.GetListByUserAsync(id, cancellationToken))
