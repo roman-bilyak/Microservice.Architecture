@@ -35,12 +35,7 @@ public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TK
 
     public virtual async Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
-    }
-
-    public virtual async Task<List<TResult>> ListAsync<TResult>(ISpecification<TEntity, TResult> specification, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
+        return await _dbContext.Set<TEntity>().Where(specification.ToExpression()).ToListAsync(cancellationToken);
     }
 
     public virtual async Task<int> CountAsync(CancellationToken cancellationToken = default)
@@ -50,7 +45,7 @@ public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TK
 
     public virtual async Task<int> CountAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Set<TEntity>().Where(specification.ToExpression()).CountAsync(cancellationToken);
     }
 
     public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
