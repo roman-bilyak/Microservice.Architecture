@@ -1,8 +1,8 @@
 ﻿using Microservice.Infrastructure.Database.EntityFrameworkCore;
-using Microservice.MovieService.Domain.MovieManagement;
+using Microservice.MovieService.MovieManagement;
 using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.MovieService.Infrastructure.Database;
+namespace Microservice.MovieService.Database;
 
 internal class MovieServiceDbContext : BaseDbContext<MovieServiceDbContext>
 {

@@ -1,12 +1,12 @@
 ﻿using Microservice.Core.Modularity;
 using Microservice.Infrastructure.Database;
 using Microservice.Infrastructure.Database.EntityFrameworkCore;
-using Microservice.MovieService.Domain.MovieManagement;
-using Microservice.MovieService.Infrastructure.Database;
+using Microservice.MovieService.MovieManagement;
+using Microservice.MovieService.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservice.MovieService.Infrastructure;
+namespace Microservice.MovieService;
 
 public sealed class MovieServiceInfrastructureModule : Module
 {

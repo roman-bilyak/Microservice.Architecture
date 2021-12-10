@@ -1,8 +1,8 @@
 ﻿using Microservice.Core.Modularity;
-using Microservice.MovieService.Domain.MovieManagement;
+using Microservice.MovieService.MovieManagement;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservice.MovieService.Domain;
+namespace Microservice.MovieService;
 
 public sealed class MovieServiceDomainModule : Module
 {
