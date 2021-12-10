@@ -1,10 +1,9 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
-using Microservice.MovieService.Application;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.OpenApi.Models;
 
-namespace Microservice.MovieService.Web;
+namespace Microservice.MovieService;
 
 public sealed class MovieServiceWebModule : Module
 {

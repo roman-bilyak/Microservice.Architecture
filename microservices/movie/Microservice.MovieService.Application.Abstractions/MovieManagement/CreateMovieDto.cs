@@ -1,4 +1,4 @@
-﻿namespace Microservice.MovieService.Application.MovieManagement;
+﻿namespace Microservice.MovieService.MovieManagement;
 
 public class CreateMovieDto
 {

@@ -1,8 +1,8 @@
-﻿using Microservice.MovieService.Domain.MovieManagement;
+﻿using Microservice.MovieService.MovieManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Microservice.MovieService.Infrastructure.Database;
+namespace Microservice.MovieService.Database;
 
 internal class MovieConfiguration : IEntityTypeConfiguration<Movie>
 {
