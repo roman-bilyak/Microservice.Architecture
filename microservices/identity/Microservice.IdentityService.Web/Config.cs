@@ -5,7 +5,7 @@ using IdentityServer4.Test;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace Microservice.IdentityServer.Host;
+namespace Microservice.IdentityService.Web;
 
 public static class Config
 {
