@@ -1,4 +1,5 @@
 ﻿using Microservice.Core.Modularity;
+using Microservice.MovieService.Domain.MovieManagement;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.MovieService.Domain;

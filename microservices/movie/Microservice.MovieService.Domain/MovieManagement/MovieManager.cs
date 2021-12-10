@@ -1,6 +1,6 @@
 ﻿using Microservice.Infrastructure.Database;
 
-namespace Microservice.MovieService.Domain;
+namespace Microservice.MovieService.Domain.MovieManagement;
 
 internal class MovieManager : IMovieManager
 {

@@ -1,8 +1,8 @@
 ﻿using Microservice.Core.Services;
-using Microservice.MovieService.Domain;
+using Microservice.MovieService.Domain.MovieManagement;
 using System.ComponentModel.DataAnnotations;
 
-namespace Microservice.MovieService.Application;
+namespace Microservice.MovieService.Application.MovieManagement;
 
 internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {

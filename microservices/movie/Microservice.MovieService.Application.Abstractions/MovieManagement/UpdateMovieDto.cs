@@ -1,4 +1,4 @@
-﻿namespace Microservice.MovieService.Application;
+﻿namespace Microservice.MovieService.Application.MovieManagement;
 
 public class UpdateMovieDto
 {
