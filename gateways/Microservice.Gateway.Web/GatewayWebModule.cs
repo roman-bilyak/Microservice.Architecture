@@ -54,6 +54,9 @@ public sealed class GatewayWebModule : BaseModule
             options.DefaultModelsExpandDepth(-1);
         });
 
+        app.UseRouting();
+        app.UseEndpoints(x => x.MapDefaultControllerRoute());
+
         app.UseOcelot().Wait();
     }
 }
