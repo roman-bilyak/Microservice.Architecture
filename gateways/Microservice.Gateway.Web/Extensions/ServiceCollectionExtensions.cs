@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Microservice.Gateway;
 
-public static class ServiceCollectionExtensions
+internal static class ServiceCollectionExtensions
 {
     public static void RegisterFakeApplicationServices(this IServiceCollection services, Assembly assembly, string rootPath = null)
     {

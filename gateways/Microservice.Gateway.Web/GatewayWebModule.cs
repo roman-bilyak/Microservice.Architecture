@@ -1,5 +1,6 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
+using Microservice.Gateway.Swagger;
 using Microservice.MovieService;
 using Microservice.ReviewService;
 using Microsoft.OpenApi.Models;
@@ -28,6 +29,7 @@ public sealed class GatewayWebModule : BaseModule
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Gateway API", Version = "v1" });
+            options.DocumentFilter<HideOcelotControllersFilter>();
             options.DocInclusionPredicate((docName, description) => true);
         });
 
