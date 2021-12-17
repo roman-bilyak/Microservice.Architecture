@@ -1,29 +1,40 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.AspNetCore.Conventions;
 using Microservice.Core.Modularity;
-using Microservice.Core.Services;
-using Microservice.ReviewService.Reviews;
+using Microservice.ReviewService;
 using Microsoft.OpenApi.Models;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
-namespace Microservice.ReviewService;
+namespace Microservice.Gateway;
 
-public sealed class ReviewServiceWebModule : BaseModule
+public sealed class GatewayWebModule : BaseModule
 {
     public override void Configure(IServiceCollection services)
     {
         base.Configure(services);
 
+        services.AddAuthentication("Bearer")
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = "https://localhost:5001";
+                options.ApiName = "Gateway";
+                options.RequireHttpsMetadata = true;
+            });
+
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(IReviewModuleApplicationService).Assembly, 
+            options.AddSettings(typeof(IReviewModuleApplicationService).Assembly,
                 x => typeof(IReviewModuleApplicationService).IsAssignableFrom(x));
         });
 
         services.AddSwaggerGen(options =>
         {
-            options.SwaggerDoc("v1", new OpenApiInfo { Title = "Review Service API", Version = "v1" });
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "Gateway API", Version = "v1" });
             options.DocInclusionPredicate((docName, description) => true);
         });
+
+        services.AddOcelot();
     }
 
     public override void Initialize(IServiceProvider serviceProvider)
@@ -32,7 +43,8 @@ public sealed class ReviewServiceWebModule : BaseModule
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 
-        app.UseDeveloperExceptionPage();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseSwagger();
         app.UseSwaggerUI(options =>
@@ -42,7 +54,6 @@ public sealed class ReviewServiceWebModule : BaseModule
             options.DefaultModelsExpandDepth(-1);
         });
 
-        app.UseRouting();
-        app.UseEndpoints(x => x.MapDefaultControllerRoute());
+        app.UseOcelot().Wait();
     }
 }
