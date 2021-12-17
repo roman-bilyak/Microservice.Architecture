@@ -1,6 +1,7 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.AspNetCore.Conventions;
 using Microservice.Core.Modularity;
+using Microservice.MovieService;
 using Microservice.ReviewService;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
@@ -24,8 +25,8 @@ public sealed class GatewayWebModule : BaseModule
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(IReviewModuleApplicationService).Assembly,
-                x => typeof(IReviewModuleApplicationService).IsAssignableFrom(x));
+            options.SetRootPath(typeof(MovieServiceApplicationContractsModule).Assembly, "Movies");
+            options.SetRootPath(typeof(ReviewServiceApplicationContractsModule).Assembly, "Reviews");
         });
 
         services.AddSwaggerGen(options =>
