@@ -50,6 +50,7 @@ public sealed class GatewayWebModule : BaseModule
         app.UseSwaggerUI(options =>
         {
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            options.EnableTryItOutByDefault();
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
         });
