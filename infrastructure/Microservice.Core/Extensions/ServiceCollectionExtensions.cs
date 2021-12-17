@@ -19,13 +19,24 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ObjectWrapper<T>>(new ObjectWrapper<T>());
     }
 
-    public static T GetSingletonServiceOrNull<T>(this IServiceCollection services)
+    public static Type? GetImplementationType<T>(this IServiceCollection services)
     {
-        return (T)(services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == typeof(T))?.ImplementationInstance);
+        return services.GetImplementationType(typeof(T));
     }
 
-    public static T GetSingletonService<T>(this IServiceCollection services)
+    public static Type? GetImplementationType(this IServiceCollection services, Type type)
     {
-        return services.GetSingletonServiceOrNull<T>() ?? throw new Exception("Can not find service: " + typeof(T).AssemblyQualifiedName);
+        return services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == type)?.ImplementationType;
+    }
+
+    public static T GetImplementationInstance<T>(this IServiceCollection services)
+    {
+        return services.GetImplementationInstanceOrNull<T>()
+            ?? throw new Exception($"Can not find implementation instance for service '{typeof(T).AssemblyQualifiedName}'");
+    }
+
+    public static T GetImplementationInstanceOrNull<T>(this IServiceCollection services)
+    {
+        return (T)(services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == typeof(T))?.ImplementationInstance);
     }
 }
