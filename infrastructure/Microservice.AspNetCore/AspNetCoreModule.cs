@@ -30,7 +30,7 @@ public sealed class AspNetCoreModule : BaseModule
         base.Initialize(serviceProvider);
 
         ApplicationPartManager applicationPartManager = serviceProvider.GetRequiredService<ApplicationPartManager>();
-        DynamicControllerOptions dynamicControllerOptions = serviceProvider.GetRequiredService<IOptions<DynamicControllerOptions>>().Value;
+        DynamicControllerOptions dynamicControllerOptions = serviceProvider.GetOptions<DynamicControllerOptions>();
         foreach (Assembly assembly in dynamicControllerOptions.Assemblies)
         {
             applicationPartManager.ApplicationParts.Add(new AssemblyPart(assembly));

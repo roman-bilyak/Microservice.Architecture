@@ -47,7 +47,7 @@ public class DynamicControllerFeatureProvider : IApplicationFeatureProvider<Cont
             return false;
         }
 
-        DynamicControllerOptions options = _application.ServiceProvider.GetRequiredService<IOptions<DynamicControllerOptions>>().Value;
+        DynamicControllerOptions options = _application.ServiceProvider.GetOptions<DynamicControllerOptions>();
         return options.IsController(typeInfo.AsType());
     }
 
