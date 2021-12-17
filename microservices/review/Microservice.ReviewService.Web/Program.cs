@@ -7,6 +7,7 @@ builder.Services.AddApplication()
     .AddModule<AspNetCoreModule>()
     .AddModule<ReviewServiceDomainModule>()
     .AddModule<ReviewServiceInfrastructureModule>()
+    .AddModule<ReviewServiceApplicationContractsModule>()
     .AddModule<ReviewServiceApplicationModule>()
     .AddModule<ReviewServiceWebModule>()
     .Configure();

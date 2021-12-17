@@ -1,5 +1,4 @@
 ﻿using Microservice.AspNetCore;
-using Microservice.AspNetCore.Conventions;
 using Microservice.Core.Modularity;
 using Microsoft.OpenApi.Models;
 
@@ -10,12 +9,6 @@ public sealed class ReviewServiceWebModule : BaseModule
     public override void Configure(IServiceCollection services)
     {
         base.Configure(services);
-
-        services.Configure<DynamicControllerOptions>(options =>
-        {
-            options.AddSettings(typeof(IReviewModuleApplicationService).Assembly, 
-                x => typeof(IReviewModuleApplicationService).IsAssignableFrom(x));
-        });
 
         services.AddSwaggerGen(options =>
         {

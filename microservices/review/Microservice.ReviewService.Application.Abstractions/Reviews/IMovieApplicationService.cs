@@ -1,6 +1,8 @@
-﻿namespace Microservice.ReviewService.Reviews;
+﻿using Microservice.Core.Services;
 
-public interface IMovieApplicationService : IReviewModuleApplicationService
+namespace Microservice.ReviewService.Reviews;
+
+public interface IMovieApplicationService : IApplicationService
 {
     public Task<GetMovieReviewsDto> GetMovieReviewsAsync(Guid id, CancellationToken cancellationToken);
 }
