@@ -20,16 +20,17 @@ public sealed class AspNetCoreModule : BaseModule
             options.Conventions.Add(new DynamicControllerConvention());
         });
         services.AddWrappedService<IApplicationBuilder>();
-
-        ApplicationPartManager applicationPartManager = services.GetImplementationInstanceOrNull<ApplicationPartManager>();
-        applicationPartManager?.FeatureProviders.Add(new DynamicControllerFeatureProvider(services.GetImplementationInstance<IApplication>()));
     }
 
     public override void Initialize(IServiceProvider serviceProvider)
     {
         base.Initialize(serviceProvider);
 
+        IApplication application = serviceProvider.GetRequiredService<IApplication>();
         ApplicationPartManager applicationPartManager = serviceProvider.GetRequiredService<ApplicationPartManager>();
+        applicationPartManager.FeatureProviders.Add(new DynamicControllerFeatureProvider(application));
+
+
         DynamicControllerOptions dynamicControllerOptions = serviceProvider.GetOptions<DynamicControllerOptions>();
         foreach (Assembly assembly in dynamicControllerOptions.Assemblies)
         {
