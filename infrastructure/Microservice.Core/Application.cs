@@ -5,19 +5,21 @@ namespace Microservice.Core;
 
 public class Application : IApplication
 {
-    private readonly IServiceCollection _services;
     private readonly Action<ApplicationConfigurationOptions> _configurationOptionsAction;
     private readonly List<IModule> _modules;
-    private IServiceProvider _serviceProvider;
 
     public Application(IServiceCollection services, Action<ApplicationConfigurationOptions> configurationOptionsAction)
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        _services = services;
+        Services = services;
         _configurationOptionsAction = configurationOptionsAction;
         _modules = new List<IModule>();
     }
+
+    public IServiceCollection Services { get; private set; }
+
+    public IServiceProvider ServiceProvider { get; private set; }
 
     public IApplication AddModule<T>() where T : class, IModule, new()
     {
@@ -28,14 +30,14 @@ public class Application : IApplication
 
     public virtual void Configure()
     {
-        _services.AddSingleton<IApplication>(this);
+        Services.AddSingleton<IApplication>(this);
 
-        foreach(IModule module in _modules)
+        foreach (IModule module in _modules)
         {
-            module.Configure(_services);
+            module.Configure(Services);
         }
 
-        ApplicationConfigurationOptions configurationOptions = new ApplicationConfigurationOptions(_services);
+        ApplicationConfigurationOptions configurationOptions = new ApplicationConfigurationOptions(Services);
         _configurationOptionsAction?.Invoke(configurationOptions);
     }
 
@@ -43,19 +45,19 @@ public class Application : IApplication
     {
         ArgumentNullException.ThrowIfNull(serviceProvider);
 
-        if (_serviceProvider != null && _serviceProvider != serviceProvider)
+        if (ServiceProvider != null && ServiceProvider != serviceProvider)
         {
             throw new Exception("Service provider was already set before to another service provider instance.");
         }
 
-        _serviceProvider = serviceProvider;
+        ServiceProvider = serviceProvider;
     }
 
     public virtual void Initialize()
     {
         foreach (IModule module in _modules)
         {
-            module.Initialize(_serviceProvider);
+            module.Initialize(ServiceProvider);
         }
     }
 
@@ -63,7 +65,7 @@ public class Application : IApplication
     {
         foreach (IModule module in _modules)
         {
-            module.Shutdown(_serviceProvider);
+            module.Shutdown(ServiceProvider);
         }
     }
 
