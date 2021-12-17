@@ -38,7 +38,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
             foreach (ActionModel action in controller.Actions)
             {
                 action.ActionName = action.ActionName.RemoveSuffix("Async");
-                action.ApiExplorer.IsVisible = true;
+                action.ApiExplorer.IsVisible = IsActionVisible(action.ActionName);
 
                 action.Selectors.Where(x => x.AttributeRouteModel == null).ToList()
                     .ForEach(s => action.Selectors.Remove(s));
@@ -75,6 +75,13 @@ public class DynamicControllerConvention : IApplicationModelConvention
             controllerName = controllerName.Substring(1, controllerName.Length - 1);
         }
         return controllerName.RemoveSuffix("Proxy").RemoveSuffix("ApplicationService");
+    }
+
+    private bool IsActionVisible(string actionName)
+    {
+        return actionName != "DynProxyGetTarget"
+            && actionName != "DynProxySetTarget"
+            && actionName != "GetInterceptors";
     }
 
     public static string GetMethodVerbByActionName(string actionName)
