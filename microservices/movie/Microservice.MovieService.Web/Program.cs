@@ -7,6 +7,7 @@ builder.Services.AddApplication()
     .AddModule<AspNetCoreModule>()
     .AddModule<MovieServiceDomainModule>()
     .AddModule<MovieServiceInfrastructureModule>()
+    .AddModule<MovieServiceApplicationContractsModule>()
     .AddModule<MovieServiceApplicationModule>()
     .AddModule<MovieServiceWebModule>()
     .Configure();
