@@ -31,9 +31,6 @@ public sealed class MovieServiceWebModule : BaseModule
         ApplicationPartManager applicationPartManager = serviceProvider.GetRequiredService<ApplicationPartManager>();
         applicationPartManager.ApplicationParts.Add(new AssemblyPart(typeof(MovieServiceApplicationModule).Assembly));
 
-        app.UseRouting();
-        app.UseEndpoints(x => x.MapDefaultControllerRoute());
-
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
@@ -41,5 +38,8 @@ public sealed class MovieServiceWebModule : BaseModule
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
         });
+
+        app.UseRouting();
+        app.UseEndpoints(x => x.MapDefaultControllerRoute());
     }
 }

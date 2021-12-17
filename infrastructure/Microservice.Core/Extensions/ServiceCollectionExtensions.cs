@@ -31,12 +31,6 @@ public static class ServiceCollectionExtensions
 
     public static T GetImplementationInstance<T>(this IServiceCollection services)
     {
-        return services.GetImplementationInstanceOrNull<T>()
-            ?? throw new Exception($"Can not find implementation instance for service '{typeof(T).AssemblyQualifiedName}'");
-    }
-
-    public static T GetImplementationInstanceOrNull<T>(this IServiceCollection services)
-    {
         return (T)(services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == typeof(T))?.ImplementationInstance);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.AspNetCore.Conventions;
 using Microservice.Core.Modularity;
-using Microservice.Core.Services;
-using Microservice.ReviewService.Reviews;
 using Microsoft.OpenApi.Models;
 
 namespace Microservice.ReviewService;
