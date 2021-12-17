@@ -1,11 +1,8 @@
-﻿using Microservice.Core;
-using Microservice.Core.Extensions;
-using Microservice.Core.Services;
+﻿using Microservice.Core.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
@@ -13,6 +10,13 @@ namespace Microservice.AspNetCore.Conventions;
 
 public class DynamicControllerConvention : IApplicationModelConvention
 {
+    private readonly DynamicControllerOptions _options;
+
+    public DynamicControllerConvention(IOptions<DynamicControllerOptions> options)
+    {
+        _options = options.Value;
+    }
+
     public void Apply(ApplicationModel application)
     {
         foreach (ControllerModel controller in application.Controllers)
@@ -21,6 +25,13 @@ public class DynamicControllerConvention : IApplicationModelConvention
                 controller.ControllerName = controllerType.Name.RemoveSuffix("ApplicationService");
                 controller.ApiExplorer.GroupName = controller.ControllerName;
                 controller.ApiExplorer.IsVisible = true;
+
+            string rootPath = "api";
+            string controllerPath = _options.GetRootPath(controllerType);
+            if (controllerPath != null)
+            {
+                rootPath += $"/{controllerPath}";
+            }
 
             foreach (ActionModel action in controller.Actions)
             {
@@ -32,7 +43,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
                 SelectorModel selector = new SelectorModel
                 {
-                    AttributeRouteModel = new AttributeRouteModel(new RouteAttribute($"api/{controller.ControllerName}/{action.ActionName}")),
+                    AttributeRouteModel = new AttributeRouteModel(new RouteAttribute($"{rootPath}/{controller.ControllerName}/{action.ActionName}")),
                 };
 
                 string methodVerb = GetMethodVerbByActionName(action.ActionName);
