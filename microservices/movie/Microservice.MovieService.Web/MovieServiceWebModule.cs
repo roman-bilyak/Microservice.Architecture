@@ -11,8 +11,6 @@ public sealed class MovieServiceWebModule : BaseModule
     {
         base.Configure(services);
 
-        services.AddControllers();
-
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Movie Service API", Version = "v1" });
@@ -27,9 +25,6 @@ public sealed class MovieServiceWebModule : BaseModule
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 
         app.UseDeveloperExceptionPage();
-
-        ApplicationPartManager applicationPartManager = serviceProvider.GetRequiredService<ApplicationPartManager>();
-        applicationPartManager.ApplicationParts.Add(new AssemblyPart(typeof(MovieServiceApplicationModule).Assembly));
 
         app.UseSwagger();
         app.UseSwaggerUI(options =>
