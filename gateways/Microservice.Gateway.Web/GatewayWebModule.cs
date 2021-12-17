@@ -25,8 +25,8 @@ public sealed class GatewayWebModule : BaseModule
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.SetRootPath(typeof(MovieServiceApplicationContractsModule).Assembly, "Movies");
-            options.SetRootPath(typeof(ReviewServiceApplicationContractsModule).Assembly, "Reviews");
+            options.SetRootPath(typeof(MovieServiceApplicationContractsModule).Assembly, "MS");
+            options.SetRootPath(typeof(ReviewServiceApplicationContractsModule).Assembly, "RS");
         });
 
         services.AddSwaggerGen(options =>
