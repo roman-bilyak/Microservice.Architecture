@@ -1,8 +1,6 @@
 ﻿using Microservice.Core;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace Microservice.AspNetCore.Conventions;
@@ -18,11 +16,13 @@ public class DynamicControllerFeatureProvider : IApplicationFeatureProvider<Cont
 
     public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
     {
+        DynamicControllerOptions dynamicControllerOptions = _application.ServiceProvider.GetOptions<DynamicControllerOptions>();
+
         foreach (IApplicationPartTypeProvider part in parts.OfType<IApplicationPartTypeProvider>())
         {
             foreach (TypeInfo type in part.Types)
             {
-                if (IsController(type))
+                if (dynamicControllerOptions.IsController(type))
                 {
                     TypeInfo? implementationType = _application.Services.GetImplementationType(type.AsType())?.GetTypeInfo();
                     TypeInfo controllerType = implementationType ?? type;
@@ -37,19 +37,4 @@ public class DynamicControllerFeatureProvider : IApplicationFeatureProvider<Cont
             }
         }
     }
-
-    #region helper methods
-
-    private bool IsController(TypeInfo typeInfo)
-    {
-        if (_application.ServiceProvider == null)
-        {
-            return false;
-        }
-
-        DynamicControllerOptions options = _application.ServiceProvider.GetOptions<DynamicControllerOptions>();
-        return options.IsController(typeInfo.AsType());
-    }
-
-    #endregion
 }
