@@ -1,6 +1,8 @@
-﻿namespace Microservice.ReviewService.Reviews;
+﻿using Microservice.Core.Services;
 
-public interface IReviewApplicationService : IReviewModuleApplicationService
+namespace Microservice.ReviewService.Reviews;
+
+public interface IReviewApplicationService : IApplicationService
 {
     public Task<ReviewDto> GetReviewAsync(Guid id, CancellationToken cancellationToken);
 
