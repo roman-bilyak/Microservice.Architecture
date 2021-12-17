@@ -40,6 +40,7 @@ public sealed class GatewayWebModule : BaseModule
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 
+        app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -51,8 +52,13 @@ public sealed class GatewayWebModule : BaseModule
             options.DefaultModelsExpandDepth(-1);
         });
 
-        app.UseRouting();
-        app.UseEndpoints(x => x.MapDefaultControllerRoute());
+        app.MapWhen(
+                ctx => !ctx.Request.Path.ToString().StartsWith("/api/"),
+                app2 =>
+                {
+                    app2.UseEndpoints(x => x.MapDefaultControllerRoute());
+                }
+            );
 
         app.UseOcelot().Wait();
     }
