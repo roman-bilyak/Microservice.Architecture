@@ -2,7 +2,7 @@
 
 namespace Microservice.Core.Modularity;
 
-public abstract class Module : IModule
+public abstract class BaseModule : IModule
 {
     public virtual void Configure(IServiceCollection services)
     {

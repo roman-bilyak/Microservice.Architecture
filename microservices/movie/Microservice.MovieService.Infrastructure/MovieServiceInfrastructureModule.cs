@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.MovieService;
 
-public sealed class MovieServiceInfrastructureModule : Module
+public sealed class MovieServiceInfrastructureModule : BaseModule
 {
     public override void Configure(IServiceCollection services)
     {
