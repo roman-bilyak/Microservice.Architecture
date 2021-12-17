@@ -10,11 +10,6 @@ public class DynamicControllerOptions
 
     public void AddSettings(Assembly assembly, Func<Type, bool> typePredicate)
     {
-        AddSettings(null, assembly, typePredicate);
-    }
-
-    public void AddSettings(string rootPath, Assembly assembly, Func<Type, bool> typePredicate)
-    {
         ArgumentNullException.ThrowIfNull(assembly);
         ArgumentNullException.ThrowIfNull(typePredicate);
 
@@ -22,30 +17,11 @@ public class DynamicControllerOptions
         {
             throw new ArgumentException($"Settings for specified assembly '{assembly.FullName}' already exist", nameof(assembly));
         }
-        _settings.Add(assembly, new DynamicControllerSettings(typePredicate, rootPath));
-    }
-
-    public void SetRootPath(Assembly assembly, string rootPath)
-    {
-        if (!_settings.TryGetValue(assembly, out DynamicControllerSettings? settings))
-        {
-            throw new ArgumentException($"There are no settings for specified assembly '{assembly.FullName}'", nameof(assembly));
-        }
-
-        settings.RootPath = rootPath;
+        _settings.Add(assembly, new DynamicControllerSettings(typePredicate));
     }
 
     public bool IsController(Type type)
     {
         return _settings.Any(x => x.Key == type.Assembly && x.Value.TypePredicate(type));
-    }
-
-    public string GetRootPath(Type type)
-    {
-        if (_settings.TryGetValue(type.Assembly, out DynamicControllerSettings? settings))
-        {
-            return settings.RootPath;
-        }
-        return null;
     }
 }

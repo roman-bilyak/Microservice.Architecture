@@ -22,15 +22,17 @@ public class DynamicControllerConvention : IApplicationModelConvention
         foreach (ControllerModel controller in application.Controllers)
         {
             Type controllerType = controller.ControllerType.AsType();
-                controller.ControllerName = controllerType.Name.RemoveSuffix("ApplicationService");
-                controller.ApiExplorer.GroupName = controller.ControllerName;
-                controller.ApiExplorer.IsVisible = true;
 
-            string rootPath = "api";
-            string controllerPath = _options.GetRootPath(controllerType);
-            if (controllerPath != null)
+            controller.ControllerName = GetControllerName(controllerType);
+            controller.ApiExplorer.GroupName = controller.ControllerName;
+            controller.ApiExplorer.IsVisible = true;
+
+            if (!controller.Selectors.Any(selector => selector.AttributeRouteModel != null))
             {
-                rootPath += $"/{controllerPath}";
+                controller.Selectors.Add(new SelectorModel
+                {
+                    AttributeRouteModel = new AttributeRouteModel(new RouteAttribute("api")),
+                });
             }
 
             foreach (ActionModel action in controller.Actions)
@@ -43,7 +45,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
                 SelectorModel selector = new SelectorModel
                 {
-                    AttributeRouteModel = new AttributeRouteModel(new RouteAttribute($"{rootPath}/{controller.ControllerName}/{action.ActionName}")),
+                    AttributeRouteModel = new AttributeRouteModel(new RouteAttribute($"{controller.ControllerName}/{action.ActionName}")),
                 };
 
                 string methodVerb = GetMethodVerbByActionName(action.ActionName);
@@ -63,8 +65,17 @@ public class DynamicControllerConvention : IApplicationModelConvention
         }
     }
 
-
     #region helper methods
+
+    private string GetControllerName(Type controllerType)
+    {
+        string controllerName = controllerType.Name;
+        if (controllerName.StartsWith("I") && controllerName.Length > 1 && char.IsUpper(controllerName[1]))
+        {
+            controllerName = controllerName.Substring(1, controllerName.Length - 1);
+        }
+        return controllerName.RemoveSuffix("Proxy").RemoveSuffix("ApplicationService");
+    }
 
     public static string GetMethodVerbByActionName(string actionName)
     {

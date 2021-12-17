@@ -2,12 +2,26 @@
 
 public static class StringExtensions
 {
-    public static string RemoveSuffix(this string s, string suffix)
+    public static bool IsNullOrEmpty(this string str)
     {
-        if (s.EndsWith(suffix))
+        return string.IsNullOrEmpty(str);
+    }
+
+    public static string RemovePrefix(this string str, string prefix)
+    {
+        if (prefix.IsNullOrEmpty() && str.StartsWith(prefix))
         {
-            return s.Substring(0, s.Length - suffix.Length);
+            return str.Substring(prefix.Length, str.Length - prefix.Length);
         }
-        return s;
+        return str;
+    }
+
+    public static string RemoveSuffix(this string str, string suffix)
+    {
+        if (str.EndsWith(suffix))
+        {
+            return str.Substring(0, str.Length - suffix.Length);
+        }
+        return str;
     }
 }
