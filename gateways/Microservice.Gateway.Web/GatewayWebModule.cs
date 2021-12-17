@@ -1,5 +1,4 @@
 ﻿using Microservice.AspNetCore;
-using Microservice.AspNetCore.Conventions;
 using Microservice.Core.Modularity;
 using Microservice.MovieService;
 using Microservice.ReviewService;
@@ -23,11 +22,8 @@ public sealed class GatewayWebModule : BaseModule
                 options.RequireHttpsMetadata = true;
             });
 
-        services.Configure<DynamicControllerOptions>(options =>
-        {
-            options.SetRootPath(typeof(MovieServiceApplicationContractsModule).Assembly, "MS");
-            options.SetRootPath(typeof(ReviewServiceApplicationContractsModule).Assembly, "RS");
-        });
+        services.RegisterFakeApplicationServices(typeof(MovieServiceApplicationContractsModule).Assembly, "api/MS");
+        services.RegisterFakeApplicationServices(typeof(ReviewServiceApplicationContractsModule).Assembly, "api/RS");
 
         services.AddSwaggerGen(options =>
         {
