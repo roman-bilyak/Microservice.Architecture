@@ -69,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Application.Contracts", "microservices\payment\Microservice.PaymentService.Application.Contracts\Microservice.PaymentService.Application.Contracts.csproj", "{532ED16B-5053-4457-959A-28CAB7863234}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{532ED16B-5053-4457-959A-28CAB7863234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532ED16B-5053-4457-959A-28CAB7863234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532ED16B-5053-4457-959A-28CAB7863234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
