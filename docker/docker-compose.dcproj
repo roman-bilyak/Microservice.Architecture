@@ -7,6 +7,7 @@
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>microservice-gateway-web</DockerServiceName>
+    <DockerComposeProjectName>Microservice.Architecture</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
