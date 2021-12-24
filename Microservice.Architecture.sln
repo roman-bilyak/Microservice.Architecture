@@ -69,7 +69,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Application.Contracts", "microservices\payment\Microservice.PaymentService.Application.Contracts\Microservice.PaymentService.Application.Contracts.csproj", "{532ED16B-5053-4457-959A-28CAB7863234}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{4D938AE5-CB0C-4444-AF86-D2BCEBBC350B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\docker-compose.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +217,7 @@ Global
 		{9DDE87D6-A5B7-400E-A5C6-F847DA57CF48} = {DC3B5664-BC7B-4240-9BD9-2D6E28F031F2}
 		{49AC01AE-D8DB-4E3D-93A0-5F1B6EF987BA} = {E8AD5CEE-842F-43EC-BCA8-85BBF9E59E76}
 		{532ED16B-5053-4457-959A-28CAB7863234} = {2DD6F668-1AB9-4948-A0CA-7967D8EB270D}
+		{9CA8CA0E-C847-4072-B29E-95F779E47ADF} = {4D938AE5-CB0C-4444-AF86-D2BCEBBC350B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4BAC162-4509-4CD1-A8B9-7AA3F5FFDF84}
