@@ -1,0 +1,12 @@
+resources:
+- gateway.yaml
+- identity-service.yaml
+- movie-service.yaml
+- payment-service.yaml
+- review-service.yaml
+
+- gateway-deployment.yaml
+- identity-service-deployment.yaml
+- movie-service-deployment.yaml
+- payment-service-deployment.yaml
+- review-service-deployment.yaml
