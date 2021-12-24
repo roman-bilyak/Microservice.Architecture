@@ -32,6 +32,7 @@ public sealed class ReviewServiceWebModule : BaseModule
             options.EnableTryItOutByDefault();
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
+            options.DisplayRequestDuration();
         });
 
         app.UseRouting();

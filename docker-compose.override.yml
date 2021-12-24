@@ -1,42 +1,43 @@
 version: '3.4'
 
 services:
-  microservice-gateway-web:
+  gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-      - GlobalConfiguration__BaseUrl=http://microservice-gateway-web
-      - Routes__0__DownstreamHostAndPorts__0__Host=microservice-identityservice-web
+      - GlobalConfiguration__BaseUrl=http://gateway
+      - Routes__0__DownstreamHostAndPorts__0__Host=identity-service
       - Routes__0__DownstreamHostAndPorts__0__Port=80
-      - Routes__1__DownstreamHostAndPorts__0__Host=microservice-movieservice-web
+      - Routes__1__DownstreamHostAndPorts__0__Host=movie-service
       - Routes__1__DownstreamHostAndPorts__0__Port=80
-      - Routes__2__DownstreamHostAndPorts__0__Host=microservice-paymentservice-web
+      - Routes__2__DownstreamHostAndPorts__0__Host=payment-service
       - Routes__2__DownstreamHostAndPorts__0__Port=80
-      - Routes__3__DownstreamHostAndPorts__0__Host=microservice-reviewservice-web
+      - Routes__3__DownstreamHostAndPorts__0__Host=review-service
       - Routes__3__DownstreamHostAndPorts__0__Port=80
     ports:
       - 5000:80
-
-  microservice-identityservice-web:
+      
+  identity-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5001:80
-
-  microservice-movieservice-web:
+      
+  movie-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5002:80
-
-  microservice-paymentservice-web:
+      
+  payment-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5003:80
-
-  microservice-reviewservice-web:
+      
+  review-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5004:80
+      

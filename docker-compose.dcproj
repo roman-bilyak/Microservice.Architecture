@@ -6,7 +6,7 @@
     <ProjectGuid>9ca8ca0e-c847-4072-b29e-95f779e47adf</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>microservice-gateway-web</DockerServiceName>
+    <DockerServiceName>gateway</DockerServiceName>
     <DockerComposeProjectName>Microservice.Architecture</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>

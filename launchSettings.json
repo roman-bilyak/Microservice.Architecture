@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "gateway",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "gateway": "StartDebugging",
+        "identity-service": "StartDebugging",
+        "movie-service": "StartDebugging",
+        "payment-service": "StartDebugging",
+        "review-service": "StartDebugging"
+      }
+    }
+  }
+}

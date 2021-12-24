@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: movie-service
+spec:
+  selector:
+    app: movie-service
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
