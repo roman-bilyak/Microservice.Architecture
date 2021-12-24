@@ -53,6 +53,7 @@ public sealed class GatewayWebModule : BaseModule
             options.EnableTryItOutByDefault();
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
+            options.DisplayRequestDuration();
         });
 
         app.MapWhen(
