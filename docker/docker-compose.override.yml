@@ -43,7 +43,7 @@ services:
     ports:
       - 5004:80
       
-  microservice.testservice.web:
+  test-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:

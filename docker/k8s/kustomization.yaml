@@ -4,9 +4,11 @@ resources:
 - movie-service.yaml
 - payment-service.yaml
 - review-service.yaml
+- test-service.yaml
 
 - gateway-deployment.yaml
 - identity-service-deployment.yaml
 - movie-service-deployment.yaml
 - payment-service-deployment.yaml
 - review-service-deployment.yaml
+- test-service-deployment.yaml

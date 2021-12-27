@@ -11,7 +11,8 @@
         "identity-service": "StartDebugging",
         "movie-service": "StartDebugging",
         "payment-service": "StartDebugging",
-        "review-service": "StartDebugging"
+        "review-service": "StartDebugging",
+        "test-service": "StartDebugging"
       }
     }
   }
