@@ -4,7 +4,7 @@ namespace Microservice.TestService.Tests;
 
 internal class TestApplicationService : ApplicationService, ITestApplicationService
 {
-    public Task GetEmpty(CancellationToken cancellationToken)
+    public Task GetAsync(CancellationToken cancellationToken)
     {
         return Task.CompletedTask;
     }

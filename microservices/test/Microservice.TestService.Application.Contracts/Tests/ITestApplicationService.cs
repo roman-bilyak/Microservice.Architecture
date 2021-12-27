@@ -4,5 +4,5 @@ namespace Microservice.TestService.Tests;
 
 public interface ITestApplicationService : IApplicationService
 {
-    public Task GetEmpty(CancellationToken cancellationToken);
+    public Task GetAsync(CancellationToken cancellationToken);
 }
