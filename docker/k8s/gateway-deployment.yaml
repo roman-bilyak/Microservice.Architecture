@@ -39,6 +39,10 @@ spec:
             value: review-service
           - name: Routes__3__DownstreamHostAndPorts__0__Port
             value: "80"
+          - name: Routes__4__DownstreamHostAndPorts__0__Host
+            value: test-service
+          - name: Routes__4__DownstreamHostAndPorts__0__Port
+            value: "80"
           ports:
             - name: http
               containerPort: 80

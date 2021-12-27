@@ -7,6 +7,15 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["microservices/test/Microservice.TestService.Web/Microservice.TestService.Web.csproj", "microservices/test/Microservice.TestService.Web/"]
+COPY ["infrastructure/Microservice.AspNetCore/Microservice.AspNetCore.csproj", "infrastructure/Microservice.AspNetCore/"]
+COPY ["infrastructure/Microservice.Core/Microservice.Core.csproj", "infrastructure/Microservice.Core/"]
+COPY ["microservices/test/Microservice.TestService.Infrastructure/Microservice.TestService.Infrastructure.csproj", "microservices/test/Microservice.TestService.Infrastructure/"]
+COPY ["infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/Microservice.Infrastructure.Database.EntityFrameworkCore.csproj", "infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/"]
+COPY ["infrastructure/Microservice.Infrastructure.Database/Microservice.Infrastructure.Database.csproj", "infrastructure/Microservice.Infrastructure.Database/"]
+COPY ["microservices/test/Microservice.TestService.Domain/Microservice.TestService.Domain.csproj", "microservices/test/Microservice.TestService.Domain/"]
+COPY ["microservices/test/Microservice.TestService.Domain.Share/Microservice.TestService.Domain.Share.csproj", "microservices/test/Microservice.TestService.Domain.Share/"]
+COPY ["microservices/test/Microservice.TestService.Application/Microservice.TestService.Application.csproj", "microservices/test/Microservice.TestService.Application/"]
+COPY ["microservices/test/Microservice.TestService.Application.Contracts/Microservice.TestService.Application.Contracts.csproj", "microservices/test/Microservice.TestService.Application.Contracts/"]
 RUN dotnet restore "microservices/test/Microservice.TestService.Web/Microservice.TestService.Web.csproj"
 COPY . .
 WORKDIR "/src/microservices/test/Microservice.TestService.Web"
