@@ -3,6 +3,7 @@ using Microservice.Core.Modularity;
 using Microservice.Gateway.Swagger;
 using Microservice.MovieService;
 using Microservice.ReviewService;
+using Microservice.TestService;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -25,6 +26,7 @@ public sealed class GatewayWebModule : BaseModule
 
         services.RegisterFakeApplicationServices(typeof(MovieServiceApplicationContractsModule).Assembly, "api/MS");
         services.RegisterFakeApplicationServices(typeof(ReviewServiceApplicationContractsModule).Assembly, "api/RS");
+        services.RegisterFakeApplicationServices(typeof(TestServiceApplicationContractsModule).Assembly, "api/TS");
 
         services.AddSwaggerGen(options =>
         {

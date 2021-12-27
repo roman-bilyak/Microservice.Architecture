@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Infrastructure", ""))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\infrastructure\Microservice.Core\Microservice.Core.csproj" />
+    <ProjectReference Include="..\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

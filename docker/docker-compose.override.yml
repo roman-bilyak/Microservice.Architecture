@@ -14,6 +14,8 @@ services:
       - Routes__2__DownstreamHostAndPorts__0__Port=80
       - Routes__3__DownstreamHostAndPorts__0__Host=review-service
       - Routes__3__DownstreamHostAndPorts__0__Port=80
+      - Routes__4__DownstreamHostAndPorts__0__Host=test-service
+      - Routes__4__DownstreamHostAndPorts__0__Port=80
     ports:
       - 5000:80
       
@@ -41,3 +43,8 @@ services:
     ports:
       - 5004:80
       
+  microservice.testservice.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5005:80

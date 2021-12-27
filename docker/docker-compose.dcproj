@@ -28,5 +28,7 @@
     <None Include="k8s\payment-service.yaml" />
     <None Include="k8s\review-service-deployment.yaml" />
     <None Include="k8s\review-service.yaml" />
+    <None Include="k8s\test-service-deployment.yaml" />
+    <None Include="k8s\test-service.yaml" />
   </ItemGroup>
 </Project>
