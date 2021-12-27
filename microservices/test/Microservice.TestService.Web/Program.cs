@@ -1,17 +1,15 @@
 using Microservice.AspNetCore;
 using Microservice.Core;
-using Microservice.Gateway;
-using Microservice.MovieService;
-using Microservice.ReviewService;
 using Microservice.TestService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication()
     .AddModule<AspNetCoreModule>()
-    .AddModule<MovieServiceApplicationContractsModule>()
-    .AddModule<ReviewServiceApplicationContractsModule>()
+    .AddModule<TestServiceDomainModule>()
+    .AddModule<TestServiceInfrastructureModule>()
     .AddModule<TestServiceApplicationContractsModule>()
-    .AddModule<GatewayWebModule>()
+    .AddModule<TestServiceApplicationModule>()
+    .AddModule<TestServiceWebModule>()
     .Configure();
 
 var app = builder.Build();

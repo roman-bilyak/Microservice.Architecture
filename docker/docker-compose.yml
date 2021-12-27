@@ -11,6 +11,7 @@ services:
       - movie-service
       - payment-service
       - review-service
+      - test-service
       
   identity-service:
     image: identity-service:${TAG:-latest}
@@ -35,3 +36,9 @@ services:
     build:
       context: ../
       dockerfile: microservices/review/Microservice.ReviewService.Web/Dockerfile
+
+  microservice.testservice.web:
+    image: test-service:${TAG:-latest}
+    build:
+      context: ..
+      dockerfile: microservices/test/Microservice.TestService.Web/Dockerfile
