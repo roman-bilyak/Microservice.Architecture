@@ -4,16 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Web", ""))</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
-    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerComposeProjectPath>..\..\..\docker\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\infrastructure\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Application\Microservice.PaymentService.Application.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Infrastructure\Microservice.PaymentService.Infrastructure.csproj" />
   </ItemGroup>
