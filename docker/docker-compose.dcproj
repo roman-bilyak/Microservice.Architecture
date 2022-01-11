@@ -16,7 +16,6 @@
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
-    <None Include=".dockerignore" />
     <None Include="k8s\gateway-deployment.yaml" />
     <None Include="k8s\gateway.yaml" />
     <None Include="k8s\identity-service-deployment.yaml" />
