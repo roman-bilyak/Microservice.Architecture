@@ -7,6 +7,8 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["microservices/payment/Microservice.PaymentService.Web/Microservice.PaymentService.Web.csproj", "microservices/payment/Microservice.PaymentService.Web/"]
+COPY ["infrastructure/Microservice.AspNetCore/Microservice.AspNetCore.csproj", "infrastructure/Microservice.AspNetCore/"]
+COPY ["infrastructure/Microservice.Core/Microservice.Core.csproj", "infrastructure/Microservice.Core/"]
 COPY ["microservices/payment/Microservice.PaymentService.Application/Microservice.PaymentService.Application.csproj", "microservices/payment/Microservice.PaymentService.Application/"]
 COPY ["microservices/payment/Microservice.PaymentService.Domain/Microservice.PaymentService.Domain.csproj", "microservices/payment/Microservice.PaymentService.Domain/"]
 COPY ["microservices/payment/Microservice.PaymentService.Domain.Share/Microservice.PaymentService.Domain.Share.csproj", "microservices/payment/Microservice.PaymentService.Domain.Share/"]
