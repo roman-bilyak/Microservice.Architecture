@@ -3,7 +3,7 @@ set -e
 
 export SHELL="/bin/bash"
 
-minikube start
+minikube start --cpus 4 --memory 8192
 
 eval $(minikube docker-env)
 docker-compose -f docker-compose.yml -f docker-compose.override.yml build
