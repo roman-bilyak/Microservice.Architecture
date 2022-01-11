@@ -1,0 +1,1 @@
+.\bombardier.exe -c 200 -d 60s -l http://localhost:51500/api/TS/Test/Get
