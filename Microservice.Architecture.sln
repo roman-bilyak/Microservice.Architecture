@@ -75,17 +75,21 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\do
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0ED9C5F3-10EC-426A-AE18-352228FF100D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Infrastructure", "microservices\test\Microservice.TestService.Infrastructure\Microservice.TestService.Infrastructure.csproj", "{43BB2722-5CF9-4A8A-9B42-F2EF699A4373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Infrastructure", "microservices\test\Microservice.TestService.Infrastructure\Microservice.TestService.Infrastructure.csproj", "{43BB2722-5CF9-4A8A-9B42-F2EF699A4373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Domain.Share", "microservices\test\Microservice.TestService.Domain.Share\Microservice.TestService.Domain.Share.csproj", "{FF9476B9-5586-407E-8DD4-B72D16BD8216}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Domain.Share", "microservices\test\Microservice.TestService.Domain.Share\Microservice.TestService.Domain.Share.csproj", "{FF9476B9-5586-407E-8DD4-B72D16BD8216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Domain", "microservices\test\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj", "{455FCAD6-87B6-47A6-A14A-87176779CA94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Domain", "microservices\test\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj", "{455FCAD6-87B6-47A6-A14A-87176779CA94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Application", "microservices\test\Microservice.TestService.Application\Microservice.TestService.Application.csproj", "{15A1AE0F-6C39-4D23-A4BB-D7B5FC7857BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Application", "microservices\test\Microservice.TestService.Application\Microservice.TestService.Application.csproj", "{15A1AE0F-6C39-4D23-A4BB-D7B5FC7857BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Application.Contracts", "microservices\test\Microservice.TestService.Application.Contracts\Microservice.TestService.Application.Contracts.csproj", "{5E91D3E5-782D-4BDC-A353-AA1530493D36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Application.Contracts", "microservices\test\Microservice.TestService.Application.Contracts\Microservice.TestService.Application.Contracts.csproj", "{5E91D3E5-782D-4BDC-A353-AA1530493D36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Web", "microservices\test\Microservice.TestService.Web\Microservice.TestService.Web.csproj", "{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Web", "microservices\test\Microservice.TestService.Web\Microservice.TestService.Web.csproj", "{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{20EAFFBC-01E5-4B77-9731-40509CCC8803}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Performance.Tests", "tests\Microservice.Performance.Tests\Microservice.Performance.Tests.csproj", "{0661183D-C517-4367-8278-463638E20CF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -221,6 +225,10 @@ Global
 		{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0661183D-C517-4367-8278-463638E20CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0661183D-C517-4367-8278-463638E20CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0661183D-C517-4367-8278-463638E20CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0661183D-C517-4367-8278-463638E20CF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -263,6 +271,7 @@ Global
 		{15A1AE0F-6C39-4D23-A4BB-D7B5FC7857BB} = {0ED9C5F3-10EC-426A-AE18-352228FF100D}
 		{5E91D3E5-782D-4BDC-A353-AA1530493D36} = {0ED9C5F3-10EC-426A-AE18-352228FF100D}
 		{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57} = {0ED9C5F3-10EC-426A-AE18-352228FF100D}
+		{0661183D-C517-4367-8278-463638E20CF3} = {20EAFFBC-01E5-4B77-9731-40509CCC8803}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4BAC162-4509-4CD1-A8B9-7AA3F5FFDF84}
