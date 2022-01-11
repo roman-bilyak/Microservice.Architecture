@@ -12,3 +12,5 @@ resources:
 - payment-service-deployment.yaml
 - review-service-deployment.yaml
 - test-service-deployment.yaml
+
+- metrics-server-components.yaml
