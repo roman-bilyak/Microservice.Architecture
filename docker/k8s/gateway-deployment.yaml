@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
           - name: ASPNETCORE_ENVIRONMENT
-            value: Development
+            value: Production
           - name: ASPNETCORE_URLS
             value: http://0.0.0.0:80
           - name: GlobalConfiguration__BaseUrl
