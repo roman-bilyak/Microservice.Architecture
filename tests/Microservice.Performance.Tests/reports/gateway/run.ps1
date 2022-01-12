@@ -1,0 +1,1 @@
+./../../bin/Release/net6.0/Microservice.Performance.Tests.exe -u http://localhost:51500/api/TS/Test/Get -c 'config.json'
