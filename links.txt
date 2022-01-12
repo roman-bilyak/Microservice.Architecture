@@ -1,0 +1,17 @@
+What is the Default Memory/CPU for a Pod?
+https://reuvenharrison.medium.com/kubernetes-resource-limits-defaults-and-limitranges-f1eed8655474
+
+Resource Management for Pods and Containers
+https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+
+Kubernetes: CPU and Memory Autoscaling
+https://medium.com/@myte/kubernetes-autoscaling-abf11314346e
+
+Kubernetes Metrics Server
+https://github.com/kubernetes-sigs/metrics-server
+
+Horizontal Pod Autoscaling
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+Minikube Registries
+https://minikube.sigs.k8s.io/docs/handbook/registry/#docker-on-windows
