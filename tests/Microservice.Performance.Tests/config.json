@@ -1,0 +1,20 @@
+{
+  "TestSuite": "performance",
+  "TestName": "gateway",
+
+  "TargetScenarios": [ "scenario" ],
+
+  "GlobalSettings": {
+    "ScenariosSettings": [
+      {
+        "ScenarioName": "scenario",
+        "WarmUpDuration": "00:00:05",
+
+        "LoadSimulationsSettings": [
+          { "KeepConstant": [ 200, "00:01:00" ] }
+        ]
+      }
+    ],
+    "ReportingInterval": "00:00:05"
+  }
+}
