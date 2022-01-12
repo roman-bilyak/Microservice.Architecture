@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Microservice.Performance.Tests": {
+      "commandName": "Project",
+      "commandLineArgs": "-u http://localhost:51500/api/TS/Test/Get -c config.json"
+    }
+  }
+}
