@@ -1,33 +1,53 @@
-﻿using NBomber.Contracts;
+﻿using CommandLine;
+using Microservice.Performance.Tests;
+using NBomber.Configuration;
+using NBomber.Contracts;
 using NBomber.CSharp;
 using NBomber.Plugins.Http;
 using NBomber.Plugins.Http.CSharp;
 
-RunScenario("gateway", 200, 60, "http://localhost:51500/api/TS/Test/Get");
-//RunScenario("test-service", 200, 60, "http://localhost:51505/api/Test/Get");
+return Parser.Default.ParseArguments<CommandLineOptions>(args)
+    .MapResult(
+        opts => 
+        {
+            try
+            {
+                RunScenario(opts.Urls, opts.Timeout, opts.Config);
+                Console.WriteLine("Done!");
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error!");
+                Console.WriteLine(ex.ToString());
+                return -3;
+            }
+        },
+        errors => 
+        {
+            return -1;
+        });
 
-Console.ReadLine();
-
-static void RunScenario(string scenarioName, int numberOfThreads, int seconds, params string[] url)
+static void RunScenario(IEnumerable<string> urls, int timeout, string config)
 {
     IClientFactory<HttpClient> httpClientFactory = HttpClientFactory.Create();
 
     int index = 1;
-    Scenario scenario = ScenarioBuilder.CreateScenario(scenarioName, Array.ConvertAll(url, x => GetHttpStep($"{scenarioName}_step{index++}", x, httpClientFactory)))
-        .WithWarmUpDuration(TimeSpan.FromSeconds(5))
-        .WithLoadSimulations
-        (
-            Simulation.KeepConstant(numberOfThreads, TimeSpan.FromSeconds(seconds))
-        );
+    IStep[] steps = urls.Select(x => GetHttpStep($"step_{index++}", x, timeout, httpClientFactory)).ToArray();
 
-    NBomberRunner
-        .RegisterScenarios(scenario)
-        .WithTestSuite("performance")
-        .WithTestName(scenarioName)
-        .Run();
+    Scenario scenario = ScenarioBuilder.CreateScenario("scenario", steps);
+
+    NBomberContext nBomberContext = NBomberRunner.RegisterScenarios(scenario);
+
+    if (!string.IsNullOrEmpty(config))
+    {
+        nBomberContext = nBomberContext.LoadConfig(config);
+    }
+
+    nBomberContext.Run();
 }
 
-static IStep GetHttpStep(string name, string url, IClientFactory<HttpClient> httpClientFactory)
+static IStep GetHttpStep(string name, string url, int timeout, IClientFactory<HttpClient> httpClientFactory)
 {
     return Step.Create(name, clientFactory: httpClientFactory, execute: async context =>
     {
@@ -40,5 +60,5 @@ static IStep GetHttpStep(string name, string url, IClientFactory<HttpClient> htt
 
         Response response = await Http.Send(request, context);
         return response;
-    }, timeout: TimeSpan.FromSeconds(5));
+    }, timeout: TimeSpan.FromSeconds(timeout));
 }
