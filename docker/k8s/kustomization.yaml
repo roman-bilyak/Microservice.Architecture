@@ -1,4 +1,8 @@
 resources:
+- infrastructure/cpu-limit-range.yaml
+- infrastructure/memory-limit-range.yaml
+- infrastructure/metrics-server-components.yaml
+
 - gateway.yaml
 - identity-service.yaml
 - movie-service.yaml
@@ -12,5 +16,3 @@ resources:
 - payment-service-deployment.yaml
 - review-service-deployment.yaml
 - test-service-deployment.yaml
-
-- metrics-server-components.yaml

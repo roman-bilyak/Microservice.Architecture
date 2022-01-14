@@ -46,3 +46,6 @@ spec:
           ports:
             - name: http
               containerPort: 80
+          resources:
+            limits:
+              cpu: 2
