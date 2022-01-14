@@ -1,6 +1,5 @@
 ﻿using CommandLine;
 using Microservice.Performance.Tests;
-using NBomber.Configuration;
 using NBomber.Contracts;
 using NBomber.CSharp;
 using NBomber.Plugins.Http;
