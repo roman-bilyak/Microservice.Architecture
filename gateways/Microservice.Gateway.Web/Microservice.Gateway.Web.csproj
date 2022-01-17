@@ -25,4 +25,9 @@
     <ProjectReference Include="..\..\microservices\test\Microservice.TestService.Application.Contracts\Microservice.TestService.Application.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="appsettings.*.json">
+      <DependentUpon>appsettings.json</DependentUpon>
+    </None>
+  </ItemGroup>
 </Project>
