@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Microservice.ReviewService.Infrastructure\Microservice.ReviewService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="appsettings.*.json">
+      <DependentUpon>appsettings.json</DependentUpon>
+    </None>
+  </ItemGroup>
 </Project>

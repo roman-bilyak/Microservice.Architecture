@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Microservice.PaymentService.Infrastructure\Microservice.PaymentService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="appsettings.*.json">
+      <DependentUpon>appsettings.json</DependentUpon>
+    </None>
+  </ItemGroup>
 </Project>
