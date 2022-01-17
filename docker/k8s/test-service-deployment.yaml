@@ -24,10 +24,3 @@ spec:
           ports:
             - name: http
               containerPort: 80
-          resources:
-            limits:
-              cpu: 500m
-              memory: 128Mi
-            requests:
-              cpu: 100m
-              memory: 64Mi

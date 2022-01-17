@@ -1,7 +1,8 @@
 resources:
-- infrastructure/cpu-limit-range.yaml
-- infrastructure/memory-limit-range.yaml
 - infrastructure/metrics-server-components.yaml
+
+- infrastructure/resource-limit-all.yaml
+- infrastructure/resource-limit-container.yaml
 
 - gateway.yaml
 - identity-service.yaml
