@@ -20,7 +20,10 @@
     <None Include="k8s\gateway.yaml" />
     <None Include="k8s\identity-service-deployment.yaml" />
     <None Include="k8s\identity-service.yaml" />
+    <None Include="k8s\infrastructure\resource-limit-all.yaml" />
+    <None Include="k8s\infrastructure\resource-limit-container.yaml" />
     <None Include="k8s\kustomization.yaml" />
+    <None Include="k8s\infrastructure\metrics-server-components.yaml" />
     <None Include="k8s\movie-service-deployment.yaml" />
     <None Include="k8s\movie-service.yaml" />
     <None Include="k8s\payment-service-deployment.yaml" />

@@ -15,3 +15,9 @@ https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 
 Minikube Registries
 https://minikube.sigs.k8s.io/docs/handbook/registry/#docker-on-windows
+
+wrk - a HTTP benchmarking tool
+https://github.com/wg/wrk
+
+Designing and implementing API Gateways with Ocelot in .NET Core containers and microservices architectures
+https://devblogs.microsoft.com/cesardelatorre/designing-and-implementing-api-gateways-with-ocelot-in-a-microservices-and-container-based-architecture/
