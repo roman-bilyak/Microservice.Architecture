@@ -17,3 +17,6 @@ resources:
 - payment-service-deployment.yaml
 - review-service-deployment.yaml
 - test-service-deployment.yaml
+
+- gateway-autoscaler.yaml
+- test-service-autoscaler.yaml
