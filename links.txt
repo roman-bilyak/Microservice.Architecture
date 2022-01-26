@@ -21,3 +21,15 @@ https://github.com/wg/wrk
 
 Designing and implementing API Gateways with Ocelot in .NET Core containers and microservices architectures
 https://devblogs.microsoft.com/cesardelatorre/designing-and-implementing-api-gateways-with-ocelot-in-a-microservices-and-container-based-architecture/
+
+Ocelot Performance Test
+https://github.com/wswind/Ocelot-Performance-Test
+
+How to access applications running within minikube
+https://minikube.sigs.k8s.io/docs/handbook/accessing/
+
+Deploying a multi-container application to Azure Kubernetes Services
+https://www.azuredevopslabs.com/labs/vstsextend/kubernetes/
+
+Building Ocelot API Gateway Microservices with ASP.NET Core and Docker Container
+https://medium.com/aspnetrun/building-ocelot-api-gateway-microservices-with-asp-net-core-and-docker-container-13f96026e86c
