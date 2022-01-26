@@ -1,4 +1,5 @@
 ﻿minikube start --cpus 8 --memory 8192
+minikube addons enable ingress
 
 & minikube -p minikube docker-env | Invoke-Expression
 docker-compose -f docker-compose.yml -f docker-compose.override.yml build
