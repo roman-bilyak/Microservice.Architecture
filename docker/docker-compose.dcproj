@@ -16,6 +16,7 @@
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
+    <None Include="k8s\gateway-autoscaler.yaml" />
     <None Include="k8s\gateway-deployment.yaml" />
     <None Include="k8s\gateway.yaml" />
     <None Include="k8s\identity-service-deployment.yaml" />
@@ -30,6 +31,7 @@
     <None Include="k8s\payment-service.yaml" />
     <None Include="k8s\review-service-deployment.yaml" />
     <None Include="k8s\review-service.yaml" />
+    <None Include="k8s\test-service-autoscaler.yaml" />
     <None Include="k8s\test-service-deployment.yaml" />
     <None Include="k8s\test-service.yaml" />
   </ItemGroup>
