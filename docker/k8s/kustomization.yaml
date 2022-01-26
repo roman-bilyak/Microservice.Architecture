@@ -18,5 +18,7 @@ resources:
 - review-service-deployment.yaml
 - test-service-deployment.yaml
 
+- gateway-expose.yaml
+
 - gateway-autoscaler.yaml
 - test-service-autoscaler.yaml
