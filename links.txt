@@ -33,3 +33,12 @@ https://www.azuredevopslabs.com/labs/vstsextend/kubernetes/
 
 Building Ocelot API Gateway Microservices with ASP.NET Core and Docker Container
 https://medium.com/aspnetrun/building-ocelot-api-gateway-microservices-with-asp-net-core-and-docker-container-13f96026e86c
+
+Sharing a local registry with minikube
+https://hasura.io/blog/sharing-a-local-registry-for-minikube-37c7240d0615/
+
+Create local docker registry and push images to the registry from minikube
+https://medium.com/@heshani.samarasekara/create-local-docker-registry-and-push-images-to-the-registry-from-minikube-f61936278f6c
+
+How to setup a local Docker registry with Kubernetes on Windows
+https://dev.to/rohansawant/how-to-setup-a-local-docker-registry-with-kubernetes-on-windows-includes-1-hidden-step-that-official-docs-doesn-t-320f
