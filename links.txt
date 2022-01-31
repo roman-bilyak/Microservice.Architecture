@@ -42,3 +42,12 @@ https://medium.com/@heshani.samarasekara/create-local-docker-registry-and-push-i
 
 How to setup a local Docker registry with Kubernetes on Windows
 https://dev.to/rohansawant/how-to-setup-a-local-docker-registry-with-kubernetes-on-windows-includes-1-hidden-step-that-official-docs-doesn-t-320f
+
+PowerShell commands
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/?view=powershell-7.2
+
+Using Multi-Node Clusters
+https://minikube.sigs.k8s.io/docs/tutorials/multi_node/
+
+Environment variables in Compose
+https://docs.docker.com/compose/environment-variables/

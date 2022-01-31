@@ -1,12 +1,12 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: test-service-autoscaler
+  name: gateway-autoscaler
 spec:
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 20
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: test-service
+    name: gateway
   targetCPUUtilizationPercentage: 50

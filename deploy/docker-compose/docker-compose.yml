@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   gateway:
-    image: gateway:${TAG:-latest}
+    image: ${DOCKER_REGISTRY-}gateway:${TAG:-latest}
     build:
       context: ../..
       dockerfile: gateways/Microservice.Gateway.Web/Dockerfile
@@ -14,31 +14,31 @@ services:
       - test-service
       
   identity-service:
-    image: identity-service:${TAG:-latest}
+    image: ${DOCKER_REGISTRY-}identity-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/identity/Microservice.IdentityService.Web/Dockerfile
       
   movie-service:
-    image: movie-service:${TAG:-latest}
+    image: ${DOCKER_REGISTRY-}movie-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/movie/Microservice.MovieService.Web/Dockerfile
       
   payment-service:
-    image: payment-service:${TAG:-latest}
+    image: ${DOCKER_REGISTRY-}payment-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/payment/Microservice.PaymentService.Web/Dockerfile
       
   review-service:
-    image: review-service:${TAG:-latest}
+    image: ${DOCKER_REGISTRY-}review-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/review/Microservice.ReviewService.Web/Dockerfile
 
   test-service:
-    image: test-service:${TAG:-latest}
+    image: ${DOCKER_REGISTRY-}test-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/test/Microservice.TestService.Web/Dockerfile
