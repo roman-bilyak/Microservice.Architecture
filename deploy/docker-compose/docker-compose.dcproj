@@ -10,29 +10,9 @@
     <DockerComposeProjectName>Microservice.Architecture</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="deploy-to-k8s.ps1" />
-    <None Include="deploy-to-k8s.sh" />
+    <None Include="docker-compose.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
-    <None Include="docker-compose.yml" />
-    <None Include="k8s\gateway-autoscaler.yaml" />
-    <None Include="k8s\gateway-deployment.yaml" />
-    <None Include="k8s\gateway.yaml" />
-    <None Include="k8s\identity-service-deployment.yaml" />
-    <None Include="k8s\identity-service.yaml" />
-    <None Include="k8s\infrastructure\resource-limit-all.yaml" />
-    <None Include="k8s\infrastructure\resource-limit-container.yaml" />
-    <None Include="k8s\kustomization.yaml" />
-    <None Include="k8s\infrastructure\metrics-server-components.yaml" />
-    <None Include="k8s\movie-service-deployment.yaml" />
-    <None Include="k8s\movie-service.yaml" />
-    <None Include="k8s\payment-service-deployment.yaml" />
-    <None Include="k8s\payment-service.yaml" />
-    <None Include="k8s\review-service-deployment.yaml" />
-    <None Include="k8s\review-service.yaml" />
-    <None Include="k8s\test-service-autoscaler.yaml" />
-    <None Include="k8s\test-service-deployment.yaml" />
-    <None Include="k8s\test-service.yaml" />
   </ItemGroup>
 </Project>
