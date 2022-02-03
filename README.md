@@ -1,4 +1,5 @@
-This project was created for educational purposes and to consolidate the acquired knowledge. Keep in mind that the implementation is ongoing and some modules may work with bugs.
+This project was created for educational purposes and to consolidate the acquired knowledge.
+>Keep in mind that the implementation is ongoing and some modules may work with bugs.
 
 ## Getting Started
 
