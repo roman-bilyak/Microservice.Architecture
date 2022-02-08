@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server"
+    volumes:
+      - dbdata:/var/opt/sqlserver  
+
+  redis:
+    image: "redis"
+    
+volumes:
+  dbdata:

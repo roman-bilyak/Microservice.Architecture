@@ -6,25 +6,26 @@
 	[Int32][ValidateRange(2048, 8192)] $memory = 2048,
 	[Int32][ValidateRange(1, 10)] $nodes = 1
 )
-$JOBS =@()
+$JOBS = @()
+Remove-Job -Name RunJob* -Force
 
 #Start kubernates
 echo '📌 Start minikube'
+
 minikube start --cpus $cpus --memory $memory --nodes=$nodes --insecure-registry '10.0.0.0/24'
 minikube addons enable ingress
 
-If ($registry.StartsWith("localhost"))
+If ($registry.StartsWith('localhost'))
 {
 	echo '📌 Create image registry'
 	minikube addons enable registry
 
-	Remove-Job -Name DeployJob* -Force
-	$JOBS+=Start-Job -Name DeployJobPortForward -ScriptBlock { kubectl port-forward --namespace kube-system service/registry 5000:80 } | Out-Null
-	$JOBS+=Start-Job -Name DeployJobRedirectPort -ScriptBlock { docker run --rm --network=host alpine ash -c 'apk add socat && socat TCP-LISTEN:5000,reuseaddr,fork TCP:host.docker.internal:5000' } | Out-Null
+	$JOBS+=Start-Job -Name RunJobPortForward -ScriptBlock { kubectl port-forward --namespace kube-system service/registry 5000:80 }
+	$JOBS+=Start-Job -Name RunJobRedirectPort -ScriptBlock { docker run --rm --network=host alpine ash -c 'apk add socat && socat TCP-LISTEN:5000,reuseaddr,fork TCP:host.docker.internal:5000' }
 }
 
 #Build images and push to registry
-if(![string]::IsNullOrEmpty($registry))
+If (![string]::IsNullOrEmpty($registry) -And !$registry.EndsWith('/'))
 {
 	$registry += '/'
 }
@@ -69,11 +70,11 @@ $images = @('gateway','identity-service','movie-service','payment-service','revi
 Foreach ($image in $images)
 {
 	Add-Content $file ('  - name: ' + $image)
-	if(![string]::IsNullOrEmpty($tag))
+	If (![string]::IsNullOrEmpty($tag))
 	{
 		Add-Content $file ('    newTag: "' + $tag + '"')
 	}
-	if(![string]::IsNullOrEmpty($registry))
+	If (![string]::IsNullOrEmpty($registry))
 	{
 		Add-Content $file ('    newName: "' + $registry + $image + '"')
 	}
@@ -84,8 +85,9 @@ kubectl apply -k $directory
 Remove-Item -Path $directory -Recurse -Force
 
 #Expose services
-echo '📌 Expose services'
-$JOBS+=Start-Job -Name DeployJobTunnel -ScriptBlock { minikube tunnel }
-minikube dashboard
+$JOBS+=Start-Job -Name RunJobTunnel -ScriptBlock { minikube tunnel }
+$JOBS+=Start-Job -Name RunJobDashboard -ScriptBlock { minikube dashboard }
+#Wait-Job $JOBS
 
-Wait-Job $JOBS
+#Finish
+echo '📌 Finish'

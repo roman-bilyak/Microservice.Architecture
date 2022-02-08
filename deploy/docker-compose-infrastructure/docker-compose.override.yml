@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+    ports:
+      - "1433:1433"
+
+  redis:
+    ports:
+      - "6379:6379"

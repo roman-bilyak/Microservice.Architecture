@@ -3,12 +3,8 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>9ca8ca0e-c847-4072-b29e-95f779e47adf</ProjectGuid>
-    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>gateway</DockerServiceName>
+    <ProjectGuid>d458ca0e-4072-c847-b29e-12f559e47adf</ProjectGuid>
     <DockerComposeProjectName>Microservice.Architecture</DockerComposeProjectName>
-    <AdditionalComposeFilePaths>..\docker-compose-infrastructure\docker-compose.yml;..\docker-compose-infrastructure\docker-compose.override.yml</AdditionalComposeFilePaths>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />
