@@ -8,7 +8,7 @@
 
   <ItemGroup>
 	<FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <ProjectReference Include="..\Microservice.Core\Microservice.Core.csproj" />
+    <ProjectReference Include="..\..\core\Microservice.Core\Microservice.Core.csproj" />
   </ItemGroup>
 
 </Project>

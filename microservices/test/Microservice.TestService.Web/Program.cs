@@ -1,5 +1,5 @@
-using Microservice.AspNetCore;
 using Microservice.Core;
+using Microservice.Infrastructure.AspNetCore;
 using Microservice.TestService;
 
 var builder = WebApplication.CreateBuilder(args);

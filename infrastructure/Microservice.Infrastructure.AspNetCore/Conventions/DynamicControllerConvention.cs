@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
-namespace Microservice.AspNetCore.Conventions;
+namespace Microservice.Infrastructure.AspNetCore.Conventions;
 
 public class DynamicControllerConvention : IApplicationModelConvention
 {

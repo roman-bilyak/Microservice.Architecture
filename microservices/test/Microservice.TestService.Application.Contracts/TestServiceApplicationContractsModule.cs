@@ -1,6 +1,6 @@
-﻿using Microservice.AspNetCore.Conventions;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
 using Microservice.Core.Services;
+using Microservice.Infrastructure.AspNetCore.Conventions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.TestService;

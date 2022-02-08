@@ -1,5 +1,5 @@
-﻿using Microservice.AspNetCore;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
+using Microservice.Infrastructure.AspNetCore;
 using Microsoft.OpenApi.Models;
 
 namespace Microservice.TestService;
