@@ -33,3 +33,5 @@
 [Using Multi-Node Clusters](https://minikube.sigs.k8s.io/docs/tutorials/multi_node/)
 
 [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
+
+[Building ASP.NET Core and EF Core hierarchical multi-tenant apps](https://www.thereformedprogrammer.net/building-asp-net-core-and-ef-core-hierarchical-multi-tenant-apps/)

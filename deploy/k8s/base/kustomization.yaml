@@ -4,12 +4,9 @@ resources:
 - infrastructure/resource-limit-all.yaml
 - infrastructure/resource-limit-container.yaml
 
-- gateway.yaml
-- identity-service.yaml
-- movie-service.yaml
-- payment-service.yaml
-- review-service.yaml
-- test-service.yaml
+- infrastructure/dbdata.yaml
+- infrastructure/redis.yaml
+- infrastructure/sqlserver.yaml
 
 - gateway-deployment.yaml
 - identity-service-deployment.yaml
@@ -18,7 +15,14 @@ resources:
 - review-service-deployment.yaml
 - test-service-deployment.yaml
 
-- gateway-expose.yaml
+- gateway.yaml
+- identity-service.yaml
+- movie-service.yaml
+- payment-service.yaml
+- review-service.yaml
+- test-service.yaml
 
 - gateway-autoscaler.yaml
 - test-service-autoscaler.yaml
+
+- gateway-expose.yaml

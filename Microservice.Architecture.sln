@@ -91,6 +91,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{20EAFFBC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Performance.Tests", "tests\Microservice.Performance.Tests\Microservice.Performance.Tests.csproj", "{0661183D-C517-4367-8278-463638E20CF3}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-infrastructure", "deploy\docker-compose-infrastructure\docker-compose-infrastructure.dcproj", "{D458CA0E-4072-C847-B29E-12F559E47ADF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -229,6 +231,10 @@ Global
 		{0661183D-C517-4367-8278-463638E20CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0661183D-C517-4367-8278-463638E20CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0661183D-C517-4367-8278-463638E20CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D458CA0E-4072-C847-B29E-12F559E47ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D458CA0E-4072-C847-B29E-12F559E47ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D458CA0E-4072-C847-B29E-12F559E47ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D458CA0E-4072-C847-B29E-12F559E47ADF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -272,6 +278,7 @@ Global
 		{5E91D3E5-782D-4BDC-A353-AA1530493D36} = {0ED9C5F3-10EC-426A-AE18-352228FF100D}
 		{0B07A3B1-2C5E-4996-AEC5-9D8C4E1C4F57} = {0ED9C5F3-10EC-426A-AE18-352228FF100D}
 		{0661183D-C517-4367-8278-463638E20CF3} = {20EAFFBC-01E5-4B77-9731-40509CCC8803}
+		{D458CA0E-4072-C847-B29E-12F559E47ADF} = {4D938AE5-CB0C-4444-AF86-D2BCEBBC350B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4BAC162-4509-4CD1-A8B9-7AA3F5FFDF84}
