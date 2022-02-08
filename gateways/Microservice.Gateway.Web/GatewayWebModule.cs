@@ -1,6 +1,6 @@
-﻿using Microservice.AspNetCore;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
 using Microservice.Gateway.Swagger;
+using Microservice.Infrastructure.AspNetCore;
 using Microservice.MovieService;
 using Microservice.ReviewService;
 using Microservice.TestService;

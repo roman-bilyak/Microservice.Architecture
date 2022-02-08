@@ -1,6 +1,5 @@
-﻿using Microservice.AspNetCore;
-using Microservice.Core.Modularity;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+﻿using Microservice.Core.Modularity;
+using Microservice.Infrastructure.AspNetCore;
 using Microsoft.OpenApi.Models;
 
 namespace Microservice.MovieService;

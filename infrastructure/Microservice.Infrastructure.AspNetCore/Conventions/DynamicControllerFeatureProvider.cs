@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Reflection;
 
-namespace Microservice.AspNetCore.Conventions;
+namespace Microservice.Infrastructure.AspNetCore.Conventions;
 
 public class DynamicControllerFeatureProvider : IApplicationFeatureProvider<ControllerFeature>
 {

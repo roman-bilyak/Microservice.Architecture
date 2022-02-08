@@ -7,15 +7,15 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["microservices/review/Microservice.ReviewService.Web/Microservice.ReviewService.Web.csproj", "microservices/review/Microservice.ReviewService.Web/"]
-COPY ["infrastructure/Microservice.AspNetCore/Microservice.AspNetCore.csproj", "infrastructure/Microservice.AspNetCore/"]
-COPY ["infrastructure/Microservice.Core/Microservice.Core.csproj", "infrastructure/Microservice.Core/"]
 COPY ["microservices/review/Microservice.ReviewService.Infrastructure/Microservice.ReviewService.Infrastructure.csproj", "microservices/review/Microservice.ReviewService.Infrastructure/"]
 COPY ["infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/Microservice.Infrastructure.Database.EntityFrameworkCore.csproj", "infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/"]
-COPY ["infrastructure/Microservice.Infrastructure.Database/Microservice.Infrastructure.Database.csproj", "infrastructure/Microservice.Infrastructure.Database/"]
+COPY ["core/Microservice.Core.Database/Microservice.Core.Database.csproj", "core/Microservice.Core.Database/"]
 COPY ["microservices/review/Microservice.ReviewService.Domain/Microservice.ReviewService.Domain.csproj", "microservices/review/Microservice.ReviewService.Domain/"]
 COPY ["microservices/review/Microservice.ReviewService.Domain.Share/Microservice.ReviewService.Domain.Share.csproj", "microservices/review/Microservice.ReviewService.Domain.Share/"]
+COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/review/Microservice.ReviewService.Application/Microservice.ReviewService.Application.csproj", "microservices/review/Microservice.ReviewService.Application/"]
 COPY ["microservices/review/Microservice.ReviewService.Application.Contracts/Microservice.ReviewService.Application.Contracts.csproj", "microservices/review/Microservice.ReviewService.Application.Contracts/"]
+COPY ["infrastructure/Microservice.Infrastructure.AspNetCore/Microservice.Infrastructure.AspNetCore.csproj", "infrastructure/Microservice.Infrastructure.AspNetCore/"]
 RUN dotnet restore "microservices/review/Microservice.ReviewService.Web/Microservice.ReviewService.Web.csproj"
 COPY . .
 WORKDIR "/src/microservices/review/Microservice.ReviewService.Web"

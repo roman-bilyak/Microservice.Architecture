@@ -1,6 +1,6 @@
-using Microservice.AspNetCore;
 using Microservice.Core;
 using Microservice.Gateway;
+using Microservice.Infrastructure.AspNetCore;
 using Microservice.MovieService;
 using Microservice.ReviewService;
 using Microservice.TestService;
