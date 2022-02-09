@@ -102,7 +102,7 @@ Prerequisites:
 
 Set **gateway** and **microservices** as startup projects. Your can also run the **docker-compose-infrastructure** project instead of installing and configuring infrastructure services by yourself.
 
-![](images\multiple-startup-projects.png)
+![](/images/multiple-startup-projects.png)
 
 ## Applications & Microservices
 
