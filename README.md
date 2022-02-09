@@ -6,13 +6,13 @@ This project was created for educational purposes and to consolidate the acquire
 
 The fastest and easiest way to run this project is a [Kubernates Cluster](#kubernates-cluster). You just need to install [Docker Desktop](https://docs.docker.com/desktop/windows/install/) and [Minikube](https://minikube.sigs.k8s.io/docs/start/) tools. Except this you can use latest version of images from public Docker Hub registry ([romanbilyak](https://hub.docker.com/u/romanbilyak)) instead of building sources. Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) script with specified registry parameter.
 
-PowerShell
+PowerShell:
 
 ```
 .\run.ps1 -registry 'romanbilyak'
 ```
 
-CMD
+CMD:
 
 ```
 run -registry 'romanbilyak'
