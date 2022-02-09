@@ -102,18 +102,18 @@ Prerequisites:
 
 Set **gateway** and **microservices** as startup projects. Your can also run the **docker-compose-infrastructure** project instead of installing and configuring infrastructure services by yourself.
 
-![](/images/multiple-startup-projects.png)
+![](images/multiple-startup-projects.png)
 
 ## Applications & Microservices
 
 |                  | [Kubernates Cluster](#kubernates-cluster) | [Local Docker Host](#local-docker-host)  | [Visual Studio](#visual-studio)          |
 | ---------------- | ----------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | **gateway**      | [localhost](http://localhost)             | [localhost:7000](http://localhost:7000)  | [localhost:9000](http://localhost:9000/) |
-| identity-service |                                           | [localhost:7101](http://localhost:7101/) | [localhost:9001](http://localhost:9001/) |
-| movie-service    |                                           | [localhost:7102](http://localhost:7102/) | [localhost:9002](http://localhost:9002/) |
-| review-service   |                                           | [localhost:7103](http://localhost:7103/) | [localhost:9003](http://localhost:9003/) |
-| payment-service  |                                           | [localhost:7104](http://localhost:7104/) | [localhost:9004](http://localhost:9004/) |
-| test-service     |                                           | [localhost:7105](http://localhost:7105/) | [localhost:9005](http://localhost:9005/) |
+| identity-service |                                           | [localhost:7101](http://localhost:7101/) | [localhost:9101](http://localhost:9101/) |
+| movie-service    |                                           | [localhost:7102](http://localhost:7102/) | [localhost:9102](http://localhost:9102/) |
+| review-service   |                                           | [localhost:7103](http://localhost:7103/) | [localhost:9103](http://localhost:9103/) |
+| payment-service  |                                           | [localhost:7104](http://localhost:7104/) | [localhost:9104](http://localhost:9104/) |
+| test-service     |                                           | [localhost:7105](http://localhost:7105/) | [localhost:9105](http://localhost:9105/) |
 
 ## Project Structure
 
