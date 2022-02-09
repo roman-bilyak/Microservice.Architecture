@@ -93,7 +93,7 @@ Prerequisites:
    docker-compose -f docker-compose.yml -f docker-compose.override.yml up
    ```
 
-### Visual Studio 2022 Preview
+### Visual Studio
 
 Prerequisites:
 
