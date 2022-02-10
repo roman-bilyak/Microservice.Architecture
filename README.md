@@ -29,7 +29,7 @@ Prerequisites:
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [Kubernates](https://kubernetes.io/releases/download/)
 
-Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) or script.
+Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) or [run.cmd](deploy/run.cmd) script.
 
 #### Examples
 
