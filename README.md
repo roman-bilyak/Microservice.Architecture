@@ -175,5 +175,6 @@ Root layer for microservice's layers
 
 ## Technologies
 
-- [x] [Ocelot API gateway](https://github.com/ThreeMammals/Ocelot)
-- [ ] [Serilog](https://serilog.net/)
+- [x]   [Swagger UI](https://swagger.io/tools/swagger-ui/)
+- [x]   [Ocelot API gateway](https://github.com/ThreeMammals/Ocelot)
+- [ ]   [Serilog](https://serilog.net/)

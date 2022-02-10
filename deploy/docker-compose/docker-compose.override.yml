@@ -17,34 +17,34 @@ services:
       - Routes__4__DownstreamHostAndPorts__0__Host=test-service
       - Routes__4__DownstreamHostAndPorts__0__Port=80
     ports:
-      - 5000:80
+      - 7000:80
       
   identity-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 5001:80
+      - 7101:80
       
   movie-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 5002:80
+      - 7102:80
       
   payment-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 5003:80
+      - 7103:80
       
   review-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 5004:80
+      - 7104:80
       
   test-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 5005:80
+      - 7105:80
