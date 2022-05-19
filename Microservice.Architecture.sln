@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gateways", "gateways", "{F1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservices", "microservices", "{266E766D-9973-43DE-9A88-56145B3E8584}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "applications", "applications", "{C6F60C75-45E0-4C07-AF4F-618E0E3527AC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{C6F60C75-45E0-4C07-AF4F-618E0E3527AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{B5C74749-6B0E-4C4E-BE2A-061C43617B83}"
 EndProject
