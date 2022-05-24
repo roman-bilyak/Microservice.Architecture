@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>6f7204b4-23b6-45eb-918a-dd869b1b6a98</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <StartupCommandWorkingDirectory>D:\apps\MicroserviceArchitecture\applications\Microservice.AngularUI</StartupCommandWorkingDirectory>
+  </PropertyGroup>
+</Project>
