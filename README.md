@@ -1,6 +1,9 @@
-This project was created for educational purposes and to consolidate the acquired knowledge.
-
+> This project was created for educational purposes and to consolidate the acquired knowledge.
+> 
 > Keep in mind that the implementation is ongoing and some modules may work with bugs.
+
+## About
+This demo shows a working sample of microservices architecture using ASP.NET Core. It covers how to create microservices, how to create API gateways using Ocelot and how to deploy microservices using Docker containers.
 
 ## Quick Start
 
