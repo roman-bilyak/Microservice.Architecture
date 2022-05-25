@@ -97,6 +97,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.We
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.AngularUI", "applications\Microservice.AngularUI\Microservice.AngularUI.esproj", "{6F7204B4-23B6-45EB-918A-DD869B1B6A98}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.ReactUI", "applications\Microservice.ReactUI\Microservice.ReactUI.esproj", "{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -245,6 +247,12 @@ Global
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -290,6 +298,7 @@ Global
 		{37FB9A07-80F9-4A1F-8489-880B11173546} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{247F3256-943D-46C1-A20E-D977E09EC32D} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}
