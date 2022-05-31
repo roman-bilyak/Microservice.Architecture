@@ -112,7 +112,8 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 |                  | [Kubernates Cluster](#kubernates-cluster) | [Local Docker Host](#local-docker-host)  | [Visual Studio](#visual-studio)          |
 | ---------------- | ----------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| angular-ui       |                                           | [localhost:7000](http://localhost:7000)  |                                          |
+| angular-ui       |                                           | [localhost:7001](http://localhost:7001)  |                                          |
+| react-ui         |                                           | [localhost:7002](http://localhost:7002)  |                                          |
 | gateway          | [localhost](http://localhost)             | [localhost:7100](http://localhost:7100)  | [localhost:9000](http://localhost:9000/) |
 | identity-service |                                           | [localhost:7101](http://localhost:7101/) | [localhost:9101](http://localhost:9101/) |
 | movie-service    |                                           | [localhost:7102](http://localhost:7102/) | [localhost:9102](http://localhost:9102/) |

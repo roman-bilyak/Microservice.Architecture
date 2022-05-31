@@ -9,6 +9,14 @@ services:
     depends_on:
       - gateway
 
+  react-ui:
+    image: ${DOCKER_REGISTRY-}react-ui:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: applications/Microservice.ReactUI/docker/Dockerfile
+    depends_on:
+      - gateway
+
   gateway:
     image: ${DOCKER_REGISTRY-}gateway:${TAG:-latest}
     build:
