@@ -12,7 +12,9 @@
         "movie-service": "StartDebugging",
         "payment-service": "StartDebugging",
         "review-service": "StartDebugging",
-        "test-service": "StartDebugging"
+        "test-service": "StartDebugging",
+        "redis": "StartWithoutDebugging",
+        "sqlserver": "StartWithoutDebugging"
       }
     }
   }

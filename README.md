@@ -3,6 +3,7 @@
 > Keep in mind that the implementation is ongoing and some modules may work with bugs.
 
 ## About
+
 This demo shows a working sample of microservices architecture using ASP.NET Core. It covers how to create microservices, how to create API gateways using Ocelot and how to deploy microservices using Docker containers.
 
 ## Quick Start
@@ -111,7 +112,8 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 |                  | [Kubernates Cluster](#kubernates-cluster) | [Local Docker Host](#local-docker-host)  | [Visual Studio](#visual-studio)          |
 | ---------------- | ----------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| **gateway**      | [localhost](http://localhost)             | [localhost:7000](http://localhost:7000)  | [localhost:9000](http://localhost:9000/) |
+| angular-ui       |                                           | [localhost:7000](http://localhost:7000)  |                                          |
+| gateway          | [localhost](http://localhost)             | [localhost:7100](http://localhost:7100)  | [localhost:9000](http://localhost:9000/) |
 | identity-service |                                           | [localhost:7101](http://localhost:7101/) | [localhost:9101](http://localhost:9101/) |
 | movie-service    |                                           | [localhost:7102](http://localhost:7102/) | [localhost:9102](http://localhost:9102/) |
 | review-service   |                                           | [localhost:7103](http://localhost:7103/) | [localhost:9103](http://localhost:9103/) |
@@ -178,6 +180,6 @@ Root layer for microservice's layers
 
 ## Technologies
 
-- [x]   [Swagger UI](https://swagger.io/tools/swagger-ui/)
-- [x]   [Ocelot API gateway](https://github.com/ThreeMammals/Ocelot)
-- [ ]   [Serilog](https://serilog.net/)
+- [x] [Swagger UI](https://swagger.io/tools/swagger-ui/)
+- [x] [Ocelot API gateway](https://github.com/ThreeMammals/Ocelot)
+- [ ] [Serilog](https://serilog.net/)

@@ -1,6 +1,10 @@
 version: '3.4'
 
 services:
+  angular-ui:
+    ports:
+      - 7000:80
+
   gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -17,7 +21,7 @@ services:
       - Routes__4__DownstreamHostAndPorts__0__Host=test-service
       - Routes__4__DownstreamHostAndPorts__0__Port=80
     ports:
-      - 7000:80
+      - 7100:80
       
   identity-service:
     environment:
