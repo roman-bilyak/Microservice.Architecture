@@ -4,7 +4,6 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>d458ca0e-4072-c847-b29e-12f559e47adf</ProjectGuid>
-    <DockerComposeProjectName>Microservice.Architecture</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />
