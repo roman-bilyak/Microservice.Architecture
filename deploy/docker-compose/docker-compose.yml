@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+  angular-ui:
+    image: ${DOCKER_REGISTRY-}angular-ui:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: applications/Microservice.AngularUI/docker/Dockerfile
+    depends_on:
+      - gateway
+
   gateway:
     image: ${DOCKER_REGISTRY-}gateway:${TAG:-latest}
     build:
