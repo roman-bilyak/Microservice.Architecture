@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
 
-import { API_BASE_URL } from './service-proxies/service-proxies';
+import { API_BASE_URL } from './api-services/api-services';
 import { environment } from '../environments/environment';
 
 import { MatMenuModule } from '@angular/material/menu';
@@ -23,7 +23,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 
 import { HttpClientModule } from "@angular/common/http";
 
-import { ServiceProxyModule } from './service-proxies/service-proxies.module';
+import { APIServicesModule } from './api-services/api-services.module';
 import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
@@ -48,7 +48,7 @@ import { MoviesComponent } from './movies/movies.component';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    ServiceProxyModule
+    APIServicesModule
   ],
   providers: [
     { provide: API_BASE_URL, useValue: environment.baseUrl}

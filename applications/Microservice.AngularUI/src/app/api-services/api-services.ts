@@ -18,7 +18,7 @@ import * as moment from 'moment';
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
-export class MovieServiceProxy {
+export class MovieAPIService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -379,7 +379,7 @@ export class MovieServiceProxy {
 }
 
 @Injectable()
-export class ReviewServiceProxy {
+export class ReviewAPIService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -555,7 +555,7 @@ export class ReviewServiceProxy {
 }
 
 @Injectable()
-export class TestServiceProxy {
+export class TestAPIService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -614,7 +614,7 @@ export class TestServiceProxy {
 }
 
 @Injectable()
-export class UserServiceProxy {
+export class UserAPIService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
