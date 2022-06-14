@@ -1,4 +1,5 @@
 ﻿using Microservice.Core.Services;
+using Microservice.Core.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.MovieService.MovieManagement;
@@ -27,24 +28,29 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         };
     }
 
-    public async Task<List<MovieDto>> GetMoviesAsync(CancellationToken cancellationToken)
+    public async Task<MovieListDto> GetMoviesAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
-        List<MovieDto> result = new List<MovieDto>();
-        List<Movie> movies = await _movieManager.ListAsync(cancellationToken);
+        List<Movie> movies = await _movieManager.ListAsync(pageIndex, pageSize, cancellationToken);
+        int totalCount = await _movieManager.CountAsync(cancellationToken);
 
+        List<MovieDto> items = new List<MovieDto>();
         foreach (Movie movie in movies)
         {
-            result.Add(new MovieDto
+            items.Add(new MovieDto
             {
                 Id = movie.Id,
                 Title = movie.Title,
             });
         }
 
-        return result;
+        return new MovieListDto
+        {
+            Items = items,
+            TotalCount = totalCount,
+        };
     }
 
-    public async Task<MovieDto> CreateMovieAsync(CreateMovieDto movie, CancellationToken cancellationToken)
+    public async Task<MovieDto> CreateMovieAsync([Required] CreateMovieDto movie, CancellationToken cancellationToken)
     {
         Movie entity = new Movie
         {
@@ -61,7 +67,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         };
     }
 
-    public async Task<MovieDto> UpdateMovieAsync([Required] Guid id, UpdateMovieDto movie, CancellationToken cancellationToken)
+    public async Task<MovieDto> UpdateMovieAsync([Required] Guid id, [Required] UpdateMovieDto movie, CancellationToken cancellationToken)
     {
         Movie entity = await _movieManager.GetByIdAsync(id, cancellationToken);
         if (entity == null)

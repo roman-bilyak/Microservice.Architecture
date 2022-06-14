@@ -51,10 +51,11 @@ static IStep GetHttpStep(string name, string url, int timeout, IClientFactory<Ht
     return Step.Create(name, clientFactory: httpClientFactory, execute: async context =>
     {
         HttpRequest request = Http.CreateRequest("GET", url)
-                        .WithCheck(async (response) =>
-                            response.IsSuccessStatusCode
+                        .WithCheck(response =>
+                            Task.FromResult(response.IsSuccessStatusCode
                                 ? Response.Ok(statusCode: (int)response.StatusCode)
-                                : Response.Fail(statusCode: (int)response.StatusCode)
+                                : Response.Fail(statusCode: (int)response.StatusCode))
+
                         );
 
         Response response = await Http.Send(request, context);

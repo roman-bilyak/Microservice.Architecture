@@ -16,6 +16,8 @@ public sealed class GatewayWebModule : BaseModule
     {
         base.Configure(services);
 
+        services.AddCors();
+
         services.AddAuthentication("Bearer")
             .AddIdentityServerAuthentication(options =>
             {
@@ -57,6 +59,8 @@ public sealed class GatewayWebModule : BaseModule
             options.DefaultModelsExpandDepth(-1);
             options.DisplayRequestDuration();
         });
+
+        app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); //TODO: fix this
 
         app.MapWhen(
                 ctx => !ctx.Request.Path.ToString().StartsWith("/api/"),

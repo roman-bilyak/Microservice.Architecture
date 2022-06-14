@@ -1,10 +1,17 @@
 ﻿using System.Linq.Expressions;
 
-namespace Microservice.Infrastructure.Database;
+namespace Microservice.Core.Database;
 
 public interface ISpecification<T>
 {
-    bool IsSatisfiedBy(T obj);
+    Expression<Func<T, bool>> Criteria { get; }
+    List<Expression<Func<T, object>>> Includes { get; }
+    List<string> IncludeStrings { get; }
+    Expression<Func<T, object>> OrderBy { get; }
+    Expression<Func<T, object>> OrderByDescending { get; }
+    Expression<Func<T, object>> GroupBy { get; }
 
-    Expression<Func<T, bool>> ToExpression();
+    int Take { get; }
+    int Skip { get; }
+    bool IsPagingEnabled { get; }
 }

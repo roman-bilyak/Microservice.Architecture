@@ -1,4 +1,4 @@
-﻿namespace Microservice.Infrastructure.Database;
+﻿namespace Microservice.Core.Database;
 
 public interface IRepository<TEntity> : IRepository<TEntity, Guid>, IReadRepository<TEntity>
     where TEntity : class, IAggregateRoot

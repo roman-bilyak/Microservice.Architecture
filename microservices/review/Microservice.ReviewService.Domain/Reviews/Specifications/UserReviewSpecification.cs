@@ -1,19 +1,11 @@
-﻿using Microservice.Infrastructure.Database;
-using System.Linq.Expressions;
+﻿using Microservice.Core.Database;
 
 namespace Microservice.ReviewService.Reviews;
 
 internal class UserReviewSpecification : Specification<Review>
 {
-    private readonly Guid _userId;
-
     public UserReviewSpecification(Guid userId)
+        : base(x => x.UserId == userId)
     {
-        _userId = userId;
-    }
-
-    public override Expression<Func<Review, bool>> ToExpression()
-    {
-        return x => x.UserId == _userId;
     }
 }
