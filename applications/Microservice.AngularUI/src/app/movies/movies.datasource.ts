@@ -1,7 +1,7 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { Observable, BehaviorSubject, of } from "rxjs";
 import { catchError, finalize } from "rxjs/operators";
-import { MovieDto, MovieListDto, MovieServiceProxy } from "../service-proxies/service-proxies";
+import { MovieDto, MovieListDto, MovieAPIService } from "../api-services/api-services";
 
 export class MoviesDataSource implements DataSource<MovieDto> {
 
@@ -15,14 +15,14 @@ export class MoviesDataSource implements DataSource<MovieDto> {
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private movieService: MovieServiceProxy) {
+  constructor(private movieAPIService: MovieAPIService) {
 
   }
 
   load(pageIndex: number, pageSize: number) {
     this.loadingSubject.next(true);
 
-    this.movieService.getMovies(pageIndex, pageSize)
+    this.movieAPIService.getMovies(pageIndex, pageSize)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
