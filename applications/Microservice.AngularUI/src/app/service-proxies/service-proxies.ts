@@ -85,10 +85,20 @@ export class MovieServiceProxy {
     }
 
     /**
+     * @param pageIndex (optional) 
+     * @param pageSize (optional) 
      * @return Success
      */
-    getMovies(): Observable<MovieDto[]> {
-        let url_ = this.baseUrl + "/api/MS/Movie/GetMovies";
+    getMovies(pageIndex: number | undefined, pageSize: number | undefined): Observable<MovieListDto> {
+        let url_ = this.baseUrl + "/api/MS/Movie/GetMovies?";
+        if (pageIndex === null)
+            throw new Error("The parameter 'pageIndex' cannot be null.");
+        else if (pageIndex !== undefined)
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -106,14 +116,14 @@ export class MovieServiceProxy {
                 try {
                     return this.processGetMovies(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<MovieDto[]>;
+                    return _observableThrow(e) as any as Observable<MovieListDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<MovieDto[]>;
+                return _observableThrow(response_) as any as Observable<MovieListDto>;
         }));
     }
 
-    protected processGetMovies(response: HttpResponseBase): Observable<MovieDto[]> {
+    protected processGetMovies(response: HttpResponseBase): Observable<MovieListDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -124,14 +134,7 @@ export class MovieServiceProxy {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(MovieDto.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = MovieListDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -139,7 +142,7 @@ export class MovieServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<MovieDto[]>(null as any);
+        return _observableOf<MovieListDto>(null as any);
     }
 
     /**
@@ -730,7 +733,7 @@ export interface IAggregateRouteConfig {
 }
 
 export class CreateMovieDto implements ICreateMovieDto {
-    title!: string | undefined;
+    title!: string;
 
     constructor(data?: ICreateMovieDto) {
         if (data) {
@@ -762,7 +765,7 @@ export class CreateMovieDto implements ICreateMovieDto {
 }
 
 export interface ICreateMovieDto {
-    title: string | undefined;
+    title: string;
 }
 
 export class CreateReviewDto implements ICreateReviewDto {
@@ -1885,6 +1888,54 @@ export interface IMovieDto {
     title: string | undefined;
 }
 
+export class MovieListDto implements IMovieListDto {
+    items!: MovieDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IMovieListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(MovieDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    static fromJS(data: any): MovieListDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new MovieListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IMovieListDto {
+    items: MovieDto[] | undefined;
+    totalCount: number;
+}
+
 export enum RatingEnum {
     _1 = 1,
     _2 = 2,
@@ -1946,7 +1997,7 @@ export interface IReviewDto {
 }
 
 export class UpdateMovieDto implements IUpdateMovieDto {
-    title!: string | undefined;
+    title!: string;
 
     constructor(data?: IUpdateMovieDto) {
         if (data) {
@@ -1978,7 +2029,7 @@ export class UpdateMovieDto implements IUpdateMovieDto {
 }
 
 export interface IUpdateMovieDto {
-    title: string | undefined;
+    title: string;
 }
 
 export class ApiException extends Error {

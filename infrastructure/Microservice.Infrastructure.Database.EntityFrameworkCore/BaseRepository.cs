@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microservice.Core.Database;
 
 namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
 
@@ -35,7 +36,7 @@ public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TK
 
     public virtual async Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Set<TEntity>().Where(specification.ToExpression()).ToListAsync(cancellationToken);
+        return await _dbContext.Set<TEntity>().ApplySpecification(specification).ToListAsync(cancellationToken);
     }
 
     public virtual async Task<int> CountAsync(CancellationToken cancellationToken = default)
@@ -45,7 +46,7 @@ public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TK
 
     public virtual async Task<int> CountAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Set<TEntity>().Where(specification.ToExpression()).CountAsync(cancellationToken);
+        return await _dbContext.Set<TEntity>().ApplySpecification(specification).CountAsync(cancellationToken);
     }
 
     public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)

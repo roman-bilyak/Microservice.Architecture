@@ -1,4 +1,4 @@
-﻿using Microservice.Infrastructure.Database;
+﻿using Microservice.Core.Database;
 
 namespace Microservice.MovieService.MovieManagement;
 
@@ -18,9 +18,17 @@ internal class MovieManager : IMovieManager
         return await _movieRepository.GetByIdAsync(id, cancellationToken);
     }
 
-    public async Task<List<Movie>> ListAsync(CancellationToken cancellationToken)
+    public async Task<List<Movie>> ListAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        return await _movieRepository.ListAsync(cancellationToken);
+        Specification<Movie> specification = new Specification<Movie>();
+        specification.ApplyPaging(pageIndex * pageSize, pageSize);
+
+        return await _movieRepository.ListAsync(specification, cancellationToken);
+    }
+
+    public async Task<int> CountAsync(CancellationToken cancellationToken)
+    {
+        return await _movieRepository.CountAsync(cancellationToken);
     }
 
     public async Task<Movie> AddAsync(Movie movie, CancellationToken cancellationToken)

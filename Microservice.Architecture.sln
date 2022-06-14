@@ -99,6 +99,8 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.AngularUI", "a
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.ReactUI", "applications\Microservice.ReactUI\Microservice.ReactUI.esproj", "{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Core.Web", "core\Microservice.Core.Web\Microservice.Core.Web.csproj", "{3028370D-E82E-4CAF-8BE3-D9DBAD585832}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +255,10 @@ Global
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3028370D-E82E-4CAF-8BE3-D9DBAD585832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3028370D-E82E-4CAF-8BE3-D9DBAD585832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3028370D-E82E-4CAF-8BE3-D9DBAD585832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3028370D-E82E-4CAF-8BE3-D9DBAD585832}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -299,6 +305,7 @@ Global
 		{247F3256-943D-46C1-A20E-D977E09EC32D} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
+		{3028370D-E82E-4CAF-8BE3-D9DBAD585832} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

@@ -1,8 +1,8 @@
-﻿using Microservice.Core.Modularity;
-using Microservice.Infrastructure.Database;
+﻿using Microservice.Core.Database;
+using Microservice.Core.Modularity;
 using Microservice.Infrastructure.Database.EntityFrameworkCore;
-using Microservice.ReviewService.Reviews;
 using Microservice.ReviewService.Database;
+using Microservice.ReviewService.Reviews;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

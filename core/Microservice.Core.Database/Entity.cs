@@ -1,4 +1,4 @@
-﻿namespace Microservice.Infrastructure.Database;
+﻿namespace Microservice.Core.Database;
 
 public abstract class Entity : Entity<Guid>
 {

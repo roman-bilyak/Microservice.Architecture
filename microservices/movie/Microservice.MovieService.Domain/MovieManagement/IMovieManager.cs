@@ -4,7 +4,9 @@ public interface IMovieManager
 {
     Task<Movie> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
-    Task<List<Movie>> ListAsync(CancellationToken cancellationToken);
+    Task<List<Movie>> ListAsync(int pageIndex, int pageSize, CancellationToken cancellationToken);
+
+    Task<int> CountAsync(CancellationToken cancellationToken);
 
     Task<Movie> AddAsync(Movie movie, CancellationToken cancellationToken);
 
