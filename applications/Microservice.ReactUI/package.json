@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "eslint-config-react-app": "^7.0.1",
-    "jest-editor-support": "^30.0.2"
+    "jest-editor-support": "^30.0.2",
+    "react-router-dom": "^6.3.0"
   }
 }
