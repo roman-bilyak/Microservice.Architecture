@@ -184,3 +184,4 @@ Root layer for microservice's layers
 - [x] [Swagger UI](https://swagger.io/tools/swagger-ui/)
 - [x] [Ocelot API gateway](https://github.com/ThreeMammals/Ocelot)
 - [ ] [Serilog](https://serilog.net/)
+- [ ] [CQRS architecture](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
