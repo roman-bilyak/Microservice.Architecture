@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microservice.Core.Services;
+using Microservice.Core.Application.Services;
 using Microservice.MovieService.Movies.Commands;
 using Microservice.MovieService.Movies.Queries;
 using System.ComponentModel.DataAnnotations;
