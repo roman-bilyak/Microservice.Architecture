@@ -15,6 +15,7 @@ COPY ["microservices/review/Microservice.ReviewService.Domain.Share/Microservice
 COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/review/Microservice.ReviewService.Application/Microservice.ReviewService.Application.csproj", "microservices/review/Microservice.ReviewService.Application/"]
 COPY ["microservices/review/Microservice.ReviewService.Application.Contracts/Microservice.ReviewService.Application.Contracts.csproj", "microservices/review/Microservice.ReviewService.Application.Contracts/"]
+COPY ["core/Microservice.Application/Microservice.Application.csproj", "core/Microservice.Application/"]
 COPY ["infrastructure/Microservice.Infrastructure.AspNetCore/Microservice.Infrastructure.AspNetCore.csproj", "infrastructure/Microservice.Infrastructure.AspNetCore/"]
 RUN dotnet restore "microservices/review/Microservice.ReviewService.Web/Microservice.ReviewService.Web.csproj"
 COPY . .

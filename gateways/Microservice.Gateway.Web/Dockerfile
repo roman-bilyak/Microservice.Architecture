@@ -9,6 +9,7 @@ WORKDIR /src
 COPY ["gateways/Microservice.Gateway.Web/Microservice.Gateway.Web.csproj", "gateways/Microservice.Gateway.Web/"]
 COPY ["microservices/test/Microservice.TestService.Application.Contracts/Microservice.TestService.Application.Contracts.csproj", "microservices/test/Microservice.TestService.Application.Contracts/"]
 COPY ["microservices/test/Microservice.TestService.Domain.Share/Microservice.TestService.Domain.Share.csproj", "microservices/test/Microservice.TestService.Domain.Share/"]
+COPY ["core/Microservice.Application/Microservice.Application.csproj", "core/Microservice.Application/"]
 COPY ["infrastructure/Microservice.Infrastructure.AspNetCore/Microservice.Infrastructure.AspNetCore.csproj", "infrastructure/Microservice.Infrastructure.AspNetCore/"]
 COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/payment/Microservice.PaymentService.Application.Contracts/Microservice.PaymentService.Application.Contracts.csproj", "microservices/payment/Microservice.PaymentService.Application.Contracts/"]

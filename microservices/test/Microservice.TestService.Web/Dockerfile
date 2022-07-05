@@ -14,6 +14,7 @@ COPY ["core/Microservice.Core.Database/Microservice.Core.Database.csproj", "core
 COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/test/Microservice.TestService.Application/Microservice.TestService.Application.csproj", "microservices/test/Microservice.TestService.Application/"]
 COPY ["microservices/test/Microservice.TestService.Application.Contracts/Microservice.TestService.Application.Contracts.csproj", "microservices/test/Microservice.TestService.Application.Contracts/"]
+COPY ["core/Microservice.Application/Microservice.Application.csproj", "core/Microservice.Application/"]
 COPY ["infrastructure/Microservice.Infrastructure.AspNetCore/Microservice.Infrastructure.AspNetCore.csproj", "infrastructure/Microservice.Infrastructure.AspNetCore/"]
 RUN dotnet restore "microservices/test/Microservice.TestService.Web/Microservice.TestService.Web.csproj"
 COPY . .
