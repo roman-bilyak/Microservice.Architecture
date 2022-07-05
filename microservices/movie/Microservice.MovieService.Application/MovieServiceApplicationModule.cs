@@ -1,4 +1,5 @@
-﻿using Microservice.Core.Modularity;
+﻿using Microservice.Core.CQRS;
+using Microservice.Core.Modularity;
 using Microservice.MovieService.MovieManagement;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,7 @@ public sealed class MovieServiceApplicationModule : BaseModule
     {
         base.Configure(services);
 
+        services.AddCQRS(typeof(MovieServiceApplicationModule).Assembly);
         services.AddTransient<IMovieApplicationService, MovieApplicationService>();
     }
 }

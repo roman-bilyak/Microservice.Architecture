@@ -1,101 +1,47 @@
-﻿using Microservice.Core.Services;
-using Microservice.Core.Web;
+﻿using MediatR;
+using Microservice.Core.Services;
+using Microservice.MovieService.MovieManagement.Commands;
+using Microservice.MovieService.MovieManagement.Queries;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.MovieService.MovieManagement;
 
 internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {
-    private readonly IMovieManager _movieManager;
+    private readonly IMediator _mediator;
 
-    public MovieApplicationService(IMovieManager movieManager)
+    public MovieApplicationService(IMediator mediator)
     {
-        _movieManager = movieManager;
+        _mediator = mediator;
     }
 
     public async Task<MovieDto> GetMovieAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        Movie movie = await _movieManager.GetByIdAsync(id, cancellationToken);
-        if (movie == null)
-        {
-            throw new Exception($"Movie (id = '{id}') not found");
-        }
-
-        return new MovieDto
-        {
-            Id = movie.Id,
-            Title = movie.Title
-        };
+        GetMovieByIdQuery query = new GetMovieByIdQuery { Id = id };
+        return await _mediator.Send(query, cancellationToken);
     }
 
     public async Task<MovieListDto> GetMoviesAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
-        List<Movie> movies = await _movieManager.ListAsync(pageIndex, pageSize, cancellationToken);
-        int totalCount = await _movieManager.CountAsync(cancellationToken);
-
-        List<MovieDto> items = new List<MovieDto>();
-        foreach (Movie movie in movies)
-        {
-            items.Add(new MovieDto
-            {
-                Id = movie.Id,
-                Title = movie.Title,
-            });
-        }
-
-        return new MovieListDto
-        {
-            Items = items,
-            TotalCount = totalCount,
-        };
+        GetMoviesQuery query = new GetMoviesQuery { PageIndex = pageIndex, PageSize = pageSize };
+        return await _mediator.Send(query, cancellationToken);
     }
 
     public async Task<MovieDto> CreateMovieAsync([Required] CreateMovieDto movie, CancellationToken cancellationToken)
     {
-        Movie entity = new Movie
-        {
-            Title = movie.Title
-        };
-
-        entity = await _movieManager.AddAsync(entity, cancellationToken);
-        await _movieManager.SaveChangesAsync(cancellationToken);
-
-        return new MovieDto
-        {
-            Id = entity.Id,
-            Title = movie.Title
-        };
+        CreateMovieCommand command = new CreateMovieCommand { Model = movie };
+        return await _mediator.Send(command, cancellationToken);
     }
 
     public async Task<MovieDto> UpdateMovieAsync([Required] Guid id, [Required] UpdateMovieDto movie, CancellationToken cancellationToken)
     {
-        Movie entity = await _movieManager.GetByIdAsync(id, cancellationToken);
-        if (entity == null)
-        {
-            throw new Exception($"Movie (id = '{id}') not found");
-        }
-
-        entity.Title = movie.Title;
-
-        entity = await _movieManager.UpdateAsync(entity, cancellationToken);
-        await _movieManager.SaveChangesAsync(cancellationToken);
-
-        return new MovieDto
-        {
-            Id = entity.Id,
-            Title = entity.Title
-        };
+        UpdateMovieCommand command = new UpdateMovieCommand { Id = id, Model = movie };
+        return await _mediator.Send(command, cancellationToken);
     }
 
     public async Task DeleteMovieAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        Movie entity = await _movieManager.GetByIdAsync(id, cancellationToken);
-        if (entity == null)
-        {
-            throw new Exception($"Movie (id = '{id}') not found");
-        }
-
-        await _movieManager.DeleteAsync(entity, cancellationToken);
-        await _movieManager.SaveChangesAsync(cancellationToken);
+        DeleteMovieCommand command = new DeleteMovieCommand { Id = id };
+        await _mediator.Send(command, cancellationToken);
     }
 }
