@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Microservice.Core.Web\Microservice.Core.Web.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.Core.Application\Microservice.Core.Application.csproj" />
     <ProjectReference Include="..\..\..\infrastructure\Microservice.Infrastructure.AspNetCore\Microservice.Infrastructure.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.ReviewService.Domain.Share\Microservice.ReviewService.Domain.Share.csproj" />
   </ItemGroup>

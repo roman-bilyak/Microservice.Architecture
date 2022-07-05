@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core;
 
-public class Application : IApplication
+internal class Application : IApplication
 {
     private readonly Action<ApplicationConfigurationOptions> _configurationOptionsAction;
     private readonly List<IModule> _modules;
