@@ -1,4 +1,4 @@
-﻿namespace Microservice.Core.Web;
+﻿namespace Microservice.Core.Application.Dto;
 
 public abstract class ListDto<T>
 {
