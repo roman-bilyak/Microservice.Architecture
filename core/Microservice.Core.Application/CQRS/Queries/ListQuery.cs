@@ -1,4 +1,4 @@
-﻿namespace Microservice.Core.CQRS.Queries
+﻿namespace Microservice.Application.CQRS.Queries
 {
     public abstract class ListQuery<TResponse> : IQuery<TResponse>
         where TResponse : notnull

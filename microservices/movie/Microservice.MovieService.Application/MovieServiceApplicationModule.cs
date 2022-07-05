@@ -1,4 +1,4 @@
-﻿using Microservice.Core.CQRS;
+﻿using Microservice.Application.CQRS;
 using Microservice.Core.Modularity;
 using Microservice.MovieService.Movies;
 using Microsoft.Extensions.DependencyInjection;

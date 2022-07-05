@@ -1,4 +1,4 @@
-﻿namespace Microservice.Core.CQRS.Commands
+﻿namespace Microservice.Application.CQRS.Commands
 {
     public abstract class UpdateCommand<TId, TRequest, TResponse> : ICommand<TResponse>
         where TId : struct

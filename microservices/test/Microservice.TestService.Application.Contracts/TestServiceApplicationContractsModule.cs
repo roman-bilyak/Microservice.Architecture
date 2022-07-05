@@ -1,5 +1,5 @@
-﻿using Microservice.Core.Modularity;
-using Microservice.Core.Application.Services;
+﻿using Microservice.Application.Services;
+using Microservice.Core.Modularity;
 using Microservice.Infrastructure.AspNetCore.Conventions;
 using Microsoft.Extensions.DependencyInjection;
 

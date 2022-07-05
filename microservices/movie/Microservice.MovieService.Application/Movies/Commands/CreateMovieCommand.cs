@@ -1,4 +1,4 @@
-﻿using Microservice.Core.CQRS.Commands;
+﻿using Microservice.Application.CQRS.Commands;
 
 namespace Microservice.MovieService.Movies.Commands
 {

@@ -1,4 +1,4 @@
-﻿namespace Microservice.Core.CQRS.Commands
+﻿namespace Microservice.Application.CQRS.Commands
 {
     public abstract class CreateCommand<TRequest, TResponse> : ICommand<TResponse>
         where TRequest : notnull

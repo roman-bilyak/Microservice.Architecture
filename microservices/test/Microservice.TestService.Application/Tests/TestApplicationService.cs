@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Application.Services;
+﻿using Microservice.Application.Services;
 
 namespace Microservice.TestService.Tests;
 

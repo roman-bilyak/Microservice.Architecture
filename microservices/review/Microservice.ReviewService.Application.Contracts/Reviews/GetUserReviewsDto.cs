@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Application.Dto;
+﻿using Microservice.Application.Dto;
 
 namespace Microservice.ReviewService.Reviews;
 
