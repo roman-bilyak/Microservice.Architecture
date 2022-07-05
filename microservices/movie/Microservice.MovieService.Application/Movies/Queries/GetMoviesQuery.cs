@@ -1,4 +1,4 @@
-﻿using Microservice.Core.CQRS.Queries;
+﻿using Microservice.Application.CQRS.Queries;
 
 namespace Microservice.MovieService.Movies.Queries
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Microservice.Core.CQRS.Queries
+namespace Microservice.Application.CQRS.Queries
 {
     public interface IQuery<T> : IRequest<T>
         where T : notnull

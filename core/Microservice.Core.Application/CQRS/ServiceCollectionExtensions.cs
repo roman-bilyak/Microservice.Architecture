@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservice.Core.CQRS
+namespace Microservice.Application.CQRS
 {
     public static class ServiceCollectionExtensions
     {

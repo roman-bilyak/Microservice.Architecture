@@ -1,4 +1,4 @@
-﻿namespace Microservice.Core.Application.Services;
+﻿namespace Microservice.Application.Services;
 
 public abstract class ApplicationService : IApplicationService
 {

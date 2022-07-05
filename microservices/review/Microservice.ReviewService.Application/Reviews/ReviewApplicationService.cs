@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microservice.Core.Application.Services;
+using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Commands;
 using Microservice.ReviewService.Reviews.Queries;
 using System.ComponentModel.DataAnnotations;

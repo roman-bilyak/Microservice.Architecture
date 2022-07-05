@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Microservice.Core.CQRS.Commands
+namespace Microservice.Application.CQRS.Commands
 {
     public interface ICommandHandler<TRequest> : IRequestHandler<TRequest>
         where TRequest : ICommand
