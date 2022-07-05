@@ -186,3 +186,5 @@ Root layer for microservice's layers
 - [ ] [Serilog](https://serilog.net/)
 - [x] [CQRS pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 - [ ] [Event Sourcing pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+- [ ] [MassTransit](http://masstransit-project.com/)
+- [ ] [RabbitMQ](https://www.rabbitmq.com/)
