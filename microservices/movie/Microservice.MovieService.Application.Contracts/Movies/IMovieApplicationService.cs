@@ -1,7 +1,7 @@
 ﻿using Microservice.Core.Services;
 using System.ComponentModel.DataAnnotations;
 
-namespace Microservice.MovieService.MovieManagement;
+namespace Microservice.MovieService.Movies;
 
 public interface IMovieApplicationService : IApplicationService
 {

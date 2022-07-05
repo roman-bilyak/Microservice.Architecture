@@ -1,6 +1,6 @@
 ﻿using Microservice.Core.CQRS.Queries;
 
-namespace Microservice.MovieService.MovieManagement.Queries
+namespace Microservice.MovieService.Movies.Queries
 {
     internal class GetMoviesQuery : ListQuery<MovieListDto>
     {

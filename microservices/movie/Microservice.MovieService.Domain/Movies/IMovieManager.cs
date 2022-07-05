@@ -1,4 +1,4 @@
-﻿namespace Microservice.MovieService.MovieManagement;
+﻿namespace Microservice.MovieService.Movies;
 
 public interface IMovieManager
 {

@@ -2,7 +2,7 @@
 using Microservice.Core.Modularity;
 using Microservice.Infrastructure.Database.EntityFrameworkCore;
 using Microservice.MovieService.Database;
-using Microservice.MovieService.MovieManagement;
+using Microservice.MovieService.Movies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

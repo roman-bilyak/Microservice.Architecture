@@ -1,5 +1,5 @@
 ﻿using Microservice.Core.Modularity;
-using Microservice.MovieService.MovieManagement;
+using Microservice.MovieService.Movies;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.MovieService;

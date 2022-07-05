@@ -1,6 +1,6 @@
 ﻿using Microservice.Core.CQRS.Commands;
 
-namespace Microservice.MovieService.MovieManagement.Commands
+namespace Microservice.MovieService.Movies.Commands
 {
     internal class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto, MovieDto>
     {
