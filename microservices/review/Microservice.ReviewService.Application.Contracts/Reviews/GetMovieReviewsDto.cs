@@ -1,5 +1,7 @@
-﻿namespace Microservice.ReviewService.Reviews;
+﻿using Microservice.Core.Web;
 
-public class GetMovieReviewsDto : List<ReviewDto>
+namespace Microservice.ReviewService.Reviews;
+
+public class GetMovieReviewsDto : ListDto<ReviewDto>
 {
 }

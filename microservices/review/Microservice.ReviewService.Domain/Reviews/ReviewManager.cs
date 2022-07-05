@@ -17,14 +17,30 @@ internal class ReviewManager : DomainService, IReviewManager
         return await _reviewRepository.GetByIdAsync(id, cancellationToken);
     }
 
-    public async Task<List<Review>> GetListByMovieAsync(Guid movieId, CancellationToken cancellationToken)
+    public async Task<List<Review>> GetListByMovieAsync(Guid movieId, int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        return await _reviewRepository.ListAsync(new MovieReviewSpecification(movieId), cancellationToken);
+        MovieReviewSpecification specification = new MovieReviewSpecification(movieId);
+        specification.ApplyPaging(pageIndex, pageSize);
+        return await _reviewRepository.ListAsync(specification, cancellationToken);
     }
 
-    public async Task<List<Review>> GetListByUserAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<int> GetCountByMovieAsync(Guid movieId, CancellationToken cancellationToken)
     {
-        return await _reviewRepository.ListAsync(new UserReviewSpecification(userId), cancellationToken);
+        MovieReviewSpecification specification = new MovieReviewSpecification(movieId);
+        return await _reviewRepository.CountAsync(specification, cancellationToken);
+    }
+
+    public async Task<List<Review>> GetListByUserAsync(Guid userId, int pageIndex, int pageSize, CancellationToken cancellationToken)
+    {
+        UserReviewSpecification specification = new UserReviewSpecification(userId);
+        specification.ApplyPaging(pageIndex, pageSize);
+        return await _reviewRepository.ListAsync(specification, cancellationToken);
+    }
+
+    public async Task<int> GetCountByUserAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        UserReviewSpecification specification = new UserReviewSpecification(userId);
+        return await _reviewRepository.CountAsync(specification, cancellationToken);
     }
 
     public async Task<Review> AddAsync(Review review, CancellationToken cancellationToken)

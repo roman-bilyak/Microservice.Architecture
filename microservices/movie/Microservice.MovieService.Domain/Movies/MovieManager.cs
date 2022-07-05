@@ -21,7 +21,7 @@ internal class MovieManager : IMovieManager
     public async Task<List<Movie>> ListAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
         Specification<Movie> specification = new Specification<Movie>();
-        specification.ApplyPaging(pageIndex * pageSize, pageSize);
+        specification.ApplyPaging(pageIndex, pageSize);
 
         return await _movieRepository.ListAsync(specification, cancellationToken);
     }

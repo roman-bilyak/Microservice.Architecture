@@ -15,24 +15,22 @@ namespace Microservice.MovieService.Movies.Queries
 
             public async Task<MovieListDto> Handle(GetMoviesQuery request, CancellationToken cancellationToken)
             {
-                List<Movie> movies = await _movieManager.ListAsync(request.PageIndex, request.PageSize, cancellationToken);
-                int totalCount = await _movieManager.CountAsync(cancellationToken);
+                MovieListDto result = new MovieListDto
+                {
+                    TotalCount = await _movieManager.CountAsync(cancellationToken)
+                };
 
-                List<MovieDto> items = new List<MovieDto>();
+                List<Movie> movies = await _movieManager.ListAsync(request.PageIndex, request.PageSize, cancellationToken);
                 foreach (Movie movie in movies)
                 {
-                    items.Add(new MovieDto
+                    result.Items.Add(new MovieDto
                     {
                         Id = movie.Id,
                         Title = movie.Title,
                     });
                 }
 
-                return new MovieListDto
-                {
-                    Items = items,
-                    TotalCount = totalCount,
-                };
+                return result;
             }
         }
     }

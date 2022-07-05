@@ -1,8 +1,9 @@
 ﻿using Microservice.Core.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
 public interface IUserApplicationService : IApplicationService
 {
-    public Task<GetUserReviewsDto> GetUserReviewsAsync(Guid id, CancellationToken cancellationToken);
+    public Task<GetUserReviewsDto> GetUserReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
 }
