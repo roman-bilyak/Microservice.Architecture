@@ -99,7 +99,7 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.AngularUI", "a
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.ReactUI", "applications\Microservice.ReactUI\Microservice.ReactUI.esproj", "{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Core.Application", "core\Microservice.Core.Application\Microservice.Core.Application.csproj", "{3028370D-E82E-4CAF-8BE3-D9DBAD585832}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Application", "core\Microservice.Application\Microservice.Application.csproj", "{3028370D-E82E-4CAF-8BE3-D9DBAD585832}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Core.AutoMapper", "core\Microservice.Core.AutoMapper\Microservice.Core.AutoMapper.csproj", "{97DCFEA4-C46D-478A-B02A-BFB35549322B}"
 EndProject
