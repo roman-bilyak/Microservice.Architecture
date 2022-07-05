@@ -1,4 +1,4 @@
-﻿using Microservice.MovieService.MovieManagement;
+﻿using Microservice.MovieService.Movies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

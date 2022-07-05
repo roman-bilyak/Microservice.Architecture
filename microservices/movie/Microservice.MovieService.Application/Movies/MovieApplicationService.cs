@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microservice.Core.Services;
-using Microservice.MovieService.MovieManagement.Commands;
-using Microservice.MovieService.MovieManagement.Queries;
+using Microservice.MovieService.Movies.Commands;
+using Microservice.MovieService.Movies.Queries;
 using System.ComponentModel.DataAnnotations;
 
-namespace Microservice.MovieService.MovieManagement;
+namespace Microservice.MovieService.Movies;
 
 internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {

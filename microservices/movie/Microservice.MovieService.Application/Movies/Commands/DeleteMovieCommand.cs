@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microservice.Core.CQRS.Commands;
 
-namespace Microservice.MovieService.MovieManagement.Commands
+namespace Microservice.MovieService.Movies.Commands
 {
     internal class DeleteMovieCommand : DeleteCommand<Guid>
     {
