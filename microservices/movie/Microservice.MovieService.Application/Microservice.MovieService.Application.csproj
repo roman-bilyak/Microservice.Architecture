@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Microservice.Core.Web\Microservice.Core.Web.csproj" />
     <ProjectReference Include="..\Microservice.MovieService.Application.Contracts\Microservice.MovieService.Application.Contracts.csproj" />
     <ProjectReference Include="..\Microservice.MovieService.Domain\Microservice.MovieService.Domain.csproj" />
   </ItemGroup>
