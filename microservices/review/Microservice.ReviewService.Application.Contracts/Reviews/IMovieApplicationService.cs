@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Services;
+﻿using Microservice.Core.Application.Services;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
