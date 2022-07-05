@@ -15,6 +15,7 @@ COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core
 COPY ["infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/Microservice.Infrastructure.Database.EntityFrameworkCore.csproj", "infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/"]
 COPY ["microservices/movie/Microservice.MovieService.Application/Microservice.MovieService.Application.csproj", "microservices/movie/Microservice.MovieService.Application/"]
 COPY ["microservices/movie/Microservice.MovieService.Application.Contracts/Microservice.MovieService.Application.Contracts.csproj", "microservices/movie/Microservice.MovieService.Application.Contracts/"]
+COPY ["core/Microservice.Application/Microservice.Application.csproj", "core/Microservice.Application/"]
 COPY ["infrastructure/Microservice.Infrastructure.AspNetCore/Microservice.Infrastructure.AspNetCore.csproj", "infrastructure/Microservice.Infrastructure.AspNetCore/"]
 RUN dotnet restore "microservices/movie/Microservice.MovieService.Web/Microservice.MovieService.Web.csproj"
 COPY . .
