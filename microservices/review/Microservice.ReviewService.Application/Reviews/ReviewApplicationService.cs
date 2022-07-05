@@ -1,67 +1,35 @@
-﻿using Microservice.Core.Services;
+﻿using MediatR;
+using Microservice.Core.Services;
+using Microservice.ReviewService.Reviews.Commands;
+using Microservice.ReviewService.Reviews.Queries;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
 internal class ReviewApplicationService : ApplicationService, IReviewApplicationService
 {
-    private readonly IReviewManager _reviewManager;
+    private readonly IMediator _mediator;
 
-    public ReviewApplicationService(IReviewManager reviewManager)
+    public ReviewApplicationService(IMediator mediator)
     {
-        _reviewManager = reviewManager;
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
     public async Task<ReviewDto> GetReviewAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        Review review = await _reviewManager.GetByIdAsync(id, cancellationToken);
-        if (review == null)
-        {
-            throw new Exception($"Review (id = '{id}') not found");
-        }
-
-        return new ReviewDto
-        {
-            Id = review.Id,
-            UserId = review.UserId,
-            MovieId = review.MovieId,
-            Text = review.Text,
-            Rating = review.Rating
-        };
+        GetReviewByIdQuery query = new GetReviewByIdQuery { Id = id };
+        return await _mediator.Send(query, cancellationToken);
     }
 
     public async Task<ReviewDto> CreateReviewAsync(CreateReviewDto review, CancellationToken cancellationToken)
     {
-        Review entity = new Review
-        {
-            UserId = Guid.Empty, //TODO: use current user id
-            MovieId = review.MovieId,
-            Text = review.Text,
-            Rating = review.Rating
-        };
-
-        entity = await _reviewManager.AddAsync(entity, cancellationToken);
-        await _reviewManager.SaveChangesAsync(cancellationToken);
-
-        return new ReviewDto
-        {
-            Id = entity.Id,
-            UserId = entity.UserId,
-            MovieId = entity.MovieId,
-            Text = entity.Text,
-            Rating = entity.Rating
-        };
+        CreateReviewCommand command = new CreateReviewCommand { Model = review };
+        return await _mediator.Send(command, cancellationToken);
     }
 
-    public async Task DeleteMovieAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task DeleteReviewAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        Review review = await _reviewManager.GetByIdAsync(id, cancellationToken);
-        if (review == null)
-        {
-            throw new Exception($"Review (id = '{id}') not found");
-        }
-
-        await _reviewManager.DeleteAsync(review, cancellationToken);
-        await _reviewManager.SaveChangesAsync(cancellationToken);
+        DeleteReviewCommand command = new DeleteReviewCommand { Id = id };
+        await _mediator.Send(command, cancellationToken);
     }
 }

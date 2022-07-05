@@ -8,5 +8,5 @@ public interface IReviewApplicationService : IApplicationService
 
     public Task<ReviewDto> CreateReviewAsync(CreateReviewDto review, CancellationToken cancellationToken);
 
-    public Task DeleteMovieAsync(Guid id, CancellationToken cancellationToken);
+    public Task DeleteReviewAsync(Guid id, CancellationToken cancellationToken);
 }

@@ -35,10 +35,10 @@ public class Specification<T> : ISpecification<T>
         IncludeStrings.Add(includeString);
     }
 
-    public void ApplyPaging(int skip, int take)
+    public void ApplyPaging(int page, int size)
     {
-        Skip = skip;
-        Take = take;
+        Skip = page * size;
+        Take = size;
         IsPagingEnabled = true;
     }
 

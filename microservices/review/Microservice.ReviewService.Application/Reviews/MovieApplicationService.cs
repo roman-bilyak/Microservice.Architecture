@@ -1,31 +1,22 @@
-﻿using Microservice.Core.Services;
+﻿using MediatR;
+using Microservice.Core.Services;
+using Microservice.ReviewService.Reviews.Queries;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
 internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {
-    private readonly IReviewManager _reviewManager;
+    private readonly IMediator _mediator;
 
-    public MovieApplicationService(IReviewManager reviewManager)
+    public MovieApplicationService(IMediator mediator)
     {
-        _reviewManager = reviewManager;
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
-    public async Task<GetMovieReviewsDto> GetMovieReviewsAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task<GetMovieReviewsDto> GetMovieReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
-        GetMovieReviewsDto result = new GetMovieReviewsDto();
-        foreach (Review review in await _reviewManager.GetListByMovieAsync(id, cancellationToken))
-        {
-            result.Add(new ReviewDto
-            {
-                Id = review.Id,
-                UserId = review.UserId,
-                MovieId = review.MovieId,
-                Text = review.Text,
-                Rating = review.Rating
-            });
-        }
-        return result;
+        GetMovieReviewsQuery query = new GetMovieReviewsQuery { MovieId = id, PageIndex = pageIndex, PageSize = pageSize };
+        return await _mediator.Send(query, cancellationToken);
     }
 }
