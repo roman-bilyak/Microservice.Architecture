@@ -1,9 +1,8 @@
 ﻿namespace Microservice.Application.CQRS.Commands
 {
-    public abstract class CreateCommand<TRequest, TResponse> : ICommand<TResponse>
-        where TRequest : notnull
-        where TResponse : notnull
+    public abstract class CreateCommand<TModel> : ICommand
+        where TModel : notnull
     {
-        public TRequest Model { get; init; }
+        public TModel Model { get; init; }
     }
 }

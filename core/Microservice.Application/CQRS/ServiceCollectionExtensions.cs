@@ -1,13 +1,18 @@
-﻿using MediatR;
+﻿using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Microservice.Application.CQRS
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddCQRS(this IServiceCollection services, params Type[] handlerAssemblyMarkerTypes)
+        public static IServiceCollection AddCQRS(this IServiceCollection services, params Assembly[] assemblies)
         {
-            return services.AddMediatR(handlerAssemblyMarkerTypes);
+            return services
+                .AddMediator(x =>
+                {
+                    x.AddConsumers(assemblies);
+                });
         }
     }
 }

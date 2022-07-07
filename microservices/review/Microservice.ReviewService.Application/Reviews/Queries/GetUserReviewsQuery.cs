@@ -1,12 +1,13 @@
-﻿using Microservice.Application.CQRS.Queries;
+﻿using MassTransit;
+using Microservice.Application.CQRS.Queries;
 
 namespace Microservice.ReviewService.Reviews.Queries
 {
-    internal class GetUserReviewsQuery : ListQuery<GetUserReviewsDto>
+    public class GetUserReviewsQuery : ListQuery
     {
         public Guid UserId { get; init; }
 
-        internal class GetUserReviewsQueryHandler : IQueryHandler<GetUserReviewsQuery, GetUserReviewsDto>
+        public class GetUserReviewsQueryHandler : IQueryHandler<GetUserReviewsQuery>
         {
             private readonly IReviewManager _reviewManager;
 
@@ -15,14 +16,15 @@ namespace Microservice.ReviewService.Reviews.Queries
                 _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
             }
 
-            public async Task<GetUserReviewsDto> Handle(GetUserReviewsQuery request, CancellationToken cancellationToken)
+            public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)
             {
                 GetUserReviewsDto result = new GetUserReviewsDto
                 {
-                    TotalCount = await _reviewManager.GetCountByUserAsync(request.UserId, cancellationToken)
+                    TotalCount = await _reviewManager.GetCountByUserAsync(context.Message.UserId, context.CancellationToken)
                 };
 
-                foreach (Review review in await _reviewManager.GetListByUserAsync(request.UserId, request.PageIndex, request.PageSize, cancellationToken))
+                List<Review> reviews = await _reviewManager.GetListByUserAsync(context.Message.UserId, context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
+                foreach (Review review in reviews)
                 {
                     result.Items.Add(new ReviewDto
                     {
@@ -33,7 +35,7 @@ namespace Microservice.ReviewService.Reviews.Queries
                         Rating = review.Rating
                     });
                 }
-                return result;
+                await context.RespondAsync(result);
             }
         }
     }

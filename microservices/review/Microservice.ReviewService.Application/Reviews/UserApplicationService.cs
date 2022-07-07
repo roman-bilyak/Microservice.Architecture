@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using MassTransit.Mediator;
 using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Queries;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +16,8 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
 
     public async Task<GetUserReviewsDto> GetUserReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
-        GetUserReviewsQuery query = new GetUserReviewsQuery { UserId = id, PageIndex = pageIndex, PageSize = pageSize };
-        return await _mediator.Send(query, cancellationToken);
+        var client = _mediator.CreateRequestClient<GetUserReviewsQuery>();
+        var response = await client.GetResponse<GetUserReviewsDto>(new GetUserReviewsQuery { UserId = id, PageIndex = pageIndex, PageSize = pageSize }, cancellationToken);
+        return response.Message;
     }
 }

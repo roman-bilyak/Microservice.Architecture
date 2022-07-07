@@ -1,10 +1,11 @@
-﻿using Microservice.Application.CQRS.Queries;
+﻿using MassTransit;
+using Microservice.Application.CQRS.Queries;
 
 namespace Microservice.ReviewService.Reviews.Queries
 {
-    internal class GetReviewByIdQuery : ItemQuery<Guid, ReviewDto>
+    public class GetReviewByIdQuery : ItemQuery<Guid>
     {
-        internal class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery, ReviewDto>
+        public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>
         {
             private readonly IReviewManager _reviewManager;
 
@@ -13,22 +14,22 @@ namespace Microservice.ReviewService.Reviews.Queries
                 _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
             }
 
-            public async Task<ReviewDto> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
+            public async Task Consume(ConsumeContext<GetReviewByIdQuery> context)
             {
-                Review review = await _reviewManager.GetByIdAsync(request.Id, cancellationToken);
+                Review review = await _reviewManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
                 if (review == null)
                 {
-                    throw new Exception($"Review (id = '{request.Id}') not found");
+                    throw new Exception($"Review (id = '{context.Message.Id}') not found");
                 }
 
-                return new ReviewDto
+                await context.RespondAsync(new ReviewDto
                 {
                     Id = review.Id,
                     UserId = review.UserId,
                     MovieId = review.MovieId,
                     Text = review.Text,
                     Rating = review.Rating
-                };
+                });
             }
         }
     }

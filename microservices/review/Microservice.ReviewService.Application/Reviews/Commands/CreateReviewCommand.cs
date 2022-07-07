@@ -1,10 +1,11 @@
-﻿using Microservice.Application.CQRS.Commands;
+﻿using MassTransit;
+using Microservice.Application.CQRS.Commands;
 
 namespace Microservice.ReviewService.Reviews.Commands
 {
-    internal class CreateReviewCommand : CreateCommand<CreateReviewDto, ReviewDto>
+    public class CreateReviewCommand : CreateCommand<CreateReviewDto>
     {
-        internal class CreateReviewCommandHandler : ICommandHandler<CreateReviewCommand, ReviewDto>
+        public class CreateReviewCommandHandler : ICommandHandler<CreateReviewCommand>
         {
             private readonly IReviewManager _reviewManager;
 
@@ -13,27 +14,27 @@ namespace Microservice.ReviewService.Reviews.Commands
                 _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
             }
 
-            public async Task<ReviewDto> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
+            public async Task Consume(ConsumeContext<CreateReviewCommand> context)
             {
                 Review review = new Review
                 {
                     UserId = Guid.Empty, //TODO: use current user id
-                    MovieId = request.Model.MovieId,
-                    Text = request.Model.Text,
-                    Rating = request.Model.Rating
+                    MovieId = context.Message.Model.MovieId,
+                    Text = context.Message.Model.Text,
+                    Rating = context.Message.Model.Rating
                 };
 
-                review = await _reviewManager.AddAsync(review, cancellationToken);
-                await _reviewManager.SaveChangesAsync(cancellationToken);
+                review = await _reviewManager.AddAsync(review, context.CancellationToken);
+                await _reviewManager.SaveChangesAsync(context.CancellationToken);
 
-                return new ReviewDto
+                await context.RespondAsync(new ReviewDto
                 {
                     Id = review.Id,
                     UserId = review.UserId,
                     MovieId = review.MovieId,
                     Text = review.Text,
                     Rating = review.Rating
-                };
+                });
             }
         }
     }

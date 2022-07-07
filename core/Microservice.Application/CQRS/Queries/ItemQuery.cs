@@ -1,8 +1,7 @@
 ﻿namespace Microservice.Application.CQRS.Queries
 {
-    public abstract class ItemQuery<TId, TResponse> : IQuery<TResponse>
+    public abstract class ItemQuery<TId> : IQuery
         where TId : struct
-        where TResponse : notnull
     {
         public TId Id { get; init; }
     }

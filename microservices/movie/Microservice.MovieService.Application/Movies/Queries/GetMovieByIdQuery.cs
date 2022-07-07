@@ -1,31 +1,32 @@
-﻿using Microservice.Application.CQRS.Queries;
+﻿using MassTransit;
+using Microservice.Application.CQRS.Queries;
 
 namespace Microservice.MovieService.Movies.Queries
 {
-    internal class GetMovieByIdQuery : ItemQuery<Guid, MovieDto>
+    public class GetMovieByIdQuery : ItemQuery<Guid>
     {
-        internal class GetMovieByIdQueryHandler : IQueryHandler<GetMovieByIdQuery, MovieDto>
+        public class GetMovieByIdQueryHandler : IQueryHandler<GetMovieByIdQuery>
         {
             private readonly IMovieManager _movieManager;
 
             public GetMovieByIdQueryHandler(IMovieManager movieManager)
             {
-                _movieManager = movieManager;
+                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
             }
 
-            public async Task<MovieDto> Handle(GetMovieByIdQuery request, CancellationToken cancellationToken)
+            public async Task Consume(ConsumeContext<GetMovieByIdQuery> context)
             {
-                Movie movie = await _movieManager.GetByIdAsync(request.Id, cancellationToken);
+                Movie movie = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
                 if (movie == null)
                 {
-                    throw new Exception($"Movie (id = '{request.Id}') not found");
+                    throw new Exception($"Movie (id = '{context.Message.Id}') not found");
                 }
 
-                return new MovieDto
+                await context.RespondAsync(new MovieDto
                 {
                     Id = movie.Id,
                     Title = movie.Title
-                };
+                });
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MassTransit.Mediator;
 using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Commands;
 using Microservice.ReviewService.Reviews.Queries;
@@ -17,19 +18,20 @@ internal class ReviewApplicationService : ApplicationService, IReviewApplication
 
     public async Task<ReviewDto> GetReviewAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        GetReviewByIdQuery query = new GetReviewByIdQuery { Id = id };
-        return await _mediator.Send(query, cancellationToken);
+        var client = _mediator.CreateRequestClient<GetReviewByIdQuery>();
+        var response = await client.GetResponse<ReviewDto>(new GetReviewByIdQuery { Id = id }, cancellationToken);
+        return response.Message;
     }
 
     public async Task<ReviewDto> CreateReviewAsync(CreateReviewDto review, CancellationToken cancellationToken)
     {
-        CreateReviewCommand command = new CreateReviewCommand { Model = review };
-        return await _mediator.Send(command, cancellationToken);
+        var client = _mediator.CreateRequestClient<CreateReviewCommand>();
+        var response = await client.GetResponse<ReviewDto>(new CreateReviewCommand { Model = review }, cancellationToken);
+        return response.Message;
     }
 
     public async Task DeleteReviewAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        DeleteReviewCommand command = new DeleteReviewCommand { Id = id };
-        await _mediator.Send(command, cancellationToken);
+        await _mediator.Send(new DeleteReviewCommand { Id = id }, cancellationToken);
     }
 }
