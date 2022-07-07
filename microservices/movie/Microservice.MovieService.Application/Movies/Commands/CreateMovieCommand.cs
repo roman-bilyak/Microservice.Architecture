@@ -1,33 +1,34 @@
-﻿using Microservice.Application.CQRS.Commands;
+﻿using MassTransit;
+using Microservice.Application.CQRS.Commands;
 
 namespace Microservice.MovieService.Movies.Commands
 {
-    internal class CreateMovieCommand : CreateCommand<CreateMovieDto, MovieDto>
+    public class CreateMovieCommand : CreateCommand<CreateMovieDto>
     {
-        internal class CreateMovieCommandHandler : ICommandHandler<CreateMovieCommand, MovieDto>
+        public class CreateMovieCommandHandler : ICommandHandler<CreateMovieCommand>
         {
             private readonly IMovieManager _movieManager;
 
             public CreateMovieCommandHandler(IMovieManager movieManager)
             {
-                _movieManager = movieManager;
+                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
             }
 
-            public async Task<MovieDto> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
+            public async Task Consume(ConsumeContext<CreateMovieCommand> context)
             {
                 Movie entity = new Movie
                 {
-                    Title = request.Model.Title
+                    Title = context.Message.Model.Title
                 };
 
-                entity = await _movieManager.AddAsync(entity, cancellationToken);
-                await _movieManager.SaveChangesAsync(cancellationToken);
+                entity = await _movieManager.AddAsync(entity, context.CancellationToken);
+                await _movieManager.SaveChangesAsync(context.CancellationToken);
 
-                return new MovieDto
+                await context.RespondAsync(new MovieDto
                 {
                     Id = entity.Id,
-                    Title = request.Model.Title
-                };
+                    Title = entity.Title
+                });
             }
         }
     }

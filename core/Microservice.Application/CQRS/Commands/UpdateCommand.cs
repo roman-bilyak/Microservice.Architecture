@@ -1,12 +1,11 @@
 ﻿namespace Microservice.Application.CQRS.Commands
 {
-    public abstract class UpdateCommand<TId, TRequest, TResponse> : ICommand<TResponse>
+    public abstract class UpdateCommand<TId, TModel> : ICommand
         where TId : struct
-        where TRequest : notnull
-        where TResponse : notnull
+        where TModel : notnull
     {
         public TId Id { get; init; }
 
-        public TRequest Model { get; init; }
+        public TModel Model { get; init; }
     }
 }

@@ -1,10 +1,9 @@
-﻿using MediatR;
+﻿using MassTransit;
 
 namespace Microservice.Application.CQRS.Queries
 {
-    public interface IQueryHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
-        where TRequest : IQuery<TResponse>
-        where TResponse : notnull
+    public interface IQueryHandler<TQuery> : IConsumer<TQuery>
+        where TQuery : class, IQuery
     {
     }
 }

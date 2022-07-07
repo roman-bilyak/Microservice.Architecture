@@ -1,36 +1,37 @@
-﻿using Microservice.Application.CQRS.Commands;
+﻿using MassTransit;
+using Microservice.Application.CQRS.Commands;
 
 namespace Microservice.MovieService.Movies.Commands
 {
-    internal class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto, MovieDto>
+    public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
     {
-        internal class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand, MovieDto>
+        public class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand>
         {
             private readonly IMovieManager _movieManager;
 
             public UpdateMovieCommandHandler(IMovieManager movieManager)
             {
-                _movieManager = movieManager;
+                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
             }
 
-            public async Task<MovieDto> Handle(UpdateMovieCommand request, CancellationToken cancellationToken)
+            public async Task Consume(ConsumeContext<UpdateMovieCommand> context)
             {
-                Movie entity = await _movieManager.GetByIdAsync(request.Id, cancellationToken);
+                Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
                 if (entity == null)
                 {
-                    throw new Exception($"Movie (id = '{request.Id}') not found");
+                    throw new Exception($"Movie (id = '{context.Message.Id}') not found");
                 }
 
-                entity.Title = request.Model.Title;
+                entity.Title = context.Message.Model.Title;
 
-                entity = await _movieManager.UpdateAsync(entity, cancellationToken);
-                await _movieManager.SaveChangesAsync(cancellationToken);
+                entity = await _movieManager.UpdateAsync(entity, context.CancellationToken);
+                await _movieManager.SaveChangesAsync(context.CancellationToken);
 
-                return new MovieDto
+                await context.RespondAsync(new MovieDto
                 {
                     Id = entity.Id,
                     Title = entity.Title
-                };
+                });
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MassTransit.Mediator;
 using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Queries;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,8 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
 
     public async Task<GetMovieReviewsDto> GetMovieReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
-        GetMovieReviewsQuery query = new GetMovieReviewsQuery { MovieId = id, PageIndex = pageIndex, PageSize = pageSize };
-        return await _mediator.Send(query, cancellationToken);
+        var client = _mediator.CreateRequestClient<GetMovieReviewsQuery>();
+        var response = await client.GetResponse<GetMovieReviewsDto>(new GetMovieReviewsQuery { MovieId = id, PageIndex = pageIndex, PageSize = pageSize }, cancellationToken);
+        return response.Message;
     }
 }
