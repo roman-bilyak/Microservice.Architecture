@@ -77,6 +77,31 @@ public static class Config
             new IdentityResource("role", new []{ JwtClaimTypes.Role })
         };
 
+    public static IEnumerable<ApiResource> ApiResources =>
+        new ApiResource[]
+         {
+             new ApiResource("identity-service","Identity Service API")
+             {
+                Scopes = new[] { "api" }
+             },
+             new ApiResource("movie-service","Movie Service API")
+             {
+                Scopes = new[] { "api" }
+             },
+             new ApiResource("payment-service","Payment Service API")
+             {
+                Scopes = new[] { "api" }
+             },
+             new ApiResource("review-service","Review Service API")
+             {
+                Scopes = new[] { "api" }
+             },
+             new ApiResource("test-service","Test Service API")
+             {
+                Scopes = new[] { "api" }
+             }
+         };
+
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
