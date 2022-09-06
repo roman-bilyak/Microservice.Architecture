@@ -2,10 +2,12 @@
 using MassTransit.Mediator;
 using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Queries;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
+[Authorize]
 internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {
     private readonly IMediator _mediator;
