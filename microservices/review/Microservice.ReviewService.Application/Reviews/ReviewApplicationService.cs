@@ -3,10 +3,12 @@ using MassTransit.Mediator;
 using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Commands;
 using Microservice.ReviewService.Reviews.Queries;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
+[Authorize]
 internal class ReviewApplicationService : ApplicationService, IReviewApplicationService
 {
     private readonly IMediator _mediator;

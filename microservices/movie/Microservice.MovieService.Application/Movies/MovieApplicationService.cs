@@ -2,10 +2,12 @@
 using Microservice.Application.Services;
 using Microservice.MovieService.Movies.Commands;
 using Microservice.MovieService.Movies.Queries;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.MovieService.Movies;
 
+[Authorize]
 internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {
     private readonly IMediator _mediator;
