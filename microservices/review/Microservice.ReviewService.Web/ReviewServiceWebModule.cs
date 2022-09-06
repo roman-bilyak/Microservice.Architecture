@@ -1,4 +1,5 @@
-﻿using Microservice.Core.Modularity;
+﻿using IdentityServer4.AccessTokenValidation;
+using Microservice.Core.Modularity;
 using Microservice.Infrastructure.AspNetCore;
 using Microsoft.OpenApi.Models;
 
@@ -9,6 +10,15 @@ public sealed class ReviewServiceWebModule : BaseModule
     public override void Configure(IServiceCollection services)
     {
         base.Configure(services);
+
+        services
+            .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = "https://localhost:9101";
+                options.ApiName = "review-service";
+            });
+        services.AddAuthorization();
 
         services.AddSwaggerGen(options =>
         {
@@ -25,6 +35,11 @@ public sealed class ReviewServiceWebModule : BaseModule
 
         app.UseDeveloperExceptionPage();
 
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.UseEndpoints(x => x.MapDefaultControllerRoute());
+
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
@@ -34,8 +49,5 @@ public sealed class ReviewServiceWebModule : BaseModule
             options.DefaultModelsExpandDepth(-1);
             options.DisplayRequestDuration();
         });
-
-        app.UseRouting();
-        app.UseEndpoints(x => x.MapDefaultControllerRoute());
     }
 }
