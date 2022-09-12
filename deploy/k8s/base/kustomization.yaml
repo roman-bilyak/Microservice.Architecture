@@ -9,7 +9,7 @@ resources:
 - infrastructure/sqlserver.yaml
 
 - gateway-deployment.yaml
-- identity-server-deploy.yaml
+- identity-server-deployment.yaml
 - identity-service-deployment.yaml
 - movie-service-deployment.yaml
 - payment-service-deployment.yaml
