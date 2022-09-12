@@ -1,4 +1,5 @@
-﻿using Microservice.Core.Modularity;
+﻿using IdentityServer4.AccessTokenValidation;
+using Microservice.Core.Modularity;
 using Microservice.Gateway.Swagger;
 using Microservice.Infrastructure.AspNetCore;
 using Microservice.MovieService;
@@ -16,14 +17,11 @@ public sealed class GatewayWebModule : BaseModule
     {
         base.Configure(services);
 
-        services.AddCors();
-
-        services.AddAuthentication("Bearer")
+        services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             .AddIdentityServerAuthentication(options =>
             {
-                options.Authority = "https://localhost:5001";
-                options.ApiName = "Gateway";
-                options.RequireHttpsMetadata = true;
+                options.Authority = "https://localhost:9101";
+                options.ApiName = "gateway";
             });
 
         services.RegisterFakeApplicationServices(typeof(MovieServiceApplicationContractsModule).Assembly, "api/MS");
@@ -35,6 +33,50 @@ public sealed class GatewayWebModule : BaseModule
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Gateway API", Version = "v1" });
             options.DocumentFilter<HideOcelotControllersFilter>();
             options.DocInclusionPredicate((docName, description) => true);
+
+            options.AddSecurityDefinition(nameof(SecuritySchemeType.OAuth2),
+                new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Scheme = IdentityServerAuthenticationDefaults.AuthenticationScheme,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("https://localhost:9101/connect/authorize"),
+                            TokenUrl = new Uri("https://localhost:9101/connect/token"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "identity-service", "Identity Service API" },
+                                { "movie-service", "Movie Service API" },
+                                { "payment-service", "Payment Service API" },
+                                { "review-service", "Review Service API" },
+                                { "test-service", "Test Service API" }
+                            }
+                        }
+                    }
+                });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Id = nameof(SecuritySchemeType.OAuth2),
+                            Type = ReferenceType.SecurityScheme,
+                        }
+                    },
+                    new [] 
+                    {
+                        "identity-service",
+                        "movie-service",
+                        "payment-service",
+                        "review-service",
+                        "test-service"
+                    }
+                }
+            });
         });
 
         services.AddOcelot();
@@ -58,9 +100,19 @@ public sealed class GatewayWebModule : BaseModule
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
             options.DisplayRequestDuration();
-        });
 
-        app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); //TODO: fix this
+            options.OAuthClientId("api_client");
+            options.OAuthAppName("Gateway API");
+            options.OAuthScopes
+            (
+                "identity-service",
+                "movie-service",
+                "payment-service",
+                "review-service",
+                "test-service"
+            );
+            options.OAuthUsePkce();
+        });
 
         app.MapWhen(
                 ctx => !ctx.Request.Path.ToString().StartsWith("/api/"),

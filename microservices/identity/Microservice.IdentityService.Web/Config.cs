@@ -25,7 +25,7 @@ public static class Config
                     new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
                     new Claim(JwtClaimTypes.Email, "bob.smith@email.com"),
                     new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                    new Claim(JwtClaimTypes.Address, 
+                    new Claim(JwtClaimTypes.Address,
                         JsonSerializer.Serialize(new
                         {
                             street_address = "One Hacker Way",
@@ -80,25 +80,36 @@ public static class Config
     public static IEnumerable<ApiResource> ApiResources =>
         new ApiResource[]
          {
+             new ApiResource("gateway","Gateway API")
+             {
+                Scopes = new[]
+                {
+                    "identity-service", 
+                    "movie-service",
+                    "payment-service",
+                    "review-service",
+                    "test-service"
+                }
+             },
              new ApiResource("identity-service","Identity Service API")
              {
-                Scopes = new[] { "api" }
+                Scopes = new[] { "identity-service" }
              },
              new ApiResource("movie-service","Movie Service API")
              {
-                Scopes = new[] { "api" }
+                Scopes = new[] { "movie-service" }
              },
              new ApiResource("payment-service","Payment Service API")
              {
-                Scopes = new[] { "api" }
+                Scopes = new[] { "payment-service" }
              },
              new ApiResource("review-service","Review Service API")
              {
-                Scopes = new[] { "api" }
+                Scopes = new[] { "review-service" }
              },
              new ApiResource("test-service","Test Service API")
              {
-                Scopes = new[] { "api" }
+                Scopes = new[] { "test-service" }
              }
          };
 
@@ -107,8 +118,24 @@ public static class Config
         {
             new ApiScope
             {
-                Name = "api"
-            }
+                Name = "identity-service"
+            },
+            new ApiScope
+            {
+                Name = "movie-service"
+            },
+            new ApiScope
+            {
+                Name = "payment-service"
+            },
+            new ApiScope
+            {
+                Name = "review-service"
+            },
+            new ApiScope
+            {
+                Name = "test-service"
+            },
         };
 
     public static IEnumerable<Client> Clients =>
@@ -124,6 +151,38 @@ public static class Config
                     new Secret("secret".Sha256())
                 },
                 AllowedScopes = { "api" },
+            },
+            new Client
+            {
+                ClientId = "api_client",
+                ClientName = "API client",
+                AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
+                RequireClientSecret = false,
+                RedirectUris =
+                {
+                    "https://localhost:9000/oauth2-redirect.html",
+                    "https://localhost:9101/oauth2-redirect.html",
+                    "https://localhost:9102/oauth2-redirect.html",
+                    "https://localhost:9103/oauth2-redirect.html",
+                    "https://localhost:9104/oauth2-redirect.html"
+                },
+                AllowedCorsOrigins =
+                {
+                    "https://localhost:9000",
+                    "https://localhost:9101",
+                    "https://localhost:9102",
+                    "https://localhost:9103",
+                    "https://localhost:9104"
+                },
+                AllowedScopes =
+                {
+                    "identity-service",
+                    "movie-service",
+                    "payment-service",
+                    "review-service",
+                    "test-service"
+                }
             }
         };
 }
