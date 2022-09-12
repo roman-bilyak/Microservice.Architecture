@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Application", ""))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microservice.IdentityService.Application.Contracts\Microservice.IdentityService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
