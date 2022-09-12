@@ -80,34 +80,34 @@ public static class Config
     public static IEnumerable<ApiResource> ApiResources =>
         new ApiResource[]
          {
-             new ApiResource("gateway","Gateway API")
+             new ApiResource("gateway", "Gateway API")
              {
                 Scopes = new[]
                 {
-                    "identity-service", 
+                    "identity-service",
                     "movie-service",
                     "payment-service",
                     "review-service",
                     "test-service"
                 }
              },
-             new ApiResource("identity-service","Identity Service API")
+             new ApiResource("identity-service", "Identity Service API")
              {
                 Scopes = new[] { "identity-service" }
              },
-             new ApiResource("movie-service","Movie Service API")
+             new ApiResource("movie-service", "Movie Service API")
              {
                 Scopes = new[] { "movie-service" }
              },
-             new ApiResource("payment-service","Payment Service API")
+             new ApiResource("payment-service", "Payment Service API")
              {
                 Scopes = new[] { "payment-service" }
              },
-             new ApiResource("review-service","Review Service API")
+             new ApiResource("review-service", "Review Service API")
              {
                 Scopes = new[] { "review-service" }
              },
-             new ApiResource("test-service","Test Service API")
+             new ApiResource("test-service", "Test Service API")
              {
                 Scopes = new[] { "test-service" }
              }
@@ -116,26 +116,11 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new ApiScope
-            {
-                Name = "identity-service"
-            },
-            new ApiScope
-            {
-                Name = "movie-service"
-            },
-            new ApiScope
-            {
-                Name = "payment-service"
-            },
-            new ApiScope
-            {
-                Name = "review-service"
-            },
-            new ApiScope
-            {
-                Name = "test-service"
-            },
+            new ApiScope("identity-service", "Identity Service API"),
+            new ApiScope("movie-service", "Movie Service API"),
+            new ApiScope("payment-service", "Payment Service API"),
+            new ApiScope("review-service", "Review Service API"),
+            new ApiScope("test-service", "Test Service API")
         };
 
     public static IEnumerable<Client> Clients =>
