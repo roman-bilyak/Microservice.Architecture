@@ -20,7 +20,7 @@ public sealed class GatewayWebModule : BaseModule
         services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             .AddIdentityServerAuthentication(options =>
             {
-                options.Authority = "https://localhost:9101";
+                options.Authority = "https://localhost:7111";
                 options.ApiName = "gateway";
             });
 
@@ -43,8 +43,8 @@ public sealed class GatewayWebModule : BaseModule
                     {
                         AuthorizationCode = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri("https://localhost:9101/connect/authorize"),
-                            TokenUrl = new Uri("https://localhost:9101/connect/token"),
+                            AuthorizationUrl = new Uri("https://localhost:7111/connect/authorize"),
+                            TokenUrl = new Uri("https://localhost:7111/connect/token"),
                             Scopes = new Dictionary<string, string>
                             {
                                 { "identity-service", "Identity Service API" },

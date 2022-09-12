@@ -135,19 +135,21 @@ public static class Config
                 RequireClientSecret = false,
                 RedirectUris =
                 {
-                    "https://localhost:9000/oauth2-redirect.html",
-                    "https://localhost:9101/oauth2-redirect.html",
-                    "https://localhost:9102/oauth2-redirect.html",
-                    "https://localhost:9103/oauth2-redirect.html",
-                    "https://localhost:9104/oauth2-redirect.html"
+                    "https://localhost:7100/oauth2-redirect.html",
+                    "https://localhost:7201/oauth2-redirect.html",
+                    "https://localhost:7202/oauth2-redirect.html",
+                    "https://localhost:7203/oauth2-redirect.html",
+                    "https://localhost:7204/oauth2-redirect.html",
+                    "https://localhost:7205/oauth2-redirect.html",
                 },
                 AllowedCorsOrigins =
                 {
-                    "https://localhost:9000",
-                    "https://localhost:9101",
-                    "https://localhost:9102",
-                    "https://localhost:9103",
-                    "https://localhost:9104"
+                    "https://localhost:7100",
+                    "https://localhost:7201",
+                    "https://localhost:7202",
+                    "https://localhost:7203",
+                    "https://localhost:7204",
+                    "https://localhost:7205"
                 },
                 AllowedScopes =
                 {

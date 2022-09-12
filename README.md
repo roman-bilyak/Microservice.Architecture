@@ -110,16 +110,17 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 ## Applications & Microservices
 
-|                  | [Kubernates Cluster](#kubernates-cluster) | [Local Docker Host](#local-docker-host)  | [Visual Studio](#visual-studio)          |
-| ---------------- | ----------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| angular-ui       |                                           | [localhost:7001](http://localhost:7001)  |                                          |
-| react-ui         |                                           | [localhost:7002](http://localhost:7002)  |                                          |
-| gateway          | [localhost](http://localhost)             | [localhost:7100](http://localhost:7100)  | [localhost:9000](http://localhost:9000/) |
-| identity-service |                                           | [localhost:7101](http://localhost:7101/) | [localhost:9101](http://localhost:9101/) |
-| movie-service    |                                           | [localhost:7102](http://localhost:7102/) | [localhost:9102](http://localhost:9102/) |
-| review-service   |                                           | [localhost:7103](http://localhost:7103/) | [localhost:9103](http://localhost:9103/) |
-| payment-service  |                                           | [localhost:7104](http://localhost:7104/) | [localhost:9104](http://localhost:9104/) |
-| test-service     |                                           | [localhost:7105](http://localhost:7105/) | [localhost:9105](http://localhost:9105/) |
+|                  | [Visual Studio](#visual-studio)         | [Local Docker Host](#local-docker-host) | [Kubernates Cluster](#kubernates-cluster) |
+| ---------------- | --------------------------------------- | --------------------------------------- | ----------------------------------------- |
+| angular-ui       | [localhost:7001](http://localhost:7001) | [localhost:9001](http://localhost:9001) |                                           |
+| react-ui         | [localhost:7002](http://localhost:7002) | [localhost:9002](http://localhost:9002) |                                           |
+| gateway          | [localhost:7100](http://localhost:7100) | [localhost:9100](http://localhost:9100) | [localhost](http://localhost)             |
+| identity-server  | [localhost:7111](http://localhost:7111) | [localhost:9111](http://localhost:9111) |                                           |
+| identity-service | [localhost:7201](http://localhost:7201) | [localhost:9201](http://localhost:9201) |                                           |
+| movie-service    | [localhost:7202](http://localhost:7202) | [localhost:9202](http://localhost:9202) |                                           |
+| review-service   | [localhost:7203](http://localhost:7203) | [localhost:9203](http://localhost:9203) |                                           |
+| payment-service  | [localhost:7204](http://localhost:7204) | [localhost:9204](http://localhost:9204) |                                           |
+| test-service     | [localhost:7205](http://localhost:7205) | [localhost:9205](http://localhost:9205) |                                           |
 
 ## Project Structure
 

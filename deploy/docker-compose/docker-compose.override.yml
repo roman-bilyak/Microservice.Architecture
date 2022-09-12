@@ -3,11 +3,11 @@ version: '3.4'
 services:
   angular-ui:
     ports:
-      - 7001:80
+      - 9001:80
 
   react-ui:
     ports:
-      - 7002:80
+      - 9002:80
 
   gateway:
     environment:
@@ -25,34 +25,40 @@ services:
       - Routes__4__DownstreamHostAndPorts__0__Host=test-service
       - Routes__4__DownstreamHostAndPorts__0__Port=80
     ports:
-      - 7100:80
+      - 9100:80
+
+  identity-server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 9111:80
       
   identity-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 7101:80
+      - 9201:80
       
   movie-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 7102:80
+      - 9202:80
       
   payment-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 7103:80
+      - 9203:80
       
   review-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 7104:80
+      - 9204:80
       
   test-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 7105:80
+      - 9205:80
