@@ -25,38 +25,55 @@ services:
       context: ../..
       dockerfile: gateways/Microservice.Gateway.Web/Dockerfile
     depends_on:
+      - identity-server
       - identity-service
       - movie-service
       - payment-service
       - review-service
       - test-service
-      
+
+  identity-server:
+    image: ${DOCKER_REGISTRY-}identity-server:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: applications/Microservice.IdentityServer/Dockerfile
+
   identity-service:
     image: ${DOCKER_REGISTRY-}identity-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/identity/Microservice.IdentityService.Web/Dockerfile
-      
+    depends_on:
+      - identity-server
+
   movie-service:
     image: ${DOCKER_REGISTRY-}movie-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/movie/Microservice.MovieService.Web/Dockerfile
-      
+    depends_on:
+      - identity-server
+
   payment-service:
     image: ${DOCKER_REGISTRY-}payment-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/payment/Microservice.PaymentService.Web/Dockerfile
-      
+    depends_on:
+      - identity-server
+
   review-service:
     image: ${DOCKER_REGISTRY-}review-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/review/Microservice.ReviewService.Web/Dockerfile
+    depends_on:
+      - identity-server
 
   test-service:
     image: ${DOCKER_REGISTRY-}test-service:${TAG:-latest}
     build:
       context: ../..
       dockerfile: microservices/test/Microservice.TestService.Web/Dockerfile
+    depends_on:
+      - identity-server

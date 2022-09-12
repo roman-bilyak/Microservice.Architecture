@@ -15,7 +15,7 @@ public sealed class MovieServiceWebModule : BaseModule
             .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             .AddIdentityServerAuthentication(options =>
             {
-                options.Authority = "https://localhost:9101";
+                options.Authority = "https://localhost:7111";
                 options.ApiName = "movie-service";
             });
         services.AddAuthorization();
@@ -34,8 +34,8 @@ public sealed class MovieServiceWebModule : BaseModule
                     {
                         AuthorizationCode = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri("https://localhost:9101/connect/authorize"),
-                            TokenUrl = new Uri("https://localhost:9101/connect/token"),
+                            AuthorizationUrl = new Uri("https://localhost:7111/connect/authorize"),
+                            TokenUrl = new Uri("https://localhost:7111/connect/token"),
                             Scopes = new Dictionary<string, string>
                             {
                                 { "movie-service", "Movie Service API" }
