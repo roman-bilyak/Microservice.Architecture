@@ -9,6 +9,7 @@ resources:
 - infrastructure/sqlserver.yaml
 
 - gateway-deployment.yaml
+- identity-server-deploy.yaml
 - identity-service-deployment.yaml
 - movie-service-deployment.yaml
 - payment-service-deployment.yaml
@@ -16,6 +17,7 @@ resources:
 - test-service-deployment.yaml
 
 - gateway.yaml
+- identity-server.yaml
 - identity-service.yaml
 - movie-service.yaml
 - payment-service.yaml
