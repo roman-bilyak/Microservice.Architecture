@@ -36,9 +36,10 @@ public class DynamicControllerConvention : IApplicationModelConvention
             controllerName = controllerName.Substring(1, controllerName.Length - 1);
         }
         controller.ControllerName = controllerName
+            .RemoveSuffix("Proxy")
             .RemoveSuffix("Controller")
-            .RemoveSuffix("ApplicationService")
-            .RemoveSuffix("Proxy");
+            .RemoveSuffix("ApplicationService");
+            
     }
 
     private static void SetGroupName(ControllerModel controller)
