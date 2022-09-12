@@ -11,7 +11,7 @@ builder.Services.AddApplication()
     .AddModule<MovieServiceApplicationContractsModule>()
     .AddModule<ReviewServiceApplicationContractsModule>()
     .AddModule<TestServiceApplicationContractsModule>()
-    .AddModule<GatewayWebModule>()
+    .AddModule<GatewayModule>()
     .Configure();
 
 var app = builder.Build();

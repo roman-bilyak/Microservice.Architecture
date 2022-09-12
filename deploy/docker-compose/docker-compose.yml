@@ -23,7 +23,7 @@ services:
     image: ${DOCKER_REGISTRY-}gateway:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: gateways/Microservice.Gateway.Web/Dockerfile
+      dockerfile: applications/Microservice.Gateway/Dockerfile
     depends_on:
       - identity-server
       - identity-service

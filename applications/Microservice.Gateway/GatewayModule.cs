@@ -11,7 +11,7 @@ using Ocelot.Middleware;
 
 namespace Microservice.Gateway;
 
-public sealed class GatewayWebModule : BaseModule
+public sealed class GatewayModule : BaseModule
 {
     public override void Configure(IServiceCollection services)
     {
