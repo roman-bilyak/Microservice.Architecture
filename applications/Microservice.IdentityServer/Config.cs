@@ -128,17 +128,6 @@ public static class Config
         {
             new Client
             {
-                ClientId = "console",
-                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-                ClientSecrets =
-                {
-                    new Secret("secret".Sha256())
-                },
-                AllowedScopes = { "api" },
-            },
-            new Client
-            {
                 ClientId = "api_client",
                 ClientName = "API client",
                 AllowedGrantTypes = GrantTypes.Code,
