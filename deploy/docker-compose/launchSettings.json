@@ -8,6 +8,7 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "gateway": "StartDebugging",
+        "identity-server": "StartDebugging",
         "identity-service": "StartDebugging",
         "movie-service": "StartDebugging",
         "payment-service": "StartDebugging",

@@ -22,10 +22,4 @@
     <ProjectReference Include="..\Microservice.TestService.Application\Microservice.TestService.Application.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Infrastructure\Microservice.TestService.Infrastructure.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="appsettings.*.json">
-      <DependentUpon>appsettings.json</DependentUpon>
-    </None>
-  </ItemGroup>
 </Project>
