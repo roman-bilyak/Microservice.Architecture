@@ -15,7 +15,7 @@ Add-Content $file '  - "../../base"'
 
 Add-Content $file 'images:'
 
-$images = @('gateway','identity-service','movie-service','payment-service','review-service','test-service')
+$images = @('gateway','identity-server','identity-service','movie-service','payment-service','review-service','test-service')
 Foreach ($image in $images)
 {
 	Add-Content $file ('  - name: ' + $image)
