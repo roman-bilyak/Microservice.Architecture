@@ -24,6 +24,42 @@ public sealed class ReviewServiceWebModule : BaseModule
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Review Service API", Version = "v1" });
             options.DocInclusionPredicate((docName, description) => true);
+
+            options.AddSecurityDefinition(nameof(SecuritySchemeType.OAuth2),
+                new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Scheme = IdentityServerAuthenticationDefaults.AuthenticationScheme,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("https://localhost:9101/connect/authorize"),
+                            TokenUrl = new Uri("https://localhost:9101/connect/token"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "review-service", "Review Service API" }
+                            }
+                        }
+                    }
+                });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Id = nameof(SecuritySchemeType.OAuth2),
+                            Type = ReferenceType.SecurityScheme,
+                        }
+                    },
+                    new[]
+                    {
+                        "review-service"
+                    }
+                }
+            });
         });
     }
 
@@ -48,6 +84,11 @@ public sealed class ReviewServiceWebModule : BaseModule
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
             options.DisplayRequestDuration();
+
+            options.OAuthClientId("api_client");
+            options.OAuthAppName("Review Service API");
+            options.OAuthScopes("review-service");
+            options.OAuthUsePkce();
         });
     }
 }

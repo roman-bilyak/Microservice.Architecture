@@ -24,6 +24,42 @@ public class TestServiceWebModule : BaseModule
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Test Service API", Version = "v1" });
             options.DocInclusionPredicate((docName, description) => true);
+
+            options.AddSecurityDefinition(nameof(SecuritySchemeType.OAuth2),
+                new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Scheme = IdentityServerAuthenticationDefaults.AuthenticationScheme,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("https://localhost:9101/connect/authorize"),
+                            TokenUrl = new Uri("https://localhost:9101/connect/token"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "test-service", "Test Service API" }
+                            }
+                        }
+                    }
+                });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Id = nameof(SecuritySchemeType.OAuth2),
+                            Type = ReferenceType.SecurityScheme,
+                        }
+                    },
+                    new[]
+                    {
+                        "test-service"
+                    }
+                }
+            });
         });
     }
 
@@ -48,6 +84,11 @@ public class TestServiceWebModule : BaseModule
             options.RoutePrefix = string.Empty;
             options.DefaultModelsExpandDepth(-1);
             options.DisplayRequestDuration();
+
+            options.OAuthClientId("api_client");
+            options.OAuthAppName("Test Service API");
+            options.OAuthScopes("test-service");
+            options.OAuthUsePkce();
         });
     }
 }
