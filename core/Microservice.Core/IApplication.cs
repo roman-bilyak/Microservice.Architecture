@@ -11,11 +11,11 @@ public interface IApplication : IDisposable
 
     IApplication AddModule<T>() where T : class, IModule, new();
 
-    void Configure();
+    void ConfigureServices();
 
     void SetServiceProvider(IServiceProvider serviceProvider);
 
-    void Initialize();
+    void Configure();
 
     void Shutdown();
 }

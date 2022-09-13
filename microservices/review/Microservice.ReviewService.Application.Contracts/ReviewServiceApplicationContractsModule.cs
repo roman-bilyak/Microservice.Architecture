@@ -7,9 +7,9 @@ namespace Microservice.ReviewService;
 
 public sealed class ReviewServiceApplicationContractsModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services.Configure<DynamicControllerOptions>(options =>
         {

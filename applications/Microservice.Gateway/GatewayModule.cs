@@ -13,9 +13,9 @@ namespace Microservice.Gateway;
 
 public sealed class GatewayModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             .AddIdentityServerAuthentication(options =>
@@ -82,9 +82,9 @@ public sealed class GatewayModule : BaseModule
         services.AddOcelot();
     }
 
-    public override void Initialize(IServiceProvider serviceProvider)
+    public override void Configure(IServiceProvider serviceProvider)
     {
-        base.Initialize(serviceProvider);
+        base.Configure(serviceProvider);
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 

@@ -1,15 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core;
 
 public static class ServiceCollectionExtensions
 {
-    public static IApplication AddApplication(this IServiceCollection services,
+    public static IApplication AddApplication(this IServiceCollection services, IConfiguration configuration,
         Action<ApplicationConfigurationOptions> configurationOptionsAction = null)
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        return new Application(services, configurationOptionsAction);
+        return new Application(services, configuration, configurationOptionsAction);
     }
 
     public static void AddWrappedService<T>(this IServiceCollection services)

@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core.Modularity;
 
 public interface IModule
 {
-    void Configure(IServiceCollection services);
+    IConfiguration Configuration { get; set; }
+    
+    void ConfigureServices(IServiceCollection services);
 
-    void Initialize(IServiceProvider serviceProvider);
+    void Configure(IServiceProvider serviceProvider);
 
     void Shutdown(IServiceProvider serviceProvider);
 }

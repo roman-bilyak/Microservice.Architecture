@@ -7,9 +7,9 @@ namespace Microservice.MovieService;
 
 public sealed class MovieServiceWebModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services
             .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
@@ -63,9 +63,9 @@ public sealed class MovieServiceWebModule : BaseModule
         });
     }
 
-    public override void Initialize(IServiceProvider serviceProvider)
+    public override void Configure(IServiceProvider serviceProvider)
     {
-        base.Initialize(serviceProvider);
+        base.Configure(serviceProvider);
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 

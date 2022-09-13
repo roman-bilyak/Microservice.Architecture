@@ -1,16 +1,17 @@
 using Microservice.Core;
-using Microservice.Infrastructure.AspNetCore;
 using Microservice.IdentityService;
+using Microservice.Infrastructure.AspNetCore;
+using Microservice.Infrastructure.AspNetCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddApplication()
+builder.AddApplication()
     .AddModule<AspNetCoreModule>()
     .AddModule<IdentityServiceDomainModule>()
     .AddModule<IdentityServiceInfrastructureModule > ()
     .AddModule<IdentityServiceApplicationContractsModule>()
     .AddModule<IdentityServiceApplicationModule>()
     .AddModule<IdentityServiceWebModule>()
-    .Configure();
+    .ConfigureServices();
 
 var app = builder.Build();
 app.UseApplication();

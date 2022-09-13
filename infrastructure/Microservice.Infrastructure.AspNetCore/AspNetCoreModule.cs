@@ -11,9 +11,9 @@ namespace Microservice.Infrastructure.AspNetCore;
 
 public sealed class AspNetCoreModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services.AddWrappedService<IApplicationBuilder>();
         services.AddTransient<DynamicControllerConvention>();
@@ -22,9 +22,9 @@ public sealed class AspNetCoreModule : BaseModule
         services.AddMvc();
     }
 
-    public override void Initialize(IServiceProvider serviceProvider)
+    public override void Configure(IServiceProvider serviceProvider)
     {
-        base.Initialize(serviceProvider);
+        base.Configure(serviceProvider);
 
         MvcOptions mvcOptions = serviceProvider.GetOptions<MvcOptions>();
         mvcOptions.Conventions.Add(serviceProvider.GetRequiredService<DynamicControllerConvention>());
