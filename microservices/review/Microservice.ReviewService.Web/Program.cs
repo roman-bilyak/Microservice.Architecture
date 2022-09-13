@@ -1,16 +1,17 @@
 using Microservice.Core;
 using Microservice.Infrastructure.AspNetCore;
+using Microservice.Infrastructure.AspNetCore.Extensions;
 using Microservice.ReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddApplication()
+builder.AddApplication()
     .AddModule<AspNetCoreModule>()
     .AddModule<ReviewServiceDomainModule>()
     .AddModule<ReviewServiceInfrastructureModule>()
     .AddModule<ReviewServiceApplicationContractsModule>()
     .AddModule<ReviewServiceApplicationModule>()
     .AddModule<ReviewServiceWebModule>()
-    .Configure();
+    .ConfigureServices();
 
 var app = builder.Build();
 app.UseApplication();

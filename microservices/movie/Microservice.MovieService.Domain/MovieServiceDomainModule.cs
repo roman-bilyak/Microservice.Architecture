@@ -6,9 +6,9 @@ namespace Microservice.MovieService;
 
 public sealed class MovieServiceDomainModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services.AddTransient<IMovieManager, MovieManager>();
     }

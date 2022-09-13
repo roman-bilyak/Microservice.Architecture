@@ -28,6 +28,6 @@ public static class ApplicationBuilderExtensions
         });
 
         application.SetServiceProvider(serviceProvider);
-        application.Initialize();
+        application.Configure();
     }
 }

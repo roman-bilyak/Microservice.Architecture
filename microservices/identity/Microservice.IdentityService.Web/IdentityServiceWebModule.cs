@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.AccessTokenValidation;
+using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microservice.Infrastructure.AspNetCore;
 using Microsoft.OpenApi.Models;
@@ -7,16 +8,20 @@ namespace Microservice.IdentityService;
 
 public sealed class IdentityServiceWebModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
+
+        IdentityServerOptions identityServerOptions = Configuration
+            .GetSection("IdentityServer")
+            .Get<IdentityServerOptions>();
 
         services
             .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             .AddIdentityServerAuthentication(options =>
             {
-                options.Authority = "https://localhost:7111";
-                options.ApiName = "identity-service";
+                options.Authority = identityServerOptions.Authority;
+                options.ApiName = identityServerOptions.ApiName;
             });
         services.AddAuthorization();
 
@@ -63,9 +68,9 @@ public sealed class IdentityServiceWebModule : BaseModule
         });
     }
 
-    public override void Initialize(IServiceProvider serviceProvider)
+    public override void Configure(IServiceProvider serviceProvider)
     {
-        base.Initialize(serviceProvider);
+        base.Configure(serviceProvider);
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 

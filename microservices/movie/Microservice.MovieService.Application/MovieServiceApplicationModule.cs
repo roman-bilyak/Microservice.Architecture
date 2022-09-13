@@ -7,9 +7,9 @@ namespace Microservice.MovieService;
 
 public sealed class MovieServiceApplicationModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services.AddCQRS(typeof(MovieServiceApplicationModule).Assembly);
 

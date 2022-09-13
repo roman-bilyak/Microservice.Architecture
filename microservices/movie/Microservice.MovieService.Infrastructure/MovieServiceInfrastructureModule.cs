@@ -10,9 +10,9 @@ namespace Microservice.MovieService;
 
 public sealed class MovieServiceInfrastructureModule : BaseModule
 {
-    public override void Configure(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
-        base.Configure(services);
+        base.ConfigureServices(services);
 
         services.AddDbContext<MovieServiceDbContext>(options =>
         {

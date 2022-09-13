@@ -1,4 +1,5 @@
 ﻿using Microservice.Core.Modularity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core;
@@ -8,33 +9,42 @@ internal class Application : IApplication
     private readonly Action<ApplicationConfigurationOptions> _configurationOptionsAction;
     private readonly List<IModule> _modules;
 
-    public Application(IServiceCollection services, Action<ApplicationConfigurationOptions> configurationOptionsAction)
+    public Application(IServiceCollection services, IConfiguration configuration,
+        Action<ApplicationConfigurationOptions> configurationOptionsAction)
     {
         ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(configuration);
 
+        Configuration = configuration;
         Services = services;
+
         _configurationOptionsAction = configurationOptionsAction;
         _modules = new List<IModule>();
     }
 
     public IServiceCollection Services { get; private set; }
 
+    public IConfiguration Configuration { get; private set; }
+
     public IServiceProvider ServiceProvider { get; private set; }
 
     public IApplication AddModule<T>() where T : class, IModule, new()
     {
-        _modules.Add(Activator.CreateInstance<T>());
+        T module = Activator.CreateInstance<T>();
+        module.Configuration = Configuration;
+
+        _modules.Add(module);
 
         return this;
     }
 
-    public virtual void Configure()
+    public virtual void ConfigureServices()
     {
         Services.AddSingleton<IApplication>(this);
 
         foreach (IModule module in _modules)
         {
-            module.Configure(Services);
+            module.ConfigureServices(Services);
         }
 
         ApplicationConfigurationOptions configurationOptions = new ApplicationConfigurationOptions(Services);
@@ -53,11 +63,11 @@ internal class Application : IApplication
         ServiceProvider = serviceProvider;
     }
 
-    public virtual void Initialize()
+    public virtual void Configure()
     {
         foreach (IModule module in _modules)
         {
-            module.Initialize(ServiceProvider);
+            module.Configure(ServiceProvider);
         }
     }
 
