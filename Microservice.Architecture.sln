@@ -95,21 +95,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core.AutoMapper", "core\Microservice.Core.AutoMapper\Microservice.Core.AutoMapper.csproj", "{97DCFEA4-C46D-478A-B02A-BFB35549322B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityServer", "applications\Microservice.IdentityServer\Microservice.IdentityServer.csproj", "{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServer", "applications\Microservice.IdentityServer\Microservice.IdentityServer.csproj", "{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Gateway", "applications\Microservice.Gateway\Microservice.Gateway.csproj", "{D8D3B9EA-83FB-449A-961D-3AA287B3381C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Web", "microservices\identity\Microservice.IdentityService.Web\Microservice.IdentityService.Web.csproj", "{D7AEE50E-45A9-4184-8755-88ACA2769456}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Web", "microservices\identity\Microservice.IdentityService.Web\Microservice.IdentityService.Web.csproj", "{D7AEE50E-45A9-4184-8755-88ACA2769456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Application", "microservices\identity\Microservice.IdentityService.Application\Microservice.IdentityService.Application.csproj", "{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application", "microservices\identity\Microservice.IdentityService.Application\Microservice.IdentityService.Application.csproj", "{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Application.Contracts", "microservices\identity\Microservice.IdentityService.Application.Contracts\Microservice.IdentityService.Application.Contracts.csproj", "{5B91D7E3-79F8-4BBD-A9CD-0C5806CE5A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application.Contracts", "microservices\identity\Microservice.IdentityService.Application.Contracts\Microservice.IdentityService.Application.Contracts.csproj", "{5B91D7E3-79F8-4BBD-A9CD-0C5806CE5A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Domain", "microservices\identity\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj", "{E9B81C44-4574-4099-9FA3-832838580F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Domain", "microservices\identity\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj", "{E9B81C44-4574-4099-9FA3-832838580F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Domain.Share", "microservices\identity\Microservice.IdentityService.Domain.Share\Microservice.IdentityService.Domain.Share.csproj", "{32433017-2EB7-4ED6-A085-E6A15EB3D9E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Domain.Share", "microservices\identity\Microservice.IdentityService.Domain.Share\Microservice.IdentityService.Domain.Share.csproj", "{32433017-2EB7-4ED6-A085-E6A15EB3D9E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Infrastructure", "microservices\identity\Microservice.IdentityService.Infrastructure\Microservice.IdentityService.Infrastructure.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Infrastructure", "microservices\identity\Microservice.IdentityService.Infrastructure\Microservice.IdentityService.Infrastructure.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Swagger", "core\Microservice.Swagger\Microservice.Swagger.csproj", "{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -293,6 +295,10 @@ Global
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -346,6 +352,7 @@ Global
 		{E9B81C44-4574-4099-9FA3-832838580F76} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{32433017-2EB7-4ED6-A085-E6A15EB3D9E0} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
+		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

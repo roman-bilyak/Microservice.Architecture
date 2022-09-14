@@ -2,10 +2,12 @@ using Microservice.Core;
 using Microservice.Infrastructure.AspNetCore;
 using Microservice.Infrastructure.AspNetCore.Extensions;
 using Microservice.ReviewService;
+using Microservice.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddApplication()
     .AddModule<AspNetCoreModule>()
+    .AddModule<SwaggerModule>()
     .AddModule<ReviewServiceDomainModule>()
     .AddModule<ReviewServiceInfrastructureModule>()
     .AddModule<ReviewServiceApplicationContractsModule>()

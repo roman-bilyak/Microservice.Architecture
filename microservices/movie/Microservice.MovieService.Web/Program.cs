@@ -2,10 +2,12 @@ using Microservice.Core;
 using Microservice.Infrastructure.AspNetCore;
 using Microservice.Infrastructure.AspNetCore.Extensions;
 using Microservice.MovieService;
+using Microservice.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddApplication()
     .AddModule<AspNetCoreModule>()
+    .AddModule<SwaggerModule>()
     .AddModule<MovieServiceDomainModule>()
     .AddModule<MovieServiceInfrastructureModule>()
     .AddModule<MovieServiceApplicationContractsModule>()
