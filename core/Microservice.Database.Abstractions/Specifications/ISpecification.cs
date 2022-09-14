@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Microservice.Core.Database;
+namespace Microservice.Database;
 
 public interface ISpecification<T>
 {

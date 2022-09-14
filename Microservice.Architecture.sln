@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B1233878
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core", "core\Microservice.Core\Microservice.Core.csproj", "{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core.Database", "core\Microservice.Core.Database\Microservice.Core.Database.csproj", "{62B88178-A04D-44B8-83B0-B8AA69C77D19}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose\docker-compose.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-infrastructure", "deploy\docker-compose-infrastructure\docker-compose-infrastructure.dcproj", "{D458CA0E-4072-C847-B29E-12F559E47ADF}"
@@ -111,7 +109,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Infrastructure", "microservices\identity\Microservice.IdentityService.Infrastructure\Microservice.IdentityService.Infrastructure.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Swagger", "core\Microservice.Swagger\Microservice.Swagger.csproj", "{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Swagger", "core\Microservice.Swagger\Microservice.Swagger.csproj", "{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.Abstractions", "core\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj", "{B451A1DC-0463-412F-80D2-81F95E787750}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,10 +123,6 @@ Global
 		{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62B88178-A04D-44B8-83B0-B8AA69C77D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62B88178-A04D-44B8-83B0-B8AA69C77D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62B88178-A04D-44B8-83B0-B8AA69C77D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62B88178-A04D-44B8-83B0-B8AA69C77D19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CA8CA0E-C847-4072-B29E-95F779E47ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -299,13 +295,16 @@ Global
 		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B451A1DC-0463-412F-80D2-81F95E787750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B451A1DC-0463-412F-80D2-81F95E787750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B451A1DC-0463-412F-80D2-81F95E787750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B451A1DC-0463-412F-80D2-81F95E787750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
-		{62B88178-A04D-44B8-83B0-B8AA69C77D19} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{9CA8CA0E-C847-4072-B29E-95F779E47ADF} = {0E6F3C16-2D1E-4FDC-9020-2F2034D22917}
 		{D458CA0E-4072-C847-B29E-12F559E47ADF} = {0E6F3C16-2D1E-4FDC-9020-2F2034D22917}
 		{C418B919-E4FE-4C19-8A12-6092FE7853AB} = {EF69E3CC-A963-4BA1-9F8B-531940D52173}
@@ -353,6 +352,7 @@ Global
 		{32433017-2EB7-4ED6-A085-E6A15EB3D9E0} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
+		{B451A1DC-0463-412F-80D2-81F95E787750} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

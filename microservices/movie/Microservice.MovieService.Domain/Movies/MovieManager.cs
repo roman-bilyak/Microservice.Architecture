@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Database;
+﻿using Microservice.Database;
 
 namespace Microservice.MovieService.Movies;
 

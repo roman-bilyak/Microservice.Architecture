@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microservice.Core.Database;
+using Microservice.Database;
 
 namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
 
