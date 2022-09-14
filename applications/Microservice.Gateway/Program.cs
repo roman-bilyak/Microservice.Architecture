@@ -4,12 +4,14 @@ using Microservice.Infrastructure.AspNetCore;
 using Microservice.Infrastructure.AspNetCore.Extensions;
 using Microservice.MovieService;
 using Microservice.ReviewService;
+using Microservice.Swagger;
 using Microservice.TestService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddApplication()
     .AddModule<AspNetCoreModule>()
+    .AddModule<SwaggerModule>()
     .AddModule<MovieServiceApplicationContractsModule>()
     .AddModule<ReviewServiceApplicationContractsModule>()
     .AddModule<TestServiceApplicationContractsModule>()
