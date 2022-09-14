@@ -7,16 +7,17 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["microservices/identity/Microservice.IdentityService.Web/Microservice.IdentityService.Web.csproj", "microservices/identity/Microservice.IdentityService.Web/"]
+COPY ["core/Microservice.AspNetCore/Microservice.AspNetCore.csproj", "core/Microservice.AspNetCore/"]
+COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/identity/Microservice.IdentityService.Application/Microservice.IdentityService.Application.csproj", "microservices/identity/Microservice.IdentityService.Application/"]
 COPY ["microservices/identity/Microservice.IdentityService.Domain/Microservice.IdentityService.Domain.csproj", "microservices/identity/Microservice.IdentityService.Domain/"]
 COPY ["microservices/identity/Microservice.IdentityService.Domain.Share/Microservice.IdentityService.Domain.Share.csproj", "microservices/identity/Microservice.IdentityService.Domain.Share/"]
-COPY ["core/Microservice.Core.Database/Microservice.Core.Database.csproj", "core/Microservice.Core.Database/"]
-COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
+COPY ["core/Microservice.Database.Abstractions/Microservice.Database.Abstractions.csproj", "core/Microservice.Database.Abstractions/"]
 COPY ["microservices/identity/Microservice.IdentityService.Application.Contracts/Microservice.IdentityService.Application.Contracts.csproj", "microservices/identity/Microservice.IdentityService.Application.Contracts/"]
 COPY ["core/Microservice.Application/Microservice.Application.csproj", "core/Microservice.Application/"]
-COPY ["infrastructure/Microservice.Infrastructure.AspNetCore/Microservice.Infrastructure.AspNetCore.csproj", "infrastructure/Microservice.Infrastructure.AspNetCore/"]
 COPY ["microservices/identity/Microservice.IdentityService.Infrastructure/Microservice.IdentityService.Infrastructure.csproj", "microservices/identity/Microservice.IdentityService.Infrastructure/"]
-COPY ["infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/Microservice.Infrastructure.Database.EntityFrameworkCore.csproj", "infrastructure/Microservice.Infrastructure.Database.EntityFrameworkCore/"]
+COPY ["core/Microservice.Database.EntityFrameworkCore/Microservice.Database.EntityFrameworkCore.csproj", "core/Microservice.Database.EntityFrameworkCore/"]
+COPY ["core/Microservice.AspNetCore.Swagger/Microservice.AspNetCore.Swagger.csproj", "core/Microservice.AspNetCore.Swagger/"]
 RUN dotnet restore "microservices/identity/Microservice.IdentityService.Web/Microservice.IdentityService.Web.csproj"
 COPY . .
 WORKDIR "/src/microservices/identity/Microservice.IdentityService.Web"
