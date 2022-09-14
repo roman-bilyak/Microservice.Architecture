@@ -11,12 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Application\Microservice.PaymentService.Application.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Infrastructure\Microservice.PaymentService.Infrastructure.csproj" />
   </ItemGroup>

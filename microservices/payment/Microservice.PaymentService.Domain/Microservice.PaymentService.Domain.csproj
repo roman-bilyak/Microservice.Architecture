@@ -4,9 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Domain", ""))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.Core\Microservice.Core.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Domain.Share\Microservice.PaymentService.Domain.Share.csproj" />
   </ItemGroup>
 
