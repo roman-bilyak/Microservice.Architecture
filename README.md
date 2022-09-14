@@ -130,8 +130,6 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 - **deploy** -
 
-- **infrastructure** -
-
 - **microservices** -
 
 - **tests** -

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\infrastructure\Microservice.Infrastructure.AspNetCore\Microservice.Infrastructure.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Application\Microservice.PaymentService.Application.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Infrastructure\Microservice.PaymentService.Infrastructure.csproj" />
   </ItemGroup>

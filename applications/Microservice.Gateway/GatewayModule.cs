@@ -1,6 +1,6 @@
 ﻿using IdentityServer4.AccessTokenValidation;
+using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
-using Microservice.Infrastructure.AspNetCore;
 using Microservice.MovieService;
 using Microservice.ReviewService;
 using Microservice.TestService;

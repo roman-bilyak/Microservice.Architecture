@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Microservice.Infrastructure.AspNetCore;
+namespace Microservice.AspNetCore;
 
 public static class ApplicationBuilderExtensions
 {

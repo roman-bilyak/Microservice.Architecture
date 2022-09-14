@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Microservice.Infrastructure.AspNetCore;
+namespace Microservice.AspNetCore;
 
 public static class ServiceProviderExtensions
 {
