@@ -1,4 +1,4 @@
-﻿using Microservice.Infrastructure.Database.EntityFrameworkCore;
+﻿using Microservice.Database;
 using Microservice.ReviewService.Reviews;
 using Microsoft.EntityFrameworkCore;
 

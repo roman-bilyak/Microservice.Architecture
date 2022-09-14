@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
+namespace Microservice.Database;
 
 public abstract class BaseDbContext<TDbContext> : DbContext
     where TDbContext : DbContext

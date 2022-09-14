@@ -1,6 +1,5 @@
 ﻿using Microservice.Database;
 using Microservice.Core.Modularity;
-using Microservice.Infrastructure.Database.EntityFrameworkCore;
 using Microservice.ReviewService.Database;
 using Microservice.ReviewService.Reviews;
 using Microsoft.EntityFrameworkCore;
