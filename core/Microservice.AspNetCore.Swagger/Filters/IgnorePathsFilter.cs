@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Microservice.Swagger;
+namespace Microservice.AspNetCore.Swagger;
 
 internal class IgnorePathsFilter : IDocumentFilter
 {

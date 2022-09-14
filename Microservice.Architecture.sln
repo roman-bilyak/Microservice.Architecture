@@ -101,13 +101,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Infrastructure", "microservices\identity\Microservice.IdentityService.Infrastructure\Microservice.IdentityService.Infrastructure.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Swagger", "core\Microservice.Swagger\Microservice.Swagger.csproj", "{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.Abstractions", "core\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj", "{B451A1DC-0463-412F-80D2-81F95E787750}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.EntityFrameworkCore", "core\Microservice.Database.EntityFrameworkCore\Microservice.Database.EntityFrameworkCore.csproj", "{D2F03CFF-DF50-4B92-A793-301935FDB510}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore", "core\Microservice.AspNetCore\Microservice.AspNetCore.csproj", "{2F56A254-E164-4421-87CB-C28CD9ECD15F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Swagger", "core\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj", "{D0DEB3D4-8522-487A-A3D3-B6F040A69430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -275,10 +275,6 @@ Global
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B451A1DC-0463-412F-80D2-81F95E787750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B451A1DC-0463-412F-80D2-81F95E787750}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B451A1DC-0463-412F-80D2-81F95E787750}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -291,6 +287,10 @@ Global
 		{2F56A254-E164-4421-87CB-C28CD9ECD15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F56A254-E164-4421-87CB-C28CD9ECD15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F56A254-E164-4421-87CB-C28CD9ECD15F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0DEB3D4-8522-487A-A3D3-B6F040A69430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0DEB3D4-8522-487A-A3D3-B6F040A69430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0DEB3D4-8522-487A-A3D3-B6F040A69430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0DEB3D4-8522-487A-A3D3-B6F040A69430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -340,10 +340,10 @@ Global
 		{E9B81C44-4574-4099-9FA3-832838580F76} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{32433017-2EB7-4ED6-A085-E6A15EB3D9E0} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
-		{A5A6243B-9CBF-479F-AEFD-29CBDEAAF671} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{B451A1DC-0463-412F-80D2-81F95E787750} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{D2F03CFF-DF50-4B92-A793-301935FDB510} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{2F56A254-E164-4421-87CB-C28CD9ECD15F} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
+		{D0DEB3D4-8522-487A-A3D3-B6F040A69430} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}
