@@ -1,4 +1,4 @@
-﻿namespace Microservice.Swagger;
+﻿namespace Microservice.AspNetCore.Swagger;
 
 public enum GrantTypes
 {

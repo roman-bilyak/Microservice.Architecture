@@ -1,7 +1,7 @@
 using Microservice.AspNetCore;
+using Microservice.AspNetCore.Swagger;
 using Microservice.Core;
 using Microservice.ReviewService;
-using Microservice.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddApplication()

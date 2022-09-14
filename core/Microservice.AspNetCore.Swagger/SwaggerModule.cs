@@ -1,11 +1,10 @@
-﻿using Microservice.AspNetCore;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace Microservice.Swagger;
+namespace Microservice.AspNetCore.Swagger;
 
 public class SwaggerModule : BaseModule
 {

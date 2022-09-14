@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Microservice.Swagger;
+namespace Microservice.AspNetCore.Swagger;
 
 public class SwaggerSecurity
 {

@@ -1,9 +1,9 @@
 using Microservice.Core;
 using Microservice.Gateway;
 using Microservice.AspNetCore;
+using Microservice.AspNetCore.Swagger;
 using Microservice.MovieService;
 using Microservice.ReviewService;
-using Microservice.Swagger;
 using Microservice.TestService;
 
 var builder = WebApplication.CreateBuilder(args);
