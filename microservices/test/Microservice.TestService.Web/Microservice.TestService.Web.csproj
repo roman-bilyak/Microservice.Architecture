@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj" />
     <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Application\Microservice.TestService.Application.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Infrastructure\Microservice.TestService.Infrastructure.csproj" />
