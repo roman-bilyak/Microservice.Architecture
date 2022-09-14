@@ -1,7 +1,6 @@
 using Microservice.Core;
 using Microservice.Gateway;
-using Microservice.Infrastructure.AspNetCore;
-using Microservice.Infrastructure.AspNetCore.Extensions;
+using Microservice.AspNetCore;
 using Microservice.MovieService;
 using Microservice.ReviewService;
 using Microservice.Swagger;

@@ -1,5 +1,4 @@
-﻿using Microservice.Infrastructure.AspNetCore.Conventions;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Microservice.Infrastructure.AspNetCore;
+namespace Microservice.AspNetCore;
 
 public sealed class AspNetCoreModule : BaseModule
 {

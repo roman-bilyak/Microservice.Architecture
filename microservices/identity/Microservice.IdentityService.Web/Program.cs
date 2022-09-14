@@ -1,7 +1,6 @@
 using Microservice.Core;
 using Microservice.IdentityService;
-using Microservice.Infrastructure.AspNetCore;
-using Microservice.Infrastructure.AspNetCore.Extensions;
+using Microservice.AspNetCore;
 using Microservice.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);

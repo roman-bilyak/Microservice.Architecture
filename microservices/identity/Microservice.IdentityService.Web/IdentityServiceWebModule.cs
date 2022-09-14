@@ -1,6 +1,6 @@
 ﻿using IdentityServer4.AccessTokenValidation;
+using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
-using Microservice.Infrastructure.AspNetCore;
 
 namespace Microservice.IdentityService;
 

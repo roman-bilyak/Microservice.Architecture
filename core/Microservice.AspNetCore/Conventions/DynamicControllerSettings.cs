@@ -1,4 +1,4 @@
-﻿namespace Microservice.Infrastructure.AspNetCore.Conventions;
+﻿namespace Microservice.AspNetCore;
 
 internal class DynamicControllerSettings
 {

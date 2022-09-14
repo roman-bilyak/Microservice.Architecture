@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Microservice.Infrastructure.AspNetCore.Conventions;
+namespace Microservice.AspNetCore;
 
 public class DynamicControllerOptions
 {
