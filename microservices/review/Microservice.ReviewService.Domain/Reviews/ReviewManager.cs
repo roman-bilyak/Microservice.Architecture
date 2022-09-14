@@ -1,5 +1,5 @@
 ﻿using Microservice.Core.Domain;
-using Microservice.Core.Database;
+using Microservice.Database;
 
 namespace Microservice.ReviewService.Reviews;
 

@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Database;
+﻿using Microservice.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microservice.Infrastructure.Database.EntityFrameworkCore;

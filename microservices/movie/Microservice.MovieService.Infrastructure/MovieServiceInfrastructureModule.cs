@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Database;
+﻿using Microservice.Database;
 using Microservice.Core.Modularity;
 using Microservice.Infrastructure.Database.EntityFrameworkCore;
 using Microservice.MovieService.Database;
