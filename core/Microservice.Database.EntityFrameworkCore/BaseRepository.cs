@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microservice.Database;
 
-namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
+namespace Microservice.Database;
 
 public class BaseRepository<TDbContext, TEntity> : BaseRepository<TDbContext, TEntity, Guid>, IRepository<TEntity>
     where TDbContext : BaseDbContext<TDbContext>

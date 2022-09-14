@@ -1,7 +1,6 @@
-﻿using Microservice.Database;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.Infrastructure.Database.EntityFrameworkCore;
+namespace Microservice.Database;
 
 public static class IQueryableExtensions
 {

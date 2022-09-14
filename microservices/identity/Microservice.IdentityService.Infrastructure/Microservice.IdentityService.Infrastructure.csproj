@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\infrastructure\Microservice.Infrastructure.Database.EntityFrameworkCore\Microservice.Infrastructure.Database.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.Database.EntityFrameworkCore\Microservice.Database.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj" />
   </ItemGroup>
 
