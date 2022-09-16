@@ -314,14 +314,24 @@ export class MovieAPIService {
 
     /**
      * @param id (optional) 
+     * @param pageIndex (optional) 
+     * @param pageSize (optional) 
      * @return Success
      */
-    getMovieReviews(id: string | undefined , cancelToken?: CancelToken | undefined): Promise<ReviewDto[]> {
+    getMovieReviews(id: string | undefined, pageIndex: number | undefined, pageSize: number | undefined , cancelToken?: CancelToken | undefined): Promise<GetMovieReviewsDto> {
         let url_ = this.baseUrl + "/api/RS/Movie/GetMovieReviews?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
             url_ += "id=" + encodeURIComponent("" + id) + "&";
+        if (pageIndex === null)
+            throw new Error("The parameter 'pageIndex' cannot be null.");
+        else if (pageIndex !== undefined)
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: AxiosRequestConfig = {
@@ -344,7 +354,7 @@ export class MovieAPIService {
         });
     }
 
-    protected processGetMovieReviews(response: AxiosResponse): Promise<ReviewDto[]> {
+    protected processGetMovieReviews(response: AxiosResponse): Promise<GetMovieReviewsDto> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -358,21 +368,14 @@ export class MovieAPIService {
             const _responseText = response.data;
             let result200: any = null;
             let resultData200  = _responseText;
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(ReviewDto.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
-            return Promise.resolve<ReviewDto[]>(result200);
+            result200 = GetMovieReviewsDto.fromJS(resultData200);
+            return Promise.resolve<GetMovieReviewsDto>(result200);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<ReviewDto[]>(null as any);
+        return Promise.resolve<GetMovieReviewsDto>(null as any);
     }
 }
 
@@ -505,8 +508,8 @@ export class ReviewAPIService {
      * @param id (optional) 
      * @return Success
      */
-    deleteMovie(id: string | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
-        let url_ = this.baseUrl + "/api/RS/Review/DeleteMovie?";
+    deleteReview(id: string | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/RS/Review/DeleteReview?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
@@ -528,11 +531,11 @@ export class ReviewAPIService {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processDeleteMovie(_response);
+            return this.processDeleteReview(_response);
         });
     }
 
-    protected processDeleteMovie(response: AxiosResponse): Promise<void> {
+    protected processDeleteReview(response: AxiosResponse): Promise<void> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -630,14 +633,24 @@ export class UserAPIService {
 
     /**
      * @param id (optional) 
+     * @param pageIndex (optional) 
+     * @param pageSize (optional) 
      * @return Success
      */
-    getUserReviews(id: string | undefined , cancelToken?: CancelToken | undefined): Promise<ReviewDto[]> {
+    getUserReviews(id: string | undefined, pageIndex: number | undefined, pageSize: number | undefined , cancelToken?: CancelToken | undefined): Promise<GetUserReviewsDto> {
         let url_ = this.baseUrl + "/api/RS/User/GetUserReviews?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
             url_ += "id=" + encodeURIComponent("" + id) + "&";
+        if (pageIndex === null)
+            throw new Error("The parameter 'pageIndex' cannot be null.");
+        else if (pageIndex !== undefined)
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: AxiosRequestConfig = {
@@ -660,7 +673,7 @@ export class UserAPIService {
         });
     }
 
-    protected processGetUserReviews(response: AxiosResponse): Promise<ReviewDto[]> {
+    protected processGetUserReviews(response: AxiosResponse): Promise<GetUserReviewsDto> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -674,21 +687,14 @@ export class UserAPIService {
             const _responseText = response.data;
             let result200: any = null;
             let resultData200  = _responseText;
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(ReviewDto.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
-            return Promise.resolve<ReviewDto[]>(result200);
+            result200 = GetUserReviewsDto.fromJS(resultData200);
+            return Promise.resolve<GetUserReviewsDto>(result200);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<ReviewDto[]>(null as any);
+        return Promise.resolve<GetUserReviewsDto>(null as any);
     }
 }
 
@@ -1852,6 +1858,102 @@ export interface IFileServiceDiscoveryProvider {
     namespace: string | undefined;
 }
 
+export class GetMovieReviewsDto implements IGetMovieReviewsDto {
+    items!: ReviewDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IGetMovieReviewsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(ReviewDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    static fromJS(data: any): GetMovieReviewsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetMovieReviewsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IGetMovieReviewsDto {
+    items: ReviewDto[] | undefined;
+    totalCount: number;
+}
+
+export class GetUserReviewsDto implements IGetUserReviewsDto {
+    items!: ReviewDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IGetUserReviewsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(ReviewDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    static fromJS(data: any): GetUserReviewsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetUserReviewsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IGetUserReviewsDto {
+    items: ReviewDto[] | undefined;
+    totalCount: number;
+}
+
 export class MovieDto implements IMovieDto {
     id!: string;
     title!: string | undefined;
@@ -2070,3 +2172,5 @@ function throwException(message: string, status: number, response: string, heade
 function isAxiosError(obj: any | undefined): obj is AxiosError {
     return obj && obj.isAxiosError === true;
 }
+
+export { }

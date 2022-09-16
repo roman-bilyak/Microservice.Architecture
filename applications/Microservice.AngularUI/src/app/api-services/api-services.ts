@@ -316,14 +316,24 @@ export class MovieAPIService {
 
     /**
      * @param id (optional) 
+     * @param pageIndex (optional) 
+     * @param pageSize (optional) 
      * @return Success
      */
-    getMovieReviews(id: string | undefined): Observable<ReviewDto[]> {
+    getMovieReviews(id: string | undefined, pageIndex: number | undefined, pageSize: number | undefined): Observable<GetMovieReviewsDto> {
         let url_ = this.baseUrl + "/api/RS/Movie/GetMovieReviews?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
             url_ += "id=" + encodeURIComponent("" + id) + "&";
+        if (pageIndex === null)
+            throw new Error("The parameter 'pageIndex' cannot be null.");
+        else if (pageIndex !== undefined)
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -341,14 +351,14 @@ export class MovieAPIService {
                 try {
                     return this.processGetMovieReviews(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ReviewDto[]>;
+                    return _observableThrow(e) as any as Observable<GetMovieReviewsDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ReviewDto[]>;
+                return _observableThrow(response_) as any as Observable<GetMovieReviewsDto>;
         }));
     }
 
-    protected processGetMovieReviews(response: HttpResponseBase): Observable<ReviewDto[]> {
+    protected processGetMovieReviews(response: HttpResponseBase): Observable<GetMovieReviewsDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -359,14 +369,7 @@ export class MovieAPIService {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(ReviewDto.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = GetMovieReviewsDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -374,7 +377,7 @@ export class MovieAPIService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ReviewDto[]>(null as any);
+        return _observableOf<GetMovieReviewsDto>(null as any);
     }
 }
 
@@ -505,8 +508,8 @@ export class ReviewAPIService {
      * @param id (optional) 
      * @return Success
      */
-    deleteMovie(id: string | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/RS/Review/DeleteMovie?";
+    deleteReview(id: string | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/RS/Review/DeleteReview?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
@@ -521,11 +524,11 @@ export class ReviewAPIService {
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteMovie(response_);
+            return this.processDeleteReview(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteMovie(response_ as any);
+                    return this.processDeleteReview(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -534,7 +537,7 @@ export class ReviewAPIService {
         }));
     }
 
-    protected processDeleteMovie(response: HttpResponseBase): Observable<void> {
+    protected processDeleteReview(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -626,14 +629,24 @@ export class UserAPIService {
 
     /**
      * @param id (optional) 
+     * @param pageIndex (optional) 
+     * @param pageSize (optional) 
      * @return Success
      */
-    getUserReviews(id: string | undefined): Observable<ReviewDto[]> {
+    getUserReviews(id: string | undefined, pageIndex: number | undefined, pageSize: number | undefined): Observable<GetUserReviewsDto> {
         let url_ = this.baseUrl + "/api/RS/User/GetUserReviews?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
             url_ += "id=" + encodeURIComponent("" + id) + "&";
+        if (pageIndex === null)
+            throw new Error("The parameter 'pageIndex' cannot be null.");
+        else if (pageIndex !== undefined)
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -651,14 +664,14 @@ export class UserAPIService {
                 try {
                     return this.processGetUserReviews(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ReviewDto[]>;
+                    return _observableThrow(e) as any as Observable<GetUserReviewsDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ReviewDto[]>;
+                return _observableThrow(response_) as any as Observable<GetUserReviewsDto>;
         }));
     }
 
-    protected processGetUserReviews(response: HttpResponseBase): Observable<ReviewDto[]> {
+    protected processGetUserReviews(response: HttpResponseBase): Observable<GetUserReviewsDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -669,14 +682,7 @@ export class UserAPIService {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(ReviewDto.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = GetUserReviewsDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -684,7 +690,7 @@ export class UserAPIService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ReviewDto[]>(null as any);
+        return _observableOf<GetUserReviewsDto>(null as any);
     }
 }
 
@@ -1846,6 +1852,102 @@ export interface IFileServiceDiscoveryProvider {
     configurationKey: string | undefined;
     pollingInterval: number;
     namespace: string | undefined;
+}
+
+export class GetMovieReviewsDto implements IGetMovieReviewsDto {
+    items!: ReviewDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IGetMovieReviewsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(ReviewDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    static fromJS(data: any): GetMovieReviewsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetMovieReviewsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IGetMovieReviewsDto {
+    items: ReviewDto[] | undefined;
+    totalCount: number;
+}
+
+export class GetUserReviewsDto implements IGetUserReviewsDto {
+    items!: ReviewDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IGetUserReviewsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(ReviewDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    static fromJS(data: any): GetUserReviewsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetUserReviewsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IGetUserReviewsDto {
+    items: ReviewDto[] | undefined;
+    totalCount: number;
 }
 
 export class MovieDto implements IMovieDto {
