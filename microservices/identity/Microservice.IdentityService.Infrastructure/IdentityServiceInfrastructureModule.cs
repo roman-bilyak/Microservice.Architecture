@@ -2,6 +2,6 @@
 
 namespace Microservice.IdentityService;
 
-public sealed class IdentityServiceInfrastructureModule : BaseModule
+public sealed class IdentityServiceInfrastructureModule : StartupModule
 {
 }

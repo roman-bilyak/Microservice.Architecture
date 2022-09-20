@@ -4,7 +4,7 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.MovieService;
 
-public sealed class MovieServiceWebModule : BaseModule
+public sealed class MovieServiceWebModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

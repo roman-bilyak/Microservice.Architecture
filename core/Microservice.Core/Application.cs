@@ -7,7 +7,7 @@ namespace Microservice.Core;
 internal class Application : IApplication
 {
     private readonly Action<ApplicationConfigurationOptions> _configurationOptionsAction;
-    private readonly List<IModule> _modules;
+    private readonly List<IStartupModule> _modules;
 
     public Application(IServiceCollection services, IConfiguration configuration,
         Action<ApplicationConfigurationOptions> configurationOptionsAction)
@@ -19,7 +19,7 @@ internal class Application : IApplication
         Services = services;
 
         _configurationOptionsAction = configurationOptionsAction;
-        _modules = new List<IModule>();
+        _modules = new List<IStartupModule>();
     }
 
     public IServiceCollection Services { get; private set; }
@@ -28,7 +28,7 @@ internal class Application : IApplication
 
     public IServiceProvider ServiceProvider { get; private set; }
 
-    public IApplication AddModule<T>() where T : class, IModule, new()
+    public IApplication AddModule<T>() where T : class, IStartupModule, new()
     {
         T module = Activator.CreateInstance<T>();
         module.Configuration = Configuration;
@@ -42,7 +42,7 @@ internal class Application : IApplication
     {
         Services.AddSingleton<IApplication>(this);
 
-        foreach (IModule module in _modules)
+        foreach (IStartupModule module in _modules)
         {
             module.ConfigureServices(Services);
         }
@@ -65,7 +65,7 @@ internal class Application : IApplication
 
     public virtual void Configure()
     {
-        foreach (IModule module in _modules)
+        foreach (IStartupModule module in _modules)
         {
             module.Configure(ServiceProvider);
         }
@@ -73,7 +73,7 @@ internal class Application : IApplication
 
     public virtual void Shutdown()
     {
-        foreach (IModule module in _modules)
+        foreach (IStartupModule module in _modules)
         {
             module.Shutdown(ServiceProvider);
         }

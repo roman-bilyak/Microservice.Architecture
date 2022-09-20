@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.TestService;
 
-public class TestServiceApplicationContractsModule : BaseModule
+public class TestServiceApplicationContractsModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

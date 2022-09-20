@@ -2,6 +2,6 @@
 
 namespace Microservice.TestService;
 
-public class TestServiceInfrastructureModule : BaseModule
+public class TestServiceInfrastructureModule : StartupModule
 {
 }

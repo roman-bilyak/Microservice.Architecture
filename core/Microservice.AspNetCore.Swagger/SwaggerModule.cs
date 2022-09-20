@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 
 namespace Microservice.AspNetCore.Swagger;
 
-public class SwaggerModule : BaseModule
+public class SwaggerModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

@@ -4,7 +4,7 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.ReviewService;
 
-public sealed class ReviewServiceWebModule : BaseModule
+public sealed class ReviewServiceWebModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

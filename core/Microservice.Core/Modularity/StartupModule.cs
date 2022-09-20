@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core.Modularity;
 
-public abstract class BaseModule : IModule
+public abstract class StartupModule : IStartupModule
 {
     public IConfiguration Configuration { get; set; }
 

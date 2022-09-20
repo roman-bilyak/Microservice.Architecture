@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.IdentityService;
 
-public sealed class IdentityServiceApplicationContractsModule : BaseModule
+public sealed class IdentityServiceApplicationContractsModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

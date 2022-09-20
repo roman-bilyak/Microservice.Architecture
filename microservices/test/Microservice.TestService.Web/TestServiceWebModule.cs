@@ -4,7 +4,7 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.TestService;
 
-public class TestServiceWebModule : BaseModule
+public class TestServiceWebModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

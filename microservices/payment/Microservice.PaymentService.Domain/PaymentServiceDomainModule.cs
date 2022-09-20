@@ -2,6 +2,6 @@
 
 namespace Microservice.PaymentService;
 
-public sealed class PaymentServiceDomainModule : BaseModule
+public sealed class PaymentServiceDomainModule : StartupModule
 {
 }

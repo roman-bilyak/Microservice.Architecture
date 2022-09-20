@@ -4,7 +4,7 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.PaymentService;
 
-public sealed class PaymentServiceWebModule : BaseModule
+public sealed class PaymentServiceWebModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {
