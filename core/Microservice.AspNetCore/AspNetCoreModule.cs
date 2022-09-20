@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Microservice.AspNetCore;
 
-public sealed class AspNetCoreModule : BaseModule
+public sealed class AspNetCoreModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

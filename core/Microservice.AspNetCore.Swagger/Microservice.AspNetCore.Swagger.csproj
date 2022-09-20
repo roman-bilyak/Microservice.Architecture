@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
-    <ProjectReference Include="..\Microservice.Core\Microservice.Core.csproj" />
   </ItemGroup>
 
 </Project>

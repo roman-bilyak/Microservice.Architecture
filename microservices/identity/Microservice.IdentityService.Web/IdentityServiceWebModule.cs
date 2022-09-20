@@ -4,7 +4,7 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.IdentityService;
 
-public sealed class IdentityServiceWebModule : BaseModule
+public sealed class IdentityServiceWebModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

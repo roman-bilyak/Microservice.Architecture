@@ -9,7 +9,7 @@ public interface IApplication : IDisposable
 
     IServiceProvider ServiceProvider { get; }
 
-    IApplication AddModule<T>() where T : class, IModule, new();
+    IApplication AddModule<T>() where T : class, IStartupModule, new();
 
     void ConfigureServices();
 

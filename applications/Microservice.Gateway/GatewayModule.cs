@@ -9,7 +9,7 @@ using Ocelot.Middleware;
 
 namespace Microservice.Gateway;
 
-public sealed class GatewayModule : BaseModule
+public sealed class GatewayModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

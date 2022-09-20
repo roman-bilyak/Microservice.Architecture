@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.PaymentService;
 
-public sealed class PaymentServiceApplicationContractsModule : BaseModule
+public sealed class PaymentServiceApplicationContractsModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

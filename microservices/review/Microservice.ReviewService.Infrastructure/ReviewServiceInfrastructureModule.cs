@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.ReviewService;
 
-public sealed class ReviewServiceInfrastructureModule : BaseModule
+public sealed class ReviewServiceInfrastructureModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {
