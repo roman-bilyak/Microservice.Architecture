@@ -2,6 +2,6 @@
 
 namespace Microservice.TestService;
 
-public class TestServiceDomainModule : StartupModule
+public sealed class TestServiceDomainModule : StartupModule
 {
 }

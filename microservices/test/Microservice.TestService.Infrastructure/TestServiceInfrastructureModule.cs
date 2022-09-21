@@ -2,6 +2,7 @@
 
 namespace Microservice.TestService;
 
-public class TestServiceInfrastructureModule : StartupModule
+[DependsOn(typeof(TestServiceDomainModule))]
+public sealed class TestServiceInfrastructureModule : StartupModule
 {
 }
