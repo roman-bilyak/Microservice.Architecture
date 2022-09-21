@@ -2,6 +2,7 @@
 
 namespace Microservice.IdentityService;
 
+[DependsOn(typeof(IdentityServiceDomainModule))]
 public sealed class IdentityServiceInfrastructureModule : StartupModule
 {
 }

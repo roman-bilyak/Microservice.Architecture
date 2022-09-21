@@ -1,10 +1,14 @@
 ﻿using IdentityServer4.AccessTokenValidation;
+using Microservice.Api;
 using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
 
 namespace Microservice.TestService;
 
-public class TestServiceWebModule : StartupModule
+[DependsOn(typeof(TestServiceApplicationModule))]
+[DependsOn(typeof(TestServiceInfrastructureModule))]
+[DependsOn(typeof(ApiModule))]
+public sealed class TestServiceWebModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

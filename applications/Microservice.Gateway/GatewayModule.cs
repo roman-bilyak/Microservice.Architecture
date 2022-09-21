@@ -1,5 +1,6 @@
 ﻿using IdentityServer4.AccessTokenValidation;
 using Microservice.AspNetCore;
+using Microservice.AspNetCore.Swagger;
 using Microservice.Core.Modularity;
 using Microservice.MovieService;
 using Microservice.ReviewService;
@@ -9,6 +10,10 @@ using Ocelot.Middleware;
 
 namespace Microservice.Gateway;
 
+[DependsOn(typeof(MovieServiceApplicationContractsModule))]
+[DependsOn(typeof(ReviewServiceApplicationContractsModule))]
+[DependsOn(typeof(TestServiceApplicationContractsModule))]
+[DependsOn(typeof(SwaggerModule))]
 public sealed class GatewayModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

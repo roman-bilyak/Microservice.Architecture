@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj" />
+    <ProjectReference Include="..\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
+    <ProjectReference Include="..\Microservice.Core\Microservice.Core.csproj" />
+  </ItemGroup>
+
+</Project>

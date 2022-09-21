@@ -1,13 +1,17 @@
 ﻿using Microservice.Core;
+using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 
 namespace Microservice.AspNetCore;
 
 public static class WebApplicationBuilderExtensions
 {
-    public static IApplication AddApplication(this WebApplicationBuilder builder,
+    public static IApplication AddApplication<TStartupModule>(this WebApplicationBuilder builder,
         Action<ApplicationConfigurationOptions> configurationOptionsAction = null)
+        where TStartupModule : class, IStartupModule, new()
     {
-        return builder.Services.AddApplication(builder.Configuration, configurationOptionsAction);
+        ArgumentNullException.ThrowIfNull(builder);
+
+        return builder.Services.AddApplication<TStartupModule>(builder.Configuration, configurationOptionsAction);
     }
 }

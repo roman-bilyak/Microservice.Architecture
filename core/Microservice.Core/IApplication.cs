@@ -1,4 +1,4 @@
-﻿using Microservice.Core.Modularity;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core;
@@ -7,9 +7,9 @@ public interface IApplication : IDisposable
 {
     IServiceCollection Services { get; }
 
-    IServiceProvider ServiceProvider { get; }
+    IConfiguration Configuration { get; }
 
-    IApplication AddModule<T>() where T : class, IStartupModule, new();
+    IServiceProvider ServiceProvider { get; }
 
     void ConfigureServices();
 

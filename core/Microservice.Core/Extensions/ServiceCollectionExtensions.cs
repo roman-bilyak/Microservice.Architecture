@@ -1,16 +1,18 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microservice.Core.Modularity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core;
 
 public static class ServiceCollectionExtensions
 {
-    public static IApplication AddApplication(this IServiceCollection services, IConfiguration configuration,
+    public static IApplication AddApplication<TStartupModule>(this IServiceCollection services, IConfiguration configuration,
         Action<ApplicationConfigurationOptions> configurationOptionsAction = null)
+        where TStartupModule : class, IStartupModule, new()
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        return new Application(services, configuration, configurationOptionsAction);
+        return new Application<TStartupModule>(services, configuration, configurationOptionsAction);
     }
 
     public static void AddWrappedService<T>(this IServiceCollection services)

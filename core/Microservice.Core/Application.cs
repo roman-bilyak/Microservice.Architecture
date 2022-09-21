@@ -1,13 +1,15 @@
 ﻿using Microservice.Core.Modularity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microservice.Core;
 
-internal class Application : IApplication
+internal class Application<TStartupModule> : IApplication
+    where TStartupModule : class, IStartupModule, new()
 {
     private readonly Action<ApplicationConfigurationOptions> _configurationOptionsAction;
-    private readonly List<IStartupModule> _modules;
+    private List<IStartupModule> _modules;
 
     public Application(IServiceCollection services, IConfiguration configuration,
         Action<ApplicationConfigurationOptions> configurationOptionsAction)
@@ -15,11 +17,22 @@ internal class Application : IApplication
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configuration);
 
-        Configuration = configuration;
         Services = services;
+        Configuration = configuration;
 
         _configurationOptionsAction = configurationOptionsAction;
-        _modules = new List<IStartupModule>();
+    }
+
+    protected List<IStartupModule> Modules
+    {
+        get
+        {
+            if (_modules == null)
+            {
+                _modules = StartupModuleHelper.GetModules<TStartupModule>().ToList();
+            }
+            return _modules;
+        }
     }
 
     public IServiceCollection Services { get; private set; }
@@ -28,21 +41,12 @@ internal class Application : IApplication
 
     public IServiceProvider ServiceProvider { get; private set; }
 
-    public IApplication AddModule<T>() where T : class, IStartupModule, new()
-    {
-        T module = Activator.CreateInstance<T>();
-        module.Configuration = Configuration;
-
-        _modules.Add(module);
-
-        return this;
-    }
-
     public virtual void ConfigureServices()
     {
         Services.AddSingleton<IApplication>(this);
+        Services.Replace(ServiceDescriptor.Singleton(Configuration));
 
-        foreach (IStartupModule module in _modules)
+        foreach (IStartupModule module in Modules)
         {
             module.ConfigureServices(Services);
         }
@@ -65,7 +69,7 @@ internal class Application : IApplication
 
     public virtual void Configure()
     {
-        foreach (IStartupModule module in _modules)
+        foreach (IStartupModule module in Modules)
         {
             module.Configure(ServiceProvider);
         }
@@ -73,7 +77,7 @@ internal class Application : IApplication
 
     public virtual void Shutdown()
     {
-        foreach (IStartupModule module in _modules)
+        foreach (IStartupModule module in Modules)
         {
             module.Shutdown(ServiceProvider);
         }
