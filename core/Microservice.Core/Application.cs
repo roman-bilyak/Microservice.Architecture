@@ -46,10 +46,9 @@ internal class Application<TStartupModule> : IApplication
         Services.AddSingleton<IApplication>(this);
         Services.Replace(ServiceDescriptor.Singleton(Configuration));
 
-        foreach (IStartupModule module in Modules)
-        {
-            module.ConfigureServices(Services);
-        }
+        Modules.ForEach(x => x.PreConfigureServices(Services));
+        Modules.ForEach(x => x.ConfigureServices(Services));
+        Modules.ForEach(x => x.PostConfigureServices(Services));
 
         ApplicationConfigurationOptions configurationOptions = new ApplicationConfigurationOptions(Services);
         _configurationOptionsAction?.Invoke(configurationOptions);
@@ -69,18 +68,14 @@ internal class Application<TStartupModule> : IApplication
 
     public virtual void Configure()
     {
-        foreach (IStartupModule module in Modules)
-        {
-            module.Configure(ServiceProvider);
-        }
+        Modules.ForEach(x => x.PreConfigure(ServiceProvider));
+        Modules.ForEach(x => x.Configure(ServiceProvider));
+        Modules.ForEach(x => x.PostConfigure(ServiceProvider));
     }
 
     public virtual void Shutdown()
     {
-        foreach (IStartupModule module in Modules)
-        {
-            module.Shutdown(ServiceProvider);
-        }
+        Modules.ForEach(x => x.Shutdown(ServiceProvider));
     }
 
     public virtual void Dispose()

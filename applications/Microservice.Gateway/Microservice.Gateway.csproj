@@ -12,13 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="4.4.1" />
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Ocelot" Version="17.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj" />
+    <ProjectReference Include="..\..\core\Microservice.Api\Microservice.Api.csproj" />
     <ProjectReference Include="..\..\microservices\movie\Microservice.MovieService.Application.Contracts\Microservice.MovieService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\microservices\payment\Microservice.PaymentService.Application.Contracts\Microservice.PaymentService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\microservices\review\Microservice.ReviewService.Application.Contracts\Microservice.ReviewService.Application.Contracts.csproj" />
