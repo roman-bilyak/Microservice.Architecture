@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microservice.AspNetCore.Authentication\Microservice.AspNetCore.Authentication.csproj" />
-    <ProjectReference Include="..\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj" />
-    <ProjectReference Include="..\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj" />
   </ItemGroup>
 
 </Project>

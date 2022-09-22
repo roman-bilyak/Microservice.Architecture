@@ -1,6 +1,5 @@
-﻿using IdentityServer4.AccessTokenValidation;
+﻿using Microservice.Api;
 using Microservice.AspNetCore;
-using Microservice.AspNetCore.Swagger;
 using Microservice.Core.Modularity;
 using Microservice.MovieService;
 using Microservice.ReviewService;
@@ -13,19 +12,12 @@ namespace Microservice.Gateway;
 [DependsOn(typeof(MovieServiceApplicationContractsModule))]
 [DependsOn(typeof(ReviewServiceApplicationContractsModule))]
 [DependsOn(typeof(TestServiceApplicationContractsModule))]
-[DependsOn(typeof(SwaggerModule))]
+[DependsOn(typeof(ApiModule))]
 public sealed class GatewayModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {
         base.ConfigureServices(services);
-
-        services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-            .AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = "https://localhost:7111";
-                options.ApiName = "gateway";
-            });
 
         services.RegisterFakeApplicationServices(typeof(MovieServiceApplicationContractsModule).Assembly, "api/MS");
         services.RegisterFakeApplicationServices(typeof(ReviewServiceApplicationContractsModule).Assembly, "api/RS");
@@ -39,19 +31,6 @@ public sealed class GatewayModule : StartupModule
         base.Configure(serviceProvider);
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
-
-        app.UseRouting();
-        app.UseAuthentication();
-        app.UseAuthorization();
-
-        app.MapWhen(
-                ctx => !ctx.Request.Path.ToString().StartsWith("/api/"),
-                app2 =>
-                {
-                    app2.UseEndpoints(x => x.MapDefaultControllerRoute());
-                }
-            );
-
         app.UseOcelot().Wait();
     }
 }
