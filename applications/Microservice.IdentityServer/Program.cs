@@ -13,9 +13,9 @@ builder.Services.AddIdentityServer(options =>
     })
     .AddTestUsers(Config.TestUsers.ToList())
     .AddInMemoryIdentityResources(Config.IdentityResources)
-    .AddInMemoryApiResources(Config.ApiResources)
-    .AddInMemoryApiScopes(Config.ApiScopes)
-    .AddInMemoryClients(Config.Clients)
+    .AddInMemoryApiResources(builder.Configuration.GetSection("IdentityServer:ApiResources"))
+    .AddInMemoryApiScopes(builder.Configuration.GetSection("IdentityServer:ApiScopes"))
+    .AddInMemoryClients(builder.Configuration.GetSection("IdentityServer:Clients"))
     .AddDeveloperSigningCredential(); //not recommended for production - you need to store your key material somewhere secure
 
 var app = builder.Build();
