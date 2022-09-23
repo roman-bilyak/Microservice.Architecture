@@ -4,11 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>0d332dc8-cb2b-47fe-ab50-87c12b82a922</UserSecretsId>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Web", ""))</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\..\docker\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>0d332dc8-cb2b-47fe-ab50-87c12b82a922</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
