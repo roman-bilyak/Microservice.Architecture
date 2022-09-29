@@ -7,5 +7,5 @@ public class AuthenticationOptions
     [Required]
     public string? Scheme { get; set; }
 
-    public IdentityServerOptions? IdentityServer { get; set; }
+    public JwtBearerOptions? JwtBearer { get; set; }
 }

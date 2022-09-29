@@ -1,9 +1,11 @@
 ﻿using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Microservice.AspNetCore.Authentication;
 
@@ -18,14 +20,20 @@ public sealed class AuthenticationModule : StartupModule
         AuthenticationOptions authenticationOptions = configuration.GetSection("Authentication").Get<AuthenticationOptions>();
 
         AuthenticationBuilder authenticationBuilder = services
-            .AddAuthentication(authenticationOptions.Scheme ?? "Bearer");
+            .AddAuthentication(authenticationOptions.Scheme ?? JwtBearerDefaults.AuthenticationScheme);
 
-        if (authenticationOptions.IdentityServer is not null)
+        if (authenticationOptions.JwtBearer is not null)
         {
-            authenticationBuilder.AddIdentityServerAuthentication(options =>
+            authenticationBuilder
+                .AddJwtBearer(authenticationOptions.Scheme ?? JwtBearerDefaults.AuthenticationScheme, options =>
                 {
-                    options.Authority = authenticationOptions.IdentityServer.Authority;
-                    options.ApiName = authenticationOptions.IdentityServer.ApiName;
+                    options.Authority = authenticationOptions.JwtBearer.Authority;
+                    options.Audience = authenticationOptions.JwtBearer.Audience;
+                    options.RequireHttpsMetadata = authenticationOptions.JwtBearer.RequireHttpsMetadata ?? true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = authenticationOptions.JwtBearer.ValidIssuer ?? authenticationOptions.JwtBearer.Authority
+                    };
                 });
         }
     }

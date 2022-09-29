@@ -1,6 +1,4 @@
-﻿using IdentityServer4.AccessTokenValidation;
-using Microservice.Api;
-using Microservice.AspNetCore;
+﻿using Microservice.Api;
 using Microservice.Core.Modularity;
 
 namespace Microservice.MovieService;
