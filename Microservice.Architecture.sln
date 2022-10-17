@@ -111,9 +111,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Swa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api", "core\Microservice.Api\Microservice.Api.csproj", "{2295BC2F-B11A-4396-AC66-E725BC837E52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.AspNetCore.Authentication", "core\Microservice.AspNetCore.Authentication\Microservice.AspNetCore.Authentication.csproj", "{553E78DD-0ED5-41F5-83E6-1E202C8AE44B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authentication", "core\Microservice.AspNetCore.Authentication\Microservice.AspNetCore.Authentication.csproj", "{553E78DD-0ED5-41F5-83E6-1E202C8AE44B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.AspNetCore.Authorization", "core\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authorization", "core\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
