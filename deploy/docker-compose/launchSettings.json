@@ -2,10 +2,10 @@
   "profiles": {
     "Docker Compose": {
       "commandName": "DockerCompose",
+      "commandVersion": "1.0",
       "composeLaunchAction": "LaunchBrowser",
       "composeLaunchServiceName": "gateway",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
-      "commandVersion": "1.0",
       "serviceActions": {
         "gateway": "StartDebugging",
         "identity-server": "StartDebugging",
@@ -15,7 +15,10 @@
         "review-service": "StartDebugging",
         "test-service": "StartDebugging",
         "redis": "StartWithoutDebugging",
-        "sqlserver": "StartWithoutDebugging"
+        "sqlserver": "StartWithoutDebugging",
+        "angular-ui": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging",
+        "react-ui": "StartWithoutDebugging"
       }
     }
   }
