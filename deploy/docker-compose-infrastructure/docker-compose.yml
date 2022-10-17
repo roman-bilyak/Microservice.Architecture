@@ -8,6 +8,9 @@ services:
 
   redis:
     image: "redis"
+
+  rabbitmq:
+    image: "rabbitmq:3-management-alpine"
     
 volumes:
   dbdata:
