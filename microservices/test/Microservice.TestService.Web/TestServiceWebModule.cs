@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using Microservice.Api;
+using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microservice.TestService.Tests;
 
@@ -14,17 +15,25 @@ public sealed class TestServiceWebModule : StartupModule
     {
         base.ConfigureServices(services);
 
+        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
         services.AddMassTransit(x =>
         {
             x.AddConsumer<TestMessageConsumer>();
 
             x.UsingRabbitMq((ctx, cfg) =>
             {
-                cfg.Host("localhost", "/", h =>
+                string host = configuration.GetValue<string>("RabbitMq:Host");
+                ushort port = configuration.GetValue<ushort>("RabbitMq:Port");
+                string virtualHost = configuration.GetValue<string>("RabbitMq:VirtualHost");
+                string userName = configuration.GetValue<string>("RabbitMq:UserName");
+                string password = configuration.GetValue<string>("RabbitMq:Password");
+
+                cfg.Host(host, port, virtualHost, h =>
                 {
-                    h.Username("guest");
-                    h.Password("guest");
+                    h.Username(userName);
+                    h.Password(password);
                 });
+
                 cfg.ConfigureEndpoints(ctx);
             });
         });

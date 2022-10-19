@@ -11,7 +11,7 @@ services:
 
   gateway:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443
       - GlobalConfiguration__BaseUrl=http://gateway
       - Authentication__JwtBearer__Authority=http://identity-server
@@ -38,7 +38,7 @@ services:
 
   identity-server:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - IdentityServer__Clients__0__RedirectUris__0=https://localhost:9100/oauth2-redirect.html
       - IdentityServer__Clients__0__RedirectUris__1=https://localhost:9201/oauth2-redirect.html
@@ -57,7 +57,7 @@ services:
       
   identity-service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
@@ -68,7 +68,7 @@ services:
       
   movie-service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
@@ -79,7 +79,7 @@ services:
       
   payment-service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
@@ -90,7 +90,7 @@ services:
       
   review-service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
@@ -101,11 +101,12 @@ services:
       
   test-service:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
       - Authentication__JwtBearer__RequireHttpsMetadata=false
+      - RabbitMq__Host=host.docker.internal
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
     ports:
       - 9205:443
