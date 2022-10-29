@@ -1,5 +1,7 @@
 ﻿using MassTransit;
 using Microservice.Api;
+using Microservice.Application.Services;
+using Microservice.AspNetCore;
 using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microservice.TestService.Tests;
@@ -36,6 +38,12 @@ public sealed class TestServiceWebModule : StartupModule
 
                 cfg.ConfigureEndpoints(ctx);
             });
+        });
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(TestServiceApplicationModule).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
         });
     }
 }

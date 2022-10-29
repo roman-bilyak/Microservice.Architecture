@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.MovieService;
 
-[DependsOn(typeof(MovieServiceApplicationContractsModule))]
 [DependsOn(typeof(MovieServiceDomainModule))]
 public sealed class MovieServiceApplicationModule : StartupModule
 {
@@ -13,8 +12,8 @@ public sealed class MovieServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services);
 
-        services.AddCQRS(typeof(MovieServiceApplicationModule).Assembly);
-
         services.AddTransient<IMovieApplicationService, MovieApplicationService>();
+
+        services.AddCQRS(typeof(MovieServiceApplicationModule).Assembly);
     }
 }

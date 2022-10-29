@@ -20,8 +20,8 @@ public sealed class ReviewServiceInfrastructureModule : StartupModule
         });
 
         services.AddTransient<IRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();
-        services.AddTransient<IReadRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();
         services.AddTransient<IRepository<Review, Guid>, BaseRepository<ReviewServiceDbContext, Review, Guid>>();
+        services.AddTransient<IReadRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();
         services.AddTransient<IReadRepository<Review, Guid>, BaseRepository<ReviewServiceDbContext, Review, Guid>>();
     }
 }

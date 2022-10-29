@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.Application\Microservice.Application.csproj" />
-    <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Domain.Share\Microservice.TestService.Domain.Share.csproj" />
   </ItemGroup>
 

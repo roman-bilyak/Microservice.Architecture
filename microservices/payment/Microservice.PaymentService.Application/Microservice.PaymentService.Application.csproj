@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Application.Contracts\Microservice.PaymentService.Application.Contracts.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Domain\Microservice.PaymentService.Domain.csproj" />
   </ItemGroup>
