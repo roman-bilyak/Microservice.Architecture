@@ -28,7 +28,7 @@ public class DynamicControllerFeatureProvider : IApplicationFeatureProvider<Cont
                     TypeInfo controllerType = implementationType ?? type;
                     if (controllerType.IsClass
                         && !controllerType.IsAbstract
-                        && !controllerType.ContainsGenericParameters
+                        && !controllerType.IsGenericType
                         && !feature.Controllers.Contains(controllerType))
                     {
                         feature.Controllers.Add(controllerType);

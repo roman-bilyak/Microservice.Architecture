@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\Configurations\" />
+  </ItemGroup>
+
 </Project>

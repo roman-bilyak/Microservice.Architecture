@@ -1,17 +1,12 @@
 ﻿using Microservice.Api;
+using Microservice.Application.Services;
 using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
-using Microservice.MovieService;
-using Microservice.ReviewService;
-using Microservice.TestService;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
 namespace Microservice.Gateway;
 
-[DependsOn(typeof(MovieServiceApplicationContractsModule))]
-[DependsOn(typeof(ReviewServiceApplicationContractsModule))]
-[DependsOn(typeof(TestServiceApplicationContractsModule))]
 [DependsOn(typeof(ApiModule))]
 public sealed class GatewayModule : StartupModule
 {
@@ -19,9 +14,41 @@ public sealed class GatewayModule : StartupModule
     {
         base.ConfigureServices(services);
 
-        services.RegisterFakeApplicationServices(typeof(MovieServiceApplicationContractsModule).Assembly, "api/MS");
-        services.RegisterFakeApplicationServices(typeof(ReviewServiceApplicationContractsModule).Assembly, "api/RS");
-        services.RegisterFakeApplicationServices(typeof(TestServiceApplicationContractsModule).Assembly, "api/TS");
+        services.RegisterFakeApplicationServices(typeof(IdentityService.Identity.IUserApplicationService).Assembly, "api/IS");
+        services.RegisterFakeApplicationServices(typeof(MovieService.Movies.IMovieApplicationService).Assembly, "api/MS");
+        services.RegisterFakeApplicationServices(typeof(PaymentService.Payment.IPaymentApplicationService).Assembly, "api/PS");
+        services.RegisterFakeApplicationServices(typeof(ReviewService.Reviews.IReviewApplicationService).Assembly, "api/RS");
+        services.RegisterFakeApplicationServices(typeof(TestService.Tests.ITestApplicationService).Assembly, "api/TS");
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(IdentityService.Identity.IUserApplicationService).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
+        });
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(MovieService.Movies.IMovieApplicationService).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
+        });
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(PaymentService.Payment.IPaymentApplicationService).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
+        });
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(ReviewService.Reviews.IReviewApplicationService).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
+        });
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(TestService.Tests.ITestApplicationService).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
+        });
 
         services.AddOcelot();
     }

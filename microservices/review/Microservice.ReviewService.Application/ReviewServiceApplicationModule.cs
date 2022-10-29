@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.ReviewService;
 
-[DependsOn(typeof(ReviewServiceApplicationContractsModule))]
 [DependsOn(typeof(ReviewServiceDomainModule))]
 public sealed class ReviewServiceApplicationModule : StartupModule
 {
@@ -13,10 +12,10 @@ public sealed class ReviewServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services);
 
-        services.AddCQRS(typeof(ReviewServiceApplicationModule).Assembly);
-
         services.AddTransient<IMovieApplicationService, MovieApplicationService>();
         services.AddTransient<IReviewApplicationService, ReviewApplicationService>();
         services.AddTransient<IUserApplicationService, UserApplicationService>();
+
+        services.AddCQRS(typeof(ReviewServiceApplicationModule).Assembly);
     }
 }

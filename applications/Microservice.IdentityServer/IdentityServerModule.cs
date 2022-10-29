@@ -1,0 +1,53 @@
+﻿using Microservice.AspNetCore;
+using Microservice.Core;
+using Microservice.Core.Modularity;
+using Microservice.IdentityServer.Quickstart.Stores;
+using Microservice.IdentityService;
+using Microservice.IdentityService.Identity;
+using Microservice.IdentityService.Web;
+using Microsoft.AspNetCore.Identity;
+
+namespace Microservice.IdentityServer;
+
+[DependsOn(typeof(AspNetCoreModule))]
+[DependsOn(typeof(IdentityServiceInfrastructureModule))]
+public sealed class IdentityServerModule : StartupModule
+{
+    public override void ConfigureServices(IServiceCollection services)
+    {
+        base.ConfigureServices(services);
+
+        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
+
+        services.AddIdentity<User, Role>()
+            .AddUserStore<UserStore>()
+            .AddRoleStore<RoleStore>()
+            .AddDefaultTokenProviders();
+
+        services.AddIdentityServer(options =>
+            {
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+            })
+            .AddInMemoryIdentityResources(Config.IdentityResources)
+            .AddInMemoryApiResources(configuration.GetSection("IdentityServer:ApiResources"))
+            .AddInMemoryApiScopes(configuration.GetSection("IdentityServer:ApiScopes"))
+            .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
+            .AddDeveloperSigningCredential();
+    }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
+        app.UseDeveloperExceptionPage();
+
+        app.UseStaticFiles();
+
+        app.UseIdentityServer();
+        app.UseAuthorization();
+    }
+}

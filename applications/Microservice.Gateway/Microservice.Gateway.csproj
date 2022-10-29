@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\Microservice.Api\Microservice.Api.csproj" />
+    <ProjectReference Include="..\..\microservices\identity\Microservice.IdentityService.Application.Contracts\Microservice.IdentityService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\microservices\movie\Microservice.MovieService.Application.Contracts\Microservice.MovieService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\microservices\payment\Microservice.PaymentService.Application.Contracts\Microservice.PaymentService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\microservices\review\Microservice.ReviewService.Application.Contracts\Microservice.ReviewService.Application.Contracts.csproj" />

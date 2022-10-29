@@ -21,9 +21,9 @@ public sealed class AspNetCoreModule : StartupModule
         services.AddMvc();
     }
 
-    public override void Configure(IServiceProvider serviceProvider)
+    public override void PreConfigure(IServiceProvider serviceProvider)
     {
-        base.Configure(serviceProvider);
+        base.PreConfigure(serviceProvider);
 
         MvcOptions mvcOptions = serviceProvider.GetOptions<MvcOptions>();
         mvcOptions.Conventions.Add(serviceProvider.GetRequiredService<DynamicControllerConvention>());
@@ -36,5 +36,21 @@ public sealed class AspNetCoreModule : StartupModule
         {
             applicationPartManager.ApplicationParts.Add(new AssemblyPart(assembly));
         }
+    }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
+        app.UseRouting();
+    }
+
+    public override void PostConfigure(IServiceProvider serviceProvider)
+    {
+        base.PostConfigure(serviceProvider);
+
+        IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
+        app.UseEndpoints(x => x.MapDefaultControllerRoute());
     }
 }

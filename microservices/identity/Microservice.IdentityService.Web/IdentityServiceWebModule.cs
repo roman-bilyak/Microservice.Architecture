@@ -1,4 +1,6 @@
 ﻿using Microservice.Api;
+using Microservice.Application.Services;
+using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
 
 namespace Microservice.IdentityService;
@@ -8,4 +10,14 @@ namespace Microservice.IdentityService;
 [DependsOn(typeof(ApiModule))]
 public sealed class IdentityServiceWebModule : StartupModule
 {
+    public override void ConfigureServices(IServiceCollection services)
+    {
+        base.ConfigureServices(services);
+
+        services.Configure<DynamicControllerOptions>(options =>
+        {
+            options.AddSettings(typeof(IdentityServiceApplicationModule).Assembly,
+                x => typeof(IApplicationService).IsAssignableFrom(x));
+        });
+    }
 }
