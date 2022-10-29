@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.CQRS\Microservice.CQRS.csproj" />
     <ProjectReference Include="..\Microservice.MovieService.Application.Contracts\Microservice.MovieService.Application.Contracts.csproj" />
     <ProjectReference Include="..\Microservice.MovieService.Domain\Microservice.MovieService.Domain.csproj" />
   </ItemGroup>

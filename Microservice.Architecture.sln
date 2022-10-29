@@ -115,6 +115,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authorization", "core\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.CQRS", "core\Microservice.CQRS\Microservice.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -309,6 +311,10 @@ Global
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -365,6 +371,7 @@ Global
 		{2295BC2F-B11A-4396-AC66-E725BC837E52} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{553E78DD-0ED5-41F5-83E6-1E202C8AE44B} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
+		{055CB038-4E4A-4E2F-B532-8D590D21033C} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

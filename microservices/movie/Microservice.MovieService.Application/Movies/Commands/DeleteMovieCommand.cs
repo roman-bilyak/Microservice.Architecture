@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using Microservice.Application.CQRS.Commands;
+using Microservice.CQRS.Commands;
 
 namespace Microservice.MovieService.Movies.Commands
 {

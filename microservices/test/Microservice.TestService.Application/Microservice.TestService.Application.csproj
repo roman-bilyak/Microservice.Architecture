@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Application.Contracts\Microservice.TestService.Application.Contracts.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj" />
