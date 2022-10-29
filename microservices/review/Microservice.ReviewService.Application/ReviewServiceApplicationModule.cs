@@ -1,4 +1,4 @@
-﻿using Microservice.Application.CQRS;
+﻿using Microservice.CQRS;
 using Microservice.Core.Modularity;
 using Microservice.ReviewService.Reviews;
 using Microsoft.Extensions.DependencyInjection;

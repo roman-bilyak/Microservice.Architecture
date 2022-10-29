@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using MassTransit.Mediator;
+﻿using MassTransit.Mediator;
 using Microservice.Application.Services;
 using Microservice.ReviewService.Reviews.Commands;
 using Microservice.ReviewService.Reviews.Queries;
