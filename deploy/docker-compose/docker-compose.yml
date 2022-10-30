@@ -42,7 +42,7 @@ services:
     image: ${DOCKER_REGISTRY-}identity-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/identity/Microservice.IdentityService.Web/Dockerfile
+      dockerfile: microservices/identity/Microservice.IdentityService.Api/Dockerfile
     depends_on:
       - identity-server
 
@@ -50,7 +50,7 @@ services:
     image: ${DOCKER_REGISTRY-}movie-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/movie/Microservice.MovieService.Web/Dockerfile
+      dockerfile: microservices/movie/Microservice.MovieService.Api/Dockerfile
     depends_on:
       - identity-server
 
@@ -58,7 +58,7 @@ services:
     image: ${DOCKER_REGISTRY-}payment-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/payment/Microservice.PaymentService.Web/Dockerfile
+      dockerfile: microservices/payment/Microservice.PaymentService.Api/Dockerfile
     depends_on:
       - identity-server
 
@@ -66,7 +66,7 @@ services:
     image: ${DOCKER_REGISTRY-}review-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/review/Microservice.ReviewService.Web/Dockerfile
+      dockerfile: microservices/review/Microservice.ReviewService.Api/Dockerfile
     depends_on:
       - identity-server
 
@@ -74,6 +74,6 @@ services:
     image: ${DOCKER_REGISTRY-}test-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/test/Microservice.TestService.Web/Dockerfile
+      dockerfile: microservices/test/Microservice.TestService.Api/Dockerfile
     depends_on:
       - identity-server

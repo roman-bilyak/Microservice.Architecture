@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Microservice.Gateway.Web": {
+    "Microservice.Gateway": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

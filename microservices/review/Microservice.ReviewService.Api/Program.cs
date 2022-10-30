@@ -1,9 +1,9 @@
 using Microservice.AspNetCore;
 using Microservice.Core;
-using Microservice.TestService;
+using Microservice.ReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddApplication<TestServiceWebModule>()
+builder.AddApplication<ReviewServiceApiModule>()
     .ConfigureServices();
 
 var app = builder.Build();

@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Microservice.ReviewService.Web": {
+    "Microservice.ReviewService.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

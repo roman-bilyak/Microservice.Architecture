@@ -3,12 +3,12 @@ using Microservice.Application;
 using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
 
-namespace Microservice.IdentityService;
+namespace Microservice.MovieService;
 
-[DependsOn(typeof(IdentityServiceApplicationModule))]
-[DependsOn(typeof(IdentityServiceInfrastructureModule))]
+[DependsOn(typeof(MovieServiceApplicationModule))]
+[DependsOn(typeof(MovieServiceInfrastructureModule))]
 [DependsOn(typeof(ApiModule))]
-public sealed class IdentityServiceWebModule : StartupModule
+public sealed class MovieServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {
@@ -16,7 +16,7 @@ public sealed class IdentityServiceWebModule : StartupModule
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(IdentityServiceApplicationModule).Assembly,
+            options.AddSettings(typeof(MovieServiceApplicationModule).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
     }

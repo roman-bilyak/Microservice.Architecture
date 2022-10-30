@@ -8,7 +8,7 @@ namespace Microservice.ReviewService;
 [DependsOn(typeof(ReviewServiceApplicationModule))]
 [DependsOn(typeof(ReviewServiceInfrastructureModule))]
 [DependsOn(typeof(ApiModule))]
-public sealed class ReviewServiceWebModule : StartupModule
+public sealed class ReviewServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

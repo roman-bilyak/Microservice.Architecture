@@ -1,9 +1,9 @@
 using Microservice.AspNetCore;
 using Microservice.Core;
-using Microservice.PaymentService;
+using Microservice.TestService;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddApplication<PaymentServiceWebModule>()
+builder.AddApplication<TestServiceApiModule>()
     .ConfigureServices();
 
 var app = builder.Build();

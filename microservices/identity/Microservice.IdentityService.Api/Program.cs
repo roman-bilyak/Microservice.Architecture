@@ -1,9 +1,9 @@
 using Microservice.AspNetCore;
 using Microservice.Core;
-using Microservice.MovieService;
+using Microservice.IdentityService;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddApplication<MovieServiceWebModule>()
+builder.AddApplication<IdentityServiceApiModule>()
     .ConfigureServices();
 
 var app = builder.Build();

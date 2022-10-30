@@ -1,7 +1,7 @@
 ﻿using IdentityModel;
 using IdentityServer4.Models;
 
-namespace Microservice.IdentityService.Web;
+namespace Microservice.IdentityService;
 
 public static class Config
 {
