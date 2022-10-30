@@ -1,7 +1,7 @@
 ﻿using Microservice.IdentityService.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace Microservice.IdentityServer.Quickstart.Stores;
+namespace Microservice.IdentityServer.Controllers;
 
 public class RoleStore : IRoleStore<Role>
 {
