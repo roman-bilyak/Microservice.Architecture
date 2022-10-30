@@ -1,4 +1,4 @@
-﻿using Microservice.Application.Services;
+﻿using Microservice.Application;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.MovieService.Movies;

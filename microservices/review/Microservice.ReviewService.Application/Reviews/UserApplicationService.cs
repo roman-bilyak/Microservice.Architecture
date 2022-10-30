@@ -1,5 +1,5 @@
 ﻿using MassTransit.Mediator;
-using Microservice.Application.Services;
+using Microservice.Application;
 using Microservice.ReviewService.Reviews.Queries;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;

@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using Microservice.Api;
-using Microservice.Application.Services;
+using Microservice.Application;
 using Microservice.AspNetCore;
 using Microservice.Core;
 using Microservice.Core.Modularity;

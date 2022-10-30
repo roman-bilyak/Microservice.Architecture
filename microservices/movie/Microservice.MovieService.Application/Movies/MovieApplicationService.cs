@@ -1,5 +1,5 @@
 ﻿using MassTransit.Mediator;
-using Microservice.Application.Services;
+using Microservice.Application;
 using Microservice.MovieService.Movies.Commands;
 using Microservice.MovieService.Movies.Queries;
 using Microsoft.AspNetCore.Authorization;
