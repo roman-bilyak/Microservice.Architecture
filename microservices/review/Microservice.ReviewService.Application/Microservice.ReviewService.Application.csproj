@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\core\Microservice.CQRS\Microservice.CQRS.csproj" />
-    <ProjectReference Include="..\Microservice.ReviewService.Application.Contracts\Microservice.ReviewService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Microservice.ReviewService.Application.Abstractions\Microservice.ReviewService.Application.Abstractions.csproj" />
     <ProjectReference Include="..\Microservice.ReviewService.Domain\Microservice.ReviewService.Domain.csproj" />
   </ItemGroup>
 

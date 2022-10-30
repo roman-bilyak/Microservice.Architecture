@@ -18,10 +18,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\Microservice.Api\Microservice.Api.csproj" />
-    <ProjectReference Include="..\..\microservices\identity\Microservice.IdentityService.Application.Contracts\Microservice.IdentityService.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\microservices\movie\Microservice.MovieService.Application.Contracts\Microservice.MovieService.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\microservices\payment\Microservice.PaymentService.Application.Contracts\Microservice.PaymentService.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\microservices\review\Microservice.ReviewService.Application.Contracts\Microservice.ReviewService.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\microservices\test\Microservice.TestService.Application.Contracts\Microservice.TestService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\microservices\identity\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\microservices\movie\Microservice.MovieService.Application.Abstractions\Microservice.MovieService.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\microservices\payment\Microservice.PaymentService.Application.Abstractions\Microservice.PaymentService.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\microservices\review\Microservice.ReviewService.Application.Abstractions\Microservice.ReviewService.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\microservices\test\Microservice.TestService.Application.Abstractions\Microservice.TestService.Application.Abstrations.csproj" />
   </ItemGroup>
 </Project>

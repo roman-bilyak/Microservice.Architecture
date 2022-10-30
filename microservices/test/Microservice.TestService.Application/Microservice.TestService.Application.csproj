@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.AspNetCore\Microservice.AspNetCore.csproj" />
-    <ProjectReference Include="..\Microservice.TestService.Application.Contracts\Microservice.TestService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Microservice.TestService.Application.Abstractions\Microservice.TestService.Application.Abstrations.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj" />
   </ItemGroup>
 
