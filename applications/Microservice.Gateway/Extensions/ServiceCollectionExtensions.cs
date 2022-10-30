@@ -1,5 +1,5 @@
 ﻿using Castle.DynamicProxy;
-using Microservice.Application.Services;
+using Microservice.Application;
 using Microservice.Core.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;

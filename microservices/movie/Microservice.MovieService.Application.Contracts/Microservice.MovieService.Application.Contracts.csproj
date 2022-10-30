@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Microservice.Application\Microservice.Application.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.Application.Abstractions\Microservice.Application.Abstractions.csproj" />
     <ProjectReference Include="..\Microservice.MovieService.Domain.Share\Microservice.MovieService.Domain.Share.csproj" />
   </ItemGroup>
 
