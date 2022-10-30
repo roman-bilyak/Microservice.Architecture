@@ -1,7 +1,7 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.Core;
 using Microservice.Core.Modularity;
-using Microservice.IdentityServer.Quickstart.Stores;
+using Microservice.IdentityServer.Controllers;
 using Microservice.IdentityService;
 using Microservice.IdentityService.Identity;
 using Microsoft.AspNetCore.Identity;
