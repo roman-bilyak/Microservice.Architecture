@@ -11,7 +11,7 @@ namespace Microservice.TestService;
 [DependsOn(typeof(TestServiceApplicationModule))]
 [DependsOn(typeof(TestServiceInfrastructureModule))]
 [DependsOn(typeof(ApiModule))]
-public sealed class TestServiceWebModule : StartupModule
+public sealed class TestServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {

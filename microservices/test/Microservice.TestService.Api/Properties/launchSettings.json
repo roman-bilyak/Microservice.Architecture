@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Microservice.TestService.Web": {
+    "Microservice.TestService.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Microservice.MovieService.Web": {
+    "Microservice.MovieService.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

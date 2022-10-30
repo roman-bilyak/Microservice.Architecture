@@ -3,12 +3,12 @@ using Microservice.Application;
 using Microservice.AspNetCore;
 using Microservice.Core.Modularity;
 
-namespace Microservice.PaymentService;
+namespace Microservice.IdentityService;
 
-[DependsOn(typeof(PaymentServiceApplicationModule))]
-[DependsOn(typeof(PaymentServiceInfrastructureModule))]
+[DependsOn(typeof(IdentityServiceApplicationModule))]
+[DependsOn(typeof(IdentityServiceInfrastructureModule))]
 [DependsOn(typeof(ApiModule))]
-public sealed class PaymentServiceWebModule : StartupModule
+public sealed class IdentityServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
     {
@@ -16,7 +16,7 @@ public sealed class PaymentServiceWebModule : StartupModule
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(PaymentServiceApplicationModule).Assembly,
+            options.AddSettings(typeof(IdentityServiceApplicationModule).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
     }
