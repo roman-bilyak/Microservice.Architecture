@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS.Commands;
+﻿namespace Microservice.CQRS;
 
 public interface ICommand
 {

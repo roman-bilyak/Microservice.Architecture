@@ -1,7 +1,6 @@
 ﻿using Microservice.Database;
-using Microservice.IdentityService.Identity;
 
-namespace Microservice.IdentityService.Database;
+namespace Microservice.IdentityService.Identity;
 
 internal class UserRoleDataSeeder : IDataSeeder
 {
