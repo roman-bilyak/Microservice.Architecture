@@ -1,7 +1,5 @@
 ﻿using MassTransit.Mediator;
 using Microservice.Application;
-using Microservice.MovieService.Movies.Commands;
-using Microservice.MovieService.Movies.Queries;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,7 +12,9 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
 
     public MovieApplicationService(IMediator mediator)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
+
+        _mediator = mediator;
     }
 
     public async Task<MovieDto> GetMovieAsync([Required] Guid id, CancellationToken cancellationToken)

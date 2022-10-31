@@ -1,33 +1,32 @@
 ﻿using MassTransit;
-using Microservice.CQRS.Queries;
+using Microservice.CQRS;
 
-namespace Microservice.MovieService.Movies.Queries
+namespace Microservice.MovieService.Movies;
+
+public class GetMovieByIdQuery : ItemQuery<Guid>
 {
-    public class GetMovieByIdQuery : ItemQuery<Guid>
+    public class GetMovieByIdQueryHandler : IQueryHandler<GetMovieByIdQuery>
     {
-        public class GetMovieByIdQueryHandler : IQueryHandler<GetMovieByIdQuery>
+        private readonly IMovieManager _movieManager;
+
+        public GetMovieByIdQueryHandler(IMovieManager movieManager)
         {
-            private readonly IMovieManager _movieManager;
+            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+        }
 
-            public GetMovieByIdQueryHandler(IMovieManager movieManager)
+        public async Task Consume(ConsumeContext<GetMovieByIdQuery> context)
+        {
+            Movie movie = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
+            if (movie == null)
             {
-                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+                throw new Exception($"Movie (id = '{context.Message.Id}') not found");
             }
 
-            public async Task Consume(ConsumeContext<GetMovieByIdQuery> context)
+            await context.RespondAsync(new MovieDto
             {
-                Movie movie = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-                if (movie == null)
-                {
-                    throw new Exception($"Movie (id = '{context.Message.Id}') not found");
-                }
-
-                await context.RespondAsync(new MovieDto
-                {
-                    Id = movie.Id,
-                    Title = movie.Title
-                });
-            }
+                Id = movie.Id,
+                Title = movie.Title
+            });
         }
     }
 }

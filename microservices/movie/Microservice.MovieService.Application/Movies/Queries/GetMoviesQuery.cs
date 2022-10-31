@@ -1,38 +1,37 @@
 ﻿using MassTransit;
-using Microservice.CQRS.Queries;
+using Microservice.CQRS;
 
-namespace Microservice.MovieService.Movies.Queries
+namespace Microservice.MovieService.Movies;
+
+public class GetMoviesQuery : ListQuery
 {
-    public class GetMoviesQuery : ListQuery
+    public class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery>
     {
-        public class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery>
+        private readonly IMovieManager _movieManager;
+
+        public GetMoviesQueryHandler(IMovieManager movieManager)
         {
-            private readonly IMovieManager _movieManager;
+            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+        }
 
-            public GetMoviesQueryHandler(IMovieManager movieManager)
+        public async Task Consume(ConsumeContext<GetMoviesQuery> context)
+        {
+            MovieListDto result = new MovieListDto
             {
-                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+                TotalCount = await _movieManager.CountAsync(context.CancellationToken)
+            };
+
+            List<Movie> movies = await _movieManager.ListAsync(context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
+            foreach (Movie movie in movies)
+            {
+                result.Items.Add(new MovieDto
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                });
             }
 
-            public async Task Consume(ConsumeContext<GetMoviesQuery> context)
-            {
-                MovieListDto result = new MovieListDto
-                {
-                    TotalCount = await _movieManager.CountAsync(context.CancellationToken)
-                };
-
-                List<Movie> movies = await _movieManager.ListAsync(context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
-                foreach (Movie movie in movies)
-                {
-                    result.Items.Add(new MovieDto
-                    {
-                        Id = movie.Id,
-                        Title = movie.Title,
-                    });
-                }
-
-                await context.RespondAsync(result);
-            }
+            await context.RespondAsync(result);
         }
     }
 }

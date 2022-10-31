@@ -1,30 +1,29 @@
 ﻿using MassTransit;
-using Microservice.CQRS.Commands;
+using Microservice.CQRS;
 
-namespace Microservice.MovieService.Movies.Commands
+namespace Microservice.MovieService.Movies;
+
+public class DeleteMovieCommand : DeleteCommand<Guid>
 {
-    public class DeleteMovieCommand : DeleteCommand<Guid>
+    public class DeleteMovieCommandHandler : ICommandHandler<DeleteMovieCommand>
     {
-        public class DeleteMovieCommandHandler : ICommandHandler<DeleteMovieCommand>
+        private readonly IMovieManager _movieManager;
+
+        public DeleteMovieCommandHandler(IMovieManager movieManager)
         {
-            private readonly IMovieManager _movieManager;
+            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+        }
 
-            public DeleteMovieCommandHandler(IMovieManager movieManager)
+        public async Task Consume(ConsumeContext<DeleteMovieCommand> context)
+        {
+            Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
+            if (entity == null)
             {
-                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+                throw new Exception($"Movie (id = '{context.Message.Id}') not found");
             }
 
-            public async Task Consume(ConsumeContext<DeleteMovieCommand> context)
-            {
-                Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-                if (entity == null)
-                {
-                    throw new Exception($"Movie (id = '{context.Message.Id}') not found");
-                }
-
-                await _movieManager.DeleteAsync(entity, context.CancellationToken);
-                await _movieManager.SaveChangesAsync(context.CancellationToken);
-            }
+            await _movieManager.DeleteAsync(entity, context.CancellationToken);
+            await _movieManager.SaveChangesAsync(context.CancellationToken);
         }
     }
 }

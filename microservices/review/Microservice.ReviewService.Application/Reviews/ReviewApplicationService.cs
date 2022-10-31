@@ -1,7 +1,5 @@
 ﻿using MassTransit.Mediator;
 using Microservice.Application;
-using Microservice.ReviewService.Reviews.Commands;
-using Microservice.ReviewService.Reviews.Queries;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,7 +12,9 @@ internal class ReviewApplicationService : ApplicationService, IReviewApplication
 
     public ReviewApplicationService(IMediator mediator)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
+
+        _mediator = mediator;
     }
 
     public async Task<ReviewDto> GetReviewAsync([Required] Guid id, CancellationToken cancellationToken)

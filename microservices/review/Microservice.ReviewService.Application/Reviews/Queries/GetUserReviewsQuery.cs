@@ -1,42 +1,41 @@
 ﻿using MassTransit;
-using Microservice.CQRS.Queries;
+using Microservice.CQRS;
 
-namespace Microservice.ReviewService.Reviews.Queries
+namespace Microservice.ReviewService.Reviews;
+
+public class GetUserReviewsQuery : ListQuery
 {
-    public class GetUserReviewsQuery : ListQuery
+    public Guid UserId { get; init; }
+
+    public class GetUserReviewsQueryHandler : IQueryHandler<GetUserReviewsQuery>
     {
-        public Guid UserId { get; init; }
+        private readonly IReviewManager _reviewManager;
 
-        public class GetUserReviewsQueryHandler : IQueryHandler<GetUserReviewsQuery>
+        public GetUserReviewsQueryHandler(IReviewManager reviewManager)
         {
-            private readonly IReviewManager _reviewManager;
+            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+        }
 
-            public GetUserReviewsQueryHandler(IReviewManager reviewManager)
+        public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)
+        {
+            GetUserReviewsDto result = new GetUserReviewsDto
             {
-                _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
-            }
+                TotalCount = await _reviewManager.GetCountByUserAsync(context.Message.UserId, context.CancellationToken)
+            };
 
-            public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)
+            List<Review> reviews = await _reviewManager.GetListByUserAsync(context.Message.UserId, context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
+            foreach (Review review in reviews)
             {
-                GetUserReviewsDto result = new GetUserReviewsDto
+                result.Items.Add(new ReviewDto
                 {
-                    TotalCount = await _reviewManager.GetCountByUserAsync(context.Message.UserId, context.CancellationToken)
-                };
-
-                List<Review> reviews = await _reviewManager.GetListByUserAsync(context.Message.UserId, context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
-                foreach (Review review in reviews)
-                {
-                    result.Items.Add(new ReviewDto
-                    {
-                        Id = review.Id,
-                        UserId = review.UserId,
-                        MovieId = review.MovieId,
-                        Text = review.Text,
-                        Rating = review.Rating
-                    });
-                }
-                await context.RespondAsync(result);
+                    Id = review.Id,
+                    UserId = review.UserId,
+                    MovieId = review.MovieId,
+                    Text = review.Text,
+                    Rating = review.Rating
+                });
             }
+            await context.RespondAsync(result);
         }
     }
 }
