@@ -1,6 +1,8 @@
-﻿namespace Microservice.IdentityService.Identity;
+﻿using Microservice.Database;
 
-public class UserRole
+namespace Microservice.IdentityService.Identity;
+
+public class UserRole : Entity<Guid>
 {
     public Guid UserId { get; set; }
 

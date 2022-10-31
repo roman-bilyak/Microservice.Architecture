@@ -28,6 +28,11 @@ public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TK
         return await _dbContext.Set<TEntity>().FindAsync(new object[] { id }, cancellationToken);
     }
 
+    public virtual async Task<TEntity> SingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken)
+    {
+        return await _dbContext.Set<TEntity>().ApplySpecification(specification).SingleOrDefaultAsync(cancellationToken);
+    }
+
     public virtual async Task<List<TEntity>> ListAsync(CancellationToken cancellationToken = default)
     {
         return await _dbContext.Set<TEntity>().ToListAsync(cancellationToken);

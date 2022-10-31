@@ -11,6 +11,8 @@ public interface IReadRepository<TEntity, TKey>
 {
     Task<TEntity> GetByIdAsync(TKey id, CancellationToken cancellationToken);
 
+    Task<TEntity> SingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken);
+
     Task<List<TEntity>> ListAsync(CancellationToken cancellationToken);
 
     Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken);
