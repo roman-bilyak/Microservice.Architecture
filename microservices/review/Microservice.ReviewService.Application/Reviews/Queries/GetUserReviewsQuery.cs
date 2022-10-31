@@ -13,7 +13,9 @@ public class GetUserReviewsQuery : ListQuery
 
         public GetUserReviewsQueryHandler(IReviewManager reviewManager)
         {
-            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+            ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
+
+            _reviewManager = reviewManager;
         }
 
         public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)

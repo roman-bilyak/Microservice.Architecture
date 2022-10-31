@@ -11,7 +11,9 @@ public class GetReviewByIdQuery : ItemQuery<Guid>
 
         public GetReviewByIdQueryHandler(IReviewManager reviewManager)
         {
-            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+            ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
+
+            _reviewManager = reviewManager;
         }
 
         public async Task Consume(ConsumeContext<GetReviewByIdQuery> context)

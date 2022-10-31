@@ -11,7 +11,9 @@ public class GetMoviesQuery : ListQuery
 
         public GetMoviesQueryHandler(IMovieManager movieManager)
         {
-            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+            ArgumentNullException.ThrowIfNull(movieManager, nameof(movieManager));
+
+            _movieManager = movieManager;
         }
 
         public async Task Consume(ConsumeContext<GetMoviesQuery> context)
