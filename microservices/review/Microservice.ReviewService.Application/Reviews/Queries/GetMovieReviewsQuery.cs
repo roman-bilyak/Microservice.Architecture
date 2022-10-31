@@ -5,7 +5,12 @@ namespace Microservice.ReviewService.Reviews;
 
 public class GetMovieReviewsQuery : ListQuery
 {
-    public Guid MovieId { get; set; }
+    public Guid MovieId { get; protected set; }
+
+    public GetMovieReviewsQuery(Guid movieId, int pageIndex, int pageSize) : base(pageIndex, pageSize)
+    {
+        MovieId = movieId;
+    }
 
     public class GetMovieReviewsQueryHandler : IQueryHandler<GetMovieReviewsQuery>
     {

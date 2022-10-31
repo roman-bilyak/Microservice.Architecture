@@ -5,6 +5,10 @@ namespace Microservice.ReviewService.Reviews;
 
 public class CreateReviewCommand : CreateCommand<CreateReviewDto>
 {
+    public CreateReviewCommand(CreateReviewDto model) : base(model)
+    {
+    }
+
     public class CreateReviewCommandHandler : ICommandHandler<CreateReviewCommand>
     {
         private readonly IReviewManager _reviewManager;

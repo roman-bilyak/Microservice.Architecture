@@ -5,6 +5,10 @@ namespace Microservice.MovieService.Movies;
 
 public class DeleteMovieCommand : DeleteCommand<Guid>
 {
+    public DeleteMovieCommand(Guid id) : base(id)
+    {
+    }
+
     public class DeleteMovieCommandHandler : ICommandHandler<DeleteMovieCommand>
     {
         private readonly IMovieManager _movieManager;

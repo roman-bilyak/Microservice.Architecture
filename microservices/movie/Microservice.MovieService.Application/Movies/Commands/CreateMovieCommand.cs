@@ -5,6 +5,10 @@ namespace Microservice.MovieService.Movies;
 
 public class CreateMovieCommand : CreateCommand<CreateMovieDto>
 {
+    public CreateMovieCommand(CreateMovieDto model) : base(model)
+    {
+    }
+
     public class CreateMovieCommandHandler : ICommandHandler<CreateMovieCommand>
     {
         private readonly IMovieManager _movieManager;
