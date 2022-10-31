@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Application.Abstractions", ""))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.Application.Abstractions\Microservice.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\Microservice.ReviewService.Domain.Share\Microservice.ReviewService.Domain.Share.csproj" />
+  </ItemGroup>
+
+</Project>

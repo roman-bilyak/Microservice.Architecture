@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using Microservice.Application.CQRS.Queries;
+using Microservice.CQRS.Queries;
 
 namespace Microservice.ReviewService.Reviews.Queries
 {

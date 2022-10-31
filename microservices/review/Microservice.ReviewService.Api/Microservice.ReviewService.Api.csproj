@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Api", ""))</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\docker\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>db346ee6-09c7-426e-b481-8af57475c682</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.Api\Microservice.Api.csproj" />
+    <ProjectReference Include="..\Microservice.ReviewService.Application\Microservice.ReviewService.Application.csproj" />
+    <ProjectReference Include="..\Microservice.ReviewService.Infrastructure\Microservice.ReviewService.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
