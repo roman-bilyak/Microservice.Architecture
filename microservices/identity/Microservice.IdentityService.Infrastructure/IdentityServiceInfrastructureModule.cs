@@ -1,6 +1,5 @@
 ﻿using Microservice.Core.Modularity;
 using Microservice.Database;
-using Microservice.IdentityService.Database;
 using Microservice.IdentityService.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
