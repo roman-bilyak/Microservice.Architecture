@@ -9,6 +9,8 @@ internal class ReviewManager : DomainService, IReviewManager
 
     public ReviewManager(IRepository<Review> reviewRepository)
     {
+        ArgumentNullException.ThrowIfNull(reviewRepository, nameof(reviewRepository));
+
         _reviewRepository = reviewRepository;
     }
 
