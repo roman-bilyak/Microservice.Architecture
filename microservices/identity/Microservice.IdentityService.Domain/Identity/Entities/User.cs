@@ -1,27 +1,53 @@
 ﻿using Microservice.Database;
-using System.Security.Principal;
+using System.Collections.ObjectModel;
 
 namespace Microservice.IdentityService.Identity;
 
-public class User : Entity<Guid>, IAggregateRoot, IIdentity
+public class User : Entity<Guid>, IAggregateRoot
 {
-    public string Name { get; set; }
+    public string UserName { get; protected internal set; }
 
-    public string UserName { get; set; }
+    public string NormalizedUserName { get; protected internal set; }
 
-    public string NormalizedUserName { get; internal set; }
+    public string FirstName { get; protected set; }
 
-    public string Email { get; set; }
+    public string LastName { get; protected set; }
 
-    public string NormalizedEmail { get; internal set; }
+    public string Email { get; protected set; }
 
-    public bool EmailConfirmed { get; set; }
+    public string NormalizedEmail { get; protected set; }
 
-    public string PasswordHash { get; set; }
+    public bool IsEmailConfirmed { get; protected set; }
 
-    public string AuthenticationType { get; set; }
+    public string PasswordHash { get; protected internal set; }
 
-    public bool IsAuthenticated { get; set; }
+    public virtual ICollection<UserRole> Roles { get; protected set; }
 
-    public virtual ICollection<UserRole> Roles { get; set; }
+    protected User()
+    {
+    }
+
+    public User
+    (
+        Guid id,
+        string userName,
+        string firstName,
+        string lastName,
+        string email
+    ) : base(id)
+    {
+        ArgumentNullException.ThrowIfNull(userName, nameof(userName));
+        ArgumentNullException.ThrowIfNull(firstName, nameof(firstName));
+        ArgumentNullException.ThrowIfNull(lastName, nameof(lastName));
+        ArgumentNullException.ThrowIfNull(email, nameof(email));
+
+        UserName = userName;
+        NormalizedUserName = userName.ToUpperInvariant();
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        NormalizedEmail = email.ToUpperInvariant();
+
+        Roles = new Collection<UserRole>();
+    }
 }

@@ -170,16 +170,19 @@ namespace IdentityServer.Controllers
             // user's display name
             var name = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Name)?.Value ??
                 claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
+
+            var first = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.GivenName)?.Value ??
+                claims.FirstOrDefault(x => x.Type == ClaimTypes.GivenName)?.Value;
+
+            var last = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.FamilyName)?.Value ??
+                claims.FirstOrDefault(x => x.Type == ClaimTypes.Surname)?.Value;
+
             if (name != null)
             {
                 filtered.Add(new Claim(JwtClaimTypes.Name, name));
             }
             else
             {
-                var first = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.GivenName)?.Value ??
-                    claims.FirstOrDefault(x => x.Type == ClaimTypes.GivenName)?.Value;
-                var last = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.FamilyName)?.Value ??
-                    claims.FirstOrDefault(x => x.Type == ClaimTypes.Surname)?.Value;
                 if (first != null && last != null)
                 {
                     filtered.Add(new Claim(JwtClaimTypes.Name, first + " " + last));
@@ -202,10 +205,7 @@ namespace IdentityServer.Controllers
                 filtered.Add(new Claim(JwtClaimTypes.Email, email));
             }
 
-            var user = new User
-            {
-                UserName = Guid.NewGuid().ToString(),
-            };
+            var user = new User(Guid.NewGuid(), Guid.NewGuid().ToString(), first, last, email);
             var identityResult = await _userManager.CreateAsync(user);
             if (!identityResult.Succeeded) throw new Exception(identityResult.Errors.First().Description);
 

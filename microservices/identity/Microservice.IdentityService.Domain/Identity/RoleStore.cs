@@ -1,7 +1,6 @@
-﻿using Microservice.IdentityService.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Microservice.IdentityServer.Controllers;
+namespace Microservice.IdentityService.Identity;
 
 public class RoleStore : IRoleStore<Role>
 {
@@ -57,6 +56,5 @@ public class RoleStore : IRoleStore<Role>
 
     public void Dispose()
     {
-        throw new NotImplementedException();
     }
 }

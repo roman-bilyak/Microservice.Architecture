@@ -1,7 +1,6 @@
 ﻿using Microservice.AspNetCore;
 using Microservice.Core;
 using Microservice.Core.Modularity;
-using Microservice.IdentityServer.Controllers;
 using Microservice.IdentityService;
 using Microservice.IdentityService.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -19,8 +18,6 @@ public sealed class IdentityServerModule : StartupModule
         IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
 
         services.AddIdentity<User, Role>()
-            .AddUserStore<UserStore>()
-            .AddRoleStore<RoleStore>()
             .AddDefaultTokenProviders();
 
         services.AddIdentityServer(options =>
@@ -34,7 +31,8 @@ public sealed class IdentityServerModule : StartupModule
             .AddInMemoryApiResources(configuration.GetSection("IdentityServer:ApiResources"))
             .AddInMemoryApiScopes(configuration.GetSection("IdentityServer:ApiScopes"))
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
-            .AddDeveloperSigningCredential();
+            .AddAspNetIdentity<User>()
+            .AddDeveloperSigningCredential();//not recommended for production - you need to store your key material somewhere secure
     }
 
     public override void Configure(IServiceProvider serviceProvider)

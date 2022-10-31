@@ -4,7 +4,20 @@ namespace Microservice.IdentityService.Identity;
 
 public class Role : Entity<Guid>, IAggregateRoot
 {
-    public Guid Id { get; set; }
+    public string Name { get; protected set; }
 
-    public string Name { get; set; }
+    protected Role()
+    {
+    }
+
+    public Role
+    (
+        Guid id,
+        string name
+    ) : base(id)
+    {
+        ArgumentNullException.ThrowIfNull(name, nameof(name));
+
+        Name = name;
+    }
 }
