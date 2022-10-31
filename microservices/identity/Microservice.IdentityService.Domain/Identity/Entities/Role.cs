@@ -4,7 +4,9 @@ namespace Microservice.IdentityService.Identity;
 
 public class Role : Entity<Guid>, IAggregateRoot
 {
-    public string Name { get; protected set; }
+    public string Name { get; protected internal set; }
+
+    public string NormalizedName { get; protected internal set; }
 
     protected Role()
     {
@@ -19,5 +21,6 @@ public class Role : Entity<Guid>, IAggregateRoot
         ArgumentNullException.ThrowIfNull(name, nameof(name));
 
         Name = name;
+        NormalizedName = name.ToUpperInvariant();
     }
 }

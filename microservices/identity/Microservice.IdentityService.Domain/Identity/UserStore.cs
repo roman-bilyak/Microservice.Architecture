@@ -1,6 +1,5 @@
 ﻿using Microservice.Database;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 
 namespace Microservice.IdentityService.Identity;
 
@@ -120,26 +119,6 @@ public class UserStore :
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
         return Task.FromResult(user.PasswordHash != null);
-    }
-
-    public Task AddClaimsAsync(User user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task ReplaceClaimAsync(User user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task RemoveClaimsAsync(User user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IList<User>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
     }
 
     public void Dispose()
