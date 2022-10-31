@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS.Queries;
+﻿namespace Microservice.CQRS;
 
 public abstract class ListQuery : IQuery
 {
