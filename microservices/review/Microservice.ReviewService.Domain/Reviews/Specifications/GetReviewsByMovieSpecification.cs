@@ -2,9 +2,9 @@
 
 namespace Microservice.ReviewService.Reviews;
 
-internal sealed class MovieReviewSpecification : Specification<Review>
+internal sealed class GetReviewsByMovieSpecification : Specification<Review>
 {
-    public MovieReviewSpecification(Guid movieId)
+    public GetReviewsByMovieSpecification(Guid movieId)
         : base(x => x.MovieId == movieId)
     {
     }

@@ -2,9 +2,9 @@
 
 namespace Microservice.ReviewService.Reviews;
 
-internal class UserReviewSpecification : Specification<Review>
+internal class GetReviewsByUserSpecification : Specification<Review>
 {
-    public UserReviewSpecification(Guid userId)
+    public GetReviewsByUserSpecification(Guid userId)
         : base(x => x.UserId == userId)
     {
     }
