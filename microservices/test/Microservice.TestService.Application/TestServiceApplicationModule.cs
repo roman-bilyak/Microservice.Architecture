@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.TestService;
 
-[DependsOn(typeof(TestServiceApplicationContractsModule))]
 [DependsOn(typeof(TestServiceDomainModule))]
 public sealed class TestServiceApplicationModule : StartupModule
 {

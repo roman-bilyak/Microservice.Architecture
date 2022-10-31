@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microservice.IdentityService.Application.Contracts\Microservice.IdentityService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj" />
     <ProjectReference Include="..\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj" />
   </ItemGroup>
 

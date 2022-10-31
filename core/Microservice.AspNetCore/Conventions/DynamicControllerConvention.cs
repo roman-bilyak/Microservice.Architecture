@@ -3,16 +3,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace Microservice.AspNetCore;
 
 public class DynamicControllerConvention : IApplicationModelConvention
 {
+    private readonly DynamicControllerOptions _options;
+
+    public DynamicControllerConvention(IOptions<DynamicControllerOptions> options)
+    {
+        _options = options.Value;
+    }
+
     public void Apply(ApplicationModel application)
     {
         foreach (ControllerModel controller in application.Controllers)
         {
+            Type controllerType = controller.ControllerType.AsType();
+            if (!_options.IsController(controllerType))
+            {
+                continue;
+            }
+
             NormalizeName(controller);
             SetGroupName(controller);
             SetVisibility(controller);
