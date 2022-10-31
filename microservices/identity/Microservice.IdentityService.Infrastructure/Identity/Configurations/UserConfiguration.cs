@@ -1,8 +1,7 @@
-﻿using Microservice.IdentityService.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Microservice.IdentityService.Database;
+namespace Microservice.IdentityService.Identity;
 
 internal class UserConfiguration : IEntityTypeConfiguration<User>
 {

@@ -2,9 +2,9 @@
 using Microservice.IdentityService.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.IdentityService.Database;
+namespace Microservice.IdentityService;
 
-public class IdentityServiceDbContext : BaseDbContext<IdentityServiceDbContext>
+internal sealed class IdentityServiceDbContext : BaseDbContext<IdentityServiceDbContext>
 {
     public DbSet<User> Users { get; set; }
 
