@@ -5,6 +5,10 @@ namespace Microservice.MovieService.Movies;
 
 public class GetMovieByIdQuery : ItemQuery<Guid>
 {
+    public GetMovieByIdQuery(Guid id) : base(id)
+    {
+    }
+
     public class GetMovieByIdQueryHandler : IQueryHandler<GetMovieByIdQuery>
     {
         private readonly IMovieManager _movieManager;

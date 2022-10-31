@@ -5,6 +5,10 @@ namespace Microservice.MovieService.Movies;
 
 public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
 {
+    public UpdateMovieCommand(Guid id, UpdateMovieDto model) : base(id, model)
+    {
+    }
+
     public class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand>
     {
         private readonly IMovieManager _movieManager;

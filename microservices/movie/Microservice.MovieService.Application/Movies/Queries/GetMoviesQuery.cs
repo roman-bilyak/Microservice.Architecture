@@ -5,6 +5,10 @@ namespace Microservice.MovieService.Movies;
 
 public class GetMoviesQuery : ListQuery
 {
+    public GetMoviesQuery(int pageIndex, int pageSize) : base(pageIndex, pageSize)
+    {
+    }
+
     public class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery>
     {
         private readonly IMovieManager _movieManager;

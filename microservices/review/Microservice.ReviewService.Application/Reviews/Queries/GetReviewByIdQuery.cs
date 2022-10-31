@@ -5,6 +5,10 @@ namespace Microservice.ReviewService.Reviews;
 
 public class GetReviewByIdQuery : ItemQuery<Guid>
 {
+    public GetReviewByIdQuery(Guid id) : base(id)
+    {
+    }
+
     public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>
     {
         private readonly IReviewManager _reviewManager;

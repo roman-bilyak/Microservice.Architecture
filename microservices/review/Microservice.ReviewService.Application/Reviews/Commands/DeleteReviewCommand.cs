@@ -5,6 +5,10 @@ namespace Microservice.ReviewService.Reviews;
 
 public class DeleteReviewCommand : DeleteCommand<Guid>
 {
+    public DeleteReviewCommand(Guid id) : base(id)
+    {
+    }
+
     public class DeleteReviewCommandHandler : ICommandHandler<DeleteReviewCommand>
     {
         private readonly IReviewManager _reviewManager;
