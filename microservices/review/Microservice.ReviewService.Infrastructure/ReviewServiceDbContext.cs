@@ -2,7 +2,7 @@
 using Microservice.ReviewService.Reviews;
 using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.ReviewService.Database;
+namespace Microservice.ReviewService;
 
 internal class ReviewServiceDbContext : BaseDbContext<ReviewServiceDbContext>
 {

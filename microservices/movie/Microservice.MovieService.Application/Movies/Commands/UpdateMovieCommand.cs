@@ -1,38 +1,37 @@
 ﻿using MassTransit;
-using Microservice.CQRS.Commands;
+using Microservice.CQRS;
 
-namespace Microservice.MovieService.Movies.Commands
+namespace Microservice.MovieService.Movies;
+
+public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
 {
-    public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
+    public class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand>
     {
-        public class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand>
+        private readonly IMovieManager _movieManager;
+
+        public UpdateMovieCommandHandler(IMovieManager movieManager)
         {
-            private readonly IMovieManager _movieManager;
+            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+        }
 
-            public UpdateMovieCommandHandler(IMovieManager movieManager)
+        public async Task Consume(ConsumeContext<UpdateMovieCommand> context)
+        {
+            Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
+            if (entity == null)
             {
-                _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+                throw new Exception($"Movie (id = '{context.Message.Id}') not found");
             }
 
-            public async Task Consume(ConsumeContext<UpdateMovieCommand> context)
+            entity.Title = context.Message.Model.Title;
+
+            entity = await _movieManager.UpdateAsync(entity, context.CancellationToken);
+            await _movieManager.SaveChangesAsync(context.CancellationToken);
+
+            await context.RespondAsync(new MovieDto
             {
-                Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-                if (entity == null)
-                {
-                    throw new Exception($"Movie (id = '{context.Message.Id}') not found");
-                }
-
-                entity.Title = context.Message.Model.Title;
-
-                entity = await _movieManager.UpdateAsync(entity, context.CancellationToken);
-                await _movieManager.SaveChangesAsync(context.CancellationToken);
-
-                await context.RespondAsync(new MovieDto
-                {
-                    Id = entity.Id,
-                    Title = entity.Title
-                });
-            }
+                Id = entity.Id,
+                Title = entity.Title
+            });
         }
     }
 }

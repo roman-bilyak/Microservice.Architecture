@@ -1,8 +1,7 @@
-﻿using Microservice.ReviewService.Reviews;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Microservice.ReviewService.Database;
+namespace Microservice.ReviewService.Reviews;
 
 internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
 {

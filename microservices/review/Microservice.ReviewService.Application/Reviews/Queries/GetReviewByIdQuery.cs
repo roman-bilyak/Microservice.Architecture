@@ -1,36 +1,35 @@
 ﻿using MassTransit;
-using Microservice.CQRS.Queries;
+using Microservice.CQRS;
 
-namespace Microservice.ReviewService.Reviews.Queries
+namespace Microservice.ReviewService.Reviews;
+
+public class GetReviewByIdQuery : ItemQuery<Guid>
 {
-    public class GetReviewByIdQuery : ItemQuery<Guid>
+    public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>
     {
-        public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>
+        private readonly IReviewManager _reviewManager;
+
+        public GetReviewByIdQueryHandler(IReviewManager reviewManager)
         {
-            private readonly IReviewManager _reviewManager;
+            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+        }
 
-            public GetReviewByIdQueryHandler(IReviewManager reviewManager)
+        public async Task Consume(ConsumeContext<GetReviewByIdQuery> context)
+        {
+            Review review = await _reviewManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
+            if (review == null)
             {
-                _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+                throw new Exception($"Review (id = '{context.Message.Id}') not found");
             }
 
-            public async Task Consume(ConsumeContext<GetReviewByIdQuery> context)
+            await context.RespondAsync(new ReviewDto
             {
-                Review review = await _reviewManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-                if (review == null)
-                {
-                    throw new Exception($"Review (id = '{context.Message.Id}') not found");
-                }
-
-                await context.RespondAsync(new ReviewDto
-                {
-                    Id = review.Id,
-                    UserId = review.UserId,
-                    MovieId = review.MovieId,
-                    Text = review.Text,
-                    Rating = review.Rating
-                });
-            }
+                Id = review.Id,
+                UserId = review.UserId,
+                MovieId = review.MovieId,
+                Text = review.Text,
+                Rating = review.Rating
+            });
         }
     }
 }
