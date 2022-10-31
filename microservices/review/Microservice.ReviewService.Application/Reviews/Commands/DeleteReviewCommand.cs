@@ -11,7 +11,9 @@ public class DeleteReviewCommand : DeleteCommand<Guid>
 
         public DeleteReviewCommandHandler(IReviewManager reviewManager)
         {
-            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+            ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
+
+            _reviewManager = reviewManager;
         }
 
         public async Task Consume(ConsumeContext<DeleteReviewCommand> context)

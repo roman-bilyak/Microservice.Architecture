@@ -11,18 +11,20 @@ public class DeleteMovieCommand : DeleteCommand<Guid>
 
         public DeleteMovieCommandHandler(IMovieManager movieManager)
         {
-            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+            ArgumentNullException.ThrowIfNull(movieManager, nameof(movieManager));
+
+            _movieManager = movieManager;
         }
 
         public async Task Consume(ConsumeContext<DeleteMovieCommand> context)
         {
-            Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-            if (entity == null)
+            Movie movie = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
+            if (movie == null)
             {
                 throw new Exception($"Movie (id = '{context.Message.Id}') not found");
             }
 
-            await _movieManager.DeleteAsync(entity, context.CancellationToken);
+            await _movieManager.DeleteAsync(movie, context.CancellationToken);
             await _movieManager.SaveChangesAsync(context.CancellationToken);
         }
     }
