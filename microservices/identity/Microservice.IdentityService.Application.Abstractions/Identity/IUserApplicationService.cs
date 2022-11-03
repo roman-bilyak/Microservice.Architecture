@@ -13,5 +13,13 @@ public interface IUserApplicationService : IApplicationService
 
     public Task<UserDto> UpdateUserAsync([Required] Guid id, [Required] UpdateUserDto user, CancellationToken cancellationToken);
 
-    public Task DeleteRoleAsync([Required] Guid id, CancellationToken cancellationToken);
+    public Task ChangeUserPasswordAsync([Required] Guid id, [Required] ChangeUserPasswordDto user, CancellationToken cancellationToken);
+
+    public Task<UserRoleListDto> GetUserRolesAsync([Required] Guid id, CancellationToken cancellationToken);
+
+    public Task AddUserToRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken);
+
+    public Task RemoveUserFromRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken);
+
+    public Task DeleteUserAsync([Required] Guid id, CancellationToken cancellationToken);
 }

@@ -11,9 +11,37 @@ public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto>
 
     public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand>
     {
-        public Task Consume(ConsumeContext<UpdateUserCommand> context)
+        private readonly IUserManager _userManager;
+
+        public UpdateUserCommandHandler(IUserManager userManager)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
+
+            _userManager = userManager;
+        }
+
+        public async Task Consume(ConsumeContext<UpdateUserCommand> context)
+        {
+            User user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (user == null)
+            {
+                throw new Exception($"User (id = '{context.Message.Id}') not found");
+            }
+
+            UpdateUserDto userDto = context.Message.Model;
+            user.Update(userDto.Name, userDto.FirstName, userDto.LastName, userDto.Email);
+
+            var result = await _userManager.UpdateAsync(user, context.CancellationToken);
+            result.CheckErrors();
+
+            context.Respond(new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            });
         }
     }
 }

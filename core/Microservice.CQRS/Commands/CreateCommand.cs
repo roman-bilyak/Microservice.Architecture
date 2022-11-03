@@ -1,6 +1,6 @@
 ﻿namespace Microservice.CQRS;
 
-public abstract class CreateCommand<TModel> : ICommand
+public abstract class CreateCommand<TModel> : Command
     where TModel : notnull
 {
     public TModel Model { get; protected set; }

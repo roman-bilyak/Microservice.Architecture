@@ -43,7 +43,29 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         return response.Message;
     }
 
-    public async Task DeleteRoleAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task ChangeUserPasswordAsync([Required] Guid id, [Required] ChangeUserPasswordDto user, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new ChangeUserPasswordCommand(id, user.OldPassword, user.Password), cancellationToken);
+    }
+
+    public async Task<UserRoleListDto> GetUserRolesAsync([Required] Guid id, CancellationToken cancellationToken)
+    {
+        var client = _mediator.CreateRequestClient<GetUserRolesQuery>();
+        var response = await client.GetResponse<UserRoleListDto>(new GetUserRolesQuery(id), cancellationToken);
+        return response.Message;
+    }
+
+    public async Task AddUserToRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new AddUserToRoleCommand(id, roleName), cancellationToken);
+    }
+
+    public async Task RemoveUserFromRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new RemoveUserFromRoleCommand(id, roleName), cancellationToken);
+    }
+
+    public async Task DeleteUserAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         await _mediator.Send(new DeleteUserCommand(id), cancellationToken);
     }

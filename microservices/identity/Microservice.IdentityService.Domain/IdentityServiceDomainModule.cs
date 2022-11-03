@@ -10,6 +10,9 @@ public sealed class IdentityServiceDomainModule : StartupModule
     {
         base.ConfigureServices(services);
 
+        services.AddScoped<IUserManager, UserManager>();
+        services.AddScoped<IRoleManager, RoleManager>();
+
         services.AddIdentityCore<User>(options =>
             {
                 options.Password.RequiredLength = 3;
