@@ -11,9 +11,28 @@ public class CreateRoleCommand : CreateCommand<CreateRoleDto>
 
     public class CreateRoleCommandHandler : ICommandHandler<CreateRoleCommand>
     {
-        public Task Consume(ConsumeContext<CreateRoleCommand> context)
+        private readonly IRoleManager _roleManager;
+
+        public CreateRoleCommandHandler(IRoleManager roleManager)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(roleManager, nameof(roleManager));
+
+            _roleManager = roleManager;
+        }
+
+        public async Task Consume(ConsumeContext<CreateRoleCommand> context)
+        {
+            CreateRoleDto roleDto = context.Message.Model;
+
+            Role role = new Role(Guid.NewGuid(), roleDto.Name);
+            var result = await _roleManager.CreateAsync(role, context.CancellationToken);
+            result.CheckErrors();
+
+            context.Respond(new RoleDto
+            {
+                Id = role.Id,
+                Name = role.Name
+            });
         }
     }
 }

@@ -1,13 +1,16 @@
 ﻿using Microservice.Database;
+using System;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Xml.Linq;
 
 namespace Microservice.IdentityService.Identity;
 
 public class User : Entity<Guid>, IAggregateRoot
 {
-    public string UserName { get; protected internal set; }
+    public string Name { get; protected internal set; }
 
-    public string NormalizedUserName { get; protected internal set; }
+    public string NormalizedName { get; protected internal set; }
 
     public string FirstName { get; protected set; }
 
@@ -30,24 +33,56 @@ public class User : Entity<Guid>, IAggregateRoot
     public User
     (
         Guid id,
-        string userName,
+        string name,
         string firstName,
         string lastName,
         string email
     ) : base(id)
     {
-        ArgumentNullException.ThrowIfNull(userName, nameof(userName));
+        
+        Update(name, firstName, lastName, email); ;
+
+        Roles = new Collection<UserRole>();
+    }
+
+    public void Update(string name, string firstName, string lastName, string email)
+    {
+        ArgumentNullException.ThrowIfNull(name, nameof(name));
         ArgumentNullException.ThrowIfNull(firstName, nameof(firstName));
         ArgumentNullException.ThrowIfNull(lastName, nameof(lastName));
         ArgumentNullException.ThrowIfNull(email, nameof(email));
 
-        UserName = userName;
-        NormalizedUserName = userName.ToUpperInvariant();
+        Name = name;
+        NormalizedName = name.ToUpperInvariant();
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         NormalizedEmail = email.ToUpperInvariant();
+    }
 
-        Roles = new Collection<UserRole>();
+    public void AddRole(Guid roleId)
+    {
+        if (IsInRole(roleId))
+        {
+            return;
+        }
+
+        Roles.Add(new UserRole(Id, roleId));
+    }
+
+    public void RemoveRole(Guid roleId)
+    {
+        if (!IsInRole(roleId))
+        {
+            return;
+        }
+
+        Roles.Where(x => x.RoleId == roleId).ToList()
+            .ForEach(x => Roles.Remove(x));
+    }
+
+    public bool IsInRole(Guid roleId)
+    {
+        return Roles.Any(x => x.RoleId == roleId);
     }
 }

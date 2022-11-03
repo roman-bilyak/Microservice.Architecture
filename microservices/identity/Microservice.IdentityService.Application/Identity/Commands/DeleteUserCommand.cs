@@ -11,9 +11,25 @@ public class DeleteUserCommand : DeleteCommand<Guid>
 
     public class DeleteUserCommandHandler : ICommandHandler<DeleteUserCommand>
     {
-        public Task Consume(ConsumeContext<DeleteUserCommand> context)
+        private readonly IUserManager _userManager;
+
+        public DeleteUserCommandHandler(IUserManager userManager)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
+
+            _userManager = userManager;
+        }
+
+        public async Task Consume(ConsumeContext<DeleteUserCommand> context)
+        {
+            User user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (user == null)
+            {
+                throw new Exception($"User (id = '{context.Message.Id}') not found");
+            }
+
+            var result = await _userManager.DeleteAsync(user, context.CancellationToken);
+            result.CheckErrors();
         }
     }
 }

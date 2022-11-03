@@ -1,6 +1,6 @@
 ﻿namespace Microservice.CQRS;
 
-public abstract class UpdateCommand<TId, TModel> : ICommand
+public abstract class UpdateCommand<TId, TModel> : Command
     where TId : struct
     where TModel : notnull
 {

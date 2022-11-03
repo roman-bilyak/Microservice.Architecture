@@ -11,9 +11,25 @@ public class DeleteRoleCommand : DeleteCommand<Guid>
 
     public class DeleteRoleCommandHandler : ICommandHandler<DeleteRoleCommand>
     {
-        public Task Consume(ConsumeContext<DeleteRoleCommand> context)
+        private readonly IRoleManager _roleManager;
+
+        public DeleteRoleCommandHandler(IRoleManager roleManager)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(roleManager, nameof(roleManager));
+
+            _roleManager = roleManager;
+        }
+
+        public async Task Consume(ConsumeContext<DeleteRoleCommand> context)
+        {
+            Role role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (role == null)
+            {
+                throw new Exception($"Role (id = '{context.Message.Id}') not found");
+            }
+
+            var result = await _roleManager.DeleteAsync(role, context.CancellationToken);
+            result.CheckErrors();
         }
     }
 }
