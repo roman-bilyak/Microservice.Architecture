@@ -20,7 +20,7 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
     public async Task<GetUserReviewsDto> GetUserReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUserReviewsQuery>();
-        var response = await client.GetResponse<GetUserReviewsDto>(new GetUserReviewsQuery { UserId = id, PageIndex = pageIndex, PageSize = pageSize }, cancellationToken);
+        var response = await client.GetResponse<GetUserReviewsDto>(new GetUserReviewsQuery(id, pageIndex, pageSize), cancellationToken);
         return response.Message;
     }
 }

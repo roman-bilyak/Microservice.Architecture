@@ -5,13 +5,19 @@ namespace Microservice.ReviewService.Reviews;
 
 public class GetReviewByIdQuery : ItemQuery<Guid>
 {
+    public GetReviewByIdQuery(Guid id) : base(id)
+    {
+    }
+
     public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>
     {
         private readonly IReviewManager _reviewManager;
 
         public GetReviewByIdQueryHandler(IReviewManager reviewManager)
         {
-            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+            ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
+
+            _reviewManager = reviewManager;
         }
 
         public async Task Consume(ConsumeContext<GetReviewByIdQuery> context)

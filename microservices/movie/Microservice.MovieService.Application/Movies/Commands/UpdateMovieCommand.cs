@@ -5,32 +5,38 @@ namespace Microservice.MovieService.Movies;
 
 public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
 {
+    public UpdateMovieCommand(Guid id, UpdateMovieDto model) : base(id, model)
+    {
+    }
+
     public class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand>
     {
         private readonly IMovieManager _movieManager;
 
         public UpdateMovieCommandHandler(IMovieManager movieManager)
         {
-            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+            ArgumentNullException.ThrowIfNull(movieManager, nameof(movieManager));
+
+            _movieManager = movieManager;
         }
 
         public async Task Consume(ConsumeContext<UpdateMovieCommand> context)
         {
-            Movie entity = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-            if (entity == null)
+            Movie movie = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
+            if (movie == null)
             {
                 throw new Exception($"Movie (id = '{context.Message.Id}') not found");
             }
 
-            entity.Title = context.Message.Model.Title;
+            movie.SetTitle(context.Message.Model.Title);
 
-            entity = await _movieManager.UpdateAsync(entity, context.CancellationToken);
+            movie = await _movieManager.UpdateAsync(movie, context.CancellationToken);
             await _movieManager.SaveChangesAsync(context.CancellationToken);
 
             await context.RespondAsync(new MovieDto
             {
-                Id = entity.Id,
-                Title = entity.Title
+                Id = movie.Id,
+                Title = movie.Title
             });
         }
     }

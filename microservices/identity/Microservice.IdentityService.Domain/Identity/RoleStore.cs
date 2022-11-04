@@ -79,7 +79,7 @@ public class RoleStore : IRoleStore<Role>
         ArgumentNullException.ThrowIfNull(role, nameof(role));
         ArgumentNullException.ThrowIfNull(normalizedName, nameof(normalizedName));
 
-        role.Name = normalizedName;
+        role.NormalizedName = normalizedName;
         return Task.CompletedTask;
     }
 
