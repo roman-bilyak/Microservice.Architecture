@@ -5,29 +5,33 @@ namespace Microservice.MovieService.Movies;
 
 public class CreateMovieCommand : CreateCommand<CreateMovieDto>
 {
+    public CreateMovieCommand(CreateMovieDto model) : base(model)
+    {
+    }
+
     public class CreateMovieCommandHandler : ICommandHandler<CreateMovieCommand>
     {
         private readonly IMovieManager _movieManager;
 
         public CreateMovieCommandHandler(IMovieManager movieManager)
         {
-            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+            ArgumentNullException.ThrowIfNull(movieManager, nameof(movieManager));
+
+            _movieManager = movieManager;
         }
 
         public async Task Consume(ConsumeContext<CreateMovieCommand> context)
         {
-            Movie entity = new Movie
-            {
-                Title = context.Message.Model.Title
-            };
+            CreateMovieDto movieDto = context.Message.Model;
+            Movie movie = new Movie(Guid.NewGuid(), movieDto.Title);
 
-            entity = await _movieManager.AddAsync(entity, context.CancellationToken);
+            movie = await _movieManager.AddAsync(movie, context.CancellationToken);
             await _movieManager.SaveChangesAsync(context.CancellationToken);
 
             await context.RespondAsync(new MovieDto
             {
-                Id = entity.Id,
-                Title = entity.Title
+                Id = movie.Id,
+                Title = movie.Title
             });
         }
     }

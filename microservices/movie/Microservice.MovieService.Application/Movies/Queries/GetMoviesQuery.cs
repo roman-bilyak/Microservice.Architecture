@@ -5,13 +5,19 @@ namespace Microservice.MovieService.Movies;
 
 public class GetMoviesQuery : ListQuery
 {
+    public GetMoviesQuery(int pageIndex, int pageSize) : base(pageIndex, pageSize)
+    {
+    }
+
     public class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery>
     {
         private readonly IMovieManager _movieManager;
 
         public GetMoviesQueryHandler(IMovieManager movieManager)
         {
-            _movieManager = movieManager ?? throw new ArgumentNullException(nameof(movieManager));
+            ArgumentNullException.ThrowIfNull(movieManager, nameof(movieManager));
+
+            _movieManager = movieManager;
         }
 
         public async Task Consume(ConsumeContext<GetMoviesQuery> context)

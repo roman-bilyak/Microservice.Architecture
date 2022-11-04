@@ -5,7 +5,12 @@ namespace Microservice.ReviewService.Reviews;
 
 public class GetUserReviewsQuery : ListQuery
 {
-    public Guid UserId { get; init; }
+    public Guid UserId { get; protected set; }
+
+    public GetUserReviewsQuery(Guid userId, int pageIndex, int pageSize) : base(pageIndex, pageSize)
+    {
+        UserId = userId;
+    }
 
     public class GetUserReviewsQueryHandler : IQueryHandler<GetUserReviewsQuery>
     {
@@ -13,7 +18,9 @@ public class GetUserReviewsQuery : ListQuery
 
         public GetUserReviewsQueryHandler(IReviewManager reviewManager)
         {
-            _reviewManager = reviewManager ?? throw new ArgumentNullException(nameof(reviewManager));
+            ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
+
+            _reviewManager = reviewManager;
         }
 
         public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)

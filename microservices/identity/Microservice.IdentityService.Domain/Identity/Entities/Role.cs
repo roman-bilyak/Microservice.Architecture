@@ -18,6 +18,11 @@ public class Role : Entity<Guid>, IAggregateRoot
         string name
     ) : base(id)
     {
+        Update(name);
+    }
+
+    public void Update(string name)
+    {
         ArgumentNullException.ThrowIfNull(name, nameof(name));
 
         Name = name;

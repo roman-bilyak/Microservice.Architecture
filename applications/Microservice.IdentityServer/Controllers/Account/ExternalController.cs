@@ -108,7 +108,7 @@ namespace IdentityServer.Controllers
             // issue authentication cookie for user
             var isuser = new IdentityServerUser(user.Id.ToString())
             {
-                DisplayName = user.UserName,
+                DisplayName = user.Name,
                 IdentityProvider = provider,
                 AdditionalClaims = additionalLocalClaims
             };
@@ -123,7 +123,7 @@ namespace IdentityServer.Controllers
 
             // check if external login is in the context of an OIDC request
             var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-            await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id.ToString(), user.UserName, true, context?.Client.ClientId));
+            await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id.ToString(), user.Name, true, context?.Client.ClientId));
 
             if (context != null)
             {

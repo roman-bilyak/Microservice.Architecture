@@ -1,4 +1,5 @@
 ﻿using Microservice.Core.Modularity;
+using Microservice.CQRS;
 using Microservice.IdentityService.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,5 +14,7 @@ public sealed class IdentityServiceApplicationModule : StartupModule
 
         services.AddTransient<IUserApplicationService, UserApplicationService>();
         services.AddTransient<IRoleApplicationService, RoleApplicationService>();
+
+        services.AddCQRS(typeof(IdentityServiceApplicationModule).Assembly);
     }
 }

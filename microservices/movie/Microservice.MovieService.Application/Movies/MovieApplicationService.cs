@@ -20,33 +20,33 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
     public async Task<MovieDto> GetMovieAsync([Required] Guid id, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetMovieByIdQuery>();
-        var response = await client.GetResponse<MovieDto>(new GetMovieByIdQuery { Id = id }, cancellationToken);
+        var response = await client.GetResponse<MovieDto>(new GetMovieByIdQuery(id), cancellationToken);
         return response.Message;
     }
 
     public async Task<MovieListDto> GetMoviesAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetMoviesQuery>();
-        var response = await client.GetResponse<MovieListDto>(new GetMoviesQuery { PageIndex = pageIndex, PageSize = pageSize }, cancellationToken);
+        var response = await client.GetResponse<MovieListDto>(new GetMoviesQuery(pageIndex, pageSize), cancellationToken);
         return response.Message;
     }
 
     public async Task<MovieDto> CreateMovieAsync([Required] CreateMovieDto movie, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<CreateMovieCommand>();
-        var response = await client.GetResponse<MovieDto>(new CreateMovieCommand { Model = movie }, cancellationToken);
+        var response = await client.GetResponse<MovieDto>(new CreateMovieCommand(movie), cancellationToken);
         return response.Message;
     }
 
     public async Task<MovieDto> UpdateMovieAsync([Required] Guid id, [Required] UpdateMovieDto movie, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<UpdateMovieCommand>();
-        var response = await client.GetResponse<MovieDto>(new UpdateMovieCommand { Id = id, Model = movie }, cancellationToken);
+        var response = await client.GetResponse<MovieDto>(new UpdateMovieCommand(id, movie), cancellationToken);
         return response.Message;
     }
 
     public async Task DeleteMovieAsync([Required] Guid id, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteMovieCommand { Id = id }, cancellationToken);
+        await _mediator.Send(new DeleteMovieCommand(id), cancellationToken);
     }
 }
