@@ -10,9 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="NBomber" Version="2.1.2" />
-    <PackageReference Include="NBomber.Http" Version="2.0.1" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="NBomber" Version="3.3.0" />
+    <PackageReference Include="NBomber.Http" Version="3.0.3" />
   </ItemGroup>
 
   <ItemGroup>
