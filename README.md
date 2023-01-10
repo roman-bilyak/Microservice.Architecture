@@ -32,7 +32,7 @@ Other methods of running this project are described below:
 
 Prerequisites:
 
-- [.Net 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- [.Net 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) (Included in [Visual Studio Community 2022 v17.4.4](https://visualstudio.microsoft.com/vs/community/))
 - [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [Kubernates](https://kubernetes.io/releases/download/)
@@ -105,7 +105,7 @@ Prerequisites:
 
 Prerequisites:
 
-- [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/)
+- [Visual Studio Community 2022 (v17.4.4)](https://visualstudio.microsoft.com/vs/community/)
 - [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
 
 Set **gateway** and **microservices** as startup projects. Your can also run the **docker-compose-infrastructure** project instead of installing and configuring infrastructure services by yourself.
