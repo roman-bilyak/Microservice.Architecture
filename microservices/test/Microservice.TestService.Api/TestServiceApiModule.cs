@@ -8,9 +8,9 @@ using Microservice.TestService.Tests;
 
 namespace Microservice.TestService;
 
-[DependsOn(typeof(TestServiceApplicationModule))]
-[DependsOn(typeof(TestServiceInfrastructureModule))]
-[DependsOn(typeof(ApiModule))]
+[DependsOn<TestServiceApplicationModule>]
+[DependsOn<TestServiceInfrastructureModule>]
+[DependsOn<ApiModule>]
 public sealed class TestServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

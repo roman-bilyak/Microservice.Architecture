@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Microservice.IdentityServer;
 
-[DependsOn(typeof(AspNetCoreModule))]
-[DependsOn(typeof(IdentityServiceInfrastructureModule))]
+[DependsOn<AspNetCoreModule>]
+[DependsOn<IdentityServiceInfrastructureModule>]
 public sealed class IdentityServerModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
