@@ -5,9 +5,9 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.MovieService;
 
-[DependsOn(typeof(MovieServiceApplicationModule))]
-[DependsOn(typeof(MovieServiceInfrastructureModule))]
-[DependsOn(typeof(ApiModule))]
+[DependsOn<MovieServiceApplicationModule>]
+[DependsOn<MovieServiceInfrastructureModule>]
+[DependsOn<ApiModule>]
 public sealed class MovieServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

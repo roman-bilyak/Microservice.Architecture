@@ -5,9 +5,9 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.IdentityService;
 
-[DependsOn(typeof(IdentityServiceApplicationModule))]
-[DependsOn(typeof(IdentityServiceInfrastructureModule))]
-[DependsOn(typeof(ApiModule))]
+[DependsOn<IdentityServiceApplicationModule>]
+[DependsOn<IdentityServiceInfrastructureModule>]
+[DependsOn<ApiModule>]
 public sealed class IdentityServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

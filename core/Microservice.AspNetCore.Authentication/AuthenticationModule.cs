@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Microservice.AspNetCore.Authentication;
 
-[DependsOn(typeof(AspNetCoreModule))]
+[DependsOn<AspNetCoreModule>]
 public sealed class AuthenticationModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

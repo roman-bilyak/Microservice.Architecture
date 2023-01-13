@@ -2,7 +2,7 @@
 
 namespace Microservice.PaymentService;
 
-[DependsOn(typeof(PaymentServiceDomainModule))]
+[DependsOn<PaymentServiceDomainModule>]
 public sealed class PaymentServiceInfrastructureModule : StartupModule
 {
 }

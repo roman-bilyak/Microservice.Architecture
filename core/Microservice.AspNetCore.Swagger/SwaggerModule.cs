@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 
 namespace Microservice.AspNetCore.Swagger;
 
-[DependsOn(typeof(AspNetCoreModule))]
+[DependsOn<AspNetCoreModule>]
 public class SwaggerModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
