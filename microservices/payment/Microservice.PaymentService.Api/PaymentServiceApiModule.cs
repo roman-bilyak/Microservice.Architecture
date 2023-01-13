@@ -5,9 +5,9 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.PaymentService;
 
-[DependsOn(typeof(PaymentServiceApplicationModule))]
-[DependsOn(typeof(PaymentServiceInfrastructureModule))]
-[DependsOn(typeof(ApiModule))]
+[DependsOn<PaymentServiceApplicationModule>]
+[DependsOn<PaymentServiceInfrastructureModule>]
+[DependsOn<ApiModule>]
 public sealed class PaymentServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
