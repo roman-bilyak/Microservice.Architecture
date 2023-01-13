@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.IdentityService;
 
-[DependsOn(typeof(IdentityServiceDomainModule))]
+[DependsOn<IdentityServiceDomainModule>]
 public sealed class IdentityServiceApplicationModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

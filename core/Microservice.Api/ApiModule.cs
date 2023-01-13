@@ -5,9 +5,9 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.Api
 {
-    [DependsOn(typeof(AuthenticationModule))]
-    [DependsOn(typeof(AuthorizationModule))]
-    [DependsOn(typeof(SwaggerModule))]
+    [DependsOn<AuthenticationModule>]
+    [DependsOn<AuthorizationModule>]
+    [DependsOn<SwaggerModule>]
     public sealed class ApiModule : StartupModule
     {
     }

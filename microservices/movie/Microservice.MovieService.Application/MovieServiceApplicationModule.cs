@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.MovieService;
 
-[DependsOn(typeof(MovieServiceDomainModule))]
+[DependsOn<MovieServiceDomainModule>]
 public sealed class MovieServiceApplicationModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)

@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.AspNetCore.Authorization;
 
-[DependsOn(typeof(AuthenticationModule))]
+[DependsOn<AuthenticationModule>]
 public sealed class AuthorizationModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
