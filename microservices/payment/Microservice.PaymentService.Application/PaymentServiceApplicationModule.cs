@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.PaymentService;
 
-[DependsOn(typeof(PaymentServiceDomainModule))]
+[DependsOn<PaymentServiceDomainModule>]
 public sealed class PaymentServiceApplicationModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
