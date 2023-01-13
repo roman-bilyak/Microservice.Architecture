@@ -31,14 +31,14 @@ public class UserStore :
         return Task.FromResult(user.Id.ToString());
     }
 
-    public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken)
+    public Task<string?> GetUserNameAsync(User user, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
         return Task.FromResult(user.Name);
     }
 
-    public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
+    public Task SetUserNameAsync(User user, string? userName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
@@ -46,14 +46,14 @@ public class UserStore :
         return Task.CompletedTask;
     }
 
-    public Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
+    public Task<string?> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
         return Task.FromResult(user.NormalizedName);
     }
 
-    public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
+    public Task SetNormalizedUserNameAsync(User user, string? normalizedName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
@@ -91,23 +91,23 @@ public class UserStore :
         return IdentityResult.Success;
     }
 
-    public async Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
+    public async Task<User?> FindByIdAsync(string userId, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(userId, nameof(userId));
 
-        FindUserByIdSpecification specification = new FindUserByIdSpecification(Guid.Parse(userId));
+        FindUserByIdSpecification specification = new(Guid.Parse(userId));
         return await _userRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
-    public async Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+    public async Task<User?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(normalizedUserName, nameof(normalizedUserName));
 
-        FindUserByNormalizedUserNameSpecification specification = new FindUserByNormalizedUserNameSpecification(normalizedUserName);
+        FindUserByNormalizedUserNameSpecification specification = new(normalizedUserName);
         return await _userRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
-    public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
+    public Task SetPasswordHashAsync(User user, string? passwordHash, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
         ArgumentNullException.ThrowIfNull(passwordHash, nameof(passwordHash));
@@ -116,7 +116,7 @@ public class UserStore :
         return Task.CompletedTask;
     }
 
-    public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
+    public Task<string?> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
@@ -135,8 +135,8 @@ public class UserStore :
         ArgumentNullException.ThrowIfNull(user, nameof(user));
         ArgumentNullException.ThrowIfNull(roleName, nameof(roleName));
 
-        Role role = await _roleStore.FindByNameAsync(roleName, cancellationToken);
-        if (role == null)
+        Role? role = await _roleStore.FindByNameAsync(roleName, cancellationToken);
+        if (role is null)
         {
             throw new InvalidOperationException($"Role '{roleName}' doesn't exist");
         }
@@ -149,8 +149,8 @@ public class UserStore :
         ArgumentNullException.ThrowIfNull(user, nameof(user));
         ArgumentNullException.ThrowIfNull(roleName, nameof(roleName));
 
-        Role role = await _roleStore.FindByNameAsync(roleName, cancellationToken);
-        if (role == null)
+        Role? role = await _roleStore.FindByNameAsync(roleName, cancellationToken);
+        if (role is null)
         {
             return;
         }
@@ -162,11 +162,14 @@ public class UserStore :
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
-        List<string> roles = new List<string>();
+        List<string> roles = new();
         foreach (UserRole userRole in user.Roles)
         {
-            Role role = await _roleStore.FindByIdAsync(userRole.RoleId.ToString(), cancellationToken);
-            roles.Add(role.Name);
+            Role? role = await _roleStore.FindByIdAsync(userRole.RoleId.ToString(), cancellationToken);
+            if (role is not null)
+            {
+                roles.Add(role.Name);
+            }
         }
         return roles;
     }
@@ -176,8 +179,8 @@ public class UserStore :
         ArgumentNullException.ThrowIfNull(user, nameof(user));
         ArgumentNullException.ThrowIfNull(roleName, nameof(roleName));
 
-        Role role = await _roleStore.FindByNameAsync(roleName, cancellationToken);
-        if (role == null)
+        Role? role = await _roleStore.FindByNameAsync(roleName, cancellationToken);
+        if (role is null)
         {
             return false;
         }

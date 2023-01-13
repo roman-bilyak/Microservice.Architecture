@@ -51,14 +51,14 @@ public class RoleStore : IRoleStore<Role>
         return Task.FromResult(role.Id.ToString());
     }
 
-    public Task<string> GetRoleNameAsync(Role role, CancellationToken cancellationToken)
+    public Task<string?> GetRoleNameAsync(Role role, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(role, nameof(role));
 
         return Task.FromResult(role.Name);
     }
 
-    public Task SetRoleNameAsync(Role role, string roleName, CancellationToken cancellationToken)
+    public Task SetRoleNameAsync(Role role, string? roleName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(role, nameof(role));
         ArgumentNullException.ThrowIfNull(roleName, nameof(roleName));
@@ -67,14 +67,14 @@ public class RoleStore : IRoleStore<Role>
         return Task.CompletedTask;
     }
 
-    public Task<string> GetNormalizedRoleNameAsync(Role role, CancellationToken cancellationToken)
+    public Task<string?> GetNormalizedRoleNameAsync(Role role, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(role, nameof(role));
 
         return Task.FromResult(role.NormalizedName);
     }
 
-    public Task SetNormalizedRoleNameAsync(Role role, string normalizedName, CancellationToken cancellationToken)
+    public Task SetNormalizedRoleNameAsync(Role role, string? normalizedName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(role, nameof(role));
         ArgumentNullException.ThrowIfNull(normalizedName, nameof(normalizedName));
@@ -83,14 +83,14 @@ public class RoleStore : IRoleStore<Role>
         return Task.CompletedTask;
     }
 
-    public async Task<Role> FindByIdAsync(string roleId, CancellationToken cancellationToken)
+    public async Task<Role?> FindByIdAsync(string roleId, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(roleId, nameof(roleId));
 
         return await _roleRepository.GetByIdAsync(Guid.Parse(roleId), cancellationToken);
     }
 
-    public async Task<Role> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
+    public async Task<Role?> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(normalizedRoleName, nameof(normalizedRoleName));
 
