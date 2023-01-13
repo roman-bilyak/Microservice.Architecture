@@ -5,9 +5,9 @@ using Microservice.Core.Modularity;
 
 namespace Microservice.ReviewService;
 
-[DependsOn(typeof(ReviewServiceApplicationModule))]
-[DependsOn(typeof(ReviewServiceInfrastructureModule))]
-[DependsOn(typeof(ApiModule))]
+[DependsOn<ReviewServiceApplicationModule>]
+[DependsOn<ReviewServiceInfrastructureModule>]
+[DependsOn<ApiModule>]
 public sealed class ReviewServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services)
