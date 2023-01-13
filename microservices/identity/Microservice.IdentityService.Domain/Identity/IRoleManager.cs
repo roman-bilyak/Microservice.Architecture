@@ -4,7 +4,7 @@ namespace Microservice.IdentityService.Identity;
 
 public interface IRoleManager
 {
-    Task<Role> FindByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Role?> FindByIdAsync(Guid id, CancellationToken cancellationToken);
 
     Task<IdentityResult> CreateAsync(Role role, CancellationToken cancellationToken);
 

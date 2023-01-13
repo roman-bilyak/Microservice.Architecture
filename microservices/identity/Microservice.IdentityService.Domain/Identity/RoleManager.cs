@@ -1,7 +1,6 @@
 ﻿using Microservice.Core.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using System.Data;
 
 namespace Microservice.IdentityService.Identity;
 
@@ -22,7 +21,7 @@ public class RoleManager : RoleManager<Role>, IRoleManager, IDomainService
 
     protected override CancellationToken CancellationToken => _cancellationToken;
 
-    public async Task<Role> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<Role?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         _cancellationToken = cancellationToken;
         return await FindByIdAsync(id.ToString());

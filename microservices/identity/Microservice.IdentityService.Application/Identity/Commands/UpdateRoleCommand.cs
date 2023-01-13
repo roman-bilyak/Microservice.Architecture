@@ -23,8 +23,8 @@ public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto>
 
         public async Task Consume(ConsumeContext<UpdateRoleCommand> context)
         {
-            Role role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (role == null)
+            Role? role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (role is null)
             {
                 throw new Exception($"Role (id = '{context.Message.Id}') not found");
             }

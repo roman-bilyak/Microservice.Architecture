@@ -9,9 +9,9 @@ public interface IReadRepository<TEntity, TKey>
     where TEntity : class, IAggregateRoot 
     where TKey : notnull
 {
-    Task<TEntity> GetByIdAsync(TKey id, CancellationToken cancellationToken);
+    Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken);
 
-    Task<TEntity> SingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken);
+    Task<TEntity?> SingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken);
 
     Task<List<TEntity>> ListAsync(CancellationToken cancellationToken);
 

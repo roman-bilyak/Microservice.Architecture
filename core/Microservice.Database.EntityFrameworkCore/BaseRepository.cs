@@ -23,12 +23,12 @@ public class BaseRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TK
         _dbContext = dbContext;
     }
 
-    public virtual async Task<TEntity> GetByIdAsync(TKey id, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Set<TEntity>().FindAsync(new object[] { id }, cancellationToken);
     }
 
-    public virtual async Task<TEntity> SingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken)
+    public virtual async Task<TEntity?> SingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken)
     {
         return await _dbContext.Set<TEntity>().ApplySpecification(specification).SingleOrDefaultAsync(cancellationToken);
     }

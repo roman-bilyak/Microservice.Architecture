@@ -22,8 +22,8 @@ public class DeleteRoleCommand : DeleteCommand<Guid>
 
         public async Task Consume(ConsumeContext<DeleteRoleCommand> context)
         {
-            Role role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (role == null)
+            Role? role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (role is null)
             {
                 throw new Exception($"Role (id = '{context.Message.Id}') not found");
             }
