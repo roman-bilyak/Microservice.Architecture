@@ -86,7 +86,7 @@ Go to http://localhost to view gateway methods.
 
 Prerequisites:
 
-- [.Net 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- [.Net 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) (Included in [Visual Studio Community 2022 v17.4.4](https://visualstudio.microsoft.com/vs/community/))
 
 - [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
 1. Go to the folder [deploy\docker-compose-infrastructure](deploy/docker-compose-infrastructure) and run the following docker-compose command in CMD or PowerShell:
