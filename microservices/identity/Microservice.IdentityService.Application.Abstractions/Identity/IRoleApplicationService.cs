@@ -5,9 +5,9 @@ namespace Microservice.IdentityService.Identity;
 
 public interface IRoleApplicationService : IApplicationService
 {
-    public Task<RoleDto> GetAsync([Required] Guid id, CancellationToken cancellationToken);
-
     public Task<RoleListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
+
+    public Task<RoleDto> GetAsync([Required] Guid id, CancellationToken cancellationToken);
 
     public Task<RoleDto> CreateAsync([Required] CreateRoleDto role, CancellationToken cancellationToken);
 

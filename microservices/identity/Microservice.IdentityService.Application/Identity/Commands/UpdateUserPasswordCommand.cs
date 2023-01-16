@@ -3,7 +3,7 @@ using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class ChangeUserPasswordCommand : Command
+public class UpdateUserPasswordCommand : Command
 {
     public Guid UserId { get; protected set; }
 
@@ -11,7 +11,7 @@ public class ChangeUserPasswordCommand : Command
 
     public string Password { get; protected set; }
 
-    public ChangeUserPasswordCommand(Guid userId, string oldPassword, string password)
+    public UpdateUserPasswordCommand(Guid userId, string oldPassword, string password)
     {
         ArgumentNullException.ThrowIfNull(oldPassword, nameof(oldPassword));
         ArgumentNullException.ThrowIfNull(password, nameof(password));
@@ -21,18 +21,18 @@ public class ChangeUserPasswordCommand : Command
         Password = password;
     }
 
-    public class ChangeUserPasswordCommandHandler : ICommandHandler<ChangeUserPasswordCommand>
+    public class UpdateUserPasswordCommandHandler : ICommandHandler<UpdateUserPasswordCommand>
     {
         private readonly IUserManager _userManager;
 
-        public ChangeUserPasswordCommandHandler(IUserManager userManager)
+        public UpdateUserPasswordCommandHandler(IUserManager userManager)
         {
             ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
 
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<ChangeUserPasswordCommand> context)
+        public async Task Consume(ConsumeContext<UpdateUserPasswordCommand> context)
         {
             User user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
             if (user == null)

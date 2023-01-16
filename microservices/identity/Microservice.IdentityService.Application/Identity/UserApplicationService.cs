@@ -15,17 +15,17 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         _mediator = mediator;
     }
 
-    public async Task<UserDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
-    {
-        var client = _mediator.CreateRequestClient<GetUserByIdQuery>();
-        var response = await client.GetResponse<UserDto>(new GetUserByIdQuery(id), cancellationToken);
-        return response.Message;
-    }
-
     public async Task<UserListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUsersQuery>();
         var response = await client.GetResponse<UserListDto>(new GetUsersQuery(pageIndex, pageSize), cancellationToken);
+        return response.Message;
+    }
+
+    public async Task<UserDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    {
+        var client = _mediator.CreateRequestClient<GetUserByIdQuery>();
+        var response = await client.GetResponse<UserDto>(new GetUserByIdQuery(id), cancellationToken);
         return response.Message;
     }
 
@@ -43,9 +43,14 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         return response.Message;
     }
 
-    public async Task ChangePasswordAsync([Required] Guid id, [Required] ChangeUserPasswordDto user, CancellationToken cancellationToken)
+    public async Task UpdatePasswordAsync([Required] Guid id, [Required] UpdateUserPasswordDto user, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new ChangeUserPasswordCommand(id, user.OldPassword, user.Password), cancellationToken);
+        await _mediator.Send(new UpdateUserPasswordCommand(id, user.OldPassword, user.Password), cancellationToken);
+    }
+
+    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new DeleteUserCommand(id), cancellationToken);
     }
 
     public async Task<UserRoleListDto> GetRolesAsync([Required] Guid id, CancellationToken cancellationToken)
@@ -55,18 +60,13 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         return response.Message;
     }
 
-    public async Task AddToRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
+    public async Task AssignRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
     {
         await _mediator.Send(new AddUserToRoleCommand(id, roleName), cancellationToken);
     }
 
-    public async Task RemoveFromRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
+    public async Task UnassignRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
     {
         await _mediator.Send(new RemoveUserFromRoleCommand(id, roleName), cancellationToken);
-    }
-
-    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
-    {
-        await _mediator.Send(new DeleteUserCommand(id), cancellationToken);
     }
 }

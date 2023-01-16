@@ -15,17 +15,17 @@ internal class RoleApplicationService : ApplicationService, IRoleApplicationServ
         _mediator = mediator;
     }
 
-    public async Task<RoleDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
-    {
-        var client = _mediator.CreateRequestClient<GetRoleByIdQuery>();
-        var response = await client.GetResponse<RoleDto>(new GetRoleByIdQuery(id), cancellationToken);
-        return response.Message;
-    }
-
     public async Task<RoleListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetRolesQuery>();
         var response = await client.GetResponse<RoleListDto>(new GetRolesQuery(pageIndex, pageSize), cancellationToken);
+        return response.Message;
+    }
+
+    public async Task<RoleDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    {
+        var client = _mediator.CreateRequestClient<GetRoleByIdQuery>();
+        var response = await client.GetResponse<RoleDto>(new GetRoleByIdQuery(id), cancellationToken);
         return response.Message;
     }
 

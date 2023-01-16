@@ -1,6 +1,6 @@
 ﻿namespace Microservice.IdentityService.Identity;
 
-public class ChangeUserPasswordDto
+public class UpdateUserPasswordDto
 {
     public string OldPassword { get; set; }
 

@@ -17,17 +17,17 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         _mediator = mediator;
     }
 
-    public async Task<MovieDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
-    {
-        var client = _mediator.CreateRequestClient<GetMovieByIdQuery>();
-        var response = await client.GetResponse<MovieDto>(new GetMovieByIdQuery(id), cancellationToken);
-        return response.Message;
-    }
-
     public async Task<MovieListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetMoviesQuery>();
         var response = await client.GetResponse<MovieListDto>(new GetMoviesQuery(pageIndex, pageSize), cancellationToken);
+        return response.Message;
+    }
+
+    public async Task<MovieDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    {
+        var client = _mediator.CreateRequestClient<GetMovieByIdQuery>();
+        var response = await client.GetResponse<MovieDto>(new GetMovieByIdQuery(id), cancellationToken);
         return response.Message;
     }
 

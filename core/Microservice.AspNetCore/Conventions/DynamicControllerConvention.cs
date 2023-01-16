@@ -181,6 +181,14 @@ public class DynamicControllerConvention : IApplicationModelConvention
         if (!actionName.IsNullOrEmpty())
         {
             actionUrlTemplate += $"/{actionName}";
+
+            var secondaryIds = action.Parameters
+                .Where(x => x.ParameterName is not null && x.ParameterName.EndsWith("Id", StringComparison.Ordinal))
+                .ToList();
+            if (secondaryIds.Count == 1)
+            {
+                actionUrlTemplate += $"/{{{secondaryIds[0].ParameterName}}}";
+            }
         }
 
         return actionUrlTemplate;

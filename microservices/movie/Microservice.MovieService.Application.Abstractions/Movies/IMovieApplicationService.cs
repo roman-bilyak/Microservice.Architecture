@@ -5,9 +5,9 @@ namespace Microservice.MovieService.Movies;
 
 public interface IMovieApplicationService : IApplicationService
 {
-    public Task<MovieDto> GetAsync([Required] Guid id, CancellationToken cancellationToken);
-
     public Task<MovieListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
+
+    public Task<MovieDto> GetAsync([Required] Guid id, CancellationToken cancellationToken);
 
     public Task<MovieDto> CreateAsync([Required] CreateMovieDto movie, CancellationToken cancellationToken);
 

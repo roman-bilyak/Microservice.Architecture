@@ -5,8 +5,11 @@ namespace Microservice.ReviewService.Reviews;
 
 public class CreateReviewCommand : CreateCommand<CreateReviewDto>
 {
-    public CreateReviewCommand(CreateReviewDto model) : base(model)
+    public Guid MovieId { get; protected set; }
+
+    public CreateReviewCommand(Guid movieId, CreateReviewDto model) : base(model)
     {
+        MovieId = movieId;
     }
 
     public class CreateReviewCommandHandler : ICommandHandler<CreateReviewCommand>
@@ -24,7 +27,7 @@ public class CreateReviewCommand : CreateCommand<CreateReviewDto>
         {
             CreateReviewDto reviewDto = context.Message.Model;
             Guid userId = Guid.Empty; //TODO: use current user id
-            Review review = new Review(userId, reviewDto.MovieId, reviewDto.Text, reviewDto.Rating);
+            Review review = new Review(userId, context.Message.MovieId, reviewDto.Text, reviewDto.Rating);
 
             review = await _reviewManager.AddAsync(review, context.CancellationToken);
             await _reviewManager.SaveChangesAsync(context.CancellationToken);
