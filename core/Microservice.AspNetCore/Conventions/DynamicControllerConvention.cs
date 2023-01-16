@@ -52,7 +52,6 @@ public class DynamicControllerConvention : IApplicationModelConvention
             .RemoveSuffix("Proxy")
             .RemoveSuffix("Controller")
             .RemoveSuffix("ApplicationService");
-            
     }
 
     private static void SetGroupName(ControllerModel controller)
@@ -82,7 +81,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
         foreach (var selector in controller.Selectors)
         {
-            if (selector.AttributeRouteModel == null)
+            if (selector.AttributeRouteModel is null)
             {
                 selector.AttributeRouteModel = new AttributeRouteModel(new RouteAttribute("api"));
             }
@@ -131,14 +130,15 @@ public class DynamicControllerConvention : IApplicationModelConvention
                 .HttpMethods?
                 .FirstOrDefault();
 
-            if (httpMethod == null)
+            if (httpMethod is null)
             {
                 httpMethod = GetHttpMethodByActionName(action);
             }
 
-            if (selector.AttributeRouteModel == null)
+            if (selector.AttributeRouteModel is null)
             {
-                selector.AttributeRouteModel = new AttributeRouteModel(new RouteAttribute("[controller]/[action]"));
+                string actionUrlTemplate = GetActionUrlTemplate(action);
+                selector.AttributeRouteModel = new AttributeRouteModel(new RouteAttribute(actionUrlTemplate));
             }
 
             if (!selector.ActionConstraints.OfType<HttpMethodActionConstraint>().Any())
@@ -159,6 +159,31 @@ public class DynamicControllerConvention : IApplicationModelConvention
             _ when actionName.StartsWith("Delete", StringComparison.InvariantCultureIgnoreCase) => "DELETE",
             _ => "POST"
         };
+    }
+
+    private static string GetActionUrlTemplate(ActionModel action)
+    {
+        string actionUrlTemplate = action.Controller.ControllerName;
+
+        ParameterModel? idParameterModel = action.Parameters.FirstOrDefault(x => x.ParameterName == "id");
+        if (idParameterModel is not null && IsPrimitiveType(idParameterModel.ParameterType))
+        {
+            actionUrlTemplate += "/{id}";
+        }
+
+        string actionName = action.ActionName
+            .RemovePrefix("Get")
+            .RemovePrefix("List")
+            .RemovePrefix("Create")
+            .RemovePrefix("Update")
+            .RemovePrefix("Delete");
+
+        if (!actionName.IsNullOrEmpty())
+        {
+            actionUrlTemplate += $"/{actionName}";
+        }
+
+        return actionUrlTemplate;
     }
 
     private static void ConfigureParameters(ActionModel action)

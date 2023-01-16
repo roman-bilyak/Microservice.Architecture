@@ -17,7 +17,7 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         _mediator = mediator;
     }
 
-    public async Task<GetMovieReviewsDto> GetMovieReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
+    public async Task<GetMovieReviewsDto> GetReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetMovieReviewsQuery>();
         var response = await client.GetResponse<GetMovieReviewsDto>(new GetMovieReviewsQuery(id, pageIndex, pageSize), cancellationToken);

@@ -9,18 +9,22 @@ public static class StringExtensions
 
     public static string RemovePrefix(this string str, string prefix)
     {
-        if (prefix.IsNullOrEmpty() && str.StartsWith(prefix))
+        ArgumentNullException.ThrowIfNullOrEmpty(prefix, nameof(prefix));
+
+        if (!str.IsNullOrEmpty() && str.StartsWith(prefix))
         {
-            return str.Substring(prefix.Length, str.Length - prefix.Length);
+            return str[prefix.Length..];
         }
         return str;
     }
 
     public static string RemoveSuffix(this string str, string suffix)
     {
-        if (str.EndsWith(suffix))
+        ArgumentNullException.ThrowIfNullOrEmpty(suffix, nameof(suffix));
+
+        if (!str.IsNullOrEmpty() && str.EndsWith(suffix))
         {
-            return str.Substring(0, str.Length - suffix.Length);
+            return str[..^suffix.Length];
         }
         return str;
     }
