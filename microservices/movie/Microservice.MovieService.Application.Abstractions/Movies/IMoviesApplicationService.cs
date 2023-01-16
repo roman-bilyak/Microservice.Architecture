@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.MovieService.Movies;
 
-public interface IMovieApplicationService : IApplicationService
+public interface IMoviesApplicationService : IApplicationService
 {
     public Task<MovieListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
 

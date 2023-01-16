@@ -14,39 +14,39 @@ public sealed class GatewayModule : StartupModule
     {
         base.ConfigureServices(services);
 
-        services.RegisterFakeApplicationServices(typeof(IdentityService.Identity.IUserApplicationService).Assembly, "api/IS");
-        services.RegisterFakeApplicationServices(typeof(MovieService.Movies.IMovieApplicationService).Assembly, "api/MS");
-        services.RegisterFakeApplicationServices(typeof(PaymentService.Payment.IPaymentApplicationService).Assembly, "api/PS");
-        services.RegisterFakeApplicationServices(typeof(ReviewService.Reviews.IMovieApplicationService).Assembly, "api/RS");
-        services.RegisterFakeApplicationServices(typeof(TestService.Tests.ITestApplicationService).Assembly, "api/TS");
+        services.RegisterFakeApplicationServices(typeof(IdentityService.Identity.IUsersApplicationService).Assembly, "api/IS");
+        services.RegisterFakeApplicationServices(typeof(MovieService.Movies.IMoviesApplicationService).Assembly, "api/MS");
+        services.RegisterFakeApplicationServices(typeof(PaymentService.Payment.IPaymentsApplicationService).Assembly, "api/PS");
+        services.RegisterFakeApplicationServices(typeof(ReviewService.Reviews.IMoviesApplicationService).Assembly, "api/RS");
+        services.RegisterFakeApplicationServices(typeof(TestService.Tests.ITestsApplicationService).Assembly, "api/TS");
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(IdentityService.Identity.IUserApplicationService).Assembly,
+            options.AddSettings(typeof(IdentityService.Identity.IUsersApplicationService).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(MovieService.Movies.IMovieApplicationService).Assembly,
+            options.AddSettings(typeof(MovieService.Movies.IMoviesApplicationService).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(PaymentService.Payment.IPaymentApplicationService).Assembly,
+            options.AddSettings(typeof(PaymentService.Payment.IPaymentsApplicationService).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(ReviewService.Reviews.IMovieApplicationService).Assembly,
+            options.AddSettings(typeof(ReviewService.Reviews.IMoviesApplicationService).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(TestService.Tests.ITestApplicationService).Assembly,
+            options.AddSettings(typeof(TestService.Tests.ITestsApplicationService).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
 

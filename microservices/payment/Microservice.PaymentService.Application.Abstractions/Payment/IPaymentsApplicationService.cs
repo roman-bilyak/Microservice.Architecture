@@ -2,6 +2,6 @@
 
 namespace Microservice.PaymentService.Payment;
 
-public interface IPaymentApplicationService : IApplicationService
+public interface IPaymentsApplicationService : IApplicationService
 {
 }

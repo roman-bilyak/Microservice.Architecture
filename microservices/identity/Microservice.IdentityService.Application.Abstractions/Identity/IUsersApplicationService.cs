@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
-public interface IUserApplicationService : IApplicationService
+public interface IUsersApplicationService : IApplicationService
 {
     public Task<UserListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
 

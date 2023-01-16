@@ -11,6 +11,6 @@ public sealed class TestServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services);
 
-        services.AddTransient<ITestApplicationService, TestApplicationService>();
+        services.AddTransient<ITestsApplicationService, TestsApplicationService>();
     }
 }

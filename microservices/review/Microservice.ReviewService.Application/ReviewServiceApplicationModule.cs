@@ -12,8 +12,8 @@ public sealed class ReviewServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services);
 
-        services.AddTransient<IMovieApplicationService, MovieApplicationService>();
-        services.AddTransient<IUserApplicationService, UserApplicationService>();
+        services.AddTransient<IMoviesApplicationService, MoviesApplicationService>();
+        services.AddTransient<IUsersApplicationService, UsersApplicationService>();
 
         services.AddCQRS(typeof(ReviewServiceApplicationModule).Assembly);
     }

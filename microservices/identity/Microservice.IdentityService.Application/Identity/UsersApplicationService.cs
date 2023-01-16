@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
-internal class UserApplicationService : ApplicationService, IUserApplicationService
+internal class UsersApplicationService : ApplicationService, IUsersApplicationService
 {
     private readonly IMediator _mediator;
 
-    public UserApplicationService(IMediator mediator)
+    public UsersApplicationService(IMediator mediator)
     {
         ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
 

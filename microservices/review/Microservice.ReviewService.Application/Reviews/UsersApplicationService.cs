@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 namespace Microservice.ReviewService.Reviews;
 
 [Authorize]
-internal class UserApplicationService : ApplicationService, IUserApplicationService
+internal class UsersApplicationService : ApplicationService, IUsersApplicationService
 {
     private readonly IMediator _mediator;
 
-    public UserApplicationService(IMediator mediator)
+    public UsersApplicationService(IMediator mediator)
     {
         ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
 
