@@ -151,28 +151,14 @@ public class DynamicControllerConvention : IApplicationModelConvention
     private static string GetHttpMethodByActionName(ActionModel action)
     {
         string actionName = action.ActionName;
-
-        if (actionName.StartsWith("Get", StringComparison.InvariantCultureIgnoreCase))
+        return actionName switch
         {
-            return "GET";
-        }
-
-        if (actionName.StartsWith("Create", StringComparison.InvariantCultureIgnoreCase))
-        {
-            return "POST";
-        }
-
-        if (actionName.StartsWith("Update", StringComparison.InvariantCultureIgnoreCase))
-        {
-            return "PUT";
-        }
-
-        if (actionName.StartsWith("Delete", StringComparison.InvariantCultureIgnoreCase))
-        {
-            return "DELETE";
-        }
-
-        return "POST";
+            _ when actionName.StartsWith("Get", StringComparison.InvariantCultureIgnoreCase) => "GET",
+            _ when actionName.StartsWith("Create", StringComparison.InvariantCultureIgnoreCase) => "POST",
+            _ when actionName.StartsWith("Update", StringComparison.InvariantCultureIgnoreCase) => "PUT",
+            _ when actionName.StartsWith("Delete", StringComparison.InvariantCultureIgnoreCase) => "DELETE",
+            _ => "POST"
+        };
     }
 
     private static void ConfigureParameters(ActionModel action)
