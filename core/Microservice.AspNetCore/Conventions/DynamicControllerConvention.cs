@@ -153,10 +153,12 @@ public class DynamicControllerConvention : IApplicationModelConvention
         string actionName = action.ActionName;
         return actionName switch
         {
-            _ when actionName.StartsWith("Get", StringComparison.InvariantCultureIgnoreCase) => "GET",
-            _ when actionName.StartsWith("Create", StringComparison.InvariantCultureIgnoreCase) => "POST",
-            _ when actionName.StartsWith("Update", StringComparison.InvariantCultureIgnoreCase) => "PUT",
-            _ when actionName.StartsWith("Delete", StringComparison.InvariantCultureIgnoreCase) => "DELETE",
+            _ when actionName.StartsWith("Get", StringComparison.InvariantCulture) => "GET",
+            _ when actionName.StartsWith("Add", StringComparison.InvariantCulture) 
+                || actionName.StartsWith("Create", StringComparison.InvariantCulture) => "POST",
+            _ when actionName.StartsWith("Update", StringComparison.InvariantCulture) => "PUT",
+            _ when actionName.StartsWith("Delete", StringComparison.InvariantCulture)
+                || actionName.StartsWith("Remove", StringComparison.InvariantCulture) => "DELETE",
             _ => "POST"
         };
     }
@@ -176,11 +178,15 @@ public class DynamicControllerConvention : IApplicationModelConvention
         }
 
         string actionName = action.ActionName
+            .RemovePrefix("GetList")
             .RemovePrefix("Get")
-            .RemovePrefix("List")
+            .RemovePrefix("AddTo")
+            .RemovePrefix("Add")
             .RemovePrefix("Create")
             .RemovePrefix("Update")
-            .RemovePrefix("Delete");
+            .RemovePrefix("Delete")
+            .RemovePrefix("RemoveFrom")
+            .RemovePrefix("Remove");
 
         if (!actionName.IsNullOrEmpty())
         {

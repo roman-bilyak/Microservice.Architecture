@@ -17,29 +17,29 @@ internal class MoviesApplicationService : ApplicationService, IMoviesApplication
         _mediator = mediator;
     }
 
-    public async Task<GetMovieReviewsDto> GetListReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
+    public async Task<GetMovieReviewsDto> GetListReviewsAsync([Required] Guid movieId, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetMovieReviewsQuery>();
-        var response = await client.GetResponse<GetMovieReviewsDto>(new GetMovieReviewsQuery(id, pageIndex, pageSize), cancellationToken);
+        var response = await client.GetResponse<GetMovieReviewsDto>(new GetMovieReviewsQuery(movieId, pageIndex, pageSize), cancellationToken);
         return response.Message;
     }
 
-    public async Task<ReviewDto> GetReviewsAsync([Required] Guid id, [Required] Guid reviewId, CancellationToken cancellationToken)
+    public async Task<ReviewDto> GetReviewsAsync([Required] Guid movieId, [Required] Guid reviewId, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetReviewByIdQuery>();
-        var response = await client.GetResponse<ReviewDto>(new GetReviewByIdQuery(id, reviewId), cancellationToken);
+        var response = await client.GetResponse<ReviewDto>(new GetReviewByIdQuery(movieId, reviewId), cancellationToken);
         return response.Message;
     }
 
-    public async Task<ReviewDto> CreateReviewsAsync([Required] Guid id, CreateReviewDto review, CancellationToken cancellationToken)
+    public async Task<ReviewDto> CreateReviewsAsync([Required] Guid movieId, CreateReviewDto review, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<CreateReviewCommand>();
-        var response = await client.GetResponse<ReviewDto>(new CreateReviewCommand(id, review), cancellationToken);
+        var response = await client.GetResponse<ReviewDto>(new CreateReviewCommand(movieId, review), cancellationToken);
         return response.Message;
     }
 
-    public async Task DeleteReviewsAsync([Required] Guid id, [Required] Guid reviewId, CancellationToken cancellationToken)
+    public async Task DeleteReviewsAsync([Required] Guid movieId, [Required] Guid reviewId, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteReviewCommand(id, reviewId), cancellationToken);
+        await _mediator.Send(new DeleteReviewCommand(movieId, reviewId), cancellationToken);
     }
 }

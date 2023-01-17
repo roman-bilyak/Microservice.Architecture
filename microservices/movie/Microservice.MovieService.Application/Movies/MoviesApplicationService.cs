@@ -24,10 +24,10 @@ internal class MoviesApplicationService : ApplicationService, IMoviesApplication
         return response.Message;
     }
 
-    public async Task<MovieDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task<MovieDto> GetAsync([Required] Guid movieId, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetMovieByIdQuery>();
-        var response = await client.GetResponse<MovieDto>(new GetMovieByIdQuery(id), cancellationToken);
+        var response = await client.GetResponse<MovieDto>(new GetMovieByIdQuery(movieId), cancellationToken);
         return response.Message;
     }
 
@@ -38,15 +38,15 @@ internal class MoviesApplicationService : ApplicationService, IMoviesApplication
         return response.Message;
     }
 
-    public async Task<MovieDto> UpdateAsync([Required] Guid id, [Required] UpdateMovieDto movie, CancellationToken cancellationToken)
+    public async Task<MovieDto> UpdateAsync([Required] Guid movieId, [Required] UpdateMovieDto movie, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<UpdateMovieCommand>();
-        var response = await client.GetResponse<MovieDto>(new UpdateMovieCommand(id, movie), cancellationToken);
+        var response = await client.GetResponse<MovieDto>(new UpdateMovieCommand(movieId, movie), cancellationToken);
         return response.Message;
     }
 
-    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync([Required] Guid movieId, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteMovieCommand(id), cancellationToken);
+        await _mediator.Send(new DeleteMovieCommand(movieId), cancellationToken);
     }
 }

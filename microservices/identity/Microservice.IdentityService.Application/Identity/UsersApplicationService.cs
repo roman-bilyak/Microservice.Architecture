@@ -22,10 +22,10 @@ internal class UsersApplicationService : ApplicationService, IUsersApplicationSe
         return response.Message;
     }
 
-    public async Task<UserDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task<UserDto> GetAsync([Required] Guid userId, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUserByIdQuery>();
-        var response = await client.GetResponse<UserDto>(new GetUserByIdQuery(id), cancellationToken);
+        var response = await client.GetResponse<UserDto>(new GetUserByIdQuery(userId), cancellationToken);
         return response.Message;
     }
 
@@ -36,37 +36,37 @@ internal class UsersApplicationService : ApplicationService, IUsersApplicationSe
         return response.Message;
     }
 
-    public async Task<UserDto> UpdateAsync([Required] Guid id, [Required] UpdateUserDto user, CancellationToken cancellationToken)
+    public async Task<UserDto> UpdateAsync([Required] Guid userId, [Required] UpdateUserDto user, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<UpdateUserCommand>();
-        var response = await client.GetResponse<UserDto>(new UpdateUserCommand(id, user), cancellationToken);
+        var response = await client.GetResponse<UserDto>(new UpdateUserCommand(userId, user), cancellationToken);
         return response.Message;
     }
 
-    public async Task UpdatePasswordAsync([Required] Guid id, [Required] UpdateUserPasswordDto user, CancellationToken cancellationToken)
+    public async Task UpdatePasswordAsync([Required] Guid userId, [Required] UpdateUserPasswordDto user, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new UpdateUserPasswordCommand(id, user.OldPassword, user.Password), cancellationToken);
+        await _mediator.Send(new UpdateUserPasswordCommand(userId, user.OldPassword, user.Password), cancellationToken);
     }
 
-    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync([Required] Guid userId, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteUserCommand(id), cancellationToken);
+        await _mediator.Send(new DeleteUserCommand(userId), cancellationToken);
     }
 
-    public async Task<UserRoleListDto> GetRolesAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task<UserRoleListDto> GetRolesAsync([Required] Guid userId, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUserRolesQuery>();
-        var response = await client.GetResponse<UserRoleListDto>(new GetUserRolesQuery(id), cancellationToken);
+        var response = await client.GetResponse<UserRoleListDto>(new GetUserRolesQuery(userId), cancellationToken);
         return response.Message;
     }
 
-    public async Task AssignRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
+    public async Task AddToRoles([Required] Guid userId, [Required] string roleName, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new AddUserToRoleCommand(id, roleName), cancellationToken);
+        await _mediator.Send(new AddUserToRoleCommand(userId, roleName), cancellationToken);
     }
 
-    public async Task UnassignRoleAsync([Required] Guid id, [Required] string roleName, CancellationToken cancellationToken)
+    public async Task RemoveFromRoles([Required] Guid userId, [Required] string roleName, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new RemoveUserFromRoleCommand(id, roleName), cancellationToken);
+        await _mediator.Send(new RemoveUserFromRoleCommand(userId, roleName), cancellationToken);
     }
 }

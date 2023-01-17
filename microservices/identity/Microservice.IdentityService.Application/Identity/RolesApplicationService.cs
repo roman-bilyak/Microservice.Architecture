@@ -22,10 +22,10 @@ internal class RolesApplicationService : ApplicationService, IRolesApplicationSe
         return response.Message;
     }
 
-    public async Task<RoleDto> GetAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task<RoleDto> GetAsync([Required] Guid roleId, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetRoleByIdQuery>();
-        var response = await client.GetResponse<RoleDto>(new GetRoleByIdQuery(id), cancellationToken);
+        var response = await client.GetResponse<RoleDto>(new GetRoleByIdQuery(roleId), cancellationToken);
         return response.Message;
     }
 
@@ -36,15 +36,15 @@ internal class RolesApplicationService : ApplicationService, IRolesApplicationSe
         return response.Message;
     }
 
-    public async Task<RoleDto> UpdateAsync([Required] Guid id, [Required] UpdateRoleDto role, CancellationToken cancellationToken)
+    public async Task<RoleDto> UpdateAsync([Required] Guid roleId, [Required] UpdateRoleDto role, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<UpdateRoleCommand>();
-        var response = await client.GetResponse<RoleDto>(new UpdateRoleCommand(id, role), cancellationToken);
+        var response = await client.GetResponse<RoleDto>(new UpdateRoleCommand(roleId, role), cancellationToken);
         return response.Message;
     }
 
-    public async Task DeleteAsync([Required] Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync([Required] Guid roleId, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteRoleCommand(id), cancellationToken);
+        await _mediator.Send(new DeleteRoleCommand(roleId), cancellationToken);
     }
 }
