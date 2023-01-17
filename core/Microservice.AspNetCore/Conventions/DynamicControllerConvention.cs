@@ -165,10 +165,14 @@ public class DynamicControllerConvention : IApplicationModelConvention
     {
         string actionUrlTemplate = action.Controller.ControllerName;
 
-        ParameterModel? idParameterModel = action.Parameters.FirstOrDefault(x => x.ParameterName == "id");
-        if (idParameterModel is not null && IsPrimitiveType(idParameterModel.ParameterType))
+        List<ParameterModel> idParameters = action.Parameters
+                .Where(x => x.ParameterName is not null
+                    && (x.ParameterName == "id" || x.ParameterName.EndsWith("Id", StringComparison.Ordinal))
+                    && IsPrimitiveType(x.ParameterType))
+                .ToList();
+        if (idParameters.Any())
         {
-            actionUrlTemplate += "/{id}";
+            actionUrlTemplate += $"/{{{idParameters[0].ParameterName}}}";
         }
 
         string actionName = action.ActionName
@@ -181,13 +185,9 @@ public class DynamicControllerConvention : IApplicationModelConvention
         if (!actionName.IsNullOrEmpty())
         {
             actionUrlTemplate += $"/{actionName}";
-
-            var secondaryIds = action.Parameters
-                .Where(x => x.ParameterName is not null && x.ParameterName.EndsWith("Id", StringComparison.Ordinal))
-                .ToList();
-            if (secondaryIds.Count == 1)
+            if (idParameters.Count > 1)
             {
-                actionUrlTemplate += $"/{{{secondaryIds[0].ParameterName}}}";
+                actionUrlTemplate += $"/{{{idParameters[1].ParameterName}}}";
             }
         }
 
