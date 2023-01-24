@@ -1,8 +1,10 @@
-﻿namespace Microservice.Core;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Microservice.Core;
 
 public class ObjectWrapper<T>
 {
-    public T Object { get; set; }
+    public T? Object { get; set; }
 
     public ObjectWrapper()
     {
