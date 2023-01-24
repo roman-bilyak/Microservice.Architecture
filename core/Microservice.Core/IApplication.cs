@@ -9,7 +9,7 @@ public interface IApplication : IDisposable
 
     IConfiguration Configuration { get; }
 
-    IServiceProvider ServiceProvider { get; }
+    IServiceProvider? ServiceProvider { get; }
 
     void ConfigureServices();
 
