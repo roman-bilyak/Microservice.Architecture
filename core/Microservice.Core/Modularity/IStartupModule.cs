@@ -1,14 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.Core.Modularity;
 
 public interface IStartupModule
 {
-    void PreConfigureServices(IServiceCollection services);
+    void PreConfigureServices(IServiceCollection services, IConfiguration configuration);
 
-    void ConfigureServices(IServiceCollection services);
+    void ConfigureServices(IServiceCollection services, IConfiguration configuration);
 
-    void PostConfigureServices(IServiceCollection services);
+    void PostConfigureServices(IServiceCollection services, IConfiguration configuration);
 
     void PreConfigure(IServiceProvider serviceProvider);
 

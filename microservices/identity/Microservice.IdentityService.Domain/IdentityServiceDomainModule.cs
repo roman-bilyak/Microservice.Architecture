@@ -1,14 +1,15 @@
 ﻿using Microservice.Core.Modularity;
 using Microservice.IdentityService.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.IdentityService;
 
 public sealed class IdentityServiceDomainModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.AddScoped<IUserManager, UserManager>();
         services.AddScoped<IRoleManager, RoleManager>();

@@ -1,5 +1,4 @@
-﻿using Microservice.Core;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,11 +9,10 @@ namespace Microservice.AspNetCore.Swagger;
 [DependsOn<AspNetCoreModule>]
 public class SwaggerModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
-        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
         services.AddOptions<SwaggerOptions>()
             .Bind(configuration.GetSection(SwaggerOptions.Swagger))
             .ValidateDataAnnotations();

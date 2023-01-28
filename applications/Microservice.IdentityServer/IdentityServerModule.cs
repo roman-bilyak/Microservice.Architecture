@@ -1,5 +1,4 @@
 ﻿using Microservice.AspNetCore;
-using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microservice.IdentityService;
 using Microservice.IdentityService.Identity;
@@ -11,11 +10,9 @@ namespace Microservice.IdentityServer;
 [DependsOn<IdentityServiceInfrastructureModule>]
 public sealed class IdentityServerModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
-
-        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
+        base.ConfigureServices(services, configuration);
 
         services.AddIdentity<User, Role>()
             .AddDefaultTokenProviders();

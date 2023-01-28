@@ -40,11 +40,10 @@ internal class Application<TStartupModule> : IApplication
     public virtual void ConfigureServices()
     {
         Services.AddSingleton<IApplication>(this);
-        Services.Replace(ServiceDescriptor.Singleton(Configuration));
 
-        Modules.ForEach(x => x.PreConfigureServices(Services));
-        Modules.ForEach(x => x.ConfigureServices(Services));
-        Modules.ForEach(x => x.PostConfigureServices(Services));
+        Modules.ForEach(x => x.PreConfigureServices(Services, Configuration));
+        Modules.ForEach(x => x.ConfigureServices(Services, Configuration));
+        Modules.ForEach(x => x.PostConfigureServices(Services, Configuration));
 
         ApplicationConfigurationOptions configurationOptions = new(Services);
         _configurationOptionsAction?.Invoke(configurationOptions);
