@@ -2,7 +2,7 @@
 
 public record TestMessage
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public string Message { get; set; }
+    public string Message { get; init; } = string.Empty;
 }

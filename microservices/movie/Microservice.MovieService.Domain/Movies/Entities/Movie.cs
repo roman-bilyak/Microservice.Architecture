@@ -1,4 +1,5 @@
 ﻿using Microservice.Database;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microservice.MovieService.Movies;
 
@@ -17,6 +18,7 @@ public class Movie : Entity<Guid>, IAggregateRoot
         SetTitle(title);
     }
 
+    [MemberNotNull(nameof(Title))]
     public void SetTitle(string title)
     {
         ArgumentNullException.ThrowIfNull(title, nameof(title));
