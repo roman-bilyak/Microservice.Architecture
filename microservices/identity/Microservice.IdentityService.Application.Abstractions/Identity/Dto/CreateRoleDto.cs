@@ -2,8 +2,9 @@
 
 namespace Microservice.IdentityService.Identity;
 
-public class CreateRoleDto
+public record CreateRoleDto
 {
     [Required]
-    public string? Name { get; set; }
+    [MaxLength(50)]
+    public string Name { get; init; } = string.Empty;
 }

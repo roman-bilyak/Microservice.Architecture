@@ -16,7 +16,7 @@ public class Role : Entity<Guid>, IAggregateRoot
     public Role
     (
         Guid id,
-        string? name
+        string name
     ) : base(id)
     {
         Update(name);
@@ -24,7 +24,7 @@ public class Role : Entity<Guid>, IAggregateRoot
 
     [MemberNotNull(nameof(Name))]
     [MemberNotNull(nameof(NormalizedName))]
-    public void Update(string? name)
+    public void Update(string name)
     {
         ArgumentNullException.ThrowIfNull(name, nameof(name));
 

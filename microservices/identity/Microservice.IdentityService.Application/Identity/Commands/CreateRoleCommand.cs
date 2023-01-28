@@ -24,7 +24,7 @@ public class CreateRoleCommand : CreateCommand<CreateRoleDto>
         {
             CreateRoleDto roleDto = context.Message.Model;
 
-            Role role = new Role(Guid.NewGuid(), roleDto.Name);
+            Role role = new(Guid.NewGuid(), roleDto.Name);
             var result = await _roleManager.CreateAsync(role, context.CancellationToken);
             result.CheckErrors();
 

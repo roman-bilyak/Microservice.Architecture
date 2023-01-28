@@ -1,14 +1,27 @@
-﻿namespace Microservice.IdentityService.Identity;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class CreateUserDto
-{ 
-    public string Name { get; set; }
+namespace Microservice.IdentityService.Identity;
 
-    public string FirstName { get; set; }
+public record CreateUserDto
+{
+    [Required]
+    [MaxLength(50)]
+    public string Name { get; init; } = string.Empty;
 
-    public string LastName { get; set; }
+    [Required]
+    [MaxLength(200)]
+    public string FirstName { get; init; } = string.Empty;
 
-    public string Email { get; set; }
+    [Required]
+    [MaxLength(200)]
+    public string LastName { get; init; } = string.Empty;
 
-    public string Password { get; set; }
+    [Required]
+    [EmailAddress]
+    [MaxLength(100)]
+    public string Email { get; init; } = string.Empty;
+
+    [Required]
+    [MaxLength(50)]
+    public string Password { get; init; } = string.Empty;
 }

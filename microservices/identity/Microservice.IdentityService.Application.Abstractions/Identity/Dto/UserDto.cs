@@ -1,14 +1,14 @@
 ﻿namespace Microservice.IdentityService.Identity;
 
-public class UserDto
+public record UserDto
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public string Name { get; set; }
+    public string Name { get; init; } = string.Empty;
 
-    public string FirstName { get; set; }
+    public string FirstName { get; init; } = string.Empty;
 
-    public string LastName { get; set; }
+    public string LastName { get; init; } = string.Empty;
 
-    public string Email { get; set; }
+    public string Email { get; init; } = string.Empty;
 }
