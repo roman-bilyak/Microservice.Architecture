@@ -5,9 +5,9 @@ namespace Microservice.IdentityService.Identity;
 
 public class Role : Entity<Guid>, IAggregateRoot
 {
-    public string Name { get; protected internal set; }
+    public string Name { get; protected set; } = string.Empty;
 
-    public string NormalizedName { get; protected internal set; }
+    public string NormalizedName { get; protected set; } = string.Empty;
 
     protected Role()
     {
@@ -19,16 +19,22 @@ public class Role : Entity<Guid>, IAggregateRoot
         string name
     ) : base(id)
     {
-        Update(name);
+        SetName(name);
     }
 
     [MemberNotNull(nameof(Name))]
-    [MemberNotNull(nameof(NormalizedName))]
-    public void Update(string name)
+    public void SetName(string name)
     {
         ArgumentNullException.ThrowIfNull(name, nameof(name));
 
         Name = name;
-        NormalizedName = name.ToUpperInvariant();
+    }
+
+    [MemberNotNull(nameof(NormalizedName))]
+    public void SetNormalizedName(string normalizedName)
+    {
+        ArgumentNullException.ThrowIfNull(normalizedName, nameof(normalizedName));
+
+        NormalizedName = normalizedName;
     }
 }
