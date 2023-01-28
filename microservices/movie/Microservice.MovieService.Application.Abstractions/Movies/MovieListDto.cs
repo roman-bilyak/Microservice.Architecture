@@ -2,6 +2,6 @@
 
 namespace Microservice.MovieService.Movies;
 
-public class MovieListDto : ListDto<MovieDto>
+public record MovieListDto : ListDto<MovieDto>
 {
 }

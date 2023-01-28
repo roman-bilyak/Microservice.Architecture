@@ -2,6 +2,6 @@
 
 namespace Microservice.IdentityService.Identity;
 
-public class UserListDto : ListDto<UserDto>
+public record UserListDto : ListDto<UserDto>
 {
 }

@@ -1,8 +1,8 @@
 ﻿namespace Microservice.MovieService.Movies;
 
-public class MovieDto
+public record MovieDto
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public string Title { get; set; }
+    public string Title { get; init; } = string.Empty;
 }

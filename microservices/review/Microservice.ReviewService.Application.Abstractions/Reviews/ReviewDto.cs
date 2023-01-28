@@ -1,14 +1,14 @@
 ﻿namespace Microservice.ReviewService.Reviews;
 
-public class ReviewDto
+public record ReviewDto
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
 
-    public Guid MovieId { get; set; }
+    public Guid MovieId { get; init; }
 
-    public string Text { get; set; }
+    public string Text { get; init; } = string.Empty;
 
-    public RatingEnum Rating { get; set; }
+    public RatingEnum Rating { get; init; }
 }
