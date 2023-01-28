@@ -1,12 +1,14 @@
 ﻿using Microservice.Database;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Microservice.IdentityService.Identity;
 
 public class UserStore :
     IUserStore<User>,
-    IUserRoleStore<User>,
-    IUserPasswordStore<User>
+    IUserEmailStore<User>,
+    IUserPasswordStore<User>,
+    IUserRoleStore<User>
 {
     private readonly IRepository<User> _userRepository;
     private readonly IRoleStore<Role> _roleStore;
@@ -35,14 +37,15 @@ public class UserStore :
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
-        return Task.FromResult(user.Name);
+        return Task.FromResult<string?>(user.Name);
     }
 
     public Task SetUserNameAsync(User user, string? userName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
+        ArgumentNullException.ThrowIfNull(userName, nameof(userName));
 
-        user.Name = userName;
+        user.SetName(userName);
         return Task.CompletedTask;
     }
 
@@ -50,14 +53,15 @@ public class UserStore :
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
-        return Task.FromResult(user.NormalizedName);
+        return Task.FromResult<string?>(user.NormalizedName);
     }
 
     public Task SetNormalizedUserNameAsync(User user, string? normalizedName, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
+        ArgumentNullException.ThrowIfNull(normalizedName, nameof(normalizedName));
 
-        user.NormalizedName = normalizedName;
+        user.SetNormalizedName(normalizedName);
         return Task.CompletedTask;
     }
 
@@ -103,7 +107,62 @@ public class UserStore :
     {
         ArgumentNullException.ThrowIfNull(normalizedUserName, nameof(normalizedUserName));
 
-        FindUserByNormalizedUserNameSpecification specification = new(normalizedUserName);
+        FindUserByNormalizedNameSpecification specification = new(normalizedUserName);
+        return await _userRepository.SingleOrDefaultAsync(specification, cancellationToken);
+    }
+
+    public Task<string?> GetEmailAsync(User user, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+        return Task.FromResult<string?>(user.Email);
+    }
+
+    public Task<string?> GetNormalizedEmailAsync(User user, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+        return Task.FromResult<string?>(user.NormalizedEmail);
+    }
+
+    public Task SetEmailAsync(User user, string? email, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+        ArgumentNullException.ThrowIfNull(email, nameof(email));
+
+        user.SetEmail(email);
+        return Task.CompletedTask;
+    }
+
+    public Task SetNormalizedEmailAsync(User user, string? normalizedEmail, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+        ArgumentNullException.ThrowIfNull(normalizedEmail, nameof(normalizedEmail));
+
+        user.SetNormalizedEmail(normalizedEmail);
+        return Task.CompletedTask;
+    }
+
+    public Task<bool> GetEmailConfirmedAsync(User user, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+        return Task.FromResult(user.IsEmailConfirmed);
+    }
+
+    public Task SetEmailConfirmedAsync(User user, bool confirmed, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+        user.SetEmailConfirmed(confirmed);
+        return Task.CompletedTask;
+    }
+
+    public async Task<User?> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(normalizedEmail, nameof(normalizedEmail));
+
+        FindUserByNormalizedEmailSpecification specification = new(normalizedEmail);
         return await _userRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
@@ -112,7 +171,7 @@ public class UserStore :
         ArgumentNullException.ThrowIfNull(user, nameof(user));
         ArgumentNullException.ThrowIfNull(passwordHash, nameof(passwordHash));
 
-        user.PasswordHash = passwordHash;
+        user.SetPasswordHash(passwordHash);
         return Task.CompletedTask;
     }
 
@@ -120,7 +179,7 @@ public class UserStore :
     {
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
-        return Task.FromResult(user.PasswordHash);
+        return Task.FromResult<string?>(user.PasswordHash);
     }
 
     public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)

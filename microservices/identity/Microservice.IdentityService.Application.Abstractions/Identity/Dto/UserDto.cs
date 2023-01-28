@@ -11,4 +11,6 @@ public record UserDto
     public string LastName { get; init; } = string.Empty;
 
     public string Email { get; init; } = string.Empty;
+
+    public bool IsEmilConfirmed { get; init; }
 }
