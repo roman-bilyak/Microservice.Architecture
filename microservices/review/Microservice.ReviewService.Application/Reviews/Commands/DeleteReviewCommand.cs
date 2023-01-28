@@ -22,8 +22,8 @@ public class DeleteReviewCommand : DeleteCommand<Guid>
 
         public async Task Consume(ConsumeContext<DeleteReviewCommand> context)
         {
-            Review review = await _reviewManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-            if (review == null)
+            Review? review = await _reviewManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (review is null)
             {
                 throw new Exception($"Review (id = '{context.Message.Id}') not found");
             }
