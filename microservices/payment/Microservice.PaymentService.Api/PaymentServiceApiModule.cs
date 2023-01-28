@@ -10,9 +10,9 @@ namespace Microservice.PaymentService;
 [DependsOn<ApiModule>]
 public sealed class PaymentServiceApiModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.Configure<DynamicControllerOptions>(options =>
         {

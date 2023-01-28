@@ -2,6 +2,7 @@
 using Microservice.Database;
 using Microservice.ReviewService.Reviews;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.ReviewService;
@@ -9,9 +10,9 @@ namespace Microservice.ReviewService;
 [DependsOn<ReviewServiceDomainModule>]
 public sealed class ReviewServiceInfrastructureModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.AddDbContext<ReviewServiceDbContext>(options =>
         {

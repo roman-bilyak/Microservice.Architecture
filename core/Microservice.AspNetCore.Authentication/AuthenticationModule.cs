@@ -1,5 +1,4 @@
-﻿using Microservice.Core;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,11 +11,10 @@ namespace Microservice.AspNetCore.Authentication;
 [DependsOn<AspNetCoreModule>]
 public sealed class AuthenticationModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
-        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
         AuthenticationOptions authenticationOptions = configuration.GetSection("Authentication").Get<AuthenticationOptions>();
 
         AuthenticationBuilder authenticationBuilder = services

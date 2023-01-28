@@ -2,7 +2,6 @@
 using Microservice.Api;
 using Microservice.Application;
 using Microservice.AspNetCore;
-using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microservice.TestService.Tests;
 
@@ -13,11 +12,10 @@ namespace Microservice.TestService;
 [DependsOn<ApiModule>]
 public sealed class TestServiceApiModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
-        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
         services.AddMassTransit(x =>
         {
             x.AddConsumer<TestMessageConsumer>();
