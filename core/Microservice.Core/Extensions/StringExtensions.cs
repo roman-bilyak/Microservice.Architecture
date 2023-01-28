@@ -9,6 +9,7 @@ public static class StringExtensions
         return string.IsNullOrEmpty(value);
     }
 
+    [return: NotNullIfNotNull(nameof(value))]
     public static string? RemovePrefix(this string? value, string prefix)
     {
         if (!value.IsNullOrEmpty() && !prefix.IsNullOrEmpty() 
@@ -19,6 +20,7 @@ public static class StringExtensions
         return value;
     }
 
+    [return: NotNullIfNotNull(nameof(value))]
     public static string? RemoveSuffix(this string? value, string suffix)
     {
         if (!value.IsNullOrEmpty() && !suffix.IsNullOrEmpty() 
