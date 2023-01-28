@@ -8,10 +8,10 @@ namespace Microservice.Gateway;
 
 internal static class ServiceCollectionExtensions
 {
-    public static void RegisterFakeApplicationServices(this IServiceCollection services, Assembly assembly, string rootPath = null)
+    public static void RegisterFakeApplicationServices(this IServiceCollection services, Assembly assembly, string? rootPath = null)
     {
-        DefaultProxyBuilder proxyBuilder = new DefaultProxyBuilder();
-        ProxyGenerationOptions proxyGenerationOptions = new ProxyGenerationOptions();
+        DefaultProxyBuilder proxyBuilder = new();
+        ProxyGenerationOptions proxyGenerationOptions = new();
         if (!rootPath.IsNullOrEmpty())
         {
             proxyGenerationOptions.AdditionalAttributes.Add(CustomAttributeInfo.FromExpression(() => new RouteAttribute(rootPath)));
