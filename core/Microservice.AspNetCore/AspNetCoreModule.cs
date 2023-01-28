@@ -18,7 +18,11 @@ public sealed class AspNetCoreModule : StartupModule
         services.AddTransient<DynamicControllerConvention>();
         services.AddTransient<DynamicControllerFeatureProvider>();
 
-        services.AddMvc();
+        services.AddMvc(x =>
+        {
+            x.Filters.Add<ValidationActionFilter>();
+            x.Filters.Add<ExceptionActionFilter>();
+        });
     }
 
     public override void PreConfigure(IServiceProvider serviceProvider)
