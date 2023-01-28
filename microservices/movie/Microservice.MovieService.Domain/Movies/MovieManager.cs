@@ -1,8 +1,9 @@
-﻿using Microservice.Database;
+﻿using Microservice.Core.Domain;
+using Microservice.Database;
 
 namespace Microservice.MovieService.Movies;
 
-internal class MovieManager : IMovieManager
+internal class MovieManager : DomainService, IMovieManager
 {
     private readonly IRepository<Movie> _movieRepository;
 
@@ -13,7 +14,7 @@ internal class MovieManager : IMovieManager
         _movieRepository = movieRepository;
     }
 
-    public async Task<Movie> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<Movie?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _movieRepository.GetByIdAsync(id, cancellationToken);
     }

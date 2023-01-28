@@ -7,7 +7,7 @@ namespace Microservice.AspNetCore;
 public static class WebApplicationBuilderExtensions
 {
     public static IApplication AddApplication<TStartupModule>(this WebApplicationBuilder builder,
-        Action<ApplicationConfigurationOptions> configurationOptionsAction = null)
+        Action<ApplicationConfigurationOptions>? configurationOptionsAction = null)
         where TStartupModule : class, IStartupModule, new()
     {
         ArgumentNullException.ThrowIfNull(builder);
