@@ -34,8 +34,8 @@ public class UpdateUserPasswordCommand : Command
 
         public async Task Consume(ConsumeContext<UpdateUserPasswordCommand> context)
         {
-            User user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
-            if (user == null)
+            User? user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
+            if (user is null)
             {
                 throw new Exception($"User (id = '{context.Message.UserId}') not found");
             }

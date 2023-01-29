@@ -2,8 +2,9 @@
 
 namespace Microservice.MovieService.Movies;
 
-public class UpdateMovieDto
+public record UpdateMovieDto
 {
     [Required]
-    public string Title { get; set; }
+    [MaxLength(100)]
+    public string Title { get; init; } = string.Empty;
 }

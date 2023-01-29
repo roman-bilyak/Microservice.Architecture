@@ -10,15 +10,19 @@ namespace Microservice.AspNetCore;
 
 public sealed class AspNetCoreModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.AddWrappedService<IApplicationBuilder>();
         services.AddTransient<DynamicControllerConvention>();
         services.AddTransient<DynamicControllerFeatureProvider>();
 
-        services.AddMvc();
+        services.AddMvc(x =>
+        {
+            x.Filters.Add<ValidationActionFilter>();
+            x.Filters.Add<ExceptionActionFilter>();
+        });
     }
 
     public override void PreConfigure(IServiceProvider serviceProvider)

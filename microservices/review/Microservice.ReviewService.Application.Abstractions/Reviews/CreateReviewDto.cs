@@ -1,8 +1,12 @@
-﻿namespace Microservice.ReviewService.Reviews;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class CreateReviewDto
+namespace Microservice.ReviewService.Reviews;
+
+public record CreateReviewDto
 {
-    public string Text { get; set; }
+    [Required]
+    [MaxLength(500)]
+    public string Text { get; init; } = string.Empty;
 
-    public RatingEnum Rating { get; set; }
+    public RatingEnum Rating { get; init; }
 }

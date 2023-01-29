@@ -188,5 +188,5 @@ Root layer for microservice's layers
 - [x] [CQRS pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 - [ ] [Event Sourcing pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
 - [x] [MediatR](https://github.com/jbogard/MediatR)
-- [ ] [MassTransit](http://masstransit-project.com/)
-- [ ] [RabbitMQ](https://www.rabbitmq.com/)
+- [x] [MassTransit](http://masstransit-project.com/)
+- [x] [RabbitMQ](https://www.rabbitmq.com/)

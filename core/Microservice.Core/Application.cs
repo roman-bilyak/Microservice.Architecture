@@ -2,17 +2,19 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microservice.Core;
 
 internal class Application<TStartupModule> : IApplication
     where TStartupModule : class, IStartupModule, new()
 {
-    private readonly Action<ApplicationConfigurationOptions> _configurationOptionsAction;
-    private List<IStartupModule> _modules;
+    private readonly Action<ApplicationConfigurationOptions>? _configurationOptionsAction;
+    private List<IStartupModule>? _modules;
+    private IServiceProvider? _serviceProvider;
 
     public Application(IServiceCollection services, IConfiguration configuration,
-        Action<ApplicationConfigurationOptions> configurationOptionsAction)
+        Action<ApplicationConfigurationOptions>? configurationOptionsAction)
     {
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configuration);
@@ -27,11 +29,7 @@ internal class Application<TStartupModule> : IApplication
     {
         get
         {
-            if (_modules == null)
-            {
-                _modules = StartupModuleHelper.GetModules<TStartupModule>().ToList();
-            }
-            return _modules;
+            return _modules ??= StartupModuleHelper.GetModules<TStartupModule>().ToList();
         }
     }
 
@@ -39,46 +37,67 @@ internal class Application<TStartupModule> : IApplication
 
     public IConfiguration Configuration { get; private set; }
 
-    public IServiceProvider ServiceProvider { get; private set; }
-
     public virtual void ConfigureServices()
     {
         Services.AddSingleton<IApplication>(this);
-        Services.Replace(ServiceDescriptor.Singleton(Configuration));
 
-        Modules.ForEach(x => x.PreConfigureServices(Services));
-        Modules.ForEach(x => x.ConfigureServices(Services));
-        Modules.ForEach(x => x.PostConfigureServices(Services));
+        Modules.ForEach(x => x.PreConfigureServices(Services, Configuration));
+        Modules.ForEach(x => x.ConfigureServices(Services, Configuration));
+        Modules.ForEach(x => x.PostConfigureServices(Services, Configuration));
 
-        ApplicationConfigurationOptions configurationOptions = new ApplicationConfigurationOptions(Services);
+        ApplicationConfigurationOptions configurationOptions = new(Services);
         _configurationOptionsAction?.Invoke(configurationOptions);
+    }
+
+    public virtual IServiceProvider GetServiceProvider()
+    {
+        EnsureInitialized();
+
+        return _serviceProvider;
     }
 
     public virtual void SetServiceProvider(IServiceProvider serviceProvider)
     {
         ArgumentNullException.ThrowIfNull(serviceProvider);
 
-        if (ServiceProvider != null && ServiceProvider != serviceProvider)
+        if (_serviceProvider != null && _serviceProvider != serviceProvider)
         {
             throw new Exception("Service provider was already set before to another service provider instance.");
         }
 
-        ServiceProvider = serviceProvider;
+        _serviceProvider = serviceProvider;
     }
 
     public virtual void Configure()
     {
-        Modules.ForEach(x => x.PreConfigure(ServiceProvider));
-        Modules.ForEach(x => x.Configure(ServiceProvider));
-        Modules.ForEach(x => x.PostConfigure(ServiceProvider));
+        EnsureInitialized();
+
+        Modules.ForEach(x => x.PreConfigure(_serviceProvider));
+        Modules.ForEach(x => x.Configure(_serviceProvider));
+        Modules.ForEach(x => x.PostConfigure(_serviceProvider));
     }
 
     public virtual void Shutdown()
     {
-        Modules.ForEach(x => x.Shutdown(ServiceProvider));
+        EnsureInitialized();
+
+        Modules.ForEach(x => x.Shutdown(_serviceProvider));
     }
 
     public virtual void Dispose()
     {
     }
+
+    #region helper methods
+
+    [MemberNotNull(nameof(_serviceProvider))]
+    private void EnsureInitialized()
+    {
+        if (_serviceProvider is null)
+        {
+            throw new InvalidOperationException($"{nameof(_serviceProvider)} not yet been initialized.");
+        }
+    }
+
+    #endregion
 }

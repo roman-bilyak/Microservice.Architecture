@@ -1,8 +1,8 @@
 ﻿namespace Microservice.Application;
 
-public abstract class ListDto<T>
+public abstract record ListDto<T>
 {
-    public List<T> Items { get; protected set; } = new List<T>();
+    public List<T> Items { get; init; } = new List<T>();
 
-    public long TotalCount { get; set; }
+    public long TotalCount { get; init; }
 }

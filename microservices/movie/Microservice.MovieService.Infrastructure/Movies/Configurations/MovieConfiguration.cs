@@ -11,6 +11,6 @@ internal class MovieConfiguration : IEntityTypeConfiguration<Movie>
 
         builder.Property(x => x.Title)
             .IsRequired()
-            .HasMaxLength(30);
+            .HasMaxLength(100);
     }
 }

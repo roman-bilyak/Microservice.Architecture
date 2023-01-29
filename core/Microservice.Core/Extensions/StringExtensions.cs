@@ -1,31 +1,33 @@
-﻿namespace Microservice.Core.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Microservice.Core.Extensions;
 
 public static class StringExtensions
 {
-    public static bool IsNullOrEmpty(this string str)
+    public static bool IsNullOrEmpty([NotNullWhen(false)] this string? value)
     {
-        return string.IsNullOrEmpty(str);
+        return string.IsNullOrEmpty(value);
     }
 
-    public static string RemovePrefix(this string str, string prefix)
+    [return: NotNullIfNotNull(nameof(value))]
+    public static string? RemovePrefix(this string? value, string prefix)
     {
-        ArgumentNullException.ThrowIfNullOrEmpty(prefix, nameof(prefix));
-
-        if (!str.IsNullOrEmpty() && str.StartsWith(prefix))
+        if (!value.IsNullOrEmpty() && !prefix.IsNullOrEmpty() 
+            && value.StartsWith(prefix))
         {
-            return str[prefix.Length..];
+            return value[prefix.Length..];
         }
-        return str;
+        return value;
     }
 
-    public static string RemoveSuffix(this string str, string suffix)
+    [return: NotNullIfNotNull(nameof(value))]
+    public static string? RemoveSuffix(this string? value, string suffix)
     {
-        ArgumentNullException.ThrowIfNullOrEmpty(suffix, nameof(suffix));
-
-        if (!str.IsNullOrEmpty() && str.EndsWith(suffix))
+        if (!value.IsNullOrEmpty() && !suffix.IsNullOrEmpty() 
+            && value.EndsWith(suffix))
         {
-            return str[..^suffix.Length];
+            return value[..^suffix.Length];
         }
-        return str;
+        return value;
     }
 }
