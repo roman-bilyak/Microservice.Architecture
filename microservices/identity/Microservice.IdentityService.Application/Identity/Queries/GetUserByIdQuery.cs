@@ -22,8 +22,8 @@ public class GetUserByIdQuery : ItemQuery<Guid>
 
         public async Task Consume(ConsumeContext<GetUserByIdQuery> context)
         {
-            User user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (user == null)
+            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (user is null)
             {
                 throw new Exception($"User (id = '{context.Message.Id}') not found");
             }
@@ -34,7 +34,8 @@ public class GetUserByIdQuery : ItemQuery<Guid>
                 Name = user.Name,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                Email = user.Email,
+                IsEmilConfirmed = user.IsEmailConfirmed
             });
         }
     }

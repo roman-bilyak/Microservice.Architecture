@@ -2,6 +2,7 @@
 using Microservice.Database;
 using Microservice.IdentityService.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.IdentityService;
@@ -9,9 +10,9 @@ namespace Microservice.IdentityService;
 [DependsOn<IdentityServiceDomainModule>]
 public sealed class IdentityServiceInfrastructureModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.AddDbContext<IdentityServiceDbContext>(options =>
         {

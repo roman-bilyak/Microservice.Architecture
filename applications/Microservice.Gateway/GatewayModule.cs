@@ -10,9 +10,9 @@ namespace Microservice.Gateway;
 [DependsOn<ApiModule>]
 public sealed class GatewayModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.RegisterFakeApplicationServices(typeof(IdentityService.Identity.IUserApplicationService).Assembly, "api/IS");
         services.RegisterFakeApplicationServices(typeof(MovieService.Movies.IMovieApplicationService).Assembly, "api/MS");

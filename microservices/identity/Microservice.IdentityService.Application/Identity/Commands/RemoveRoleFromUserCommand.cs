@@ -31,8 +31,8 @@ public class RemoveUserFromRoleCommand : Command
 
         public async Task Consume(ConsumeContext<RemoveUserFromRoleCommand> context)
         {
-            User user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
-            if (user == null)
+            User? user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
+            if (user is null)
             {
                 throw new Exception($"User (id = '{context.Message.UserId}') not found");
             }

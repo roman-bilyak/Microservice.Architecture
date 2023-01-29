@@ -22,8 +22,8 @@ public class GetMovieByIdQuery : ItemQuery<Guid>
 
         public async Task Consume(ConsumeContext<GetMovieByIdQuery> context)
         {
-            Movie movie = await _movieManager.GetByIdAsync(context.Message.Id, context.CancellationToken);
-            if (movie == null)
+            Movie? movie = await _movieManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (movie is null)
             {
                 throw new Exception($"Movie (id = '{context.Message.Id}') not found");
             }

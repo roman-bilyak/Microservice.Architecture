@@ -3,15 +3,16 @@ using Microservice.Core.Modularity;
 using Microservice.MovieService.Movies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace Microservice.MovieService;
 
 [DependsOn<MovieServiceDomainModule>]
 public sealed class MovieServiceInfrastructureModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
         services.AddDbContext<MovieServiceDbContext>(options =>
         {

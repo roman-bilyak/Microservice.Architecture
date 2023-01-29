@@ -16,7 +16,7 @@ public class DynamicControllerFeatureProvider : IApplicationFeatureProvider<Cont
 
     public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
     {
-        DynamicControllerOptions dynamicControllerOptions = _application.ServiceProvider.GetOptions<DynamicControllerOptions>();
+        DynamicControllerOptions dynamicControllerOptions = _application.GetServiceProvider().GetOptions<DynamicControllerOptions>();
 
         foreach (IApplicationPartTypeProvider part in parts.OfType<IApplicationPartTypeProvider>())
         {

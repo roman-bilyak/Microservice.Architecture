@@ -52,7 +52,6 @@ public class DynamicControllerConvention : IApplicationModelConvention
             .RemoveSuffix("Proxy")
             .RemoveSuffix("Controller")
             .RemoveSuffix("ApplicationService");
-            
     }
 
     private static void SetGroupName(ControllerModel controller)

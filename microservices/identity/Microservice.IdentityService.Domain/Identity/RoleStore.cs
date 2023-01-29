@@ -55,7 +55,7 @@ public class RoleStore : IRoleStore<Role>
     {
         ArgumentNullException.ThrowIfNull(role, nameof(role));
 
-        return Task.FromResult(role.Name);
+        return Task.FromResult<string?>(role.Name);
     }
 
     public Task SetRoleNameAsync(Role role, string? roleName, CancellationToken cancellationToken)
@@ -63,7 +63,7 @@ public class RoleStore : IRoleStore<Role>
         ArgumentNullException.ThrowIfNull(role, nameof(role));
         ArgumentNullException.ThrowIfNull(roleName, nameof(roleName));
 
-        role.Name = roleName;
+        role.SetName(roleName);
         return Task.CompletedTask;
     }
 
@@ -71,7 +71,7 @@ public class RoleStore : IRoleStore<Role>
     {
         ArgumentNullException.ThrowIfNull(role, nameof(role));
 
-        return Task.FromResult(role.NormalizedName);
+        return Task.FromResult<string?>(role.NormalizedName);
     }
 
     public Task SetNormalizedRoleNameAsync(Role role, string? normalizedName, CancellationToken cancellationToken)
@@ -79,7 +79,7 @@ public class RoleStore : IRoleStore<Role>
         ArgumentNullException.ThrowIfNull(role, nameof(role));
         ArgumentNullException.ThrowIfNull(normalizedName, nameof(normalizedName));
 
-        role.NormalizedName = normalizedName;
+        role.SetNormalizedName(normalizedName);
         return Task.CompletedTask;
     }
 

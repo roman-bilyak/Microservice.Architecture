@@ -22,14 +22,17 @@ public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto>
 
         public async Task Consume(ConsumeContext<UpdateUserCommand> context)
         {
-            User user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (user == null)
+            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (user is null)
             {
                 throw new Exception($"User (id = '{context.Message.Id}') not found");
             }
 
             UpdateUserDto userDto = context.Message.Model;
-            user.Update(userDto.Name, userDto.FirstName, userDto.LastName, userDto.Email);
+            user.SetName(userDto.Name);
+            user.SetFirstName(userDto.FirstName);
+            user.SetLastName(userDto.LastName);
+            user.SetEmail(userDto.Email);
 
             var result = await _userManager.UpdateAsync(user, context.CancellationToken);
             result.CheckErrors();
@@ -40,7 +43,8 @@ public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto>
                 Name = user.Name,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                Email = user.Email,
+                IsEmilConfirmed = user.IsEmailConfirmed
             });
         }
     }

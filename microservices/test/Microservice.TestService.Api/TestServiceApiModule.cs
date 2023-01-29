@@ -2,7 +2,6 @@
 using Microservice.Api;
 using Microservice.Application;
 using Microservice.AspNetCore;
-using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microservice.TestService.Tests;
 
@@ -13,22 +12,21 @@ namespace Microservice.TestService;
 [DependsOn<ApiModule>]
 public sealed class TestServiceApiModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
-        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
         services.AddMassTransit(x =>
         {
             x.AddConsumer<TestMessageConsumer>();
 
             x.UsingRabbitMq((ctx, cfg) =>
             {
-                string host = configuration.GetValue<string>("RabbitMq:Host");
+                string host = configuration.GetValue<string>("RabbitMq:Host") ?? "localhost";
                 ushort port = configuration.GetValue<ushort>("RabbitMq:Port");
-                string virtualHost = configuration.GetValue<string>("RabbitMq:VirtualHost");
-                string userName = configuration.GetValue<string>("RabbitMq:UserName");
-                string password = configuration.GetValue<string>("RabbitMq:Password");
+                string virtualHost = configuration.GetValue<string>("RabbitMq:VirtualHost") ?? "/";
+                string userName = configuration.GetValue<string>("RabbitMq:UserName") ?? "guest";
+                string password = configuration.GetValue<string>("RabbitMq:Password") ?? "guest";
 
                 cfg.Host(host, port, virtualHost, h =>
                 {

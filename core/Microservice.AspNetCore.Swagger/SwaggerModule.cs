@@ -1,5 +1,4 @@
-﻿using Microservice.Core;
-using Microservice.Core.Modularity;
+﻿using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,11 +9,10 @@ namespace Microservice.AspNetCore.Swagger;
 [DependsOn<AspNetCoreModule>]
 public class SwaggerModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        base.ConfigureServices(services);
+        base.ConfigureServices(services, configuration);
 
-        IConfiguration configuration = services.GetImplementationInstance<IConfiguration>();
         services.AddOptions<SwaggerOptions>()
             .Bind(configuration.GetSection(SwaggerOptions.Swagger))
             .ValidateDataAnnotations();
@@ -52,7 +50,7 @@ public class SwaggerModule : StartupModule
                                 Type = ReferenceType.SecurityScheme,
                             }
                         },
-                        swaggerOptions.Security.Flow.Scopes?.Keys.ToArray() ?? new string []{ }
+                        swaggerOptions.Security.Flow.Scopes?.Keys.ToArray() ?? Array.Empty<string>()
                     }
                 });
             }
@@ -79,7 +77,7 @@ public class SwaggerModule : StartupModule
             {
                 options.OAuthClientId(swaggerOptions.Security.Flow.ClientId);
                 options.OAuthAppName(swaggerOptions.Title);
-                options.OAuthScopes(swaggerOptions.Security.Flow.Scopes?.Keys.ToArray() ?? new string[] { });
+                options.OAuthScopes(swaggerOptions.Security.Flow.Scopes?.Keys.ToArray() ?? Array.Empty<string>());
                 if (swaggerOptions.Security.Flow.UsePkce ?? false)
                 {
                     options.OAuthUsePkce();
@@ -90,9 +88,9 @@ public class SwaggerModule : StartupModule
 
     #region helper methods
 
-    private OpenApiOAuthFlows GetOpenApiOAuthFlows(SwaggerSecurityFlow flow)
+    private static OpenApiOAuthFlows GetOpenApiOAuthFlows(SwaggerSecurityFlow flow)
     {
-        OpenApiOAuthFlows result = new OpenApiOAuthFlows();
+        OpenApiOAuthFlows result = new();
         switch (flow.GrantType)
         {
             case GrantTypes.AuthorizationCode:
@@ -111,7 +109,7 @@ public class SwaggerModule : StartupModule
         return result;
     }
 
-    private OpenApiOAuthFlow GetOpenApiOAuthFlow(SwaggerSecurityFlow flow)
+    private static OpenApiOAuthFlow GetOpenApiOAuthFlow(SwaggerSecurityFlow flow)
     {
         return new OpenApiOAuthFlow
         {
@@ -122,7 +120,7 @@ public class SwaggerModule : StartupModule
         };
     }
 
-    private Uri? GetUri(string? baseUrl, string? segment)
+    private static Uri? GetUri(string? baseUrl, string? segment)
     {
         if (string.IsNullOrEmpty(segment))
         {

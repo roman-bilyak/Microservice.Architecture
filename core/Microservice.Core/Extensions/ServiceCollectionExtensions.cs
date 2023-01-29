@@ -7,7 +7,7 @@ namespace Microservice.Core;
 public static class ServiceCollectionExtensions
 {
     public static IApplication AddApplication<TStartupModule>(this IServiceCollection services, IConfiguration configuration,
-        Action<ApplicationConfigurationOptions> configurationOptionsAction = null)
+        Action<ApplicationConfigurationOptions>? configurationOptionsAction = null)
         where TStartupModule : class, IStartupModule, new()
     {
         ArgumentNullException.ThrowIfNull(services);
@@ -29,11 +29,11 @@ public static class ServiceCollectionExtensions
 
     public static Type? GetImplementationType(this IServiceCollection services, Type type)
     {
-        return services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == type)?.ImplementationType;
+        return services.FirstOrDefault(x => x.ServiceType == type)?.ImplementationType;
     }
 
-    public static T GetImplementationInstance<T>(this IServiceCollection services)
+    public static T? GetImplementationInstance<T>(this IServiceCollection services)
     {
-        return (T)(services.FirstOrDefault((ServiceDescriptor d) => d.ServiceType == typeof(T))?.ImplementationInstance);
+        return (T?)(services.FirstOrDefault(x => x.ServiceType == typeof(T))?.ImplementationInstance);
     }
 }

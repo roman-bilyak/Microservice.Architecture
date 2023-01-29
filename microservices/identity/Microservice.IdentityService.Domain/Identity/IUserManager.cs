@@ -4,7 +4,7 @@ namespace Microservice.IdentityService.Identity;
 
 public interface IUserManager
 {
-    Task<User> FindByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<User?> FindByIdAsync(Guid id, CancellationToken cancellationToken);
 
     Task<IdentityResult> CreateAsync(User user, string password, CancellationToken cancellationToken);
 

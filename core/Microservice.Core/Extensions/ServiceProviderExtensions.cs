@@ -8,7 +8,12 @@ public static class ServiceProviderExtensions
     {
         ArgumentNullException.ThrowIfNull(serviceProvider);
 
-        return serviceProvider.GetRequiredService<ObjectWrapper<T>>().Object;
+        ObjectWrapper<T> objectWrapper = serviceProvider.GetRequiredService<ObjectWrapper<T>>();
+        if (objectWrapper.Object is null)
+        {
+            throw new InvalidOperationException($"Object is not set for wrapper of type '{typeof(T)}'");
+        }
+        return objectWrapper.Object;
     }
 
     public static void SetWrappedService<T>(this IServiceProvider serviceProvider, T service)

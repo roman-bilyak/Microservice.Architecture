@@ -30,7 +30,7 @@ public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto>
             }
 
             UpdateRoleDto roleDto = context.Message.Model;
-            role.Update(roleDto.Name);
+            role.SetName(roleDto.Name);
 
             IdentityResult result = await _roleManager.UpdateAsync(role, context.CancellationToken);
             result.CheckErrors();
