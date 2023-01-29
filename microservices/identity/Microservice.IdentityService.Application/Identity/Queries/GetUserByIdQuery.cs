@@ -22,8 +22,8 @@ public class GetUserByIdQuery : ItemQuery<Guid>
 
         public async Task Consume(ConsumeContext<GetUserByIdQuery> context)
         {
-            User user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (user == null)
+            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (user is null)
             {
                 throw new Exception($"User (id = '{context.Message.Id}') not found");
             }

@@ -28,7 +28,7 @@ public class UserManager : UserManager<User>, IUserManager, IDomainService
 
     protected override CancellationToken CancellationToken => _cancellationToken;
 
-    public async Task<User> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<User?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         _cancellationToken = cancellationToken;
         return await FindByIdAsync(id.ToString());

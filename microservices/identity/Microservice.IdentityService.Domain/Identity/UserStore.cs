@@ -12,6 +12,7 @@ public class UserStore :
 {
     private readonly IRepository<User> _userRepository;
     private readonly IRoleStore<Role> _roleStore;
+    private bool disposed;
 
     public UserStore
     (
@@ -254,5 +255,21 @@ public class UserStore :
 
     public void Dispose()
     {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposed)
+        {
+            return;
+        }
+        disposed = true;
+    }
+
+    ~UserStore()
+    {
+        Dispose(disposing: false);
     }
 }

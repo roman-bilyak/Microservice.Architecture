@@ -33,8 +33,8 @@ public class GetUserRolesQuery : Query
 
         public async Task Consume(ConsumeContext<GetUserRolesQuery> context)
         {
-            User user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (user == null)
+            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            if (user is null)
             {
                 throw new Exception($"User (id = '{context.Message.Id}') doesn't exist");
             }

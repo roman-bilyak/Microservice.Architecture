@@ -22,11 +22,11 @@ public sealed class TestServiceApiModule : StartupModule
 
             x.UsingRabbitMq((ctx, cfg) =>
             {
-                string host = configuration.GetValue<string>("RabbitMq:Host");
+                string host = configuration.GetValue<string>("RabbitMq:Host") ?? "localhost";
                 ushort port = configuration.GetValue<ushort>("RabbitMq:Port");
-                string virtualHost = configuration.GetValue<string>("RabbitMq:VirtualHost");
-                string userName = configuration.GetValue<string>("RabbitMq:UserName");
-                string password = configuration.GetValue<string>("RabbitMq:Password");
+                string virtualHost = configuration.GetValue<string>("RabbitMq:VirtualHost") ?? "/";
+                string userName = configuration.GetValue<string>("RabbitMq:UserName") ?? "guest";
+                string password = configuration.GetValue<string>("RabbitMq:Password") ?? "guest";
 
                 cfg.Host(host, port, virtualHost, h =>
                 {
