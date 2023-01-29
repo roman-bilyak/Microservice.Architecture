@@ -15,12 +15,12 @@ public sealed class AuthenticationModule : StartupModule
     {
         base.ConfigureServices(services, configuration);
 
-        AuthenticationOptions authenticationOptions = configuration.GetSection("Authentication").Get<AuthenticationOptions>();
+        AuthenticationOptions? authenticationOptions = configuration.GetSection("Authentication").Get<AuthenticationOptions>();
 
         AuthenticationBuilder authenticationBuilder = services
-            .AddAuthentication(authenticationOptions.Scheme ?? JwtBearerDefaults.AuthenticationScheme);
+            .AddAuthentication(authenticationOptions?.Scheme ?? JwtBearerDefaults.AuthenticationScheme);
 
-        if (authenticationOptions.JwtBearer is not null)
+        if (authenticationOptions?.JwtBearer is not null)
         {
             authenticationBuilder
                 .AddJwtBearer(authenticationOptions.Scheme ?? JwtBearerDefaults.AuthenticationScheme, options =>
