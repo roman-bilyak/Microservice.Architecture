@@ -2,7 +2,7 @@
 
 namespace Microservice.IdentityService.Identity;
 
-public record ChangeUserPasswordDto
+public class UpdateUserPasswordDto
 {
     [Required]
     [MaxLength(50)]

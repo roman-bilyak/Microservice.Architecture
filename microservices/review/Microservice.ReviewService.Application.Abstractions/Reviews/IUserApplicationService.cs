@@ -5,5 +5,5 @@ namespace Microservice.ReviewService.Reviews;
 
 public interface IUserApplicationService : IApplicationService
 {
-    public Task<GetUserReviewsDto> GetUserReviewsAsync([Required] Guid id, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
+    public Task<UserReviewListDto> GetReviewListAsync([Required] Guid userId, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
 }

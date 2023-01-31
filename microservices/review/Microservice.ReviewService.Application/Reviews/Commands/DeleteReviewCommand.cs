@@ -5,8 +5,11 @@ namespace Microservice.ReviewService.Reviews;
 
 public class DeleteReviewCommand : DeleteCommand<Guid>
 {
-    public DeleteReviewCommand(Guid id) : base(id)
+    public Guid MovieId { get; protected set; }
+
+    public DeleteReviewCommand(Guid movieId, Guid id) : base(id)
     {
+        MovieId = movieId;
     }
 
     public class DeleteReviewCommandHandler : ICommandHandler<DeleteReviewCommand>

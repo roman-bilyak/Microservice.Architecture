@@ -25,7 +25,7 @@ public class GetMovieReviewsQuery : ListQuery
 
         public async Task Consume(ConsumeContext<GetMovieReviewsQuery> context)
         {
-            GetMovieReviewsDto result = new GetMovieReviewsDto
+            MovieReviewListDto result = new MovieReviewListDto
             {
                 TotalCount = await _reviewManager.GetCountByMovieAsync(context.Message.MovieId, context.CancellationToken)
             };

@@ -5,10 +5,10 @@ import * as APIServices from './api-services';
 
 @NgModule({
   providers: [
-    APIServices.MovieAPIService,
-    APIServices.ReviewAPIService,
-    APIServices.TestAPIService,
-    APIServices.UserAPIService,
+    APIServices.MoviesAPIService,
+    APIServices.TestsAPIService,
+    APIServices.RolesAPIService,
+    APIServices.UsersAPIService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtBearerInterceptor, multi: true }
   ]
 })

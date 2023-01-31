@@ -17,7 +17,7 @@ public sealed class GatewayModule : StartupModule
         services.RegisterFakeApplicationServices(typeof(IdentityService.Identity.IUserApplicationService).Assembly, "api/IS");
         services.RegisterFakeApplicationServices(typeof(MovieService.Movies.IMovieApplicationService).Assembly, "api/MS");
         services.RegisterFakeApplicationServices(typeof(PaymentService.Payment.IPaymentApplicationService).Assembly, "api/PS");
-        services.RegisterFakeApplicationServices(typeof(ReviewService.Reviews.IReviewApplicationService).Assembly, "api/RS");
+        services.RegisterFakeApplicationServices(typeof(ReviewService.Reviews.IMovieApplicationService).Assembly, "api/RS");
         services.RegisterFakeApplicationServices(typeof(TestService.Tests.ITestApplicationService).Assembly, "api/TS");
 
         services.Configure<DynamicControllerOptions>(options =>
@@ -40,7 +40,7 @@ public sealed class GatewayModule : StartupModule
 
         services.Configure<DynamicControllerOptions>(options =>
         {
-            options.AddSettings(typeof(ReviewService.Reviews.IReviewApplicationService).Assembly,
+            options.AddSettings(typeof(ReviewService.Reviews.IMovieApplicationService).Assembly,
                 x => typeof(IApplicationService).IsAssignableFrom(x));
         });
 

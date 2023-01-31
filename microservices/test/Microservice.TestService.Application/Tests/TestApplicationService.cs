@@ -17,11 +17,11 @@ internal class TestApplicationService : ApplicationService, ITestApplicationServ
         return Task.CompletedTask;
     }
 
-    public async Task SendMessageAsync(int id, string message, CancellationToken cancellationToken)
+    public async Task SendMessageAsync(int testId, string message, CancellationToken cancellationToken)
     {
         TestMessage testMessage = new TestMessage
         {
-            Id = id,
+            Id = testId,
             Message = message
         };
 

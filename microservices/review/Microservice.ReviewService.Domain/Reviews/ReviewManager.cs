@@ -16,6 +16,7 @@ internal class ReviewManager : DomainService, IReviewManager
 
     public async Task<Review?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
     {
+        //TODO: add filter by movieId
         return await _reviewRepository.GetByIdAsync(id, cancellationToken);
     }
 

@@ -5,8 +5,11 @@ namespace Microservice.ReviewService.Reviews;
 
 public class GetReviewByIdQuery : ItemQuery<Guid>
 {
-    public GetReviewByIdQuery(Guid id) : base(id)
+    public Guid MovieId { get; protected set; }
+
+    public GetReviewByIdQuery(Guid movieId, Guid id) : base(id)
     {
+        MovieId = movieId;
     }
 
     public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>

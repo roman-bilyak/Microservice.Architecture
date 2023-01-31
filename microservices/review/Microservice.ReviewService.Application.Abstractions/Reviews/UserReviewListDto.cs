@@ -2,6 +2,6 @@
 
 namespace Microservice.ReviewService.Reviews;
 
-public record GetMovieReviewsDto : ListDto<ReviewDto>
+public record UserReviewListDto : ListDto<ReviewDto>
 {
 }
