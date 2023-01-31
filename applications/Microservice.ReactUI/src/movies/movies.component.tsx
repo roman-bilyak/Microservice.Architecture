@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { MovieAPIService, MovieDto } from "../api-services/api-services";
+import { MoviesAPIService, MovieDto } from "../api-services/api-services";
 
 export const MoviesComponent = () => {
   const [items, setItems] = useState<MovieDto[]>([]);
@@ -18,8 +18,8 @@ export const MoviesComponent = () => {
   const fetchData = async (page: number, size: number | undefined = perPage) => {
     setLoading(true);
 
-    let movieAPIService = new MovieAPIService('http://localhost:7100');
-    var response = await movieAPIService.getMovies(page - 1, size);
+    let moviesAPIService = new MoviesAPIService('http://localhost:7100');
+    var response = await moviesAPIService.getMovieList(page - 1, size);
 
     setItems(response.items || []);
     setTotalCount(response.totalCount);
