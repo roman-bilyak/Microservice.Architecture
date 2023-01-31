@@ -2,7 +2,7 @@
 
 namespace Microservice.TestService.Tests;
 
-public interface ITestsApplicationService : IApplicationService
+public interface ITestApplicationService : IApplicationService
 {
     public Task GetAsync(CancellationToken cancellationToken);
 

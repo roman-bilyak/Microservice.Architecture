@@ -25,7 +25,7 @@ public class GetUserReviewsQuery : ListQuery
 
         public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)
         {
-            GetUserReviewsDto result = new GetUserReviewsDto
+            UserReviewListDto result = new UserReviewListDto
             {
                 TotalCount = await _reviewManager.GetCountByUserAsync(context.Message.UserId, context.CancellationToken)
             };

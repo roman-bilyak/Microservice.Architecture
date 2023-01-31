@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 namespace Microservice.MovieService.Movies;
 
 [Authorize]
-internal class MoviesApplicationService : ApplicationService, IMoviesApplicationService
+internal class MovieApplicationService : ApplicationService, IMovieApplicationService
 {
     private readonly IMediator _mediator;
 
-    public MoviesApplicationService(IMediator mediator)
+    public MovieApplicationService(IMediator mediator)
     {
         ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
 

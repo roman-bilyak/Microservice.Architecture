@@ -11,6 +11,7 @@ namespace Microservice.AspNetCore;
 public class DynamicControllerConvention : IApplicationModelConvention
 {
     private readonly DynamicControllerOptions _options;
+    private static readonly string[] _prefixes = new string[] { "Get", "Add", "Create", "Update", "Delete", "Remove" };
 
     public DynamicControllerConvention(IOptions<DynamicControllerOptions> options)
     {
@@ -29,12 +30,18 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
             NormalizeName(controller);
             SetGroupName(controller);
+
             SetVisibility(controller);
-            SetRoute(controller);
+            if (!IsVisible(controller))
+            {
+                continue;
+            }
+
+            ConfigureRoute(controller);
 
             foreach (ActionModel action in controller.Actions)
             {
-                ConfigureAction(controller, action);
+                ConfigureAction(action);
             }
         }
     }
@@ -46,7 +53,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
         string controllerName = controller.ControllerType.AsType().Name;
         if (controllerName.StartsWith("I") && controllerName.Length > 1 && char.IsUpper(controllerName[1]))
         {
-            controllerName = controllerName.Substring(1, controllerName.Length - 1);
+            controllerName = controllerName[1..];
         }
         controller.ControllerName = controllerName
             .RemoveSuffix("Proxy")
@@ -60,7 +67,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
         {
             return;
         }
-        controller.ApiExplorer.GroupName = controller.ControllerName;
+        controller.ApiExplorer.GroupName = controller.ControllerName.Pluralize();
     }
 
     private static void SetVisibility(ControllerModel controller)
@@ -72,7 +79,12 @@ public class DynamicControllerConvention : IApplicationModelConvention
         controller.ApiExplorer.IsVisible = true;
     }
 
-    private static void SetRoute(ControllerModel controller)
+    private static bool IsVisible(IApiExplorerModel controller)
+    {
+        return controller.ApiExplorer.IsVisible ?? true;
+    }
+
+    private static void ConfigureRoute(ControllerModel controller)
     {
         if (!controller.Selectors.Any())
         {
@@ -81,18 +93,19 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
         foreach (var selector in controller.Selectors)
         {
-            if (selector.AttributeRouteModel is null)
-            {
-                selector.AttributeRouteModel = new AttributeRouteModel(new RouteAttribute("api"));
-            }
+            selector.AttributeRouteModel ??= new AttributeRouteModel(new RouteAttribute("api"));
         }
     }
 
-    private static void ConfigureAction(ControllerModel controller, ActionModel action)
+    private static void ConfigureAction(ActionModel action)
     {
         NormalizeName(action);
         SetVisibility(action);
-        SetRoute(action);
+        if (!IsVisible(action))
+        {
+            return;
+        }
+        ConfigureRoute(action);
         ConfigureParameters(action);
     }
 
@@ -115,7 +128,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
             && actionName != "GetInterceptors"; ;
     }
 
-    private static void SetRoute(ActionModel action)
+    private static void ConfigureRoute(ActionModel action)
     {
         if (!action.Selectors.Any())
         {
@@ -124,21 +137,14 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
         foreach (var selector in action.Selectors)
         {
-            string? httpMethod = selector.ActionConstraints
-                .OfType<HttpMethodActionConstraint>()
-                .FirstOrDefault()?
-                .HttpMethods?
-                .FirstOrDefault();
-
-            if (httpMethod is null)
-            {
-                httpMethod = GetHttpMethodByActionName(action);
-            }
+            string httpMethod = selector.ActionConstraints.OfType<HttpMethodActionConstraint>().FirstOrDefault()?.HttpMethods?.FirstOrDefault()
+                ?? GetHttpMethodByActionName(action);
 
             if (selector.AttributeRouteModel is null)
             {
-                string actionUrlTemplate = GetActionUrlTemplate(action);
-                selector.AttributeRouteModel = new AttributeRouteModel(new RouteAttribute(actionUrlTemplate));
+                string routeUrlTemplate = GetRouteUrlTemplate(action);
+                string routeName = GetRouteName(action);
+                selector.AttributeRouteModel = new AttributeRouteModel(new RouteAttribute(routeUrlTemplate) { Name = routeName });
             }
 
             if (!selector.ActionConstraints.OfType<HttpMethodActionConstraint>().Any())
@@ -151,21 +157,20 @@ public class DynamicControllerConvention : IApplicationModelConvention
     private static string GetHttpMethodByActionName(ActionModel action)
     {
         string actionName = action.ActionName;
-        return actionName switch
+        string? actionPrefix = actionName.FindPrefix(_prefixes);
+        return actionPrefix switch
         {
-            _ when actionName.StartsWith("Get", StringComparison.InvariantCulture) => "GET",
-            _ when actionName.StartsWith("Add", StringComparison.InvariantCulture) 
-                || actionName.StartsWith("Create", StringComparison.InvariantCulture) => "POST",
-            _ when actionName.StartsWith("Update", StringComparison.InvariantCulture) => "PUT",
-            _ when actionName.StartsWith("Delete", StringComparison.InvariantCulture)
-                || actionName.StartsWith("Remove", StringComparison.InvariantCulture) => "DELETE",
-            _ => "POST"
+            "Get" => "GET",
+            "Add" or "Create" => "POST",
+            "Update" => "PUT",
+            "Delete" or "Remove" => "DELETE",
+            _ => "POST",
         };
     }
 
-    private static string GetActionUrlTemplate(ActionModel action)
+    private static string GetRouteUrlTemplate(ActionModel action)
     {
-        string actionUrlTemplate = action.Controller.ControllerName;
+        string actionUrlTemplate = action.Controller.ControllerName.Pluralize();
 
         List<ParameterModel> idParameters = action.Parameters
                 .Where(x => x.ParameterName is not null
@@ -177,19 +182,19 @@ public class DynamicControllerConvention : IApplicationModelConvention
             actionUrlTemplate += $"/{{{idParameters[0].ParameterName}}}";
         }
 
-        string actionName = action.ActionName
-            .RemovePrefix("GetList")
-            .RemovePrefix("Get")
-            .RemovePrefix("AddTo")
-            .RemovePrefix("Add")
-            .RemovePrefix("Create")
-            .RemovePrefix("Update")
-            .RemovePrefix("Delete")
-            .RemovePrefix("RemoveFrom")
-            .RemovePrefix("Remove");
+        string actionName = action.ActionName;
+        string? actionPrefix = actionName.FindPrefix(_prefixes);
+        actionName = actionName
+            .RemovePrefix(actionPrefix)
+            .RemoveSuffix("List");
 
         if (!actionName.IsNullOrEmpty())
         {
+            if (actionPrefix is not null)
+            {
+                actionName = actionName.Pluralize();
+            }
+
             actionUrlTemplate += $"/{actionName}";
             if (idParameters.Count > 1)
             {
@@ -200,11 +205,27 @@ public class DynamicControllerConvention : IApplicationModelConvention
         return actionUrlTemplate;
     }
 
+    private static string GetRouteName(ActionModel action)
+    {
+        string actionName = action.ActionName;
+
+        string? actionPrefix = actionName.FindPrefix(_prefixes);
+        actionName = actionName.RemovePrefix(actionPrefix);
+
+        string controllerName = action.Controller.ControllerName;
+        if (!actionName.StartsWith(controllerName))
+        {
+            actionName = controllerName + actionName;
+        }
+
+        return $"{actionPrefix}{actionName}";
+    }
+
     private static void ConfigureParameters(ActionModel action)
     {
         var httpMethods = action.Selectors
             .SelectMany(x => x.ActionConstraints.OfType<HttpMethodActionConstraint>())?
-            .SelectMany(x => x.HttpMethods) ?? new string[] { };
+            .SelectMany(x => x.HttpMethods) ?? Array.Empty<string>();
 
         bool useFormBodyBinding = !httpMethods.Contains("GET")
             && !httpMethods.Contains("DELETE");

@@ -6,21 +6,21 @@ using System.ComponentModel.DataAnnotations;
 namespace Microservice.ReviewService.Reviews;
 
 [Authorize]
-internal class UsersApplicationService : ApplicationService, IUsersApplicationService
+internal class UserApplicationService : ApplicationService, IUserApplicationService
 {
     private readonly IMediator _mediator;
 
-    public UsersApplicationService(IMediator mediator)
+    public UserApplicationService(IMediator mediator)
     {
         ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
 
         _mediator = mediator;
     }
 
-    public async Task<GetUserReviewsDto> GetReviewsAsync([Required] Guid userId, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
+    public async Task<UserReviewListDto> GetReviewListAsync([Required] Guid userId, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUserReviewsQuery>();
-        var response = await client.GetResponse<GetUserReviewsDto>(new GetUserReviewsQuery(userId, pageIndex, pageSize), cancellationToken);
+        var response = await client.GetResponse<UserReviewListDto>(new GetUserReviewsQuery(userId, pageIndex, pageSize), cancellationToken);
         return response.Message;
     }
 }

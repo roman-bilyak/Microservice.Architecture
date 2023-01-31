@@ -27,6 +27,7 @@ public class SwaggerModule : StartupModule
                     Version = swaggerOptions.Version
                 });
             options.DocInclusionPredicate((docName, description) => true);
+            options.TagActionsBy(x => new[] { x.GroupName });
             options.DocumentFilter<IgnorePathsFilter>();
 
             if (swaggerOptions.Security?.Flow is not null)

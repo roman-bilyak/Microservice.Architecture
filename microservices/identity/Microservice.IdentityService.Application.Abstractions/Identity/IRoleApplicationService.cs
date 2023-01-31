@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
-public interface IRolesApplicationService : IApplicationService
+public interface IRoleApplicationService : IApplicationService
 {
     public Task<RoleListDto> GetListAsync([Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken);
 

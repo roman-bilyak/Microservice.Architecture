@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
-internal class UsersApplicationService : ApplicationService, IUsersApplicationService
+internal class UserApplicationService : ApplicationService, IUserApplicationService
 {
     private readonly IMediator _mediator;
 
-    public UsersApplicationService(IMediator mediator)
+    public UserApplicationService(IMediator mediator)
     {
         ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
 
@@ -53,19 +53,19 @@ internal class UsersApplicationService : ApplicationService, IUsersApplicationSe
         await _mediator.Send(new DeleteUserCommand(userId), cancellationToken);
     }
 
-    public async Task<UserRoleListDto> GetRolesAsync([Required] Guid userId, CancellationToken cancellationToken)
+    public async Task<UserRoleListDto> GetRoleListAsync([Required] Guid userId, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUserRolesQuery>();
         var response = await client.GetResponse<UserRoleListDto>(new GetUserRolesQuery(userId), cancellationToken);
         return response.Message;
     }
 
-    public async Task AddToRoles([Required] Guid userId, [Required] string roleName, CancellationToken cancellationToken)
+    public async Task AddRoleAsync([Required] Guid userId, [Required] string roleName, CancellationToken cancellationToken)
     {
         await _mediator.Send(new AddUserToRoleCommand(userId, roleName), cancellationToken);
     }
 
-    public async Task RemoveFromRoles([Required] Guid userId, [Required] string roleName, CancellationToken cancellationToken)
+    public async Task RemoveRoleAsync([Required] Guid userId, [Required] string roleName, CancellationToken cancellationToken)
     {
         await _mediator.Send(new RemoveUserFromRoleCommand(userId, roleName), cancellationToken);
     }

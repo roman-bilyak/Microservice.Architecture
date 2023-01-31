@@ -13,7 +13,7 @@ public sealed class MovieServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services, configuration);
 
-        services.AddTransient<IMoviesApplicationService, MoviesApplicationService>();
+        services.AddTransient<IMovieApplicationService, MovieApplicationService>();
 
         services.AddCQRS(typeof(MovieServiceApplicationModule).Assembly);
     }

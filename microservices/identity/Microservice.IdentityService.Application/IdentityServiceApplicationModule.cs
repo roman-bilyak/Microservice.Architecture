@@ -13,8 +13,8 @@ public sealed class IdentityServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services, configuration);
 
-        services.AddTransient<IUsersApplicationService, UsersApplicationService>();
-        services.AddTransient<IRolesApplicationService, RolesApplicationService>();
+        services.AddTransient<IUserApplicationService, UserApplicationService>();
+        services.AddTransient<IRoleApplicationService, RoleApplicationService>();
 
         services.AddCQRS(typeof(IdentityServiceApplicationModule).Assembly);
     }

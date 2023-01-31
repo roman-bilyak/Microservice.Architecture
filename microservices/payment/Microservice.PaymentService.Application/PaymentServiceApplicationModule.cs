@@ -12,6 +12,6 @@ public sealed class PaymentServiceApplicationModule : StartupModule
     {
         base.ConfigureServices(services, configuration);
 
-        services.AddTransient<IPaymentsApplicationService, PaymentsApplicationService>();
+        services.AddTransient<IPaymentApplicationService, PaymentApplicationService>();
     }
 }

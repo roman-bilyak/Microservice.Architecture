@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
-internal class RolesApplicationService : ApplicationService, IRolesApplicationService
+internal class RoleApplicationService : ApplicationService, IRoleApplicationService
 {
     private readonly IMediator _mediator;
 
-    public RolesApplicationService(IMediator mediator)
+    public RoleApplicationService(IMediator mediator)
     {
         ArgumentNullException.ThrowIfNull(mediator, nameof(mediator));
 

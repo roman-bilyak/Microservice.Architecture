@@ -3,11 +3,11 @@ using Microservice.Application;
 
 namespace Microservice.TestService.Tests;
 
-internal class TestsApplicationService : ApplicationService, ITestsApplicationService
+internal class TestApplicationService : ApplicationService, ITestApplicationService
 {
     private readonly IBus _bus;
 
-    public TestsApplicationService(IBus bus)
+    public TestApplicationService(IBus bus)
     {
         _bus = bus;
     }
