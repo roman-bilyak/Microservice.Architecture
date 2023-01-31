@@ -18,6 +18,15 @@ public sealed class AspNetCoreModule : StartupModule
         services.AddTransient<DynamicControllerConvention>();
         services.AddTransient<DynamicControllerFeatureProvider>();
 
+        //TODO: move list of allowed origins into config file
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(x =>
+            {
+                x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            });
+        });
+
         services.AddMvc(x =>
         {
             x.Filters.Add<ValidationActionFilter>();
@@ -48,6 +57,7 @@ public sealed class AspNetCoreModule : StartupModule
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
         app.UseRouting();
+        app.UseCors();
     }
 
     public override void PostConfigure(IServiceProvider serviceProvider)

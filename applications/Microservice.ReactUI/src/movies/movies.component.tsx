@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import { MoviesAPIService, MovieDto } from "../api-services/api-services";
 
@@ -7,7 +7,7 @@ export const MoviesComponent = () => {
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(10);
+  const [perPage, setPerPage] = useState(5);
 
   const columns = [
     {
@@ -18,7 +18,7 @@ export const MoviesComponent = () => {
   const fetchData = async (page: number, size: number | undefined = perPage) => {
     setLoading(true);
 
-    let moviesAPIService = new MoviesAPIService('http://localhost:7100');
+    let moviesAPIService = new MoviesAPIService('https://localhost:7100'); //TODO: move API base url into config file
     var response = await moviesAPIService.getMovieList(page - 1, size);
 
     setItems(response.items || []);
@@ -49,6 +49,7 @@ export const MoviesComponent = () => {
       paginationTotalRows={totalCount}
       paginationDefaultPage={currentPage}
       paginationPerPage={perPage}
+      paginationRowsPerPageOptions={[5, 10, 20]}
 
       onChangeRowsPerPage={handlePerRowsChange}
       onChangePage={handlePageChange}
