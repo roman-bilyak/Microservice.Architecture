@@ -3,7 +3,7 @@ import { merge } from "rxjs";
 import { tap } from 'rxjs/operators';
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { MovieAPIService } from '../api-services/api-services';
+import { MoviesAPIService } from '../api-services/api-services';
 import { MoviesDataSource } from './movies.datasource';
 
 
@@ -21,12 +21,12 @@ export class MoviesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private movieAPIService: MovieAPIService) {
+  constructor(private moviesAPIService: MoviesAPIService) {
 
   }
 
   ngOnInit() {
-    this.dataSource = new MoviesDataSource(this.movieAPIService);
+    this.dataSource = new MoviesDataSource(this.moviesAPIService);
     this.dataSource.load(0, 5);
   }
 
