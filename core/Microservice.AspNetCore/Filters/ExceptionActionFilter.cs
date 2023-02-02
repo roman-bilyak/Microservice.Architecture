@@ -1,7 +1,6 @@
 ﻿using Microservice.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Security.Authentication;
 
@@ -12,8 +11,7 @@ internal class ExceptionActionFilter : IAsyncExceptionFilter
     public Task OnExceptionAsync(ExceptionContext context)
     {
         context.HttpContext.Response.StatusCode = (int)GetStatusCode(context.Exception);
-        //TODO: return detailed errors in response
-        context.Result = new ObjectResult(context.Exception.Message);
+        context.Result = new ObjectResult(GetErrorResponse(context.Exception));
 
         return Task.CompletedTask;
     }
@@ -28,7 +26,7 @@ internal class ExceptionActionFilter : IAsyncExceptionFilter
             return HttpStatusCode.Unauthorized;
         }
 
-        if (exception is ValidationException)
+        if (exception is DataValidationException)
         {
             return HttpStatusCode.BadRequest;
         }
@@ -44,6 +42,18 @@ internal class ExceptionActionFilter : IAsyncExceptionFilter
         }
 
         return HttpStatusCode.InternalServerError;
+    }
+
+    private static ErrorResponse GetErrorResponse(Exception exception)
+    {
+        if (exception is DataValidationException dataValidationException)
+        {
+            ValidationErrorInfo[] errors = dataValidationException.Errors
+                .Select(x => new ValidationErrorInfo(x.ErrorMessage, x.MemberNames.ToArray()))
+                .ToArray();
+            return new ErrorResponse(exception.Message, errors);
+        }
+        return new ErrorResponse(exception.Message);
     }
 
     #endregion
