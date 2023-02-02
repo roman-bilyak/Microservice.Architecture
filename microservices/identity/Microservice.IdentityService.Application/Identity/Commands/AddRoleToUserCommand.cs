@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
@@ -34,7 +35,7 @@ public class AddUserToRoleCommand : Command
             User? user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
             if (user is null)
             {
-                throw new Exception($"User (id = '{context.Message.UserId}') not found");
+                throw new EntityNotFoundException(typeof(User), context.Message.UserId);
             }
 
             var result = await _userManager.AddToRoleAsync(user, context.Message.RoleName, context.CancellationToken);

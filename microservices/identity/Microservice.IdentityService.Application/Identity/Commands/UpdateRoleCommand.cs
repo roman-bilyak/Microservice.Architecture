@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 using Microsoft.AspNetCore.Identity;
 
@@ -26,7 +27,7 @@ public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto>
             Role? role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
             if (role is null)
             {
-                throw new Exception($"Role (id = '{context.Message.Id}') not found");
+                throw new EntityNotFoundException(typeof(Role), context.Message.Id);
             }
 
             UpdateRoleDto roleDto = context.Message.Model;

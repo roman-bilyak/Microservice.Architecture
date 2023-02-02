@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 using Microservice.Database;
 
@@ -36,7 +37,7 @@ public class GetUserRolesQuery : Query
             User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
             if (user is null)
             {
-                throw new Exception($"User (id = '{context.Message.Id}') doesn't exist");
+                throw new EntityNotFoundException(typeof(User), context.Message.Id);
             }
 
             List<Guid> roleIds = user.Roles.Select(x => x.RoleId).ToList();

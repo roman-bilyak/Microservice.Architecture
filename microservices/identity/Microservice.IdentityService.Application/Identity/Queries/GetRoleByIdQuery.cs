@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
@@ -25,7 +26,7 @@ public class GetRoleByIdQuery : ItemQuery<Guid>
             Role? role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
             if (role is null)
             {
-                throw new Exception($"Role (id = '{context.Message.Id}') not found");
+                throw new EntityNotFoundException(typeof(Role), context.Message.Id);
             }
 
             await context.RespondAsync(new RoleDto

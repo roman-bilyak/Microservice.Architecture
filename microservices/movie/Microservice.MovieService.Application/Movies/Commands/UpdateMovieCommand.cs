@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
@@ -25,7 +26,7 @@ public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
             Movie? movie = await _movieManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
             if (movie is null)
             {
-                throw new Exception($"Movie (id = '{context.Message.Id}') not found");
+                throw new EntityNotFoundException(typeof(Movie), context.Message.Id);
             }
 
             movie.SetTitle(context.Message.Model.Title);
