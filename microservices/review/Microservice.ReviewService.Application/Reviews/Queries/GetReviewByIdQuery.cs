@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
@@ -28,7 +29,7 @@ public class GetReviewByIdQuery : ItemQuery<Guid>
             Review? review = await _reviewManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
             if (review is null)
             {
-                throw new Exception($"Review (id = '{context.Message.Id}') not found");
+                throw new EntityNotFoundException(typeof(Review), context.Message.Id);
             }
 
             await context.RespondAsync(new ReviewDto

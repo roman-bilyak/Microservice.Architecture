@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
@@ -25,7 +26,7 @@ public class GetUserByIdQuery : ItemQuery<Guid>
             User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
             if (user is null)
             {
-                throw new Exception($"User (id = '{context.Message.Id}') not found");
+                throw new EntityNotFoundException(typeof(User), context.Message.Id);
             }
 
             await context.RespondAsync(new UserDto
