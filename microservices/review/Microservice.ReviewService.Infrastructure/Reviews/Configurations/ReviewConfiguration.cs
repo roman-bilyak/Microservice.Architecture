@@ -17,6 +17,6 @@ internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
 
         builder.Property(x => x.Text)
             .IsRequired()
-            .HasMaxLength(500);
+            .HasMaxLength(Review.MaxTextLength);
     }
 }

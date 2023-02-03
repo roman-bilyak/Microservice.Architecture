@@ -38,6 +38,13 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
         return response.Message;
     }
 
+    public async Task<ReviewDto> UpdateReviewAsync([Required] Guid movieId, [Required] Guid reviewId, UpdateReviewDto review, CancellationToken cancellationToken)
+    {
+        var client = _mediator.CreateRequestClient<UpdateReviewCommand>();
+        var response = await client.GetResponse<ReviewDto>(new UpdateReviewCommand(movieId, reviewId, review), cancellationToken);
+        return response.Message;
+    }
+
     public async Task DeleteReviewAsync([Required] Guid movieId, [Required] Guid reviewId, CancellationToken cancellationToken)
     {
         await _mediator.Send(new DeleteReviewCommand(movieId, reviewId), cancellationToken);

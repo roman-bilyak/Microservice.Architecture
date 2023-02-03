@@ -4,6 +4,8 @@ namespace Microservice.ReviewService.Reviews;
 
 public class Review : Entity<Guid>, IAggregateRoot
 {
+    public const int MaxTextLength = 500;
+
     public Guid UserId { get; protected set; }
 
     public Guid MovieId { get; protected set; }
@@ -30,6 +32,14 @@ public class Review : Entity<Guid>, IAggregateRoot
 
         UserId = userId;
         MovieId = movieId;
+        Text = text;
+        Rating = rating;
+    }
+
+    public void Update(string text, RatingEnum rating)
+    {
+        ArgumentNullException.ThrowIfNull(text, nameof(text));
+
         Text = text;
         Rating = rating;
     }

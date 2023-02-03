@@ -11,30 +11,30 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.Name)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(User.MaxNameLength);
 
         builder.Property(x => x.NormalizedName)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(User.MaxNameLength);
 
         builder.Property(x => x.FirstName)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(User.MaxFirstNameLength);
 
         builder.Property(x => x.LastName)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(User.MaxLastNameLength);
 
         builder.Property(x => x.Email)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(User.MaxEmailLength);
 
         builder.Property(x => x.NormalizedEmail)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(User.MaxEmailLength);
 
         builder.Property(x => x.PasswordHash)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(User.MaxPasswordLength);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microservice.Core.Modularity;
+﻿using FluentValidation;
+using Microservice.Core.Modularity;
 using Microservice.CQRS;
 using Microservice.MovieService.Movies;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,9 @@ public sealed class MovieServiceApplicationModule : StartupModule
     public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
         base.ConfigureServices(services, configuration);
+
+        services.AddScoped<IValidator<CreateMovieDto>, CreateMovieDtoValidator>();
+        services.AddScoped<IValidator<UpdateMovieDto>, UpdateMovieDtoValidator>();
 
         services.AddTransient<IMovieApplicationService, MovieApplicationService>();
 

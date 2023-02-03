@@ -5,6 +5,8 @@ namespace Microservice.MovieService.Movies;
 
 public class Movie : Entity<Guid>, IAggregateRoot
 {
+    public const int MaxTitleLength = 100;
+
     public string Title { get; protected set; } = string.Empty;
 
     protected Movie()

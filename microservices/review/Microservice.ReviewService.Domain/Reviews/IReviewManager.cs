@@ -14,6 +14,8 @@ public interface IReviewManager
 
     Task<Review> AddAsync(Review review, CancellationToken cancellationToken);
 
+    Task<Review> UpdateAsync(Review review, CancellationToken cancellationToken);
+
     Task DeleteAsync(Review review, CancellationToken cancellationToken);
 
     Task SaveChangesAsync(CancellationToken cancellationToken);

@@ -11,10 +11,10 @@ internal class RoleConfiguration : IEntityTypeConfiguration<Role>
 
         builder.Property(x => x.Name)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(Role.MaxNameLength);
 
         builder.Property(x => x.NormalizedName)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(Role.MaxNameLength);
     }
 }
