@@ -5,6 +5,8 @@ namespace Microservice.IdentityService.Identity;
 
 public class Role : Entity<Guid>, IAggregateRoot
 {
+    public const int MaxNameLength = 50;
+
     public string Name { get; protected set; } = string.Empty;
 
     public string NormalizedName { get; protected set; } = string.Empty;

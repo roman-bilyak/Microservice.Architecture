@@ -11,5 +11,7 @@ public interface IMovieApplicationService : IApplicationService
 
     Task<ReviewDto> CreateReviewAsync([Required] Guid movieId, CreateReviewDto review, CancellationToken cancellationToken);
 
+    Task<ReviewDto> UpdateReviewAsync([Required] Guid movieId, [Required] Guid reviewId, UpdateReviewDto review, CancellationToken cancellationToken);
+
     Task DeleteReviewAsync([Required] Guid movieId, [Required] Guid reviewId, CancellationToken cancellationToken);
 }

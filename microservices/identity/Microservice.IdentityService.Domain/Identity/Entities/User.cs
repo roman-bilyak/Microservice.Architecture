@@ -7,6 +7,12 @@ namespace Microservice.IdentityService.Identity;
 
 public class User : Entity<Guid>, IAggregateRoot
 {
+    public const int MaxNameLength = 50;
+    public const int MaxFirstNameLength = 200;
+    public const int MaxLastNameLength = 200;
+    public const int MaxEmailLength = 100;
+    public const int MaxPasswordLength = 50;
+
     public string Name { get; protected set; } = string.Empty;
 
     public string NormalizedName { get; protected set; } = string.Empty;
