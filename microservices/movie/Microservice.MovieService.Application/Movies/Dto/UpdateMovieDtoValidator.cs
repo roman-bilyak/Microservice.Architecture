@@ -8,6 +8,6 @@ internal class UpdateMovieDtoValidator : AbstractValidator<UpdateMovieDto>
     {
         RuleFor(x => x.Title)
             .NotEmpty()
-            .MinimumLength(Movie.MaxTitleLength);
+            .MaximumLength(Movie.MaxTitleLength);
     }
 }
