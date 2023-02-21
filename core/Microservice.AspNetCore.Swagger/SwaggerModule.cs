@@ -55,6 +55,15 @@ public class SwaggerModule : StartupModule
                     }
                 });
             }
+
+            if (swaggerOptions.XmlComments is not null)
+            {
+                foreach (string xmlComments in swaggerOptions.XmlComments)
+                {
+                    string xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);
+                    options.IncludeXmlComments(xmlCommentsPath);
+                }
+            }
         });
     }
 
