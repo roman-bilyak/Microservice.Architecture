@@ -112,7 +112,7 @@ internal class InheritDocOperationFilter : IOperationFilter
             return string.Empty;
         }
 
-        foreach (Type interfaceType in methodInfo.DeclaringType.GetInterfaces())
+        foreach (Type interfaceType in methodInfo.DeclaringType.GetInterfaces().Reverse())
         {
             MethodInfo? interfaceMethodInfo = interfaceType.GetMethod(methodInfo.Name, methodInfo.GetParameters().Select(p => p.ParameterType).ToArray());
             if (interfaceMethodInfo is not null)
