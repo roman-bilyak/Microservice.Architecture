@@ -15,6 +15,4 @@ public class SwaggerOptions
     public SwaggerSecurity? Security { get; set; }
 
     public string[]? IgnorePaths { get; set; }
-
-    public string[]? XmlComments { get; set; }
 }

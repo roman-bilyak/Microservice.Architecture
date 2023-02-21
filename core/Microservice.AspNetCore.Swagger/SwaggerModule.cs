@@ -29,6 +29,7 @@ public class SwaggerModule : StartupModule
             options.DocInclusionPredicate((docName, description) => true);
             options.TagActionsBy(x => new[] { x.GroupName });
             options.DocumentFilter<IgnorePathsFilter>();
+            options.OperationFilter<InheritDocOperationFilter>();
 
             if (swaggerOptions.Security?.Flow is not null)
             {
@@ -54,15 +55,6 @@ public class SwaggerModule : StartupModule
                         swaggerOptions.Security.Flow.Scopes?.Keys.ToArray() ?? Array.Empty<string>()
                     }
                 });
-            }
-
-            if (swaggerOptions.XmlComments is not null)
-            {
-                foreach (string xmlComments in swaggerOptions.XmlComments)
-                {
-                    string xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);
-                    options.IncludeXmlComments(xmlCommentsPath);
-                }
             }
         });
     }
