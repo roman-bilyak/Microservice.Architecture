@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Xml;
@@ -7,7 +8,12 @@ namespace Microservice.AspNetCore.Swagger;
 
 internal class InheritDocOperationFilter : IOperationFilter
 {
-    private static readonly Dictionary<string, XmlDocument> XmlCommentsCache = new();
+    private readonly IMemoryCache _memoryCache;
+
+    public InheritDocOperationFilter(IMemoryCache memoryCache)
+    {
+        _memoryCache = memoryCache;
+    }
 
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
@@ -44,7 +50,7 @@ internal class InheritDocOperationFilter : IOperationFilter
 
     #region helper methods
 
-    private static string GetSummary(MethodInfo methodInfo)
+    private string GetSummary(MethodInfo methodInfo)
     {
         string summary = GetSummaryFromXml(methodInfo);
         if (string.IsNullOrEmpty(summary))
@@ -54,7 +60,7 @@ internal class InheritDocOperationFilter : IOperationFilter
         return summary;
     }
 
-    private static string GetDescription(ParameterInfo parameterInfo)
+    private string GetDescription(ParameterInfo parameterInfo)
     {
         string description = GetDescriptionFromXml(parameterInfo);
         if (string.IsNullOrEmpty(description))
@@ -64,7 +70,7 @@ internal class InheritDocOperationFilter : IOperationFilter
         return description;
     }
 
-    private static string GetSummaryFromXml(MemberInfo memberInfo)
+    private string GetSummaryFromXml(MemberInfo memberInfo)
     {
         XmlNode? memberNode = GetMemberNodeFromXml(memberInfo);
         if (memberNode is not null)
@@ -79,7 +85,7 @@ internal class InheritDocOperationFilter : IOperationFilter
         return string.Empty;
     }
 
-    private static string GetDescriptionFromXml(ParameterInfo parameterInfo)
+    private string GetDescriptionFromXml(ParameterInfo parameterInfo)
     {
         XmlNode? memberNode = GetMemberNodeFromXml(parameterInfo.Member);
         if (memberNode is not null)
@@ -94,7 +100,7 @@ internal class InheritDocOperationFilter : IOperationFilter
         return string.Empty;
     }
 
-    private static XmlNode? GetMemberNodeFromXml(MemberInfo memberInfo)
+    private XmlNode? GetMemberNodeFromXml(MemberInfo memberInfo)
     {
         Type? declaringType = memberInfo.DeclaringType;
         if (declaringType is null)
@@ -104,7 +110,7 @@ internal class InheritDocOperationFilter : IOperationFilter
 
         Assembly declaringAssembly = declaringType.Assembly;
         string xmlCommentsPath = Path.ChangeExtension(declaringAssembly.Location, ".xml");
-        if (!XmlCommentsCache.TryGetValue(xmlCommentsPath, out XmlDocument? xmlComments))
+        if (!_memoryCache.TryGetValue(xmlCommentsPath, out XmlDocument? xmlComments))
         {
             xmlComments = new XmlDocument();
             try
@@ -115,13 +121,18 @@ internal class InheritDocOperationFilter : IOperationFilter
             {
             }
 
-            XmlCommentsCache[xmlCommentsPath] = xmlComments;
+            _memoryCache.Set(xmlCommentsPath, xmlComments, TimeSpan.FromMinutes(5));
+        }
+
+        if (xmlComments is null)
+        {
+            return null;
         }
 
         return xmlComments.SelectSingleNode($"//member[@name='{GetMemberName(memberInfo)}']");
     }
 
-    private static string GetSummaryFromInheritedMethod(MethodInfo methodInfo)
+    private string GetSummaryFromInheritedMethod(MethodInfo methodInfo)
     {
         MethodInfo baseMethodInfo = methodInfo.GetBaseDefinition();
         if (baseMethodInfo is not null && baseMethodInfo != methodInfo)
@@ -154,7 +165,7 @@ internal class InheritDocOperationFilter : IOperationFilter
         return string.Empty;
     }
 
-    private static string GetDescriptionFromInheritedParameter(ParameterInfo parameterInfo)
+    private string GetDescriptionFromInheritedParameter(ParameterInfo parameterInfo)
     {
         MethodInfo methodInfo = (MethodInfo)parameterInfo.Member;
         MethodInfo baseMethodInfo = methodInfo.GetBaseDefinition();
