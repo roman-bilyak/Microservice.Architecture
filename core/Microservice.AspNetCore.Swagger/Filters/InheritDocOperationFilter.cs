@@ -33,18 +33,20 @@ internal class InheritDocOperationFilter : IOperationFilter
             ParameterInfo? parameterInfo = parameters.FirstOrDefault(x => x.Name == parameter.Name);
             if (parameterInfo is not null)
             {
-                string parameterSummary = GetParameterSummary(parameterInfo);
-                if (!string.IsNullOrEmpty(parameterSummary))
+                string description = GetDescription(parameterInfo);
+                if (!string.IsNullOrEmpty(description))
                 {
-                    parameter.Description = parameterSummary;
+                    parameter.Description = description;
                 }
             }
         }
     }
 
+    #region helper methods
+
     private static string GetSummary(MethodInfo methodInfo)
     {
-        string summary = GetSummaryFromXmlComments(methodInfo);
+        string summary = GetSummaryFromXml(methodInfo);
         if (string.IsNullOrEmpty(summary))
         {
             summary = GetSummaryFromInheritedMethod(methodInfo);
@@ -52,22 +54,52 @@ internal class InheritDocOperationFilter : IOperationFilter
         return summary;
     }
 
-    private static string GetParameterSummary(ParameterInfo parameterInfo)
+    private static string GetDescription(ParameterInfo parameterInfo)
     {
-        string summary = GetSummaryFromXmlComments(parameterInfo.Member);
-        if (string.IsNullOrEmpty(summary))
+        string description = GetDescriptionFromXml(parameterInfo);
+        if (string.IsNullOrEmpty(description))
         {
-            summary = GetSummaryFromInheritedParameter(parameterInfo);
+            description = GetDescriptionFromInheritedParameter(parameterInfo);
         }
-        return summary;
+        return description;
     }
 
-    private static string GetSummaryFromXmlComments(MemberInfo memberInfo)
+    private static string GetSummaryFromXml(MemberInfo memberInfo)
+    {
+        XmlNode? memberNode = GetMemberNodeFromXml(memberInfo);
+        if (memberNode is not null)
+        {
+            XmlNode? summaryNode = memberNode.SelectSingleNode("summary");
+            if (summaryNode is not null)
+            {
+                return summaryNode.InnerText.Trim();
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string GetDescriptionFromXml(ParameterInfo parameterInfo)
+    {
+        XmlNode? memberNode = GetMemberNodeFromXml(parameterInfo.Member);
+        if (memberNode is not null)
+        {
+            XmlNode? paramNode = memberNode.SelectSingleNode($"//param[@name='{parameterInfo.Name}']"); ;
+            if (paramNode is not null)
+            {
+                return paramNode.InnerText.Trim();
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static XmlNode? GetMemberNodeFromXml(MemberInfo memberInfo)
     {
         Type? declaringType = memberInfo.DeclaringType;
         if (declaringType is null)
         {
-            return string.Empty;
+            return null;
         }
 
         Assembly declaringAssembly = declaringType.Assembly;
@@ -86,17 +118,7 @@ internal class InheritDocOperationFilter : IOperationFilter
             XmlCommentsCache[xmlCommentsPath] = xmlComments;
         }
 
-        XmlNode? memberNode = xmlComments.SelectSingleNode($"//member[@name='{GetMemberName(memberInfo)}']");
-        if (memberNode is not null)
-        {
-            XmlNode? summaryNode = memberNode.SelectSingleNode("summary");
-            if (summaryNode is not null)
-            {
-                return summaryNode.InnerText.Trim();
-            }
-        }
-
-        return string.Empty;
+        return xmlComments.SelectSingleNode($"//member[@name='{GetMemberName(memberInfo)}']");
     }
 
     private static string GetSummaryFromInheritedMethod(MethodInfo methodInfo)
@@ -104,7 +126,11 @@ internal class InheritDocOperationFilter : IOperationFilter
         MethodInfo baseMethodInfo = methodInfo.GetBaseDefinition();
         if (baseMethodInfo is not null && baseMethodInfo != methodInfo)
         {
-            return GetSummary(baseMethodInfo);
+            string summary = GetSummary(baseMethodInfo);
+            if (!string.IsNullOrEmpty(summary))
+            {
+                return summary;
+            }
         }
 
         if (methodInfo.DeclaringType is null)
@@ -114,7 +140,7 @@ internal class InheritDocOperationFilter : IOperationFilter
 
         foreach (Type interfaceType in methodInfo.DeclaringType.GetInterfaces().Reverse())
         {
-            MethodInfo? interfaceMethodInfo = interfaceType.GetMethod(methodInfo.Name, methodInfo.GetParameters().Select(p => p.ParameterType).ToArray());
+            MethodInfo? interfaceMethodInfo = interfaceType.GetMethod(methodInfo.Name, methodInfo.GetParameters().Select(x => x.ParameterType).ToArray());
             if (interfaceMethodInfo is not null)
             {
                 string interfaceSummary = GetSummary(interfaceMethodInfo);
@@ -128,37 +154,53 @@ internal class InheritDocOperationFilter : IOperationFilter
         return string.Empty;
     }
 
-    private static string GetSummaryFromInheritedParameter(ParameterInfo parameterInfo)
+    private static string GetDescriptionFromInheritedParameter(ParameterInfo parameterInfo)
     {
-        MemberInfo memberInfo = parameterInfo.Member;
+        MethodInfo methodInfo = (MethodInfo)parameterInfo.Member;
+        MethodInfo baseMethodInfo = methodInfo.GetBaseDefinition();
 
-        Type? declaringType = memberInfo.DeclaringType;
-        if (declaringType is null)
+        if (baseMethodInfo is not null && baseMethodInfo != methodInfo)
+        {
+            ParameterInfo? baseParameterInfo = baseMethodInfo.GetParameters()
+                .FirstOrDefault(x => x.Name == parameterInfo.Name);
+
+            if (baseParameterInfo is not null)
+            {
+                string description = GetDescription(baseParameterInfo);
+                if (!string.IsNullOrEmpty(description))
+                {
+                    return description;
+                }
+            }
+        }
+
+        if (methodInfo.DeclaringType is null)
         {
             return string.Empty;
         }
 
-        if (memberInfo is not MethodInfo declaringMethodInfo)
+        foreach (Type interfaceType in methodInfo.DeclaringType.GetInterfaces().Reverse())
         {
-            return string.Empty;
+            MethodInfo? interfaceMethodInfo = interfaceType.GetMethod(methodInfo.Name, methodInfo.GetParameters().Select(x => x.ParameterType).ToArray());
+            if (interfaceMethodInfo is not null)
+            {
+                ParameterInfo? interfaceParameterInfo = interfaceMethodInfo.GetParameters()
+                    .FirstOrDefault(x => x.Name == parameterInfo.Name);
+
+                if (interfaceParameterInfo is not null)
+                {
+                    string interfaceDescription = GetDescription(interfaceParameterInfo);
+                    if (!string.IsNullOrEmpty(interfaceDescription))
+                    {
+                        return interfaceDescription;
+                    }
+                }
+            }
         }
 
-        MethodInfo baseMethodInfo = declaringMethodInfo.GetBaseDefinition();
-        if (baseMethodInfo is null || baseMethodInfo == declaringMethodInfo)
-        {
-            return string.Empty;
-        }
-
-        ParameterInfo? baseParameterInfo = baseMethodInfo.GetParameters()
-            .FirstOrDefault(x => x.Name == parameterInfo.Name);
-
-        if (baseParameterInfo is null)
-        {
-            return string.Empty;
-        }
-
-        return GetParameterSummary(baseParameterInfo);
+        return string.Empty;
     }
+
 
     private static string GetMemberName(MemberInfo memberInfo)
     {
@@ -189,4 +231,6 @@ internal class InheritDocOperationFilter : IOperationFilter
 
         throw new ArgumentException($"Cannot generate member name for type {memberInfo.GetType().FullName}");
     }
+
+    #endregion
 }
