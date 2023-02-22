@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Microservice.AspNetCore.Swagger;
+﻿namespace Microservice.AspNetCore.Swagger;
 
 public class SwaggerSecurityFlow
 {
-    [Required]
     public GrantTypes? GrantType { get; set; }
 
     public string? AuthorityUrl { get; set; }
