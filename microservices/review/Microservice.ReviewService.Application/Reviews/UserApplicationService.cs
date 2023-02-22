@@ -1,7 +1,6 @@
 ﻿using MassTransit.Mediator;
 using Microservice.Application;
 using Microsoft.AspNetCore.Authorization;
-using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.ReviewService.Reviews;
 
@@ -17,7 +16,7 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         _mediator = mediator;
     }
 
-    public async Task<UserReviewListDto> GetReviewListAsync([Required] Guid userId, [Required] int pageIndex, [Required] int pageSize, CancellationToken cancellationToken)
+    public async Task<UserReviewListDto> GetReviewListAsync(Guid userId, int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
         var client = _mediator.CreateRequestClient<GetUserReviewsQuery>();
         var response = await client.GetResponse<UserReviewListDto>(new GetUserReviewsQuery(userId, pageIndex, pageSize), cancellationToken);

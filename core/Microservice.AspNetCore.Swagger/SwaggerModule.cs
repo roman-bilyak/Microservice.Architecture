@@ -29,6 +29,7 @@ public class SwaggerModule : StartupModule
             options.DocInclusionPredicate((docName, description) => true);
             options.TagActionsBy(x => new[] { x.GroupName });
             options.DocumentFilter<IgnorePathsFilter>();
+            options.OperationFilter<InheritDocOperationFilter>();
 
             if (swaggerOptions.Security?.Flow is not null)
             {
