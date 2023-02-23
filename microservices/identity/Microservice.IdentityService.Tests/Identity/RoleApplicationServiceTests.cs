@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Microservice.IdentityService.Identity;
 
 [TestFixture]
-internal class RoleApplicationServiceTests : BaseIntegrationTests<IdentityServiceTestsModule>
+internal class RoleApplicationServiceTests : IdentityServiceTests
 {
     private IRoleApplicationService _roleApplicationService;
 

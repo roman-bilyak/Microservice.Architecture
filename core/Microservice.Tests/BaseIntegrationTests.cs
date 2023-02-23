@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace Microservice.Tests;
 
-public class BaseIntegrationTests<TStartupModule>
+public abstract class BaseIntegrationTests<TStartupModule>
     where TStartupModule : class, IStartupModule, new()
 {
     private IApplication _application;
@@ -21,10 +21,15 @@ public class BaseIntegrationTests<TStartupModule>
         ConfigurationBuilder builder = new();
         IConfiguration configuration = builder.Build();
 
-        _application = services.AddApplication<TStartupModule>(configuration);
+        _application = services.AddApplication<TStartupModule>(configuration, x => ConfigureServices(x.Services));
         _application.ConfigureServices();
         _application.SetServiceProvider(services.BuildServiceProvider());
         _application.Configure();
+    }
+
+    protected virtual void ConfigureServices(IServiceCollection services)
+    {
+
     }
 
     [TearDown]
