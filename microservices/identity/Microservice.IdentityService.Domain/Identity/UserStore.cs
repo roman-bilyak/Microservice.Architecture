@@ -1,6 +1,5 @@
 ﻿using Microservice.Database;
 using Microsoft.AspNetCore.Identity;
-using System;
 
 namespace Microservice.IdentityService.Identity;
 

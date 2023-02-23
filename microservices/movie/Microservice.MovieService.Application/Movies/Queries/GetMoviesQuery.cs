@@ -1,15 +1,14 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
 
-public class GetMoviesQuery : ListQuery
+public class GetMoviesQuery : ListQuery<MovieListDto>
 {
     public GetMoviesQuery(int pageIndex, int pageSize) : base(pageIndex, pageSize)
     {
     }
 
-    public class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery>
+    public class GetMoviesQueryHandler : QueryHandler<GetMoviesQuery, MovieListDto>
     {
         private readonly IMovieManager _movieManager;
 
@@ -20,14 +19,14 @@ public class GetMoviesQuery : ListQuery
             _movieManager = movieManager;
         }
 
-        public async Task Consume(ConsumeContext<GetMoviesQuery> context)
+        protected override async Task<MovieListDto> Handle(GetMoviesQuery request, CancellationToken cancellationToken)
         {
-            MovieListDto result = new MovieListDto
+            MovieListDto result = new()
             {
-                TotalCount = await _movieManager.CountAsync(context.CancellationToken)
+                TotalCount = await _movieManager.CountAsync(cancellationToken)
             };
 
-            List<Movie> movies = await _movieManager.ListAsync(context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
+            List<Movie> movies = await _movieManager.ListAsync(request.PageIndex, request.PageSize, cancellationToken);
             foreach (Movie movie in movies)
             {
                 result.Items.Add(new MovieDto
@@ -37,7 +36,7 @@ public class GetMoviesQuery : ListQuery
                 });
             }
 
-            await context.RespondAsync(result);
+            return result;
         }
     }
 }

@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class GetUserByIdQuery : ItemQuery<Guid>
+public class GetUserByIdQuery : ItemQuery<Guid, UserDto>
 {
     public GetUserByIdQuery(Guid id) : base(id)
     {
     }
 
-    public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery>
+    public class GetUserByIdQueryHandler : QueryHandler<GetUserByIdQuery, UserDto>
     {
         private readonly IUserManager _userManager;
 
@@ -21,15 +20,15 @@ public class GetUserByIdQuery : ItemQuery<Guid>
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<GetUserByIdQuery> context)
+        protected override async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.Id, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.Id);
+                throw new EntityNotFoundException(typeof(User), request.Id);
             }
 
-            await context.RespondAsync(new UserDto
+            return new UserDto
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -37,7 +36,7 @@ public class GetUserByIdQuery : ItemQuery<Guid>
                 LastName = user.LastName,
                 Email = user.Email,
                 IsEmilConfirmed = user.IsEmailConfirmed
-            });
+            };
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿namespace Microservice.CQRS;
 
-public abstract class CreateCommand<TModel> : Command
+public abstract class CreateCommand<TModel, TResponse> : Command<TResponse>
     where TModel : notnull
+    where TResponse : class
 {
     public TModel Model { get; protected set; }
 

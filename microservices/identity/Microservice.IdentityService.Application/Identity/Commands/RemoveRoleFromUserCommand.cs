@@ -1,10 +1,9 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class RemoveUserFromRoleCommand : Command
+public class RemoveUserFromRoleCommand : Command<Unit>
 {
     public Guid UserId { get; protected set; }
 
@@ -19,7 +18,7 @@ public class RemoveUserFromRoleCommand : Command
         RoleName = roleName;
     }
 
-    public class RemoveUserFromRoleCommandHandler : ICommandHandler<RemoveUserFromRoleCommand>
+    public class RemoveUserFromRoleCommandHandler : CommandHandler<RemoveUserFromRoleCommand, Unit>
     {
         private readonly IUserManager _userManager;
 
@@ -30,16 +29,18 @@ public class RemoveUserFromRoleCommand : Command
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<RemoveUserFromRoleCommand> context)
+        protected override async Task<Unit> Handle(RemoveUserFromRoleCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.UserId, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.UserId);
+                throw new EntityNotFoundException(typeof(User), request.UserId);
             }
 
-            var result = await _userManager.RemoveFromRoleAsync(user, context.Message.RoleName, context.CancellationToken);
+            var result = await _userManager.RemoveFromRoleAsync(user, request.RoleName, cancellationToken);
             result.CheckErrors();
+
+            return Unit.Value;
         }
     }
 }

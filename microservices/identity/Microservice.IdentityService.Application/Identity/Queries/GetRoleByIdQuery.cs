@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class GetRoleByIdQuery : ItemQuery<Guid>
+public class GetRoleByIdQuery : ItemQuery<Guid, RoleDto>
 {
     public GetRoleByIdQuery(Guid id) : base(id)
     {
     }
 
-    public class GetRoleByIdQueryHandler : IQueryHandler<GetRoleByIdQuery>
+    public class GetRoleByIdQueryHandler : QueryHandler<GetRoleByIdQuery, RoleDto>
     {
         private readonly IRoleManager _roleManager;
 
@@ -21,19 +20,19 @@ public class GetRoleByIdQuery : ItemQuery<Guid>
             _roleManager = roleManager;
         }
 
-        public async Task Consume(ConsumeContext<GetRoleByIdQuery> context)
+        protected override async Task<RoleDto> Handle(GetRoleByIdQuery request, CancellationToken cancellationToken)
         {
-            Role? role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Role? role = await _roleManager.FindByIdAsync(request.Id, cancellationToken);
             if (role is null)
             {
-                throw new EntityNotFoundException(typeof(Role), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Role), request.Id);
             }
 
-            await context.RespondAsync(new RoleDto
+            return new RoleDto
             {
                 Id = role.Id,
                 Name = role.Name
-            });
+            };
         }
     }
 }

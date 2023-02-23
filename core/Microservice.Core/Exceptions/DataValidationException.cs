@@ -6,7 +6,11 @@ public class DataValidationException : BaseException
 {
     public IReadOnlyList<ValidationResult> Errors { get; protected set; }
 
-    public DataValidationException(string message, List<ValidationResult> errors)
+    public DataValidationException(params ValidationResult[] errors)
+        : this("ModelState is not valid! See ValidationErrors for details.", errors)
+    {
+    }
+    public DataValidationException(string message, params ValidationResult[] errors)
         : base(message)
     {
         Errors = new List<ValidationResult>(errors);

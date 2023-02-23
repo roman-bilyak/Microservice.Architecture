@@ -1,15 +1,14 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class CreateRoleCommand : CreateCommand<CreateRoleDto>
+public class CreateRoleCommand : CreateCommand<CreateRoleDto, RoleDto>
 {
     public CreateRoleCommand(CreateRoleDto model) : base(model)
     {
     }
 
-    public class CreateRoleCommandHandler : ICommandHandler<CreateRoleCommand>
+    public class CreateRoleCommandHandler : CommandHandler<CreateRoleCommand, RoleDto>
     {
         private readonly IRoleManager _roleManager;
 
@@ -20,19 +19,19 @@ public class CreateRoleCommand : CreateCommand<CreateRoleDto>
             _roleManager = roleManager;
         }
 
-        public async Task Consume(ConsumeContext<CreateRoleCommand> context)
+        protected override async Task<RoleDto> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
         {
-            CreateRoleDto roleDto = context.Message.Model;
+            CreateRoleDto roleDto = request.Model;
 
             Role role = new(Guid.NewGuid(), roleDto.Name);
-            var result = await _roleManager.CreateAsync(role, context.CancellationToken);
+            var result = await _roleManager.CreateAsync(role, cancellationToken);
             result.CheckErrors();
 
-            context.Respond(new RoleDto
+            return new RoleDto
             {
                 Id = role.Id,
                 Name = role.Name
-            });
+            };
         }
     }
 }

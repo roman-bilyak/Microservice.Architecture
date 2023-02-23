@@ -31,7 +31,7 @@ internal class ValidationActionFilter : IAsyncActionFilter
 
             if (errors.Any())
             {
-                throw new DataValidationException("ModelState is not valid! See ValidationErrors for details.", errors);
+                throw new DataValidationException(errors.ToArray());
             }
         }
 

@@ -1,10 +1,9 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class AddUserToRoleCommand : Command
+public class AddUserToRoleCommand : Command<Unit>
 {
     public Guid UserId { get; protected set; }
 
@@ -19,7 +18,7 @@ public class AddUserToRoleCommand : Command
         RoleName = roleName;
     }
 
-    public class AddRoleToUserCommandHandler : ICommandHandler<AddUserToRoleCommand>
+    public class AddRoleToUserCommandHandler : CommandHandler<AddUserToRoleCommand, Unit>
     {
         private readonly IUserManager _userManager;
 
@@ -30,16 +29,18 @@ public class AddUserToRoleCommand : Command
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<AddUserToRoleCommand> context)
+        protected override async Task<Unit> Handle(AddUserToRoleCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.UserId, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.UserId);
+                throw new EntityNotFoundException(typeof(User), request.UserId);
             }
 
-            var result = await _userManager.AddToRoleAsync(user, context.Message.RoleName, context.CancellationToken);
+            var result = await _userManager.AddToRoleAsync(user, request.RoleName, cancellationToken);
             result.CheckErrors();
+
+            return Unit.Value;
         }
     }
 }

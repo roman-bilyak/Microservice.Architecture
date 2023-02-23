@@ -1,9 +1,8 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
 
-public class GetUserReviewsQuery : ListQuery
+public class GetUserReviewsQuery : ListQuery<UserReviewListDto>
 {
     public Guid UserId { get; protected set; }
 
@@ -12,7 +11,7 @@ public class GetUserReviewsQuery : ListQuery
         UserId = userId;
     }
 
-    public class GetUserReviewsQueryHandler : IQueryHandler<GetUserReviewsQuery>
+    public class GetUserReviewsQueryHandler : QueryHandler<GetUserReviewsQuery, UserReviewListDto>
     {
         private readonly IReviewManager _reviewManager;
 
@@ -23,14 +22,14 @@ public class GetUserReviewsQuery : ListQuery
             _reviewManager = reviewManager;
         }
 
-        public async Task Consume(ConsumeContext<GetUserReviewsQuery> context)
+        protected override async Task<UserReviewListDto> Handle(GetUserReviewsQuery request, CancellationToken cancellationToken)
         {
-            UserReviewListDto result = new UserReviewListDto
+            UserReviewListDto result = new()
             {
-                TotalCount = await _reviewManager.GetCountByUserAsync(context.Message.UserId, context.CancellationToken)
+                TotalCount = await _reviewManager.GetCountByUserAsync(request.UserId, cancellationToken)
             };
 
-            List<Review> reviews = await _reviewManager.GetListByUserAsync(context.Message.UserId, context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
+            List<Review> reviews = await _reviewManager.GetListByUserAsync(request.UserId, request.PageIndex, request.PageSize, cancellationToken);
             foreach (Review review in reviews)
             {
                 result.Items.Add(new ReviewDto
@@ -42,7 +41,7 @@ public class GetUserReviewsQuery : ListQuery
                     Rating = review.Rating
                 });
             }
-            await context.RespondAsync(result);
+            return result;
         }
     }
 }

@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto>
+public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto, UserDto>
 {
     public UpdateUserCommand(Guid id, UpdateUserDto model) : base(id, model)
     {
     }
 
-    public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand>
+    public class UpdateUserCommandHandler : CommandHandler<UpdateUserCommand, UserDto>
     {
         private readonly IUserManager _userManager;
 
@@ -21,24 +20,24 @@ public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto>
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<UpdateUserCommand> context)
+        protected override async Task<UserDto> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.Id, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.Id);
+                throw new EntityNotFoundException(typeof(User), request.Id);
             }
 
-            UpdateUserDto userDto = context.Message.Model;
+            UpdateUserDto userDto = request.Model;
             user.SetName(userDto.Name);
             user.SetFirstName(userDto.FirstName);
             user.SetLastName(userDto.LastName);
             user.SetEmail(userDto.Email);
 
-            var result = await _userManager.UpdateAsync(user, context.CancellationToken);
+            var result = await _userManager.UpdateAsync(user, cancellationToken);
             result.CheckErrors();
 
-            context.Respond(new UserDto
+            return new UserDto
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -46,7 +45,7 @@ public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto>
                 LastName = user.LastName,
                 Email = user.Email,
                 IsEmilConfirmed = user.IsEmailConfirmed
-            });
+            };
         }
     }
 }

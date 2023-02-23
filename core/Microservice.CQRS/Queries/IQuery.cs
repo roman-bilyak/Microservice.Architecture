@@ -1,5 +1,8 @@
-﻿namespace Microservice.CQRS;
+﻿using MassTransit.Mediator;
 
-public interface IQuery
+namespace Microservice.CQRS;
+
+public interface IQuery<out TResponse> : Request<TResponse>
+    where TResponse : class
 {
 }

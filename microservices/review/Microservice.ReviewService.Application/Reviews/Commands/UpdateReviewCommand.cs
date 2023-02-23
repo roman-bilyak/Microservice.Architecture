@@ -1,10 +1,9 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
 
-public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto>
+public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDto>
 {
     public Guid MovieId { get; protected set; }
 
@@ -13,7 +12,7 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto>
         MovieId = movieId;
     }
 
-    public class UpdateMovieCommandHandler : ICommandHandler<UpdateReviewCommand>
+    public class UpdateMovieCommandHandler : CommandHandler<UpdateReviewCommand, ReviewDto>
     {
         private readonly IReviewManager _reviewManager;
 
@@ -24,27 +23,27 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto>
             _reviewManager = reviewManager;
         }
 
-        public async Task Consume(ConsumeContext<UpdateReviewCommand> context)
+        protected override async Task<ReviewDto> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
         {
-            Review? review = await _reviewManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
-            if (review is null || review.MovieId != context.Message.MovieId)
+            Review? review = await _reviewManager.FindByIdAsync(request.Id, cancellationToken);
+            if (review is null || review.MovieId != request.MovieId)
             {
-                throw new EntityNotFoundException(typeof(Review), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Review), request.Id);
             }
 
-            review.Update(context.Message.Model.Text, context.Message.Model.Rating);
+            review.Update(request.Model.Text, request.Model.Rating);
 
-            review = await _reviewManager.UpdateAsync(review, context.CancellationToken);
-            await _reviewManager.SaveChangesAsync(context.CancellationToken);
+            review = await _reviewManager.UpdateAsync(review, cancellationToken);
+            await _reviewManager.SaveChangesAsync(cancellationToken);
 
-            await context.RespondAsync(new ReviewDto
+            return new ReviewDto
             {
                 Id = review.Id,
                 UserId = review.UserId,
                 MovieId = review.MovieId,
                 Text = review.Text,
                 Rating = review.Rating,
-            });
+            };
         }
     }
 }

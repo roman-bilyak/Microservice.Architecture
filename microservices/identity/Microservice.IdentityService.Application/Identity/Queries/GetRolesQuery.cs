@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 using Microservice.Database;
 
 namespace Microservice.IdentityService.Identity;
 
-public class GetRolesQuery : ListQuery
+public class GetRolesQuery : ListQuery<RoleListDto>
 {
     public GetRolesQuery(int pageIndex, int pageSize) : base(pageIndex, pageSize)
     {
     }
 
-    public class GetRolesQueryHandler : IQueryHandler<GetRolesQuery>
+    public class GetRolesQueryHandler : QueryHandler<GetRolesQuery, RoleListDto>
     {
         private readonly IReadRepository<Role> _roleRepository;
 
@@ -21,17 +20,17 @@ public class GetRolesQuery : ListQuery
             _roleRepository = roleRepository;
         }
 
-        public async Task Consume(ConsumeContext<GetRolesQuery> context)
+        protected override async Task<RoleListDto> Handle(GetRolesQuery request, CancellationToken cancellationToken)
         {
-            RoleListDto result = new RoleListDto
+            RoleListDto result = new()
             {
-                TotalCount = await _roleRepository.CountAsync(context.CancellationToken)
+                TotalCount = await _roleRepository.CountAsync(cancellationToken)
             };
 
             Specification<Role> specification = new Specification<Role>();
-            specification.ApplyPaging(context.Message.PageIndex, context.Message.PageSize);
+            specification.ApplyPaging(request.PageIndex, request.PageSize);
 
-            List<Role> roles = await _roleRepository.ListAsync(specification, context.CancellationToken);
+            List<Role> roles = await _roleRepository.ListAsync(specification, cancellationToken);
             foreach (Role role in roles)
             {
                 result.Items.Add(new RoleDto
@@ -41,7 +40,7 @@ public class GetRolesQuery : ListQuery
                 });
             }
 
-            await context.RespondAsync(result);
+            return result;
         }
     }
 }

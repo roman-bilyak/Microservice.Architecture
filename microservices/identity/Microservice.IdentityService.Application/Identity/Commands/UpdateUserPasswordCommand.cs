@@ -1,10 +1,9 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class UpdateUserPasswordCommand : Command
+public class UpdateUserPasswordCommand : Command<Unit>
 {
     public Guid UserId { get; protected set; }
 
@@ -22,7 +21,7 @@ public class UpdateUserPasswordCommand : Command
         Password = password;
     }
 
-    public class UpdateUserPasswordCommandHandler : ICommandHandler<UpdateUserPasswordCommand>
+    public class UpdateUserPasswordCommandHandler : CommandHandler<UpdateUserPasswordCommand, Unit>
     {
         private readonly IUserManager _userManager;
 
@@ -33,16 +32,18 @@ public class UpdateUserPasswordCommand : Command
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<UpdateUserPasswordCommand> context)
+        protected override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.UserId, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.UserId, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.UserId);
+                throw new EntityNotFoundException(typeof(User), request.UserId);
             }
 
-            var result = await _userManager.ChangePasswordAsync(user, context.Message.OldPassword, context.Message.Password, context.CancellationToken);
+            var result = await _userManager.ChangePasswordAsync(user, request.OldPassword, request.Password, cancellationToken);
             result.CheckErrors();
+
+            return Unit.Value;
         }
     }
 }
