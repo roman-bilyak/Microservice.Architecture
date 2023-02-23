@@ -1,17 +1,16 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 using Microsoft.AspNetCore.Identity;
 
 namespace Microservice.IdentityService.Identity;
 
-public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto>
+public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto, RoleDto>
 {
     public UpdateRoleCommand(Guid id, UpdateRoleDto model) : base(id, model)
     {
     }
 
-    public class UpdateRoleCommandHandler : ICommandHandler<UpdateRoleCommand>
+    public class UpdateRoleCommandHandler : CommandHandler<UpdateRoleCommand, RoleDto>
     {
         private readonly IRoleManager _roleManager;
 
@@ -22,25 +21,25 @@ public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto>
             _roleManager = roleManager;
         }
 
-        public async Task Consume(ConsumeContext<UpdateRoleCommand> context)
+        protected override async Task<RoleDto> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
         {
-            Role? role = await _roleManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Role? role = await _roleManager.FindByIdAsync(request.Id, cancellationToken);
             if (role is null)
             {
-                throw new EntityNotFoundException(typeof(Role), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Role), request.Id);
             }
 
-            UpdateRoleDto roleDto = context.Message.Model;
+            UpdateRoleDto roleDto = request.Model;
             role.SetName(roleDto.Name);
 
-            IdentityResult result = await _roleManager.UpdateAsync(role, context.CancellationToken);
+            IdentityResult result = await _roleManager.UpdateAsync(role, cancellationToken);
             result.CheckErrors();
 
-            context.Respond(new RoleDto
+            return new RoleDto
             {
                 Id = role.Id,
                 Name = role.Name
-            });
+            };
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using MassTransit;
 using Microservice.Application;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Microservice.TestService.Tests;
 
+[Authorize]
 internal class TestApplicationService : ApplicationService, ITestApplicationService
 {
     private readonly IBus _bus;

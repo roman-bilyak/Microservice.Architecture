@@ -1,4 +1,5 @@
-﻿using MassTransit.Mediator;
+﻿using MassTransit;
+using MassTransit.Mediator;
 using Microservice.Application;
 using Microsoft.AspNetCore.Authorization;
 
@@ -18,34 +19,26 @@ internal class MovieApplicationService : ApplicationService, IMovieApplicationSe
 
     public async Task<MovieReviewListDto> GetReviewListAsync(Guid movieId, int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<GetMovieReviewsQuery>();
-        var response = await client.GetResponse<MovieReviewListDto>(new GetMovieReviewsQuery(movieId, pageIndex, pageSize), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new GetMovieReviewsQuery(movieId, pageIndex, pageSize), cancellationToken);
     }
 
     public async Task<ReviewDto> GetReviewAsync(Guid movieId, Guid reviewId, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<GetReviewByIdQuery>();
-        var response = await client.GetResponse<ReviewDto>(new GetReviewByIdQuery(movieId, reviewId), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new GetReviewByIdQuery(movieId, reviewId), cancellationToken);
     }
 
     public async Task<ReviewDto> CreateReviewAsync(Guid movieId, CreateReviewDto review, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<CreateReviewCommand>();
-        var response = await client.GetResponse<ReviewDto>(new CreateReviewCommand(movieId, review), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new CreateReviewCommand(movieId, review), cancellationToken);
     }
 
     public async Task<ReviewDto> UpdateReviewAsync(Guid movieId, Guid reviewId, UpdateReviewDto review, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<UpdateReviewCommand>();
-        var response = await client.GetResponse<ReviewDto>(new UpdateReviewCommand(movieId, reviewId, review), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new UpdateReviewCommand(movieId, reviewId, review), cancellationToken);
     }
 
     public async Task DeleteReviewAsync(Guid movieId, Guid reviewId, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteReviewCommand(movieId, reviewId), cancellationToken);
+        await _mediator.SendRequest(new DeleteReviewCommand(movieId, reviewId), cancellationToken);
     }
 }

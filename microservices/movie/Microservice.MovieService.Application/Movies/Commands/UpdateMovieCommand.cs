@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
 
-public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
+public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto, MovieDto>
 {
     public UpdateMovieCommand(Guid id, UpdateMovieDto model) : base(id, model)
     {
     }
 
-    public class UpdateMovieCommandHandler : ICommandHandler<UpdateMovieCommand>
+    public class UpdateMovieCommandHandler : CommandHandler<UpdateMovieCommand, MovieDto>
     {
         private readonly IMovieManager _movieManager;
 
@@ -21,24 +20,24 @@ public class UpdateMovieCommand : UpdateCommand<Guid, UpdateMovieDto>
             _movieManager = movieManager;
         }
 
-        public async Task Consume(ConsumeContext<UpdateMovieCommand> context)
+        protected override async Task<MovieDto> Handle(UpdateMovieCommand request, CancellationToken cancellationToken)
         {
-            Movie? movie = await _movieManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Movie? movie = await _movieManager.FindByIdAsync(request.Id, cancellationToken);
             if (movie is null)
             {
-                throw new EntityNotFoundException(typeof(Movie), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Movie), request.Id);
             }
 
-            movie.SetTitle(context.Message.Model.Title);
+            movie.SetTitle(request.Model.Title);
 
-            movie = await _movieManager.UpdateAsync(movie, context.CancellationToken);
-            await _movieManager.SaveChangesAsync(context.CancellationToken);
+            movie = await _movieManager.UpdateAsync(movie, cancellationToken);
+            await _movieManager.SaveChangesAsync(cancellationToken);
 
-            await context.RespondAsync(new MovieDto
+            return new MovieDto
             {
                 Id = movie.Id,
                 Title = movie.Title
-            });
+            };
         }
     }
 }

@@ -1,15 +1,14 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class CreateUserCommand : CreateCommand<CreateUserDto>
+public class CreateUserCommand : CreateCommand<CreateUserDto, UserDto>
 {
     public CreateUserCommand(CreateUserDto model) : base(model)
     {
     }
 
-    public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
+    public class CreateUserCommandHandler : CommandHandler<CreateUserCommand, UserDto>
     {
         private readonly IUserManager _userManager;
 
@@ -20,15 +19,15 @@ public class CreateUserCommand : CreateCommand<CreateUserDto>
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<CreateUserCommand> context)
+        protected override async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            CreateUserDto userDto = context.Message.Model;
+            CreateUserDto userDto = request.Model;
 
-            User user = new User(Guid.NewGuid(), userDto.Name, userDto.FirstName, userDto.LastName, userDto.Email);
-            var result = await _userManager.CreateAsync(user, userDto.Password, context.CancellationToken);
+            User user = new(Guid.NewGuid(), userDto.Name, userDto.FirstName, userDto.LastName, userDto.Email);
+            var result = await _userManager.CreateAsync(user, userDto.Password, cancellationToken);
             result.CheckErrors();
 
-            context.Respond(new UserDto
+            return new UserDto
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -36,7 +35,7 @@ public class CreateUserCommand : CreateCommand<CreateUserDto>
                 LastName = user.LastName,
                 Email = user.Email,
                 IsEmilConfirmed = user.IsEmailConfirmed
-            });
+            };
         }
     }
 }

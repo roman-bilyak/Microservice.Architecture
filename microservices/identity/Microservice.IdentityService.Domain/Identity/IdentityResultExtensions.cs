@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microservice.Core;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
@@ -11,7 +13,7 @@ public static class IdentityResultExtensions
             return;
         }
 
-        string exceptioMessage = string.Join(",", identityResult.Errors.Select(x => x.Description));
-        throw new Exception(exceptioMessage);
+        ValidationResult[] errors = identityResult.Errors.Select(x => new ValidationResult(x.Description, new[] { x.Code })).ToArray();
+        throw new DataValidationException(errors);
     }
 }

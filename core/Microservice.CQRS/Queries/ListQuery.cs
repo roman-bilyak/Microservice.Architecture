@@ -1,6 +1,7 @@
 ﻿namespace Microservice.CQRS;
 
-public abstract class ListQuery : Query
+public abstract class ListQuery<TResponse> : Query<TResponse>
+    where TResponse : class
 {
     public int PageIndex { get; protected set; }
     public int PageSize { get; protected set; }

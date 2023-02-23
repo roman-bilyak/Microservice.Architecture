@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
@@ -13,7 +12,7 @@ public class DeleteReviewCommand : DeleteCommand<Guid>
         MovieId = movieId;
     }
 
-    public class DeleteReviewCommandHandler : ICommandHandler<DeleteReviewCommand>
+    public class DeleteReviewCommandHandler : CommandHandler<DeleteReviewCommand>
     {
         private readonly IReviewManager _reviewManager;
 
@@ -24,12 +23,12 @@ public class DeleteReviewCommand : DeleteCommand<Guid>
             _reviewManager = reviewManager;
         }
 
-        public async Task Consume(ConsumeContext<DeleteReviewCommand> context)
+        protected override async Task<Unit> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
         {
-            Review? review = await _reviewManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Review? review = await _reviewManager.FindByIdAsync(request.Id, cancellationToken);
             if (review is null)
             {
-                throw new EntityNotFoundException(typeof(Review), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Review), request.Id);
             }
 
             if (review.UserId != Guid.Empty)
@@ -38,8 +37,10 @@ public class DeleteReviewCommand : DeleteCommand<Guid>
                 throw new Exception($"Review can't be deleted");
             }
 
-            await _reviewManager.DeleteAsync(review, context.CancellationToken);
-            await _reviewManager.SaveChangesAsync(context.CancellationToken);
+            await _reviewManager.DeleteAsync(review, cancellationToken);
+            await _reviewManager.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }

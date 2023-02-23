@@ -1,9 +1,8 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
 
-public class GetMovieReviewsQuery : ListQuery
+public class GetMovieReviewsQuery : ListQuery<MovieReviewListDto>
 {
     public Guid MovieId { get; protected set; }
 
@@ -12,7 +11,7 @@ public class GetMovieReviewsQuery : ListQuery
         MovieId = movieId;
     }
 
-    public class GetMovieReviewsQueryHandler : IQueryHandler<GetMovieReviewsQuery>
+    public class GetMovieReviewsQueryHandler : QueryHandler<GetMovieReviewsQuery, MovieReviewListDto>
     {
         private readonly IReviewManager _reviewManager;
 
@@ -23,14 +22,14 @@ public class GetMovieReviewsQuery : ListQuery
             _reviewManager = reviewManager;
         }
 
-        public async Task Consume(ConsumeContext<GetMovieReviewsQuery> context)
+        protected override async Task<MovieReviewListDto> Handle(GetMovieReviewsQuery request, CancellationToken cancellationToken)
         {
-            MovieReviewListDto result = new MovieReviewListDto
+            MovieReviewListDto result = new()
             {
-                TotalCount = await _reviewManager.GetCountByMovieAsync(context.Message.MovieId, context.CancellationToken)
+                TotalCount = await _reviewManager.GetCountByMovieAsync(request.MovieId, cancellationToken)
             };
 
-            List<Review> reviews = await _reviewManager.GetListByMovieAsync(context.Message.MovieId, context.Message.PageIndex, context.Message.PageSize, context.CancellationToken);
+            List<Review> reviews = await _reviewManager.GetListByMovieAsync(request.MovieId, request.PageIndex, request.PageSize, cancellationToken);
             foreach (Review review in reviews)
             {
                 result.Items.Add(new ReviewDto
@@ -42,7 +41,7 @@ public class GetMovieReviewsQuery : ListQuery
                     Rating = review.Rating
                 });
             }
-            await context.RespondAsync(result);
+            return result;
         }
     }
 }

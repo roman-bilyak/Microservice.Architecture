@@ -1,15 +1,14 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
 
-public class CreateMovieCommand : CreateCommand<CreateMovieDto>
+public class CreateMovieCommand : CreateCommand<CreateMovieDto, MovieDto>
 {
     public CreateMovieCommand(CreateMovieDto model) : base(model)
     {
     }
 
-    public class CreateMovieCommandHandler : ICommandHandler<CreateMovieCommand>
+    public class CreateMovieCommandHandler : CommandHandler<CreateMovieCommand, MovieDto>
     {
         private readonly IMovieManager _movieManager;
 
@@ -20,19 +19,19 @@ public class CreateMovieCommand : CreateCommand<CreateMovieDto>
             _movieManager = movieManager;
         }
 
-        public async Task Consume(ConsumeContext<CreateMovieCommand> context)
+        protected override async Task<MovieDto> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
         {
-            CreateMovieDto movieDto = context.Message.Model;
-            Movie movie = new Movie(Guid.NewGuid(), movieDto.Title);
+            CreateMovieDto movieDto = request.Model;
+            Movie movie = new(Guid.NewGuid(), movieDto.Title);
 
-            movie = await _movieManager.AddAsync(movie, context.CancellationToken);
-            await _movieManager.SaveChangesAsync(context.CancellationToken);
+            movie = await _movieManager.AddAsync(movie, cancellationToken);
+            await _movieManager.SaveChangesAsync(cancellationToken);
 
-            await context.RespondAsync(new MovieDto
+            return new MovieDto
             {
                 Id = movie.Id,
                 Title = movie.Title
-            });
+            };
         }
     }
 }

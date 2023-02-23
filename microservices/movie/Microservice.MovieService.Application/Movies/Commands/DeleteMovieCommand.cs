@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
@@ -10,7 +9,7 @@ public class DeleteMovieCommand : DeleteCommand<Guid>
     {
     }
 
-    public class DeleteMovieCommandHandler : ICommandHandler<DeleteMovieCommand>
+    public class DeleteMovieCommandHandler : CommandHandler<DeleteMovieCommand>
     {
         private readonly IMovieManager _movieManager;
 
@@ -21,16 +20,18 @@ public class DeleteMovieCommand : DeleteCommand<Guid>
             _movieManager = movieManager;
         }
 
-        public async Task Consume(ConsumeContext<DeleteMovieCommand> context)
+        protected override async Task<Unit> Handle(DeleteMovieCommand request, CancellationToken cancellationToken)
         {
-            Movie? movie = await _movieManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Movie? movie = await _movieManager.FindByIdAsync(request.Id, cancellationToken);
             if (movie is null)
             {
-                throw new EntityNotFoundException(typeof(Movie), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Movie), request.Id);
             }
 
-            await _movieManager.DeleteAsync(movie, context.CancellationToken);
-            await _movieManager.SaveChangesAsync(context.CancellationToken);
+            await _movieManager.DeleteAsync(movie, cancellationToken);
+            await _movieManager.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }

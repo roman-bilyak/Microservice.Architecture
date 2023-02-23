@@ -1,8 +1,11 @@
-﻿using MassTransit.Mediator;
+﻿using MassTransit;
+using MassTransit.Mediator;
 using Microservice.Application;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Microservice.IdentityService.Identity;
 
+[Authorize]
 internal class RoleApplicationService : ApplicationService, IRoleApplicationService
 {
     private readonly IMediator _mediator;
@@ -16,34 +19,26 @@ internal class RoleApplicationService : ApplicationService, IRoleApplicationServ
 
     public async Task<RoleListDto> GetListAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<GetRolesQuery>();
-        var response = await client.GetResponse<RoleListDto>(new GetRolesQuery(pageIndex, pageSize), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new GetRolesQuery(pageIndex, pageSize), cancellationToken);
     }
 
     public async Task<RoleDto> GetAsync(Guid roleId, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<GetRoleByIdQuery>();
-        var response = await client.GetResponse<RoleDto>(new GetRoleByIdQuery(roleId), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new GetRoleByIdQuery(roleId), cancellationToken);
     }
 
     public async Task<RoleDto> CreateAsync(CreateRoleDto role, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<CreateRoleCommand>();
-        var response = await client.GetResponse<RoleDto>(new CreateRoleCommand(role), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new CreateRoleCommand(role), cancellationToken);
     }
 
     public async Task<RoleDto> UpdateAsync(Guid roleId, UpdateRoleDto role, CancellationToken cancellationToken)
     {
-        var client = _mediator.CreateRequestClient<UpdateRoleCommand>();
-        var response = await client.GetResponse<RoleDto>(new UpdateRoleCommand(roleId, role), cancellationToken);
-        return response.Message;
+        return await _mediator.SendRequest(new UpdateRoleCommand(roleId, role), cancellationToken);
     }
 
     public async Task DeleteAsync(Guid roleId, CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteRoleCommand(roleId), cancellationToken);
+        await _mediator.SendRequest(new DeleteRoleCommand(roleId), cancellationToken);
     }
 }

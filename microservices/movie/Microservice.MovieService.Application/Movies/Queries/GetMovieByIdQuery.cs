@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
 
-public class GetMovieByIdQuery : ItemQuery<Guid>
+public class GetMovieByIdQuery : ItemQuery<Guid, MovieDto>
 {
     public GetMovieByIdQuery(Guid id) : base(id)
     {
     }
 
-    public class GetMovieByIdQueryHandler : IQueryHandler<GetMovieByIdQuery>
+    public class GetMovieByIdQueryHandler : QueryHandler<GetMovieByIdQuery, MovieDto>
     {
         private readonly IMovieManager _movieManager;
 
@@ -21,19 +20,19 @@ public class GetMovieByIdQuery : ItemQuery<Guid>
             _movieManager = movieManager;
         }
 
-        public async Task Consume(ConsumeContext<GetMovieByIdQuery> context)
+        protected override async Task<MovieDto> Handle(GetMovieByIdQuery request, CancellationToken cancellationToken)
         {
-            Movie? movie = await _movieManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Movie? movie = await _movieManager.FindByIdAsync(request.Id, cancellationToken);
             if (movie is null)
             {
-                throw new EntityNotFoundException(typeof(Movie), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Movie), request.Id);
             }
 
-            await context.RespondAsync(new MovieDto
+            return new MovieDto
             {
                 Id = movie.Id,
                 Title = movie.Title
-            });
+            };
         }
     }
 }

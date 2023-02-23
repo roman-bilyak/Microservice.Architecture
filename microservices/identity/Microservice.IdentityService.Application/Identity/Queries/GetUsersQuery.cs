@@ -1,16 +1,15 @@
-﻿using MassTransit;
-using Microservice.CQRS;
+﻿using Microservice.CQRS;
 using Microservice.Database;
 
 namespace Microservice.IdentityService.Identity;
 
-public class GetUsersQuery : ListQuery
+public class GetUsersQuery : ListQuery<UserListDto>
 {
     public GetUsersQuery(int pageIndex, int pageSize) : base(pageIndex, pageSize)
     {
     }
 
-    public class GetUsersQueryHandler : IQueryHandler<GetUsersQuery>
+    public class GetUsersQueryHandler : QueryHandler<GetUsersQuery, UserListDto>
     {
         private readonly IReadRepository<User> _userRepository;
 
@@ -21,17 +20,17 @@ public class GetUsersQuery : ListQuery
             _userRepository = userRepository;
         }
 
-        public async Task Consume(ConsumeContext<GetUsersQuery> context)
+        protected override async Task<UserListDto> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            UserListDto result = new UserListDto
+            UserListDto result = new()
             {
-                TotalCount = await _userRepository.CountAsync(context.CancellationToken)
+                TotalCount = await _userRepository.CountAsync(cancellationToken)
             };
 
-            Specification<User> specification = new Specification<User>();
-            specification.ApplyPaging(context.Message.PageIndex, context.Message.PageSize);
+            Specification<User> specification = new();
+            specification.ApplyPaging(request.PageIndex, request.PageSize);
 
-            List<User> users = await _userRepository.ListAsync(specification, context.CancellationToken);
+            List<User> users = await _userRepository.ListAsync(specification, cancellationToken);
             foreach (User user in users)
             {
                 result.Items.Add(new UserDto
@@ -45,7 +44,7 @@ public class GetUsersQuery : ListQuery
                 });
             }
 
-            await context.RespondAsync(result);
+            return result;
         }
     }
 }

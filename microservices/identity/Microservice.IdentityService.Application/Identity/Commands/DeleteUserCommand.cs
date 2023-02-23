@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
@@ -10,7 +9,7 @@ public class DeleteUserCommand : DeleteCommand<Guid>
     {
     }
 
-    public class DeleteUserCommandHandler : ICommandHandler<DeleteUserCommand>
+    public class DeleteUserCommandHandler : CommandHandler<DeleteUserCommand>
     {
         private readonly IUserManager _userManager;
 
@@ -21,16 +20,18 @@ public class DeleteUserCommand : DeleteCommand<Guid>
             _userManager = userManager;
         }
 
-        public async Task Consume(ConsumeContext<DeleteUserCommand> context)
+        protected override async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.Id, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.Id);
+                throw new EntityNotFoundException(typeof(User), request.Id);
             }
 
-            var result = await _userManager.DeleteAsync(user, context.CancellationToken);
+            var result = await _userManager.DeleteAsync(user, cancellationToken);
             result.CheckErrors();
+
+            return Unit.Value;
         }
     }
 }

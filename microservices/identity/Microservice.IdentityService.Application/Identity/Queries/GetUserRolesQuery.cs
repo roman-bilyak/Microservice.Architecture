@@ -1,11 +1,10 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 using Microservice.Database;
 
 namespace Microservice.IdentityService.Identity;
 
-public class GetUserRolesQuery : Query
+public class GetUserRolesQuery : Query<UserRoleListDto>
 {
     public Guid Id { get; protected set; }
 
@@ -14,7 +13,7 @@ public class GetUserRolesQuery : Query
         Id = id;
     }
 
-    public class GetUserRolesQueryHandler : IQueryHandler<GetUserRolesQuery>
+    public class GetUserRolesQueryHandler : QueryHandler<GetUserRolesQuery, UserRoleListDto>
     {
         private readonly IUserManager _userManager;
         private readonly IReadRepository<Role> _roleRepository;
@@ -32,19 +31,19 @@ public class GetUserRolesQuery : Query
             _roleRepository = roleRepository;
         }
 
-        public async Task Consume(ConsumeContext<GetUserRolesQuery> context)
+        protected override async Task<UserRoleListDto> Handle(GetUserRolesQuery request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.Id, cancellationToken);
             if (user is null)
             {
-                throw new EntityNotFoundException(typeof(User), context.Message.Id);
+                throw new EntityNotFoundException(typeof(User), request.Id);
             }
 
             List<Guid> roleIds = user.Roles.Select(x => x.RoleId).ToList();
-            GetRolesByIdsSpecification specification = new GetRolesByIdsSpecification(roleIds);
-            List<Role> roles = await _roleRepository.ListAsync(specification, context.CancellationToken);
+            GetRolesByIdsSpecification specification = new(roleIds);
+            List<Role> roles = await _roleRepository.ListAsync(specification, cancellationToken);
 
-            UserRoleListDto result = new UserRoleListDto
+            UserRoleListDto result = new()
             {
                 TotalCount = roles.Count
             };
@@ -58,7 +57,7 @@ public class GetUserRolesQuery : Query
                 });
             }
 
-            await context.RespondAsync(result);
+            return result;
         }
     }
 }

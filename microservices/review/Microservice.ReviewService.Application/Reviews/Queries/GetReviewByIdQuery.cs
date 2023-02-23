@@ -1,10 +1,9 @@
-﻿using MassTransit;
-using Microservice.Core;
+﻿using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
 
-public class GetReviewByIdQuery : ItemQuery<Guid>
+public class GetReviewByIdQuery : ItemQuery<Guid, ReviewDto>
 {
     public Guid MovieId { get; protected set; }
 
@@ -13,7 +12,7 @@ public class GetReviewByIdQuery : ItemQuery<Guid>
         MovieId = movieId;
     }
 
-    public class GetReviewByIdQueryHandler : IQueryHandler<GetReviewByIdQuery>
+    public class GetReviewByIdQueryHandler : QueryHandler<GetReviewByIdQuery, ReviewDto>
     {
         private readonly IReviewManager _reviewManager;
 
@@ -24,22 +23,22 @@ public class GetReviewByIdQuery : ItemQuery<Guid>
             _reviewManager = reviewManager;
         }
 
-        public async Task Consume(ConsumeContext<GetReviewByIdQuery> context)
+        protected override async Task<ReviewDto> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
         {
-            Review? review = await _reviewManager.FindByIdAsync(context.Message.Id, context.CancellationToken);
+            Review? review = await _reviewManager.FindByIdAsync(request.Id, cancellationToken);
             if (review is null)
             {
-                throw new EntityNotFoundException(typeof(Review), context.Message.Id);
+                throw new EntityNotFoundException(typeof(Review), request.Id);
             }
 
-            await context.RespondAsync(new ReviewDto
+            return new ReviewDto
             {
                 Id = review.Id,
                 UserId = review.UserId,
                 MovieId = review.MovieId,
                 Text = review.Text,
                 Rating = review.Rating
-            });
+            };
         }
     }
 }
