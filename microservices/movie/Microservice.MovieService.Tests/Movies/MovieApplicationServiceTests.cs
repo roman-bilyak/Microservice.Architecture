@@ -137,7 +137,6 @@ internal class MovieApplicationServiceTests : MovieServiceTests
         MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize, CancellationToken.None);
 
         // Assert
-        // Assert
         Assert.That(movieListDto, Is.Not.Null);
         Assert.Multiple(() =>
         {
