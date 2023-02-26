@@ -23,16 +23,16 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
         const int pageIndex = 3;
         const int pageSize = 5;
 
-        RoleListDto systemRoles = await _roleApplicationService.GetListAsync(0, 5, CancellationToken.None);
+        RoleListDto systemRoles = await _roleApplicationService.GetListAsync(0, 5);
 
         const int numberOfNewRoles = 17;
         for (int i = 0; i < numberOfNewRoles; i++)
         {
-            await _roleApplicationService.CreateAsync(new CreateRoleDto { Name = $"Role {i + 1}" }, CancellationToken.None);
+            await _roleApplicationService.CreateAsync(new CreateRoleDto { Name = $"Role {i + 1}" });
         }
 
         // Act
-        RoleListDto result = await _roleApplicationService.GetListAsync(pageIndex, pageSize, CancellationToken.None);
+        RoleListDto result = await _roleApplicationService.GetListAsync(pageIndex, pageSize);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -58,10 +58,10 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto newRoleDto = await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
+        RoleDto newRoleDto = await _roleApplicationService.CreateAsync(createRoleDto);
 
         // Act
-        RoleDto result = await _roleApplicationService.GetAsync(newRoleDto.Id, CancellationToken.None);
+        RoleDto result = await _roleApplicationService.GetAsync(newRoleDto.Id);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -79,7 +79,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
         Guid roleId = Guid.NewGuid();
 
         // Act & Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.GetAsync(roleId, CancellationToken.None));
+        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.GetAsync(roleId));
     }
 
     [Test]
@@ -89,12 +89,12 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
 
         // Act
-        RoleDto result = await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
+        RoleDto result = await _roleApplicationService.CreateAsync(createRoleDto);
 
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Name, Is.EqualTo(createRoleDto.Name));
-        Assert.DoesNotThrowAsync(() => _roleApplicationService.GetAsync(result.Id, CancellationToken.None));
+        Assert.DoesNotThrowAsync(() => _roleApplicationService.GetAsync(result.Id));
     }
 
     [TestCase(null)]
@@ -106,7 +106,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
         CreateRoleDto createRoleDto = new() { Name = invalidName };
 
         // Act & Assert
-        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None));
+        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.CreateAsync(createRoleDto));
     }
 
     [Test]
@@ -114,10 +114,10 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
+        await _roleApplicationService.CreateAsync(createRoleDto);
 
         // Act & Assert
-        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None));
+        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.CreateAsync(createRoleDto));
     }
 
     [Test]
@@ -125,12 +125,12 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
 
         UpdateRoleDto updateRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
 
         // Act
-        RoleDto result = await _roleApplicationService.UpdateAsync(roleDto.Id, updateRoleDto, CancellationToken.None);
+        RoleDto result = await _roleApplicationService.UpdateAsync(roleDto.Id, updateRoleDto);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -140,7 +140,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
             Assert.That(result.Name, Is.EqualTo(updateRoleDto.Name));
         });
 
-        Assert.DoesNotThrowAsync(() => _roleApplicationService.GetAsync(result.Id, CancellationToken.None));
+        Assert.DoesNotThrowAsync(() => _roleApplicationService.GetAsync(result.Id));
     }
 
     [Test]
@@ -148,12 +148,12 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
 
         UpdateRoleDto updateRoleDto = new() { Name = createRoleDto.Name };
 
         // Act
-        RoleDto result = await _roleApplicationService.UpdateAsync(roleDto.Id, updateRoleDto, CancellationToken.None);
+        RoleDto result = await _roleApplicationService.UpdateAsync(roleDto.Id, updateRoleDto);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -172,7 +172,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
         UpdateRoleDto updateRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
 
         // Act & Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.UpdateAsync(roleId, updateRoleDto, CancellationToken.None));
+        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.UpdateAsync(roleId, updateRoleDto));
     }
 
     [TestCase(null)]
@@ -182,12 +182,12 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
 
         UpdateRoleDto updateRoleDto = new() { Name = invalidName };
 
         // Act & Assert
-        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.UpdateAsync(roleDto.Id, updateRoleDto, CancellationToken.None));
+        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.UpdateAsync(roleDto.Id, updateRoleDto));
     }
 
     [Test]
@@ -195,15 +195,15 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRole1Dto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRole1Dto, CancellationToken.None);
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRole1Dto);
 
         CreateRoleDto createRole2Dto = new() { Name = $"Role {Guid.NewGuid()}" };
-        await _roleApplicationService.CreateAsync(createRole2Dto, CancellationToken.None);
+        await _roleApplicationService.CreateAsync(createRole2Dto);
 
         UpdateRoleDto updateRole1Dto = new() { Name = createRole2Dto.Name };
 
         // Act & Assert
-        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.UpdateAsync(roleDto.Id, updateRole1Dto, CancellationToken.None));
+        Assert.ThrowsAsync<DataValidationException>(() => _roleApplicationService.UpdateAsync(roleDto.Id, updateRole1Dto));
     }
 
     [Test]
@@ -211,13 +211,13 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto roleDto = await _roleApplicationService.CreateAsync(new CreateRoleDto { Name = $"Role {Guid.NewGuid()}" }, CancellationToken.None);
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(new CreateRoleDto { Name = $"Role {Guid.NewGuid()}" });
 
         // Act
-        await _roleApplicationService.DeleteAsync(roleDto.Id, CancellationToken.None);
+        await _roleApplicationService.DeleteAsync(roleDto.Id);
 
         // Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.GetAsync(roleDto.Id, CancellationToken.None));
+        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.GetAsync(roleDto.Id));
     }
 
     [Test]
@@ -227,6 +227,6 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
         Guid roleId = Guid.NewGuid();
 
         // Act and Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.DeleteAsync(roleId, CancellationToken.None));
+        Assert.ThrowsAsync<EntityNotFoundException>(() => _roleApplicationService.DeleteAsync(roleId));
     }
 }

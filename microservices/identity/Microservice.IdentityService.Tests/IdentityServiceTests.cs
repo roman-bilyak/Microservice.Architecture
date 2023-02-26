@@ -2,6 +2,6 @@
 
 namespace Microservice.IdentityService;
 
-internal class IdentityServiceTests : BaseIntegrationTests<IdentityServiceTestsModule>
+internal abstract class IdentityServiceTests : BaseIntegrationTests<IdentityServiceTestsModule>
 {
 }

@@ -1,0 +1,16 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
+
+namespace Microservice.TestService.Tests;
+
+[TestFixture]
+internal class TestApplicationServiceTests : TestServiceTests
+{
+    private ITestApplicationService _testApplicationService;
+
+    [SetUp]
+    public void Setup()
+    {
+        _testApplicationService = ServiceProvider.GetRequiredService<ITestApplicationService>();
+    }
+}

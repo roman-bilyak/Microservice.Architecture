@@ -12,5 +12,5 @@ public interface IUserApplicationService : IApplicationService
     /// <param name="pageSize">The size of the page to retrieve.</param>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
     /// <returns>A paginated list of reviews for the user.</returns>
-    public Task<UserReviewListDto> GetReviewListAsync(Guid userId, int pageIndex, int pageSize, CancellationToken cancellationToken);
+    public Task<UserReviewListDto> GetReviewListAsync(Guid userId, int pageIndex, int pageSize, CancellationToken cancellationToken = default);
 }

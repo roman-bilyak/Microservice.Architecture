@@ -18,6 +18,6 @@ internal class UserApplicationServiceTests : IdentityServiceTests
     [Test]
     public async Task GetList_Test()
     {
-        await _userApplicationService.GetListAsync(0, 10, CancellationToken.None);
+        await _userApplicationService.GetListAsync(0, 10);
     }
 }

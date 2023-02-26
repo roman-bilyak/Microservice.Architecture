@@ -11,7 +11,7 @@ public interface ITestApplicationService : IApplicationService
     /// Test method.
     /// </summary>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
-    public Task GetAsync(CancellationToken cancellationToken);
+    public Task GetAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Sends a message for a given test id and message.
@@ -19,5 +19,5 @@ public interface ITestApplicationService : IApplicationService
     /// <param name="testId">The id of the test.</param>
     /// <param name="message">The message to send.</param>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
-    public Task SendMessageAsync(int testId, string message, CancellationToken cancellationToken);
+    public Task SendMessageAsync(int testId, string message, CancellationToken cancellationToken = default);
 }

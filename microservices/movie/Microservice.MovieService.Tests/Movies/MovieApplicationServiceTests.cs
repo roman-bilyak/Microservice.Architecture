@@ -20,10 +20,9 @@ internal class MovieApplicationServiceTests : MovieServiceTests
         // Arrange
         int pageIndex = 0;
         int pageSize = 5;
-        var cancellationToken = CancellationToken.None;
 
         // Act
-        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize, cancellationToken);
+        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize);
 
         // Assert
         Assert.That(movieListDto, Is.Not.Null);
@@ -47,11 +46,11 @@ internal class MovieApplicationServiceTests : MovieServiceTests
             {
                 Title = $"Movie {Guid.NewGuid()}"
             };
-            await _movieApplicationService.CreateAsync(createMovieDto, CancellationToken.None);
+            await _movieApplicationService.CreateAsync(createMovieDto);
         }
 
         // Act
-        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize, CancellationToken.None);
+        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize);
 
         // Assert
         Assert.That(movieListDto, Is.Not.Null);
@@ -74,11 +73,11 @@ internal class MovieApplicationServiceTests : MovieServiceTests
             {
                 Title = $"Movie {Guid.NewGuid()}"
             };
-            await _movieApplicationService.CreateAsync(createMovieDto, CancellationToken.None);
+            await _movieApplicationService.CreateAsync(createMovieDto);
         }
 
         // Act
-        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize, CancellationToken.None);
+        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize);
 
         // Assert
         Assert.That(movieListDto, Is.Not.Null);
@@ -102,11 +101,11 @@ internal class MovieApplicationServiceTests : MovieServiceTests
             {
                 Title = $"Movie {Guid.NewGuid()}"
             };
-            await _movieApplicationService.CreateAsync(createMovieDto, CancellationToken.None);
+            await _movieApplicationService.CreateAsync(createMovieDto);
         }
 
         // Act
-        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize, CancellationToken.None);
+        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize);
 
         // Assert
         Assert.That(movieListDto, Is.Not.Null);
@@ -130,11 +129,11 @@ internal class MovieApplicationServiceTests : MovieServiceTests
             {
                 Title = $"Movie {Guid.NewGuid()}"
             };
-            await _movieApplicationService.CreateAsync(createMovieDto, CancellationToken.None);
+            await _movieApplicationService.CreateAsync(createMovieDto);
         }
 
         // Act
-        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize, CancellationToken.None);
+        MovieListDto movieListDto = await _movieApplicationService.GetListAsync(pageIndex, pageSize);
 
         // Assert
         Assert.That(movieListDto, Is.Not.Null);
