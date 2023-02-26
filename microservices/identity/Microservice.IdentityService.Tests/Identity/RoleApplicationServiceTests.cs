@@ -58,7 +58,7 @@ internal class RoleApplicationServiceTests : BaseIntegrationTests<IdentityServic
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto newRoleDto = await _roleApplicationService.CreateAsync(new CreateRoleDto { Name = $"Role {Guid.NewGuid()}" }, CancellationToken.None);
+        RoleDto newRoleDto = await _roleApplicationService.CreateAsync(createRoleDto, CancellationToken.None);
 
         // Act
         RoleDto result = await _roleApplicationService.GetAsync(newRoleDto.Id, CancellationToken.None);

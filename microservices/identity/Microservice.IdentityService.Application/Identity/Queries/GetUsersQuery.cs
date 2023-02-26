@@ -40,7 +40,7 @@ public class GetUsersQuery : ListQuery<UserListDto>
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    IsEmilConfirmed = user.IsEmailConfirmed
+                    IsEmailConfirmed = user.IsEmailConfirmed
                 });
             }
 

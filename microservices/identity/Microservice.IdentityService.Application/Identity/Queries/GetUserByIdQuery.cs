@@ -35,7 +35,7 @@ public class GetUserByIdQuery : ItemQuery<Guid, UserDto>
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                IsEmilConfirmed = user.IsEmailConfirmed
+                IsEmailConfirmed = user.IsEmailConfirmed
             };
         }
     }
