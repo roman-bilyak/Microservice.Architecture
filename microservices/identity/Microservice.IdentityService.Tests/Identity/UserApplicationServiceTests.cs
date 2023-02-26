@@ -4,7 +4,8 @@ using NUnit.Framework;
 
 namespace Microservice.IdentityService.Identity;
 
-internal class UserApplicationServiceTests : BaseIntegrationTests<IdentityServiceTestsModule>
+[TestFixture]
+internal class UserApplicationServiceTests : IdentityServiceTests
 {
     private IUserApplicationService _userApplicationService;
 

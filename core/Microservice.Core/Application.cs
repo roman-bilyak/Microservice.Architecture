@@ -13,8 +13,12 @@ internal class Application<TStartupModule> : IApplication
     private List<IStartupModule>? _modules;
     private IServiceProvider? _serviceProvider;
 
-    public Application(IServiceCollection services, IConfiguration configuration,
-        Action<ApplicationConfigurationOptions>? configurationOptionsAction)
+    public Application
+    (
+        IServiceCollection services,
+        IConfiguration configuration,
+        Action<ApplicationConfigurationOptions>? configurationOptionsAction
+    )
     {
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configuration);
