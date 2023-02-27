@@ -7,6 +7,7 @@ internal class CreateMovieDtoValidator : AbstractValidator<CreateMovieDto>
     public CreateMovieDtoValidator()
     {
         RuleFor(x => x.Title)
+            .NotNull()
             .NotEmpty()
             .MaximumLength(Movie.MaxTitleLength);
     }
