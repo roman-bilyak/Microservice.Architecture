@@ -11,6 +11,6 @@ internal class PaymentApplicationServiceTests : PaymentServiceTests
     [SetUp]
     public void Setup()
     {
-        _paymentApplicationService = ServiceProvider.GetRequiredService<IPaymentApplicationService>();
+        _paymentApplicationService = GetRequiredService<IPaymentApplicationService>();
     }
 }

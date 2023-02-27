@@ -1,5 +1,4 @@
 ﻿using Microservice.Core;
-using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -13,7 +12,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     [SetUp]
     public void Setup()
     {
-        _movieApplicationService = ServiceProvider.GetRequiredService<IMovieApplicationService>();
+        _movieApplicationService = GetRequiredService<IMovieApplicationService>();
     }
 
     [Test]
@@ -212,11 +211,16 @@ internal class MovieApplicationServiceTests : MovieServiceTests
 
         // Assert
         Assert.That(movieDto, Is.Not.Null);
-        Assert.That(movieDto.Title, Is.EqualTo(createMovieDto.Title));
-
-        Assert.That(getMovieDto, Is.Not.Null);
-        Assert.That(getMovieDto.Id, Is.EqualTo(movieDto.Id));
-        Assert.That(getMovieDto.Title, Is.EqualTo(createMovieDto.Title));
+        Assert.Multiple(() =>
+        {
+            Assert.That(movieDto.Title, Is.EqualTo(createMovieDto.Title));
+            Assert.That(getMovieDto, Is.Not.Null);
+        });
+        Assert.Multiple(() =>
+        {
+            Assert.That(getMovieDto.Id, Is.EqualTo(movieDto.Id));
+            Assert.That(getMovieDto.Title, Is.EqualTo(createMovieDto.Title));
+        });
     }
 
     [TestCase(null)]
@@ -281,9 +285,12 @@ internal class MovieApplicationServiceTests : MovieServiceTests
 
         // Assert
         Assert.That(result, Is.Not.Null);
-        Assert.That(result.Title, Is.EqualTo(updateMovieDto.Title));
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Title, Is.EqualTo(updateMovieDto.Title));
 
-        Assert.That(getMovieDto, Is.Not.Null);
+            Assert.That(getMovieDto, Is.Not.Null);
+        });
         Assert.That(getMovieDto.Title, Is.EqualTo(updateMovieDto.Title));
     }
 

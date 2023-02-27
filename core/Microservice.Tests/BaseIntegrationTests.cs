@@ -10,8 +10,7 @@ public abstract class BaseIntegrationTests<TStartupModule>
     where TStartupModule : class, IStartupModule, new()
 {
     private IApplication _application;
-
-    protected IServiceProvider ServiceProvider => _application.GetServiceProvider();
+    private IServiceProvider _serviceProvider;
 
     [SetUp]
     public void Init()
@@ -23,7 +22,10 @@ public abstract class BaseIntegrationTests<TStartupModule>
 
         _application = services.AddApplication<TStartupModule>(configuration, x => ConfigureServices(x.Services));
         _application.ConfigureServices();
-        _application.SetServiceProvider(services.BuildServiceProvider());
+
+        _serviceProvider = services.BuildServiceProvider();
+
+        _application.SetServiceProvider(_serviceProvider);
         _application.Configure();
     }
 
@@ -32,10 +34,30 @@ public abstract class BaseIntegrationTests<TStartupModule>
 
     }
 
+    protected T? GetService<T>()
+    {
+        return _serviceProvider.GetService<T>();
+    }
+
+    protected T GetRequiredService<T>()
+        where T : notnull
+    {
+        return _serviceProvider.GetRequiredService<T>();
+    }
+
     [TearDown]
-    public void Cleanup()
+    public async Task Cleanup()
     {
         _application.Shutdown();
         _application.Dispose();
+
+        if (_serviceProvider is IAsyncDisposable asyncDisposable)
+        {
+            await asyncDisposable.DisposeAsync();
+        }
+        if (_serviceProvider is IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
     }
 }

@@ -13,7 +13,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     [SetUp]
     public void Setup()
     {
-        _roleApplicationService = ServiceProvider.GetRequiredService<IRoleApplicationService>();
+        _roleApplicationService = GetRequiredService<IRoleApplicationService>();
     }
 
     [Test]

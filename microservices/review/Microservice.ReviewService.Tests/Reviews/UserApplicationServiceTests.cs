@@ -11,6 +11,6 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     [SetUp]
     public void Setup()
     {
-        _userApplicationService = ServiceProvider.GetRequiredService<IUserApplicationService>();
+        _userApplicationService = GetRequiredService<IUserApplicationService>();
     }
 }

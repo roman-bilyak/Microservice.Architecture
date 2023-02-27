@@ -11,6 +11,6 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     [SetUp]
     public void Setup()
     {
-        _movieApplicationService = ServiceProvider.GetRequiredService<IMovieApplicationService>();
+        _movieApplicationService = GetRequiredService<IMovieApplicationService>();
     }
 }

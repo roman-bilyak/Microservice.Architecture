@@ -11,6 +11,6 @@ internal class TestApplicationServiceTests : TestServiceTests
     [SetUp]
     public void Setup()
     {
-        _testApplicationService = ServiceProvider.GetRequiredService<ITestApplicationService>();
+        _testApplicationService = GetRequiredService<ITestApplicationService>();
     }
 }
