@@ -1,6 +1,4 @@
 using Microservice.Core;
-using Microservice.Tests;
-using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 namespace Microservice.IdentityService.Identity;
@@ -211,7 +209,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
-        RoleDto roleDto = await _roleApplicationService.CreateAsync(new CreateRoleDto { Name = $"Role {Guid.NewGuid()}" });
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
 
         // Act
         await _roleApplicationService.DeleteAsync(roleDto.Id);

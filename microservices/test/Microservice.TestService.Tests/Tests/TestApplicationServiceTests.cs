@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Microservice.TestService.Tests;
 
