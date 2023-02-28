@@ -153,7 +153,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
         int pageSize = 10;
         CancellationToken cancellationToken = new(true);
 
-        // Act + Assert
+        // Act & Assert
         Assert.ThrowsAsync<TaskCanceledException>(() => _movieApplicationService.GetListAsync(pageIndex, pageSize, cancellationToken));
     }
 
@@ -247,7 +247,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
             Title = new string('x', 101)
         };
 
-        // Act + Assert
+        // Act & Assert
         Assert.ThrowsAsync<DataValidationException>(() => _movieApplicationService.CreateAsync(createMovieDto));
     }
 
@@ -342,7 +342,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
             Title = new string('x', 101)
         };
 
-        // Act + Assert
+        // Act & Assert
         Assert.ThrowsAsync<DataValidationException>(() => _movieApplicationService.UpdateAsync(movieDto.Id, updateMovieDto));
     }
 

@@ -25,7 +25,7 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
 
         protected override async Task<ReviewDto> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
         {
-            Review? review = await _reviewManager.FindByIdAsync(request.Id, cancellationToken);
+            Review? review = await _reviewManager.GetByIdAsync(request.MovieId, request.Id, cancellationToken);
             if (review is null || review.MovieId != request.MovieId)
             {
                 throw new EntityNotFoundException(typeof(Review), request.Id);

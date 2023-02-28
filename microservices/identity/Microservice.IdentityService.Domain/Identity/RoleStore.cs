@@ -6,6 +6,7 @@ namespace Microservice.IdentityService.Identity;
 public class RoleStore : IRoleStore<Role>
 {
     private readonly IRepository<Role> _roleRepository;
+    private bool disposed;
 
     public RoleStore(IRepository<Role> roleRepository)
     {
@@ -94,11 +95,27 @@ public class RoleStore : IRoleStore<Role>
     {
         ArgumentNullException.ThrowIfNull(normalizedRoleName, nameof(normalizedRoleName));
 
-        FindRoleByNormalizedNameSpecification specification = new FindRoleByNormalizedNameSpecification(normalizedRoleName);
+        FindRoleByNormalizedNameSpecification specification = new(normalizedRoleName);
         return await _roleRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
     public void Dispose()
     {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposed)
+        {
+            return;
+        }
+        disposed = true;
+    }
+
+    ~RoleStore()
+    {
+        Dispose(disposing: false);
     }
 }
