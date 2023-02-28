@@ -52,13 +52,13 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
         return await _mediator.SendRequest(new GetUserRolesQuery(userId), cancellationToken);
     }
 
-    public async Task AddRoleAsync(Guid userId, string roleName, CancellationToken cancellationToken)
+    public async Task AddRoleAsync(Guid userId, Guid roleId, CancellationToken cancellationToken)
     {
-        await _mediator.SendRequest(new AddUserToRoleCommand(userId, roleName), cancellationToken);
+        await _mediator.SendRequest(new AddUserToRoleCommand(userId, roleId), cancellationToken);
     }
 
-    public async Task RemoveRoleAsync(Guid userId, string roleName, CancellationToken cancellationToken)
+    public async Task RemoveRoleAsync(Guid userId, Guid roleId, CancellationToken cancellationToken)
     {
-        await _mediator.SendRequest(new RemoveUserFromRoleCommand(userId, roleName), cancellationToken);
+        await _mediator.SendRequest(new RemoveUserFromRoleCommand(userId, roleId), cancellationToken);
     }
 }

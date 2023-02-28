@@ -65,20 +65,20 @@ public interface IUserApplicationService : IApplicationService
     public Task<UserRoleListDto> GetRoleListAsync(Guid userId, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Adds a role to the user identified by the provided user id.
+    /// Adds a role to the user identified by the provided user id and role id.
     /// </summary>
     /// <param name="userId">The id of the user to add the role to.</param>
-    /// <param name="roleName">The name of the role to add.</param>
+    /// <param name="roleId">The id of the role to add.</param>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public Task AddRoleAsync(Guid userId, string roleName, CancellationToken cancellationToken = default);
+    public Task AddRoleAsync(Guid userId, Guid roleId, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Removes a role from the user identified by the provided user id.
+    /// Removes a role from the user identified by the provided user id and role id.
     /// </summary>
     /// <param name="userId">The id of the user to remove the role from.</param>
-    /// <param name="roleName">The name of the role to remove.</param>
+    /// <param name="roleId">The id of the role to remove.</param>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public Task RemoveRoleAsync(Guid userId, string roleName, CancellationToken cancellationToken = default);
+    public Task RemoveRoleAsync(Guid userId, Guid roleId, CancellationToken cancellationToken = default);
 }

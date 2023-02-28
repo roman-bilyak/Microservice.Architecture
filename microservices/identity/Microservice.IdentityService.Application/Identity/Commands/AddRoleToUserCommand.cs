@@ -7,26 +7,30 @@ public class AddUserToRoleCommand : Command<Unit>
 {
     public Guid UserId { get; protected set; }
 
-    public string RoleName { get; protected set; }
+    public Guid RoleId { get; protected set; }
 
-    public AddUserToRoleCommand(Guid userId, string roleName)
+    public AddUserToRoleCommand(Guid userId, Guid roleId)
     {
-        ArgumentNullException.ThrowIfNull(userId, nameof(userId));
-        ArgumentNullException.ThrowIfNull(roleName, nameof(roleName));
-
         UserId = userId;
-        RoleName = roleName;
+        RoleId = roleId;
     }
 
     public class AddRoleToUserCommandHandler : CommandHandler<AddUserToRoleCommand, Unit>
     {
         private readonly IUserManager _userManager;
+        private readonly IRoleManager _roleManager;
 
-        public AddRoleToUserCommandHandler(IUserManager userManager)
+        public AddRoleToUserCommandHandler
+        (
+            IUserManager userManager,
+            IRoleManager roleManager
+        )
         {
             ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
+            ArgumentNullException.ThrowIfNull(roleManager, nameof(roleManager));
 
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         protected override async Task<Unit> Handle(AddUserToRoleCommand request, CancellationToken cancellationToken)
@@ -37,7 +41,13 @@ public class AddUserToRoleCommand : Command<Unit>
                 throw new EntityNotFoundException(typeof(User), request.UserId);
             }
 
-            var result = await _userManager.AddToRoleAsync(user, request.RoleName, cancellationToken);
+            Role? role = await _roleManager.FindByIdAsync(request.RoleId, cancellationToken);
+            if (role is null)
+            {
+                throw new EntityNotFoundException(typeof(Role), request.RoleId);
+            }
+
+            var result = await _userManager.AddToRoleAsync(user, role.Name, cancellationToken);
             result.CheckErrors();
 
             return Unit.Value;
