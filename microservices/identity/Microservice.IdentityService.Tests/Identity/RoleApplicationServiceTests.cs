@@ -15,7 +15,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task GetList_ReturnsPaginatedListOfRoles()
+    public async Task GetList_WithValidData_ReturnsRoles()
     {
         // Arrange
         const int pageIndex = 3;
@@ -52,7 +52,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Get_WithExistingRoleId_ReturnsRoleDto()
+    public async Task Get_WithExistingRoleId_ReturnsRole()
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -71,7 +71,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public void Get_WithNonExistingRoleId_ThrowsException()
+    public void Get_WithNonExistingRoleId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid roleId = Guid.NewGuid();
@@ -81,7 +81,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Create_WithValidData_CreatesRoleAndReturnsRoleDto()
+    public async Task Create_WithValidData_CreatesAndReturnsCreatedRole()
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -98,7 +98,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("   ")]
-    public void Create_WithEmptyName_ThrowsException(string invalidName)
+    public void Create_WithEmptyName_ThrowsDataValidationException(string invalidName)
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = invalidName };
@@ -108,7 +108,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Create_WithExistingName_ThrowsException()
+    public async Task Create_WithExistingName_ThrowsDataValidationException()
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -119,7 +119,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Update_WithValidData_UpdatesRoleAndReturnsUpdatedRoleDto()
+    public async Task Update_WithValidData_UpdatesAndReturnsUpdatedRole()
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -142,7 +142,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Update_WithSameName_UpdatesRoleAndReturnsUpdatedRoleDto()
+    public async Task Update_WithSameName_UpdatesAndReturnsUpdatedRole()
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -163,7 +163,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public void Update_WithNonExistingRoleId_ThrowsException()
+    public void Update_WithNonExistingRoleId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid roleId = Guid.NewGuid();
@@ -176,7 +176,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("   ")]
-    public async Task Update_WithEmptyName_ThrowsException(string invalidName)
+    public async Task Update_WithEmptyName_ThrowsDataValidationException(string invalidName)
     {
         // Arrange
         CreateRoleDto createRoleDto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -189,7 +189,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Update_WithExistingName_ThrowsException()
+    public async Task Update_WithExistingName_ThrowsDataValidationException()
     {
         // Arrange
         CreateRoleDto createRole1Dto = new() { Name = $"Role {Guid.NewGuid()}" };
@@ -219,7 +219,7 @@ internal class RoleApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public void Delete_WithNonExistingRoleId_ThrowsException()
+    public void Delete_WithNonExistingRoleId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid roleId = Guid.NewGuid();

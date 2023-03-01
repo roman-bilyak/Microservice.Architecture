@@ -17,7 +17,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task GetList_WithValidParameters_ReturnsSystemUsers()
+    public async Task GetList_WithValidData_ReturnsUsers()
     {
         // Arrange
         int pageIndex = 0;
@@ -107,7 +107,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Create_WithValidData_CreatesAndReturnsUser()
+    public async Task Create_WithValidData_CreatesAndReturnsCreatedUser()
     {
         // Arrange
         CreateUserDto createUserDto = new()
@@ -153,7 +153,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task Update_WithValidData_UpdatesAndReturnsUser()
+    public async Task Update_WithValidData_UpdatesAndReturnsUpdatedUser()
     {
         // Arrange
         CreateUserDto createUserDto = new()
