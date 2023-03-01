@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\core\Microservice.Database.EntityFrameworkCore\Microservice.Database.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Domain\Microservice.PaymentService.Domain.csproj" />
   </ItemGroup>

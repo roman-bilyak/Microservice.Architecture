@@ -12,5 +12,5 @@ public record UserDto
 
     public string Email { get; init; } = string.Empty;
 
-    public bool IsEmilConfirmed { get; init; }
+    public bool IsEmailConfirmed { get; init; }
 }

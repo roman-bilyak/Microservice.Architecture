@@ -7,6 +7,7 @@ internal class UpdateReviewDtoValidator : AbstractValidator<UpdateReviewDto>
     public UpdateReviewDtoValidator()
     {
         RuleFor(x => x.Text)
+            .NotNull()
             .NotEmpty()
             .MaximumLength(Review.MaxTextLength);
     }

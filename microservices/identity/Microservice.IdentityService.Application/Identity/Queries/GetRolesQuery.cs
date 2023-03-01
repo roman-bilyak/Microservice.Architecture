@@ -27,7 +27,7 @@ public class GetRolesQuery : ListQuery<RoleListDto>
                 TotalCount = await _roleRepository.CountAsync(cancellationToken)
             };
 
-            Specification<Role> specification = new Specification<Role>();
+            Specification<Role> specification = new();
             specification.ApplyPaging(request.PageIndex, request.PageSize);
 
             List<Role> roles = await _roleRepository.ListAsync(specification, cancellationToken);

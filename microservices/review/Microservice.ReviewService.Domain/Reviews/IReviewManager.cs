@@ -2,7 +2,7 @@
 
 public interface IReviewManager
 {
-    Task<Review?> FindByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Review?> GetByIdAsync(Guid movieId, Guid reviewId, CancellationToken cancellationToken);
 
     Task<List<Review>> GetListByMovieAsync(Guid movieId, int pageIndex, int pageSize, CancellationToken cancellationToken);
 

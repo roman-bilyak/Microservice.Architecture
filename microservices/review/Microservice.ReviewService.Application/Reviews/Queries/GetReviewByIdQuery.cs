@@ -25,7 +25,7 @@ public class GetReviewByIdQuery : ItemQuery<Guid, ReviewDto>
 
         protected override async Task<ReviewDto> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
         {
-            Review? review = await _reviewManager.FindByIdAsync(request.Id, cancellationToken);
+            Review? review = await _reviewManager.GetByIdAsync(request.MovieId, request.Id, cancellationToken);
             if (review is null)
             {
                 throw new EntityNotFoundException(typeof(Review), request.Id);

@@ -14,10 +14,10 @@ internal class ReviewManager : DomainService, IReviewManager
         _reviewRepository = reviewRepository;
     }
 
-    public async Task<Review?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<Review?> GetByIdAsync(Guid movieId, Guid reviewId, CancellationToken cancellationToken)
     {
-        //TODO: add filter by movieId
-        return await _reviewRepository.GetByIdAsync(id, cancellationToken);
+        GetReviewsByMovieSpecification specification = new(movieId, reviewId);
+        return await _reviewRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
     public async Task<List<Review>> GetListByMovieAsync(Guid movieId, int pageIndex, int pageSize, CancellationToken cancellationToken)
