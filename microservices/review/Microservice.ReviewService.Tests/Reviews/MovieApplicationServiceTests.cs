@@ -257,12 +257,12 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         });
 
         ReviewDto reviewDto = await _movieApplicationService.GetReviewAsync(movieId, result.Id);
-        Assert.That(result, Is.Not.Null);
+        Assert.That(reviewDto, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(result.Id, Is.EqualTo(result.Id));
-            Assert.That(result.Text, Is.EqualTo(createReviewDto.Text));
-            Assert.That(result.Rating, Is.EqualTo(createReviewDto.Rating));
+            Assert.That(reviewDto.Id, Is.EqualTo(result.Id));
+            Assert.That(reviewDto.Text, Is.EqualTo(createReviewDto.Text));
+            Assert.That(reviewDto.Rating, Is.EqualTo(createReviewDto.Rating));
         });
     }
 

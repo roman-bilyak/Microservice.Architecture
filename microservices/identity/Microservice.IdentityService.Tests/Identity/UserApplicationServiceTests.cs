@@ -7,11 +7,13 @@ namespace Microservice.IdentityService.Identity;
 internal class UserApplicationServiceTests : IdentityServiceTests
 {
     private IUserApplicationService _userApplicationService;
+    private IRoleApplicationService _roleApplicationService;
 
     [SetUp]
     public void Setup()
     {
         _userApplicationService = GetRequiredService<IUserApplicationService>();
+        _roleApplicationService = GetRequiredService<IRoleApplicationService>();
     }
 
     [Test]
@@ -42,7 +44,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         CancellationToken canceledToken = new(true);
 
         // Act & Assert
-        Assert.ThrowsAsync<TaskCanceledException>(() => _userApplicationService.GetListAsync(pageIndex, pageSize, canceledToken));
+        Assert.ThrowsAsync<TaskCanceledException>(async () => await _userApplicationService.GetListAsync(pageIndex, pageSize, canceledToken));
     }
 
     [Test]
@@ -82,7 +84,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         Guid userId = Guid.NewGuid();
 
         // Act & Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _userApplicationService.GetAsync(userId));
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.GetAsync(userId));
     }
 
     [Test]
@@ -101,7 +103,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         CancellationToken canceledToken = new(true);
 
         // Act & Assert
-        Assert.ThrowsAsync<TaskCanceledException>(() => _userApplicationService.GetAsync(userDto.Id, canceledToken));
+        Assert.ThrowsAsync<TaskCanceledException>(async () => await _userApplicationService.GetAsync(userDto.Id, canceledToken));
     }
 
     [Test]
@@ -147,7 +149,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         CancellationToken canceledToken = new(true);
 
         // Act & Assert
-        Assert.ThrowsAsync<TaskCanceledException>(() => _userApplicationService.CreateAsync(createUserDto, canceledToken));
+        Assert.ThrowsAsync<TaskCanceledException>(async () => await _userApplicationService.CreateAsync(createUserDto, canceledToken));
     }
 
     [Test]
@@ -209,9 +211,67 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         CancellationToken canceledToken = new(true);
 
         // Act & Assert
-        Assert.ThrowsAsync<TaskCanceledException>(() => _userApplicationService.UpdateAsync(userDto.Id, updateUserDto, canceledToken));
+        Assert.ThrowsAsync<TaskCanceledException>(async () => await _userApplicationService.UpdateAsync(userDto.Id, updateUserDto, canceledToken));
     }
 
+    [Test]
+    public async Task UpdatePassword_WithValidData_UpdatesPassword()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+        UpdateUserPasswordDto updateUserPasswordDto = new()
+        {
+            OldPassword = createUserDto.Password,
+            Password = $"{Guid.NewGuid()}"
+        };
+
+        // Act
+        await _userApplicationService.UpdatePasswordAsync(userDto.Id, updateUserPasswordDto);
+
+        //Assert
+        UpdateUserPasswordDto updateUserPassword2Dto = new()
+        {
+            OldPassword = updateUserPasswordDto.Password,
+            Password = updateUserPasswordDto.Password
+        };
+        await _userApplicationService.UpdatePasswordAsync(userDto.Id, updateUserPassword2Dto);
+    }
+
+    [Test]
+    public async Task UpdatePassword_WithInvalidOldPassword_ThrowsDataValidationException()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+        UpdateUserPasswordDto updateUserPasswordDto = new()
+        {
+            OldPassword = $"{Guid.NewGuid()}",
+            Password = $"{Guid.NewGuid()}"
+        };
+
+        // Act & Assert
+        Assert.ThrowsAsync<DataValidationException>(async () =>
+        {
+            await _userApplicationService.UpdatePasswordAsync(userDto.Id, updateUserPasswordDto);
+        });
+    }
+
+    [Test]
     public async Task Delete_WithExistingUserId_DeletesRole()
     {
         // Arrange
@@ -229,7 +289,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         await _userApplicationService.DeleteAsync(userDto.Id);
 
         // Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _userApplicationService.GetAsync(userDto.Id));
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.GetAsync(userDto.Id));
     }
 
     [Test]
@@ -239,7 +299,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         Guid userId = Guid.NewGuid();
 
         // Act and Assert
-        Assert.ThrowsAsync<EntityNotFoundException>(() => _userApplicationService.DeleteAsync(userId));
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.DeleteAsync(userId));
     }
 
     [Test]
@@ -258,6 +318,236 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         CancellationToken canceledToken = new(true);
 
         // Act & Assert
-        Assert.ThrowsAsync<TaskCanceledException>(() => _userApplicationService.DeleteAsync(userDto.Id, canceledToken));
+        Assert.ThrowsAsync<TaskCanceledException>(async () => await _userApplicationService.DeleteAsync(userDto.Id, canceledToken));
+    }
+
+    [Test]
+    public async Task GetRoleList_WhenExistingUserId_ReturnsUserRoles()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+
+        for (int i = 0; i < 5; i++)
+        {
+            CreateRoleDto createRoleDto = new()
+            {
+                Name = $"Role {Guid.NewGuid()}"
+            };
+            RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+
+            await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
+        }
+
+        // Act
+        UserRoleListDto result = await _userApplicationService.GetRoleListAsync(userDto.Id);
+
+        // Assert
+        Assert.That(result, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Items, Has.Count.EqualTo(5));
+            Assert.That(result.TotalCount, Is.EqualTo(5));
+        });
+    }
+
+    [Test]
+    public void GetRoleList_WhenNonExistingUserId_ThrowsEntityNotFoundException()
+    {
+        // Arrange
+        Guid invalidUserId = Guid.NewGuid();
+
+        // Act & Assert
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.GetRoleListAsync(invalidUserId));
+    }
+
+    [Test]
+    public async Task AddRole_WithValidData_AddsRoleToUser()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+
+        CreateRoleDto createRoleDto = new()
+        {
+            Name = $"Role {Guid.NewGuid()}"
+        };
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+
+        // Act
+        await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
+
+        // Assert
+        UserRoleListDto result = await _userApplicationService.GetRoleListAsync(userDto.Id);
+        Assert.That(result, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Items, Has.Count.EqualTo(1));
+            Assert.That(result.TotalCount, Is.EqualTo(1));
+        });
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Items[0].Id, Is.EqualTo(roleDto.Id));
+            Assert.That(result.Items[0].Name, Is.EqualTo(roleDto.Name));
+        });
+    }
+
+    [Test]
+    public async Task AddRole_WhenNonExistingUserId_ThrowsEntityNotFoundException()
+    {
+        // Arrange
+        Guid invalidUserId = Guid.NewGuid();
+        CreateRoleDto createRoleDto = new()
+        {
+            Name = $"Role {Guid.NewGuid()}"
+        };
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+
+        // Act and Assert
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.AddRoleAsync(invalidUserId, roleDto.Id));
+    }
+
+    [Test]
+    public async Task AddRole_WhenNonExistingRoleId_ThrowsEntityNotFoundException()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+        Guid invalidRoleId = Guid.NewGuid();
+
+        // Act and Assert
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.AddRoleAsync(userDto.Id, invalidRoleId));
+    }
+
+    [Test]
+    public async Task AddRole_WhenAlreadyAssignedToUser_ThrowsDataValidationException()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+
+        CreateRoleDto createRoleDto = new()
+        {
+            Name = $"Role {Guid.NewGuid()}"
+        };
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+        await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
+
+        // Act & Assert
+        Assert.ThrowsAsync<DataValidationException>(async () => await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id));
+    }
+
+    [Test]
+    public async Task RemoveRole_WithValidData_RemovesRoleFromUser()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+
+        CreateRoleDto createRoleDto = new()
+        {
+            Name = $"Role {Guid.NewGuid()}"
+        };
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+        await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
+
+        // Act
+        await _userApplicationService.RemoveRoleAsync(userDto.Id, roleDto.Id);
+
+        // Assert
+        UserRoleListDto result = await _userApplicationService.GetRoleListAsync(userDto.Id);
+        Assert.That(result, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Items, Has.Count.EqualTo(0));
+            Assert.That(result.TotalCount, Is.EqualTo(0));
+        });
+    }
+
+    [Test]
+    public async Task RemoveRole_WithNonExistingUserId_ThrowsDataValidationException()
+    {
+        // Arrange
+        Guid invalidUserId = Guid.NewGuid();
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+
+        CreateRoleDto createRoleDto = new()
+        {
+            Name = $"Role {Guid.NewGuid()}"
+        };
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+        await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
+
+        // Act & Assert
+        Assert.ThrowsAsync<DataValidationException>(async () => await _userApplicationService.RemoveRoleAsync(invalidUserId, roleDto.Id));
+    }
+
+    [Test]
+    public async Task RemoveRole_WithNonExistingRoleId_ThrowsDataValidationException()
+    {
+        // Arrange
+        CreateUserDto createUserDto = new()
+        {
+            Name = $"{Guid.NewGuid()}",
+            FirstName = $"{Guid.NewGuid()}",
+            LastName = $"{Guid.NewGuid()}",
+            Email = "test@example.com",
+            Password = $"{Guid.NewGuid()}",
+        };
+        UserDto userDto = await _userApplicationService.CreateAsync(createUserDto);
+
+        Guid invalidRoleId = Guid.NewGuid();
+        CreateRoleDto createRoleDto = new()
+        {
+            Name = $"Role {Guid.NewGuid()}"
+        };
+        RoleDto roleDto = await _roleApplicationService.CreateAsync(createRoleDto);
+        await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
+
+        // Act & Assert
+        Assert.ThrowsAsync<DataValidationException>(async () => await _userApplicationService.RemoveRoleAsync(userDto.Id, invalidRoleId));
     }
 }
