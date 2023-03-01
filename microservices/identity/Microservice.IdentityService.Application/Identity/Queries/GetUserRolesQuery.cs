@@ -40,7 +40,7 @@ public class GetUserRolesQuery : Query<UserRoleListDto>
             }
 
             List<Guid> roleIds = user.Roles.Select(x => x.RoleId).ToList();
-            GetRolesByIdsSpecification specification = new(roleIds);
+            GetRolesSpecification specification = new(roleIds);
             List<Role> roles = await _roleRepository.ListAsync(specification, cancellationToken);
 
             UserRoleListDto result = new()

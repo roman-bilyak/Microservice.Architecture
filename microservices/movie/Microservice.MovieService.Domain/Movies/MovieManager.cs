@@ -16,12 +16,13 @@ internal class MovieManager : DomainService, IMovieManager
 
     public async Task<Movie?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _movieRepository.GetByIdAsync(id, cancellationToken);
+        FindMovieByIdSpecification specification = new(id);
+        return await _movieRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
     public async Task<List<Movie>> ListAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        Specification<Movie> specification = new Specification<Movie>();
+        GetMoviesSpecification specification = new();
         specification.ApplyPaging(pageIndex, pageSize);
 
         return await _movieRepository.ListAsync(specification, cancellationToken);
@@ -29,7 +30,8 @@ internal class MovieManager : DomainService, IMovieManager
 
     public async Task<int> CountAsync(CancellationToken cancellationToken)
     {
-        return await _movieRepository.CountAsync(cancellationToken);
+        GetMoviesSpecification specification = new();
+        return await _movieRepository.CountAsync(specification, cancellationToken);
     }
 
     public async Task<Movie> AddAsync(Movie movie, CancellationToken cancellationToken)

@@ -22,12 +22,12 @@ public class GetUsersQuery : ListQuery<UserListDto>
 
         protected override async Task<UserListDto> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
+            GetUsersSpecification specification = new();
             UserListDto result = new()
             {
-                TotalCount = await _userRepository.CountAsync(cancellationToken)
+                TotalCount = await _userRepository.CountAsync(specification, cancellationToken)
             };
 
-            Specification<User> specification = new();
             specification.ApplyPaging(request.PageIndex, request.PageSize);
 
             List<User> users = await _userRepository.ListAsync(specification, cancellationToken);
