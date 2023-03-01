@@ -146,7 +146,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void GetList_WithCanceledToken_ThrowsException()
+    public void GetList_WithCanceledToken_ThrowsTaskCanceledException()
     {
         // Arrange
         int pageIndex = 0;
@@ -158,7 +158,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public async Task Get_WithExistingMovieId_ReturnsMovieDto()
+    public async Task Get_WithExistingMovieId_ReturnsMovie()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -176,7 +176,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void Get_WithNonExistingMovieId_ThrowsException()
+    public void Get_WithNonExistingMovieId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid movieId = Guid.Empty;
@@ -186,7 +186,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void Get_WithCancelledToken_ThrowsException()
+    public void Get_WithCancelledToken_ThrowsTaskCanceledException()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
@@ -197,7 +197,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public async Task Create_WithValidData_ReturnsMovieDto()
+    public async Task Create_WithValidData_CreatesAndReturnsCreatedMovie()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -226,7 +226,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("   ")]
-    public void Create_WithEmptyTitle_ThrowsException(string invalidTitle)
+    public void Create_WithEmptyTitle_ThrowsDataValidationException(string invalidTitle)
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -239,7 +239,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void Create_WithMaxTitleLength_ThrowsException()
+    public void Create_WithMaxTitleLength_ThrowsDataValidationException()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -252,7 +252,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void Create_WithCancelledToken_ThrowsException()
+    public void Create_WithCancelledToken_ThrowsTaskCanceledException()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -266,7 +266,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public async Task Update_WithExistingMovieId_ReturnsUpdatedMovieDto()
+    public async Task Update_WithExistingMovieId_UpdatesAndReturnsUpdatedMovie()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -295,7 +295,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void Update_WithNonExistingMovieId_ThrowsException()
+    public void Update_WithNonExistingMovieId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
@@ -311,7 +311,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("   ")]
-    public async Task Update_WithEmptyTitle_ThrowsException(string invalidTitle)
+    public async Task Update_WithEmptyTitle_ThrowsDataValidationException(string invalidTitle)
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -329,7 +329,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public async Task Update_WithMaxTitleLength_ThrowsException()
+    public async Task Update_WithMaxTitleLength_ThrowsDataValidationException()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()
@@ -347,7 +347,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public async Task Update_WithCancelledToken_ThrowsException()
+    public async Task Update_WithCancelledToken_ThrowsTaskCanceledException()
 {
     // Arrange
         CreateMovieDto createMovieDto = new()
@@ -383,7 +383,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public void Delete_WithNonExistingMovieId_ThrowsException()
+    public void Delete_WithNonExistingMovieId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid invalidId = Guid.NewGuid();
@@ -393,7 +393,7 @@ internal class MovieApplicationServiceTests : MovieServiceTests
     }
 
     [Test]
-    public async Task Delete_WithCancelledToken_ThrowsException()
+    public async Task Delete_WithCancelledToken_ThrowsTaskCanceledException()
     {
         // Arrange
         CreateMovieDto createMovieDto = new()

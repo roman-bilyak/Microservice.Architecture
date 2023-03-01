@@ -500,7 +500,7 @@ internal class UserApplicationServiceTests : IdentityServiceTests
     }
 
     [Test]
-    public async Task RemoveRole_WithNonExistingUserId_ThrowsDataValidationException()
+    public async Task RemoveRole_WithNonExistingUserId_ThrowsEntityNotFoundException()
     {
         // Arrange
         Guid invalidUserId = Guid.NewGuid();
@@ -522,11 +522,11 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
 
         // Act & Assert
-        Assert.ThrowsAsync<DataValidationException>(async () => await _userApplicationService.RemoveRoleAsync(invalidUserId, roleDto.Id));
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.RemoveRoleAsync(invalidUserId, roleDto.Id));
     }
 
     [Test]
-    public async Task RemoveRole_WithNonExistingRoleId_ThrowsDataValidationException()
+    public async Task RemoveRole_WithNonExistingRoleId_ThrowsEntityNotFoundException()
     {
         // Arrange
         CreateUserDto createUserDto = new()
@@ -548,6 +548,6 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         await _userApplicationService.AddRoleAsync(userDto.Id, roleDto.Id);
 
         // Act & Assert
-        Assert.ThrowsAsync<DataValidationException>(async () => await _userApplicationService.RemoveRoleAsync(userDto.Id, invalidRoleId));
+        Assert.ThrowsAsync<EntityNotFoundException>(async () => await _userApplicationService.RemoveRoleAsync(userDto.Id, invalidRoleId));
     }
 }

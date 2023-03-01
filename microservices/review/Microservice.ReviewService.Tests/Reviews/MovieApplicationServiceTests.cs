@@ -235,7 +235,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public async Task CreateReview_WithValidData_ReturnsCreatedReview()
+    public async Task CreateReview_WithValidData_CreatesAndReturnsCreatedReview()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
@@ -315,7 +315,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public async Task UpdateReview_WithValidData_ReturnsUpdatedReview()
+    public async Task UpdateReview_WithValidData_UpdatesAndReturnsUpdatedReview()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
@@ -346,7 +346,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public async Task UpdateReview_WithSameData_ReturnsUpdatedReview()
+    public async Task UpdateReview_WithSameData_UpdatesAndReturnsUpdatedReview()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();

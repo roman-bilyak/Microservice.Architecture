@@ -16,7 +16,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public async Task GetReviewList_WithValidParameters_ReturnsPaginatedList()
+    public async Task GetReviewList_WithValidData_ReturnsReviews()
     {
         // Arrange
         Guid userId = Guid.Empty;
@@ -59,7 +59,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public async Task GetReviewList_WithNegativePageIndex_ReturnsFirstPageList()
+    public async Task GetReviewList_WithNegativePageIndex_ReturnsFirstPage()
     {
         // Arrange
         Guid userId = Guid.Empty;
