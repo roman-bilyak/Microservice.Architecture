@@ -88,7 +88,8 @@ public class RoleStore : IRoleStore<Role>
     {
         ArgumentNullException.ThrowIfNull(roleId, nameof(roleId));
 
-        return await _roleRepository.GetByIdAsync(Guid.Parse(roleId), cancellationToken);
+        FindRoleByIdSpecification specification = new(Guid.Parse(roleId));
+        return await _roleRepository.SingleOrDefaultAsync(specification, cancellationToken);
     }
 
     public async Task<Role?> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)

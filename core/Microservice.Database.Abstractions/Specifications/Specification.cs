@@ -2,7 +2,7 @@
 
 namespace Microservice.Database;
 
-public class Specification<T> : ISpecification<T>
+public abstract class Specification<T> : ISpecification<T>
 {
     public Specification()
     {

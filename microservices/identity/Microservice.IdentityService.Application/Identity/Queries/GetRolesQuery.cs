@@ -22,12 +22,12 @@ public class GetRolesQuery : ListQuery<RoleListDto>
 
         protected override async Task<RoleListDto> Handle(GetRolesQuery request, CancellationToken cancellationToken)
         {
+            GetRolesSpecification specification = new();
             RoleListDto result = new()
             {
-                TotalCount = await _roleRepository.CountAsync(cancellationToken)
+                TotalCount = await _roleRepository.CountAsync(specification, cancellationToken)
             };
 
-            Specification<Role> specification = new();
             specification.ApplyPaging(request.PageIndex, request.PageSize);
 
             List<Role> roles = await _roleRepository.ListAsync(specification, cancellationToken);
