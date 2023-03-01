@@ -14,4 +14,20 @@ public interface ISpecification<T>
     int Take { get; }
     int Skip { get; }
     bool IsPagingEnabled { get; }
+
+    bool IsTracking { get; }
+
+    ISpecification<T> AddInclude(Expression<Func<T, object>> includeExpression);
+
+    ISpecification<T> AddInclude(string includeString);
+
+    ISpecification<T> ApplyPaging(int page, int size);
+
+    ISpecification<T> ApplyOrderBy(Expression<Func<T, object>> orderByExpression);
+
+    ISpecification<T> ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression);
+
+    ISpecification<T> ApplyGroupBy(Expression<Func<T, object>> groupByExpression);
+
+    ISpecification<T> AsNoTracking();
 }

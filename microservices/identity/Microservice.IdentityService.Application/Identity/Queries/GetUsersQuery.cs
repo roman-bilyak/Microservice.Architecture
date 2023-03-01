@@ -22,7 +22,7 @@ public class GetUsersQuery : ListQuery<UserListDto>
 
         protected override async Task<UserListDto> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            GetUsersSpecification specification = new();
+            ISpecification<User> specification = new GetUsersSpecification().AsNoTracking();
             UserListDto result = new()
             {
                 TotalCount = await _userRepository.CountAsync(specification, cancellationToken)

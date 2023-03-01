@@ -22,7 +22,7 @@ public class GetRolesQuery : ListQuery<RoleListDto>
 
         protected override async Task<RoleListDto> Handle(GetRolesQuery request, CancellationToken cancellationToken)
         {
-            GetRolesSpecification specification = new();
+            ISpecification<Role> specification = new GetRolesSpecification().AsNoTracking();
             RoleListDto result = new()
             {
                 TotalCount = await _roleRepository.CountAsync(specification, cancellationToken)

@@ -37,6 +37,11 @@ public static class IQueryableExtensions
                          .Take(specification.Take);
         }
 
+        if (!specification.IsTracking)
+        {
+            query = query.AsNoTracking();
+        }
+
         return query;
     }
 }
