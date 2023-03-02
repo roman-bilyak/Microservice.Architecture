@@ -6,9 +6,9 @@ public class Review : Entity<Guid>, IAggregateRoot
 {
     public const int MaxCommentLength = 500;
 
-    public Guid UserId { get; protected set; }
-
     public Guid MovieId { get; protected set; }
+
+    public Guid UserId { get; protected set; }
 
     public string Comment { get; protected set; } = string.Empty;
 
@@ -22,16 +22,16 @@ public class Review : Entity<Guid>, IAggregateRoot
     public Review
     (
         Guid id,
-        Guid userId,
         Guid movieId,
+        Guid userId,
         string comment,
         RatingEnum rating
     ) : base(id)
     {
         ArgumentNullException.ThrowIfNull(comment, nameof(comment));
 
-        UserId = userId;
         MovieId = movieId;
+        UserId = userId;
         Comment = comment;
         Rating = rating;
     }

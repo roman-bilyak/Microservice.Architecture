@@ -10,10 +10,10 @@ internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
         builder.ToTable("Reviews")
             .HasKey(x => x.Id);
 
-        builder.Property(x => x.UserId)
+        builder.Property(x => x.MovieId)
             .IsRequired();
 
-        builder.Property(x => x.MovieId)
+        builder.Property(x => x.UserId)
             .IsRequired();
 
         builder.Property(x => x.Comment)

@@ -39,8 +39,8 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
             return new ReviewDto
             {
                 Id = review.Id,
-                UserId = review.UserId,
                 MovieId = review.MovieId,
+                UserId = review.UserId,
                 Comment = review.Comment,
                 Rating = review.Rating,
             };
