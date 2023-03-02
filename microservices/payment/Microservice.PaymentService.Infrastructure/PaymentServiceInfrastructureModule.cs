@@ -25,6 +25,9 @@ public sealed class PaymentServiceInfrastructureModule : StartupModule
         using IServiceScope scope = serviceProvider.CreateScope();
 
         PaymentServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<PaymentServiceDbContext>();
-        dbContext.Database.Migrate();
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }

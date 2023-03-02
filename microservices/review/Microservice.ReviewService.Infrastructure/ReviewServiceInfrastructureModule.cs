@@ -32,6 +32,9 @@ public sealed class ReviewServiceInfrastructureModule : StartupModule
         using IServiceScope scope = serviceProvider.CreateScope();
 
         ReviewServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<ReviewServiceDbContext>();
-        dbContext.Database.Migrate();
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }

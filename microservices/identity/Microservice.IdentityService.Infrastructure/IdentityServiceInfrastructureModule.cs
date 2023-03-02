@@ -39,7 +39,10 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
         using IServiceScope scope = serviceProvider.CreateScope();
 
         IdentityServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<IdentityServiceDbContext>();
-        dbContext.Database.Migrate();
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
 
         IDataSeeder dataSeeder = scope.ServiceProvider.GetRequiredService<UserRoleDataSeeder>();
         dataSeeder.SeedAsync(default).Wait();
