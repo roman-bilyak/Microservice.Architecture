@@ -16,7 +16,7 @@ public sealed class MovieServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<MovieServiceDbContext>(options =>
         {
-            options.UseInMemoryDatabase(databaseName: nameof(MovieServiceDbContext));
+            options.UseSqlServer(configuration.GetConnectionString("MovieServiceDb"));
         });
 
         services.AddTransient<IRepository<Movie>, BaseRepository<MovieServiceDbContext, Movie>>();

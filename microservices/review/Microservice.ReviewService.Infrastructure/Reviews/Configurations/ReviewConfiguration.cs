@@ -7,7 +7,8 @@ internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
 {
     public void Configure(EntityTypeBuilder<Review> builder)
     {
-        builder.HasKey(x => x.Id);
+        builder.ToTable("Reviews")
+            .HasKey(x => x.Id);
 
         builder.Property(x => x.UserId)
             .IsRequired();
