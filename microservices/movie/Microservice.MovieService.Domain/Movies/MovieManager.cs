@@ -22,15 +22,16 @@ internal class MovieManager : DomainService, IMovieManager
 
     public async Task<List<Movie>> ListAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        GetMoviesSpecification specification = new();
-        specification.ApplyPaging(pageIndex, pageSize);
+        ISpecification<Movie> specification = new GetMoviesSpecification()
+            .ApplyPaging(pageIndex, pageSize)
+            .AsNoTracking();
 
         return await _movieRepository.ListAsync(specification, cancellationToken);
     }
 
     public async Task<int> CountAsync(CancellationToken cancellationToken)
     {
-        GetMoviesSpecification specification = new();
+        ISpecification<Movie> specification = new GetMoviesSpecification().AsNoTracking();
         return await _movieRepository.CountAsync(specification, cancellationToken);
     }
 

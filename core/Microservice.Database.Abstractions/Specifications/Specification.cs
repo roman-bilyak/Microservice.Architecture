@@ -27,35 +27,56 @@ public abstract class Specification<T> : ISpecification<T>
     public int Skip { get; private set; }
     public bool IsPagingEnabled { get; private set; } = false;
 
-    public void AddInclude(Expression<Func<T, object>> includeExpression)
+    public bool IsTracking { get; private set; } = true;
+
+    public ISpecification<T> AddInclude(Expression<Func<T, object>> includeExpression)
     {
         Includes.Add(includeExpression);
+
+        return this;
     }
 
-    public void AddInclude(string includeString)
+    public ISpecification<T> AddInclude(string includeString)
     {
         IncludeStrings.Add(includeString);
+
+        return this;
     }
 
-    public void ApplyPaging(int page, int size)
+    public ISpecification<T> ApplyPaging(int page, int size)
     {
         Skip = page * size;
         Take = size;
         IsPagingEnabled = true;
+
+        return this;
     }
 
-    public void ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
+    public ISpecification<T> ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
     {
         OrderBy = orderByExpression;
+
+        return this;
     }
 
-    public void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
+    public ISpecification<T> ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
     {
         OrderByDescending = orderByDescendingExpression;
+
+        return this;
     }
 
-    public void ApplyGroupBy(Expression<Func<T, object>> groupByExpression)
+    public ISpecification<T> ApplyGroupBy(Expression<Func<T, object>> groupByExpression)
     {
         GroupBy = groupByExpression;
+
+        return this;
+    }
+
+    public ISpecification<T> AsNoTracking()
+    {
+        IsTracking = false;
+
+        return this;
     }
 }

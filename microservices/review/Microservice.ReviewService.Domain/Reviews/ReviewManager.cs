@@ -22,27 +22,29 @@ internal class ReviewManager : DomainService, IReviewManager
 
     public async Task<List<Review>> GetListByMovieAsync(Guid movieId, int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        GetReviewsByMovieSpecification specification = new(movieId);
-        specification.ApplyPaging(pageIndex, pageSize);
+        ISpecification<Review> specification = new GetReviewsByMovieSpecification(movieId)
+            .ApplyPaging(pageIndex, pageSize)
+            .AsNoTracking();
         return await _reviewRepository.ListAsync(specification, cancellationToken);
     }
 
     public async Task<int> GetCountByMovieAsync(Guid movieId, CancellationToken cancellationToken)
     {
-        GetReviewsByMovieSpecification specification = new(movieId);
+        ISpecification<Review> specification = new GetReviewsByMovieSpecification(movieId).AsNoTracking();
         return await _reviewRepository.CountAsync(specification, cancellationToken);
     }
 
     public async Task<List<Review>> GetListByUserAsync(Guid userId, int pageIndex, int pageSize, CancellationToken cancellationToken)
     {
-        GetReviewsByUserSpecification specification = new(userId);
-        specification.ApplyPaging(pageIndex, pageSize);
+        ISpecification<Review> specification = new GetReviewsByUserSpecification(userId)
+            .ApplyPaging(pageIndex, pageSize)
+            .AsNoTracking();
         return await _reviewRepository.ListAsync(specification, cancellationToken);
     }
 
     public async Task<int> GetCountByUserAsync(Guid userId, CancellationToken cancellationToken)
     {
-        GetReviewsByUserSpecification specification = new(userId);
+        ISpecification<Review> specification = new GetReviewsByUserSpecification(userId).AsNoTracking();
         return await _reviewRepository.CountAsync(specification, cancellationToken);
     }
 
