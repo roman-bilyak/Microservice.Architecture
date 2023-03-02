@@ -27,7 +27,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
             Guid movieId = Guid.NewGuid();
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Review {Guid.NewGuid()}",
+                Comment = $"Review {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -70,7 +70,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
             Guid movieId = Guid.NewGuid();
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Review {Guid.NewGuid()}",
+                Comment = $"Review {Guid.NewGuid()}",
                 Rating = RatingEnum.Bad
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -100,7 +100,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
             Guid movieId = Guid.NewGuid();
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Review {Guid.NewGuid()}",
+                Comment = $"Review {Guid.NewGuid()}",
                 Rating = RatingEnum.Bad
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -150,7 +150,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
             Guid movieId = Guid.NewGuid();
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Review {Guid.NewGuid()}",
+                Comment = $"Review {Guid.NewGuid()}",
                 Rating = RatingEnum.VeryGood
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -180,7 +180,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
             Guid movieId = Guid.NewGuid();
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Review {Guid.NewGuid()}",
+                Comment = $"Review {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);

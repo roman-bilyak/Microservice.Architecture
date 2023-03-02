@@ -26,7 +26,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         {
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Rating {Guid.NewGuid()}",
+                Comment = $"Rating {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -56,7 +56,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         {
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Rating {Guid.NewGuid()}",
+                Comment = $"Rating {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(Guid.NewGuid(), createReviewDto);
@@ -86,7 +86,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         {
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Rating {Guid.NewGuid()}",
+                Comment = $"Rating {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -116,7 +116,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         {
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Rating {Guid.NewGuid()}",
+                Comment = $"Rating {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -147,7 +147,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         {
             CreateReviewDto createReviewDto = new()
             {
-                Text = $"Rating {Guid.NewGuid()}",
+                Comment = $"Rating {Guid.NewGuid()}",
                 Rating = RatingEnum.Good
             };
             await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -164,7 +164,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -177,7 +177,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Assert.Multiple(() =>
         {
             Assert.That(result.Id, Is.EqualTo(reviewDto.Id));
-            Assert.That(result.Text, Is.EqualTo(reviewDto.Text));
+            Assert.That(result.Comment, Is.EqualTo(reviewDto.Comment));
             Assert.That(result.Rating, Is.EqualTo(reviewDto.Rating));
         });
     }
@@ -191,7 +191,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -208,7 +208,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid invalidReviewId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -225,7 +225,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         CancellationToken canceledToken = new(true);
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Bad
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -241,7 +241,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
 
@@ -252,7 +252,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Assert.That(result, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(result.Text, Is.EqualTo(createReviewDto.Text));
+            Assert.That(result.Comment, Is.EqualTo(createReviewDto.Comment));
             Assert.That(result.Rating, Is.EqualTo(createReviewDto.Rating));
         });
 
@@ -261,7 +261,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Assert.Multiple(() =>
         {
             Assert.That(reviewDto.Id, Is.EqualTo(result.Id));
-            Assert.That(reviewDto.Text, Is.EqualTo(createReviewDto.Text));
+            Assert.That(reviewDto.Comment, Is.EqualTo(createReviewDto.Comment));
             Assert.That(reviewDto.Rating, Is.EqualTo(createReviewDto.Rating));
         });
     }
@@ -269,13 +269,13 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("   ")]
-    public void CreateReview_WithEmptyText_ThrowsDataValidationException(string invalidText)
+    public void CreateReview_WithEmptyComment_ThrowsDataValidationException(string invalidComment)
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = invalidText,
+            Comment = invalidComment,
             Rating = RatingEnum.Good
         };
 
@@ -284,13 +284,13 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public void CreateReview_WithMaxTextLength_ThrowsDataValidationException()
+    public void CreateReview_WithMaxCommentLength_ThrowsDataValidationException()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = new string('x', 501),
+            Comment = new string('x', 501),
             Rating = RatingEnum.Good
         };
 
@@ -305,7 +305,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         CancellationToken canceledToken = new(true);
@@ -321,14 +321,14 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Bad
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
 
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
 
@@ -340,7 +340,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Assert.Multiple(() =>
         {
             Assert.That(result.Id, Is.EqualTo(reviewDto.Id));
-            Assert.That(result.Text, Is.EqualTo(updateReviewDto.Text));
+            Assert.That(result.Comment, Is.EqualTo(updateReviewDto.Comment));
             Assert.That(result.Rating, Is.EqualTo(updateReviewDto.Rating));
         });
     }
@@ -352,14 +352,14 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Bad
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
 
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = createReviewDto.Text,
+            Comment = createReviewDto.Comment,
             Rating = createReviewDto.Rating
         };
 
@@ -371,7 +371,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Assert.Multiple(() =>
         {
             Assert.That(result.Id, Is.EqualTo(reviewDto.Id));
-            Assert.That(result.Text, Is.EqualTo(createReviewDto.Text));
+            Assert.That(result.Comment, Is.EqualTo(createReviewDto.Comment));
             Assert.That(result.Rating, Is.EqualTo(createReviewDto.Rating));
         });
     }
@@ -379,19 +379,19 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("   ")]
-    public async Task UpdateReview_WithEmptyText_ThrowsDataValidationException(string invalidText)
+    public async Task UpdateReview_WithEmptyComment_ThrowsDataValidationException(string invalidComment)
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Bad
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = invalidText,
+            Comment = invalidComment,
             Rating = RatingEnum.Good
         };
 
@@ -400,19 +400,19 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
     }
 
     [Test]
-    public async Task UpdateReview_WithMaxTextLength_ThrowsDataValidationException()
+    public async Task UpdateReview_WithMaxCommentLength_ThrowsDataValidationException()
     {
         // Arrange
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Okay
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = new string('x', 502),
+            Comment = new string('x', 502),
             Rating = RatingEnum.Good
         };
 
@@ -427,14 +427,14 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.VeryGood
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
         Guid invalidMovieId = Guid.NewGuid();
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
 
@@ -449,7 +449,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.VeryBad
         };
         await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -457,7 +457,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid invalidReviewId = Guid.NewGuid();
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
 
@@ -472,13 +472,13 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Bad
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
         UpdateReviewDto updateReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         CancellationToken canceledToken = new(true);
@@ -494,7 +494,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -515,7 +515,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid movieId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -532,7 +532,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         Guid invalidReviewId = Guid.NewGuid();
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);
@@ -549,7 +549,7 @@ internal class MovieApplicationServiceTests : ReviewServiceTests
         CancellationToken canceledToken = new(true);
         CreateReviewDto createReviewDto = new()
         {
-            Text = $"Rating {Guid.NewGuid()}",
+            Comment = $"Rating {Guid.NewGuid()}",
             Rating = RatingEnum.Good
         };
         ReviewDto reviewDto = await _movieApplicationService.CreateReviewAsync(movieId, createReviewDto);

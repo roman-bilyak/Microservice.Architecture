@@ -6,9 +6,9 @@ internal class CreateReviewDtoValidator : AbstractValidator<CreateReviewDto>
 {
     public CreateReviewDtoValidator()
     {
-        RuleFor(x => x.Text)
+        RuleFor(x => x.Comment)
             .NotNull()
             .NotEmpty()
-            .MaximumLength(Review.MaxTextLength);
+            .MaximumLength(Review.MaxCommentLength);
     }
 }

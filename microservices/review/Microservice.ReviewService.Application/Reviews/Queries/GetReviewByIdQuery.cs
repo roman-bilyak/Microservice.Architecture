@@ -36,7 +36,7 @@ public class GetReviewByIdQuery : ItemQuery<Guid, ReviewDto>
                 Id = review.Id,
                 UserId = review.UserId,
                 MovieId = review.MovieId,
-                Text = review.Text,
+                Comment = review.Comment,
                 Rating = review.Rating
             };
         }

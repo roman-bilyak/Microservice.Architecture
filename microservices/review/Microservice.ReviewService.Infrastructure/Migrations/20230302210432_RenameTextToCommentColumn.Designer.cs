@@ -4,6 +4,7 @@ using Microservice.ReviewService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Microservice.ReviewService.Migrations
 {
     [DbContext(typeof(ReviewServiceDbContext))]
-    partial class ReviewServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230302210432_RenameTextToCommentColumn")]
+    partial class RenameTextToCommentColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,10 +37,11 @@ namespace Microservice.ReviewService.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("Comment")
+                    b.Property<string>("Text")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("Comment");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");

@@ -8,7 +8,7 @@ public record ReviewDto
 
     public Guid MovieId { get; init; }
 
-    public string Text { get; init; } = string.Empty;
+    public string Comment { get; init; } = string.Empty;
 
     public RatingEnum Rating { get; init; }
 }

@@ -4,13 +4,13 @@ namespace Microservice.ReviewService.Reviews;
 
 public class Review : Entity<Guid>, IAggregateRoot
 {
-    public const int MaxTextLength = 500;
+    public const int MaxCommentLength = 500;
 
     public Guid UserId { get; protected set; }
 
     public Guid MovieId { get; protected set; }
 
-    public string Text { get; protected set; } = string.Empty;
+    public string Comment { get; protected set; } = string.Empty;
 
     public RatingEnum Rating { get; protected set; }
 
@@ -24,23 +24,23 @@ public class Review : Entity<Guid>, IAggregateRoot
         Guid id,
         Guid userId,
         Guid movieId,
-        string text,
+        string comment,
         RatingEnum rating
     ) : base(id)
     {
-        ArgumentNullException.ThrowIfNull(text, nameof(text));
+        ArgumentNullException.ThrowIfNull(comment, nameof(comment));
 
         UserId = userId;
         MovieId = movieId;
-        Text = text;
+        Comment = comment;
         Rating = rating;
     }
 
-    public void Update(string text, RatingEnum rating)
+    public void Update(string comment, RatingEnum rating)
     {
-        ArgumentNullException.ThrowIfNull(text, nameof(text));
+        ArgumentNullException.ThrowIfNull(comment, nameof(comment));
 
-        Text = text;
+        Comment = comment;
         Rating = rating;
     }
 }

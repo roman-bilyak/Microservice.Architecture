@@ -37,7 +37,7 @@ public class GetMovieReviewsQuery : ListQuery<MovieReviewListDto>
                     Id = review.Id,
                     UserId = review.UserId,
                     MovieId = review.MovieId,
-                    Text = review.Text,
+                    Comment = review.Comment,
                     Rating = review.Rating
                 });
             }

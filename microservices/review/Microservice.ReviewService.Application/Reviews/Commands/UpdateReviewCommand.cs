@@ -31,7 +31,7 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
                 throw new EntityNotFoundException(typeof(Review), request.Id);
             }
 
-            review.Update(request.Model.Text, request.Model.Rating);
+            review.Update(request.Model.Comment, request.Model.Rating);
 
             review = await _reviewManager.UpdateAsync(review, cancellationToken);
             await _reviewManager.SaveChangesAsync(cancellationToken);
@@ -41,7 +41,7 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
                 Id = review.Id,
                 UserId = review.UserId,
                 MovieId = review.MovieId,
-                Text = review.Text,
+                Comment = review.Comment,
                 Rating = review.Rating,
             };
         }

@@ -26,7 +26,7 @@ public class CreateReviewCommand : CreateCommand<CreateReviewDto, ReviewDto>
         {
             CreateReviewDto reviewDto = request.Model;
             Guid userId = Guid.Empty; //TODO: use current user id
-            Review review = new(Guid.NewGuid(), userId, request.MovieId, reviewDto.Text, reviewDto.Rating);
+            Review review = new(Guid.NewGuid(), userId, request.MovieId, reviewDto.Comment, reviewDto.Rating);
 
             review = await _reviewManager.AddAsync(review, cancellationToken);
             await _reviewManager.SaveChangesAsync(cancellationToken);
@@ -36,7 +36,7 @@ public class CreateReviewCommand : CreateCommand<CreateReviewDto, ReviewDto>
                 Id = review.Id,
                 UserId = review.UserId,
                 MovieId = review.MovieId,
-                Text = review.Text,
+                Comment = review.Comment,
                 Rating = review.Rating
             };
         }

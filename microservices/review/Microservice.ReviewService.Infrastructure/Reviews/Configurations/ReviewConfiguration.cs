@@ -16,8 +16,8 @@ internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
         builder.Property(x => x.MovieId)
             .IsRequired();
 
-        builder.Property(x => x.Text)
+        builder.Property(x => x.Comment)
             .IsRequired()
-            .HasMaxLength(Review.MaxTextLength);
+            .HasMaxLength(Review.MaxCommentLength);
     }
 }
