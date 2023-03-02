@@ -32,6 +32,9 @@ public sealed class MovieServiceInfrastructureModule : StartupModule
         using IServiceScope scope = serviceProvider.CreateScope();
 
         MovieServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<MovieServiceDbContext>();
-        dbContext.Database.Migrate();
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }

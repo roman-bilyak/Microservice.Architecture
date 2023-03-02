@@ -25,6 +25,9 @@ public sealed class TestServiceInfrastructureModule : StartupModule
         using IServiceScope scope = serviceProvider.CreateScope();
 
         TestServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<TestServiceDbContext>();
-        dbContext.Database.Migrate();
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }
