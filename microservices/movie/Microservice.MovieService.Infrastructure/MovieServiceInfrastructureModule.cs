@@ -24,4 +24,14 @@ public sealed class MovieServiceInfrastructureModule : StartupModule
         services.AddTransient<IReadRepository<Movie>, BaseRepository<MovieServiceDbContext, Movie>>();
         services.AddTransient<IReadRepository<Movie, Guid>, BaseRepository<MovieServiceDbContext, Movie, Guid>>();
     }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        using IServiceScope scope = serviceProvider.CreateScope();
+
+        MovieServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<MovieServiceDbContext>();
+        dbContext.Database.Migrate();
+    }
 }

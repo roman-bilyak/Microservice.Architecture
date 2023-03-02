@@ -24,4 +24,14 @@ public sealed class ReviewServiceInfrastructureModule : StartupModule
         services.AddTransient<IReadRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();
         services.AddTransient<IReadRepository<Review, Guid>, BaseRepository<ReviewServiceDbContext, Review, Guid>>();
     }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        using IServiceScope scope = serviceProvider.CreateScope();
+
+        ReviewServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<ReviewServiceDbContext>();
+        dbContext.Database.Migrate();
+    }
 }
