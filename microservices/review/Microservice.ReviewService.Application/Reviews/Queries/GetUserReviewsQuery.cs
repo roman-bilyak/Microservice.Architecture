@@ -35,9 +35,9 @@ public class GetUserReviewsQuery : ListQuery<UserReviewListDto>
                 result.Items.Add(new ReviewDto
                 {
                     Id = review.Id,
-                    UserId = review.UserId,
                     MovieId = review.MovieId,
-                    Text = review.Text,
+                    UserId = review.UserId,
+                    Comment = review.Comment,
                     Rating = review.Rating
                 });
             }

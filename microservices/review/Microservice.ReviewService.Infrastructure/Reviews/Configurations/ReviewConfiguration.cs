@@ -7,16 +7,17 @@ internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
 {
     public void Configure(EntityTypeBuilder<Review> builder)
     {
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.UserId)
-            .IsRequired();
+        builder.ToTable("Reviews")
+            .HasKey(x => x.Id);
 
         builder.Property(x => x.MovieId)
             .IsRequired();
 
-        builder.Property(x => x.Text)
+        builder.Property(x => x.UserId)
+            .IsRequired();
+
+        builder.Property(x => x.Comment)
             .IsRequired()
-            .HasMaxLength(Review.MaxTextLength);
+            .HasMaxLength(Review.MaxCommentLength);
     }
 }

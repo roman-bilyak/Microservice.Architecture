@@ -14,7 +14,17 @@ public sealed class TestServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<TestServiceDbContext>(options =>
         {
-            options.UseInMemoryDatabase(nameof(TestServiceDbContext));
+            options.UseSqlServer(configuration.GetConnectionString("TestServiceDb"));
         });
+    }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        using IServiceScope scope = serviceProvider.CreateScope();
+
+        TestServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<TestServiceDbContext>();
+        dbContext.Database.Migrate();
     }
 }

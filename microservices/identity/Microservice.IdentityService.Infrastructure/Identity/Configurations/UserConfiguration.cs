@@ -7,7 +7,8 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(x => x.Id);
+        builder.ToTable("Users")
+            .HasKey(x => x.Id);
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -34,7 +35,6 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(User.MaxEmailLength);
 
         builder.Property(x => x.PasswordHash)
-            .IsRequired()
-            .HasMaxLength(User.MaxPasswordLength);
+            .IsRequired();
     }
 }

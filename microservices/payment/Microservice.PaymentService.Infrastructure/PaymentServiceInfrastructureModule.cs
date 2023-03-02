@@ -14,7 +14,17 @@ public sealed class PaymentServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<PaymentServiceDbContext>(options =>
         {
-            options.UseInMemoryDatabase(nameof(PaymentServiceDbContext));
+            options.UseSqlServer(configuration.GetConnectionString("PaymentServiceDb"));
         });
+    }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        using IServiceScope scope = serviceProvider.CreateScope();
+
+        PaymentServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<PaymentServiceDbContext>();
+        dbContext.Database.Migrate();
     }
 }

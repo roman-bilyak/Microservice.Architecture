@@ -16,7 +16,7 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<IdentityServiceDbContext>(options =>
         {
-            options.UseInMemoryDatabase(nameof(IdentityServiceDbContext));
+            options.UseSqlServer(configuration.GetConnectionString("IdentityServiceDb"));
         });
 
         services.AddTransient<IRepository<User>, BaseRepository<IdentityServiceDbContext, User>>();
@@ -36,11 +36,12 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
     {
         base.PostConfigure(serviceProvider);
 
-        using (IServiceScope scope = serviceProvider.CreateScope())
-        {
-            IDataSeeder dataSeeder = scope.ServiceProvider.GetRequiredService<UserRoleDataSeeder>();
-            dataSeeder.SeedAsync(default(CancellationToken)).Wait();
+        using IServiceScope scope = serviceProvider.CreateScope();
 
-        }
+        IdentityServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<IdentityServiceDbContext>();
+        dbContext.Database.Migrate();
+
+        IDataSeeder dataSeeder = scope.ServiceProvider.GetRequiredService<UserRoleDataSeeder>();
+        dataSeeder.SeedAsync(default).Wait();
     }
 }

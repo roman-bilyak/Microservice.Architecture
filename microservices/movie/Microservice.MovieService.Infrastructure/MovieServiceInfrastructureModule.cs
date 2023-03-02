@@ -16,12 +16,22 @@ public sealed class MovieServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<MovieServiceDbContext>(options =>
         {
-            options.UseInMemoryDatabase(databaseName: nameof(MovieServiceDbContext));
+            options.UseSqlServer(configuration.GetConnectionString("MovieServiceDb"));
         });
 
         services.AddTransient<IRepository<Movie>, BaseRepository<MovieServiceDbContext, Movie>>();
         services.AddTransient<IRepository<Movie, Guid>, BaseRepository<MovieServiceDbContext, Movie, Guid>>();
         services.AddTransient<IReadRepository<Movie>, BaseRepository<MovieServiceDbContext, Movie>>();
         services.AddTransient<IReadRepository<Movie, Guid>, BaseRepository<MovieServiceDbContext, Movie, Guid>>();
+    }
+
+    public override void Configure(IServiceProvider serviceProvider)
+    {
+        base.Configure(serviceProvider);
+
+        using IServiceScope scope = serviceProvider.CreateScope();
+
+        MovieServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<MovieServiceDbContext>();
+        dbContext.Database.Migrate();
     }
 }

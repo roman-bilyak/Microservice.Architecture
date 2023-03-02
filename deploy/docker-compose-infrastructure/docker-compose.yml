@@ -2,9 +2,15 @@ version: '3.4'
 
 services:
   sqlserver:
-    image: "mcr.microsoft.com/mssql/server"
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - MSSQL_SA_PASSWORD=yourStrong(!)Password
+      - MSSQL_PID=Express
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
     volumes:
-      - dbdata:/var/opt/sqlserver  
+      - dbdata:/var/opt/mssql  
 
   redis:
     image: "redis"
