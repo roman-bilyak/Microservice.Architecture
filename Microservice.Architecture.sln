@@ -92,17 +92,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.Abstr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.EntityFrameworkCore", "core\Microservice.Database.EntityFrameworkCore\Microservice.Database.EntityFrameworkCore.csproj", "{D2F03CFF-DF50-4B92-A793-301935FDB510}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore", "core\Microservice.AspNetCore\Microservice.AspNetCore.csproj", "{2F56A254-E164-4421-87CB-C28CD9ECD15F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Swagger", "core\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj", "{D0DEB3D4-8522-487A-A3D3-B6F040A69430}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api", "core\Microservice.Api\Microservice.Api.csproj", "{2295BC2F-B11A-4396-AC66-E725BC837E52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authentication", "core\Microservice.AspNetCore.Authentication\Microservice.AspNetCore.Authentication.csproj", "{553E78DD-0ED5-41F5-83E6-1E202C8AE44B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.AspNetCore", "core\Microservice.Api.AspNetCore\Microservice.Api.AspNetCore.csproj", "{2F56A254-E164-4421-87CB-C28CD9ECD15F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authorization", "core\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.AspNetCore.Authentication", "core\Microservice.Api.AspNetCore.Authentication\Microservice.Api.AspNetCore.Authentication.csproj", "{553E78DD-0ED5-41F5-83E6-1E202C8AE44B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.AspNetCore.Authorization", "core\Microservice.Api.AspNetCore.Authorization\Microservice.Api.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.AspNetCore.Swagger", "core\Microservice.Api.AspNetCore.Swagger\Microservice.Api.AspNetCore.Swagger.csproj", "{D0DEB3D4-8522-487A-A3D3-B6F040A69430}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.Abstractions", "core\Microservice.Application.Abstractions\Microservice.Application.Abstractions.csproj", "{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application", "core\Microservice.Application\Microservice.Application.csproj", "{EF99E376-6E8D-4015-9A85-5B01537C8E7E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.CQRS", "core\Microservice.Application.CQRS\Microservice.Application.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
 EndProject
@@ -137,8 +139,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Tests", "microservices\review\Microservice.ReviewService.Tests\Microservice.ReviewService.Tests.csproj", "{62F3C7AA-1510-4E9F-A3A0-8E60951C143E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Tests", "microservices\test\Microservice.TestService.Tests\Microservice.TestService.Tests.csproj", "{3ED14111-BCE7-410A-9F42-D226E6E078A4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application", "core\Microservice.Application\Microservice.Application.csproj", "{EF99E376-6E8D-4015-9A85-5B01537C8E7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -290,14 +290,14 @@ Global
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{055CB038-4E4A-4E2F-B532-8D590D21033C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7824643D-297A-4C46-AE00-24F51279C6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7824643D-297A-4C46-AE00-24F51279C6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7824643D-297A-4C46-AE00-24F51279C6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -411,8 +411,8 @@ Global
 		{2295BC2F-B11A-4396-AC66-E725BC837E52} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{553E78DD-0ED5-41F5-83E6-1E202C8AE44B} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{F74F6723-0F43-4D5C-AB0E-A287FF56B21D} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
-		{055CB038-4E4A-4E2F-B532-8D590D21033C} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
+		{055CB038-4E4A-4E2F-B532-8D590D21033C} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{7824643D-297A-4C46-AE00-24F51279C6C2} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{B0FD236C-B4AF-481F-B427-3D9029E12A4D} = {EB840A0F-A6F0-405C-AD95-74E8B555B7A0}
 		{455F5F9A-C3AA-4757-AA13-89AF514784DB} = {99CE6AAF-5CC2-41A7-8808-2736CB07170A}

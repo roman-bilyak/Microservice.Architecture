@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microservice.AspNetCore.Authentication\Microservice.AspNetCore.Authentication.csproj" />
-    <ProjectReference Include="..\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj" />
-    <ProjectReference Include="..\Microservice.AspNetCore.Swagger\Microservice.AspNetCore.Swagger.csproj" />
+    <ProjectReference Include="..\Microservice.Api.AspNetCore.Authentication\Microservice.Api.AspNetCore.Authentication.csproj" />
+    <ProjectReference Include="..\Microservice.Api.AspNetCore.Authorization\Microservice.Api.AspNetCore.Authorization.csproj" />
+    <ProjectReference Include="..\Microservice.Api.AspNetCore.Swagger\Microservice.Api.AspNetCore.Swagger.csproj" />
   </ItemGroup>
 
 </Project>
