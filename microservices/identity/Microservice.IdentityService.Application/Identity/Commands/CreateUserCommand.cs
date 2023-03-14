@@ -1,4 +1,7 @@
-﻿using Microservice.CQRS;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microservice.Core;
+using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
@@ -11,20 +14,28 @@ public class CreateUserCommand : CreateCommand<CreateUserDto, UserDto>
     public class CreateUserCommandHandler : CommandHandler<CreateUserCommand, UserDto>
     {
         private readonly IUserManager _userManager;
+        private readonly IValidator<CreateUserDto> _validator;
 
-        public CreateUserCommandHandler(IUserManager userManager)
+        public CreateUserCommandHandler(IUserManager userManager, IValidator<CreateUserDto> validator)
         {
             ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
+            ArgumentNullException.ThrowIfNull(validator, nameof(validator));
 
             _userManager = userManager;
+            _validator = validator;
         }
 
         protected override async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            CreateUserDto userDto = request.Model;
+            CreateUserDto model = request.Model;
+            ValidationResult validationResult = await _validator.ValidateAsync(model, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new DataValidationException(validationResult.ToDictionary());
+            }
 
-            User user = new(Guid.NewGuid(), userDto.Name, userDto.FirstName, userDto.LastName, userDto.Email);
-            var result = await _userManager.CreateAsync(user, userDto.Password, cancellationToken);
+            User user = new(Guid.NewGuid(), model.Name, model.FirstName, model.LastName, model.Email);
+            var result = await _userManager.CreateAsync(user, model.Password, cancellationToken);
             result.CheckErrors();
 
             return new UserDto

@@ -21,7 +21,7 @@ internal class TestApplicationService : ApplicationService, ITestApplicationServ
 
     public async Task SendMessageAsync(int testId, string message, CancellationToken cancellationToken)
     {
-        TestMessage testMessage = new TestMessage
+        TestMessage testMessage = new()
         {
             Id = testId,
             Message = message

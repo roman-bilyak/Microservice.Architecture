@@ -2,13 +2,13 @@
 
 internal class ValidationErrorInfo
 {
-    public string? Message { get; protected set; }
+    public string Member { get; protected set; }
 
-    public string[] Members { get; protected set; }
+    public string[] Messages { get; protected set; }
 
-    public ValidationErrorInfo(string? message, string[] members)
+    public ValidationErrorInfo(string member, string[] messages)
     {
-        Message = message;
-        Members = members;
+        Member = member;
+        Messages = messages;
     }
 }

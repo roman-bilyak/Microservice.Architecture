@@ -29,7 +29,6 @@ public sealed class AspNetCoreModule : StartupModule
 
         services.AddMvc(x =>
         {
-            x.Filters.Add<ValidationActionFilter>();
             x.Filters.Add<ExceptionActionFilter>();
         });
     }

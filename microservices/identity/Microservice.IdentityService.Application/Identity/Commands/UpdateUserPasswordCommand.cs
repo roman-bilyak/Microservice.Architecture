@@ -1,46 +1,46 @@
-﻿using Microservice.Core;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
 
-public class UpdateUserPasswordCommand : Command<Unit>
+public class UpdateUserPasswordCommand : UpdateCommand<Guid, UpdateUserPasswordDto, Unit>
 {
-    public Guid UserId { get; protected set; }
-
-    public string OldPassword { get; protected set; }
-
-    public string Password { get; protected set; }
-
-    public UpdateUserPasswordCommand(Guid userId, string oldPassword, string password)
+    public UpdateUserPasswordCommand(Guid id, UpdateUserPasswordDto model) : base(id, model)
     {
-        ArgumentNullException.ThrowIfNull(oldPassword, nameof(oldPassword));
-        ArgumentNullException.ThrowIfNull(password, nameof(password));
-
-        UserId = userId;
-        OldPassword = oldPassword;
-        Password = password;
     }
 
     public class UpdateUserPasswordCommandHandler : CommandHandler<UpdateUserPasswordCommand, Unit>
     {
         private readonly IUserManager _userManager;
+        private readonly IValidator<UpdateUserPasswordDto> _validator;
 
-        public UpdateUserPasswordCommandHandler(IUserManager userManager)
+        public UpdateUserPasswordCommandHandler(IUserManager userManager, IValidator<UpdateUserPasswordDto> validator)
         {
             ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
+            ArgumentNullException.ThrowIfNull(validator, nameof(validator));
 
             _userManager = userManager;
+            _validator = validator;
         }
 
         protected override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userManager.FindByIdAsync(request.UserId, cancellationToken);
-            if (user is null)
+            UpdateUserPasswordDto model = request.Model;
+            ValidationResult validationResult = await _validator.ValidateAsync(model, cancellationToken);
+            if (!validationResult.IsValid)
             {
-                throw new EntityNotFoundException(typeof(User), request.UserId);
+                throw new DataValidationException(validationResult.ToDictionary());
             }
 
-            var result = await _userManager.ChangePasswordAsync(user, request.OldPassword, request.Password, cancellationToken);
+            User? user = await _userManager.FindByIdAsync(request.Id, cancellationToken);
+            if (user is null)
+            {
+                throw new EntityNotFoundException(typeof(User), request.Id);
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.Password, cancellationToken);
             result.CheckErrors();
 
             return Unit.Value;

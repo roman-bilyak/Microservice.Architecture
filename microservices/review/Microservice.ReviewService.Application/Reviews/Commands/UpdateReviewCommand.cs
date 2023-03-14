@@ -1,4 +1,6 @@
-﻿using Microservice.Core;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.ReviewService.Reviews;
@@ -15,23 +17,33 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
     public class UpdateMovieCommandHandler : CommandHandler<UpdateReviewCommand, ReviewDto>
     {
         private readonly IReviewManager _reviewManager;
+        private readonly IValidator<UpdateReviewDto> _validator;
 
-        public UpdateMovieCommandHandler(IReviewManager reviewManager)
+        public UpdateMovieCommandHandler(IReviewManager reviewManager, IValidator<UpdateReviewDto> validator)
         {
             ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
+            ArgumentNullException.ThrowIfNull(validator, nameof(validator));
 
             _reviewManager = reviewManager;
+            _validator = validator;
         }
 
         protected override async Task<ReviewDto> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
         {
+            UpdateReviewDto model = request.Model;
+            ValidationResult validationResult = await _validator.ValidateAsync(model, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new DataValidationException(validationResult.ToDictionary());
+            }
+
             Review? review = await _reviewManager.GetByIdAsync(request.MovieId, request.Id, cancellationToken);
             if (review is null || review.MovieId != request.MovieId)
             {
                 throw new EntityNotFoundException(typeof(Review), request.Id);
             }
 
-            review.Update(request.Model.Comment, request.Model.Rating);
+            review.Update(model.Comment, model.Rating);
 
             review = await _reviewManager.UpdateAsync(review, cancellationToken);
             await _reviewManager.SaveChangesAsync(cancellationToken);

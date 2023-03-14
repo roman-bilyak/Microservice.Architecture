@@ -1,4 +1,7 @@
-﻿using Microservice.CQRS;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microservice.Core;
+using Microservice.CQRS;
 
 namespace Microservice.MovieService.Movies;
 
@@ -11,18 +14,27 @@ public class CreateMovieCommand : CreateCommand<CreateMovieDto, MovieDto>
     public class CreateMovieCommandHandler : CommandHandler<CreateMovieCommand, MovieDto>
     {
         private readonly IMovieManager _movieManager;
+        private readonly IValidator<CreateMovieDto> _validator;
 
-        public CreateMovieCommandHandler(IMovieManager movieManager)
+        public CreateMovieCommandHandler(IMovieManager movieManager, IValidator<CreateMovieDto> validator)
         {
             ArgumentNullException.ThrowIfNull(movieManager, nameof(movieManager));
+            ArgumentNullException.ThrowIfNull(validator, nameof(validator));
 
             _movieManager = movieManager;
+            _validator = validator;
         }
 
         protected override async Task<MovieDto> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
         {
-            CreateMovieDto movieDto = request.Model;
-            Movie movie = new(Guid.NewGuid(), movieDto.Title);
+            CreateMovieDto model = request.Model;
+            ValidationResult validationResult = await _validator.ValidateAsync(model, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new DataValidationException(validationResult.ToDictionary());
+            }
+
+            Movie movie = new(Guid.NewGuid(), model.Title);
 
             movie = await _movieManager.AddAsync(movie, cancellationToken);
             await _movieManager.SaveChangesAsync(cancellationToken);

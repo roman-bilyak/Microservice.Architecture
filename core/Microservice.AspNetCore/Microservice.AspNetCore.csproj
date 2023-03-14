@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="FluentValidation" Version="11.4.0" />
     <ProjectReference Include="..\..\core\Microservice.Core\Microservice.Core.csproj" />
   </ItemGroup>
 
