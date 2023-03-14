@@ -49,7 +49,7 @@ internal class ExceptionActionFilter : IAsyncExceptionFilter
         if (exception is DataValidationException dataValidationException)
         {
             ValidationErrorInfo[] errors = dataValidationException.Errors
-                .Select(x => new ValidationErrorInfo(x.ErrorMessage, x.MemberNames.ToArray()))
+                .Select(x => new ValidationErrorInfo(x.Key, x.Value))
                 .ToArray();
             return new ErrorResponse(exception.Message, errors);
         }

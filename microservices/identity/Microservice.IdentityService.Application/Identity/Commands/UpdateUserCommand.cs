@@ -1,4 +1,6 @@
-﻿using Microservice.Core;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microservice.Core;
 using Microservice.CQRS;
 
 namespace Microservice.IdentityService.Identity;
@@ -12,27 +14,36 @@ public class UpdateUserCommand : UpdateCommand<Guid, UpdateUserDto, UserDto>
     public class UpdateUserCommandHandler : CommandHandler<UpdateUserCommand, UserDto>
     {
         private readonly IUserManager _userManager;
+        private readonly IValidator<UpdateUserDto> _validator;
 
-        public UpdateUserCommandHandler(IUserManager userManager)
+        public UpdateUserCommandHandler(IUserManager userManager, IValidator<UpdateUserDto> validator)
         {
             ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
+            ArgumentNullException.ThrowIfNull(validator, nameof(validator));
 
             _userManager = userManager;
+            _validator = validator;
         }
 
         protected override async Task<UserDto> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
+            UpdateUserDto model = request.Model;
+            ValidationResult validationResult = await _validator.ValidateAsync(model, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new DataValidationException(validationResult.ToDictionary());
+            }
+
             User? user = await _userManager.FindByIdAsync(request.Id, cancellationToken);
             if (user is null)
             {
                 throw new EntityNotFoundException(typeof(User), request.Id);
             }
 
-            UpdateUserDto userDto = request.Model;
-            user.SetName(userDto.Name);
-            user.SetFirstName(userDto.FirstName);
-            user.SetLastName(userDto.LastName);
-            user.SetEmail(userDto.Email);
+            user.SetName(model.Name);
+            user.SetFirstName(model.FirstName);
+            user.SetLastName(model.LastName);
+            user.SetEmail(model.Email);
 
             var result = await _userManager.UpdateAsync(user, cancellationToken);
             result.CheckErrors();

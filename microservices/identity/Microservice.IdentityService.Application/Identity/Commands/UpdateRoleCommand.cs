@@ -1,4 +1,6 @@
-﻿using Microservice.Core;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microservice.Core;
 using Microservice.CQRS;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,24 +15,33 @@ public class UpdateRoleCommand : UpdateCommand<Guid, UpdateRoleDto, RoleDto>
     public class UpdateRoleCommandHandler : CommandHandler<UpdateRoleCommand, RoleDto>
     {
         private readonly IRoleManager _roleManager;
+        private readonly IValidator<UpdateRoleDto> _validator;
 
-        public UpdateRoleCommandHandler(IRoleManager roleManager)
+        public UpdateRoleCommandHandler(IRoleManager roleManager, IValidator<UpdateRoleDto> validator)
         {
             ArgumentNullException.ThrowIfNull(roleManager, nameof(roleManager));
+            ArgumentNullException.ThrowIfNull(validator, nameof(validator));
 
             _roleManager = roleManager;
+            _validator = validator;
         }
 
         protected override async Task<RoleDto> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
         {
+            UpdateRoleDto model = request.Model;
+            ValidationResult validationResult = await _validator.ValidateAsync(model, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new DataValidationException(validationResult.ToDictionary());
+            }
+
             Role? role = await _roleManager.FindByIdAsync(request.Id, cancellationToken);
             if (role is null)
             {
                 throw new EntityNotFoundException(typeof(Role), request.Id);
             }
 
-            UpdateRoleDto roleDto = request.Model;
-            role.SetName(roleDto.Name);
+            role.SetName(model.Name);
 
             IdentityResult result = await _roleManager.UpdateAsync(role, cancellationToken);
             result.CheckErrors();

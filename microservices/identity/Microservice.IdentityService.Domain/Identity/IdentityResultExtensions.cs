@@ -1,6 +1,5 @@
 ﻿using Microservice.Core;
 using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 
 namespace Microservice.IdentityService.Identity;
 
@@ -13,7 +12,10 @@ public static class IdentityResultExtensions
             return;
         }
 
-        ValidationResult[] errors = identityResult.Errors.Select(x => new ValidationResult(x.Description, new[] { x.Code })).ToArray();
+        IDictionary<string, string[]> errors = identityResult.Errors
+            .GroupBy(x => x.Code)
+            .ToDictionary(x => x.Key, x => x.Select(y => y.Description).ToArray());
+
         throw new DataValidationException(errors);
     }
 }

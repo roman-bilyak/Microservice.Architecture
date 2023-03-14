@@ -39,7 +39,7 @@ internal class UserApplicationService : ApplicationService, IUserApplicationServ
 
     public async Task UpdatePasswordAsync(Guid userId, UpdateUserPasswordDto user, CancellationToken cancellationToken)
     {
-        await _mediator.SendRequest(new UpdateUserPasswordCommand(userId, user.OldPassword, user.Password), cancellationToken);
+        await _mediator.SendRequest(new UpdateUserPasswordCommand(userId, user), cancellationToken);
     }
 
     public async Task DeleteAsync(Guid userId, CancellationToken cancellationToken)
