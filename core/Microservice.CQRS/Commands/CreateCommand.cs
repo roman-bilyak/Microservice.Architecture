@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS;
+﻿namespace Microservice.Application;
 
 public abstract class CreateCommand<TModel, TResponse> : Command<TResponse>
     where TModel : notnull

@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS;
+﻿namespace Microservice.Application;
 
 public abstract class ItemQuery<TId, TResponse> : Query<TResponse>
     where TId : struct

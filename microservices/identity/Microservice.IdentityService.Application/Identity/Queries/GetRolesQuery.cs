@@ -1,4 +1,4 @@
-﻿using Microservice.CQRS;
+﻿using Microservice.Application;
 using Microservice.Database;
 
 namespace Microservice.IdentityService.Identity;

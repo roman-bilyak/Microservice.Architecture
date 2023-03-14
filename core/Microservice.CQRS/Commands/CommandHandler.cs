@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using MassTransit.Mediator;
 
-namespace Microservice.CQRS;
+namespace Microservice.Application;
 
 public abstract class CommandHandler<TRequest> : CommandHandler<TRequest, Unit>
     where TRequest : class, ICommand<Unit>

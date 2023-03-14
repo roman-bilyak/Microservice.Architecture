@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS;
+﻿namespace Microservice.Application;
 
 public abstract class DeleteCommand<TId> : Command<Unit>
     where TId : struct

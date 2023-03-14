@@ -102,7 +102,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authorization", "core\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.CQRS", "core\Microservice.CQRS\Microservice.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.CQRS", "core\Microservice.CQRS\Microservice.Application.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.Abstractions", "core\Microservice.Application.Abstractions\Microservice.Application.Abstractions.csproj", "{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}"
 EndProject
@@ -130,13 +130,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests", "core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Tests", "microservices\identity\Microservice.IdentityService.Tests\Microservice.IdentityService.Tests.csproj", "{80507D46-98C5-497C-9DFE-7E014C7C2906}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.MovieService.Tests", "microservices\movie\Microservice.MovieService.Tests\Microservice.MovieService.Tests.csproj", "{68C37037-EE4C-4A3C-A90F-A021EF7C0C8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Tests", "microservices\movie\Microservice.MovieService.Tests\Microservice.MovieService.Tests.csproj", "{68C37037-EE4C-4A3C-A90F-A021EF7C0C8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.PaymentService.Tests", "microservices\payment\Microservice.PaymentService.Tests\Microservice.PaymentService.Tests.csproj", "{FD19E4C4-A694-40A7-887F-98E15CAAC0D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Tests", "microservices\payment\Microservice.PaymentService.Tests\Microservice.PaymentService.Tests.csproj", "{FD19E4C4-A694-40A7-887F-98E15CAAC0D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.ReviewService.Tests", "microservices\review\Microservice.ReviewService.Tests\Microservice.ReviewService.Tests.csproj", "{62F3C7AA-1510-4E9F-A3A0-8E60951C143E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Tests", "microservices\review\Microservice.ReviewService.Tests\Microservice.ReviewService.Tests.csproj", "{62F3C7AA-1510-4E9F-A3A0-8E60951C143E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Tests", "microservices\test\Microservice.TestService.Tests\Microservice.TestService.Tests.csproj", "{3ED14111-BCE7-410A-9F42-D226E6E078A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Tests", "microservices\test\Microservice.TestService.Tests\Microservice.TestService.Tests.csproj", "{3ED14111-BCE7-410A-9F42-D226E6E078A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application", "core\Microservice.Application\Microservice.Application.csproj", "{EF99E376-6E8D-4015-9A85-5B01537C8E7E}"
 EndProject

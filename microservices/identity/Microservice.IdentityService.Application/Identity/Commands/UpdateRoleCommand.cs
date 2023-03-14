@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using Microservice.Application;
 using Microservice.Core;
-using Microservice.CQRS;
 using Microsoft.AspNetCore.Identity;
 
 namespace Microservice.IdentityService.Identity;

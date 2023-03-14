@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS;
+﻿namespace Microservice.Application;
 
 public class Unit
 {

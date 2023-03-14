@@ -1,4 +1,4 @@
-﻿namespace Microservice.CQRS;
+﻿namespace Microservice.Application;
 
 public abstract class ListQuery<TResponse> : Query<TResponse>
     where TResponse : class

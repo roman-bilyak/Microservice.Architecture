@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 
-namespace Microservice.CQRS;
+namespace Microservice.Application;
 
 public interface IQueryHandler<TQuery, TResponse> : IConsumer<TQuery>
     where TQuery : class, IQuery<TResponse>

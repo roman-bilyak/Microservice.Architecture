@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
+using Microservice.Application;
 using Microservice.Core.Modularity;
-using Microservice.CQRS;
 using Microservice.MovieService.Movies;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

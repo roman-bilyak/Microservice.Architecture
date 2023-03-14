@@ -1,4 +1,4 @@
-﻿using Microservice.CQRS;
+﻿using Microservice.Application;
 
 namespace Microservice.ReviewService.Reviews;
 

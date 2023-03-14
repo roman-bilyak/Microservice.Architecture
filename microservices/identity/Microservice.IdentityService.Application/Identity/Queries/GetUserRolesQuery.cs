@@ -1,5 +1,5 @@
-﻿using Microservice.Core;
-using Microservice.CQRS;
+﻿using Microservice.Application;
+using Microservice.Core;
 using Microservice.Database;
 
 namespace Microservice.IdentityService.Identity;

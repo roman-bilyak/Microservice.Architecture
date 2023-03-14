@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Microservice.CQRS;
+namespace Microservice.Application;
 
 public static class ServiceCollectionExtensions
 {

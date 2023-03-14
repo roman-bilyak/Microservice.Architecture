@@ -4,11 +4,16 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".CQRS", ""))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MassTransit" Version="8.0.13" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microservice.Application\Microservice.Application.csproj" />
   </ItemGroup>
 
 </Project>
