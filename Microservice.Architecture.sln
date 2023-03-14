@@ -102,9 +102,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.AspNetCore.Authorization", "core\Microservice.AspNetCore.Authorization\Microservice.AspNetCore.Authorization.csproj", "{F74F6723-0F43-4D5C-AB0E-A287FF56B21D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.CQRS", "core\Microservice.CQRS\Microservice.Application.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.Abstractions", "core\Microservice.Application.Abstractions\Microservice.Application.Abstractions.csproj", "{C5EC74C6-77FC-44D0-98C3-C39AFCC500D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.CQRS", "core\Microservice.Application.CQRS\Microservice.Application.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Api", "microservices\identity\Microservice.IdentityService.Api\Microservice.IdentityService.Api.csproj", "{7824643D-297A-4C46-AE00-24F51279C6C2}"
 EndProject

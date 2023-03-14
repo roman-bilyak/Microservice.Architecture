@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Microservice.CQRS\Microservice.Application.CQRS.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.Application.CQRS\Microservice.Application.CQRS.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Application.Abstractions\Microservice.TestService.Application.Abstrations.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj" />
   </ItemGroup>
