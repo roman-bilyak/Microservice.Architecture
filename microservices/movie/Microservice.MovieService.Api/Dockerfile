@@ -21,9 +21,10 @@ COPY ["core/Microservice.Application.Abstractions/Microservice.Application.Abstr
 COPY ["microservices/movie/Microservice.MovieService.Application.Abstractions/Microservice.MovieService.Application.Abstractions.csproj", "microservices/movie/Microservice.MovieService.Application.Abstractions/"]
 COPY ["microservices/movie/Microservice.MovieService.Domain.Share/Microservice.MovieService.Domain.Share.csproj", "microservices/movie/Microservice.MovieService.Domain.Share/"]
 COPY ["microservices/movie/Microservice.MovieService.Domain/Microservice.MovieService.Domain.csproj", "microservices/movie/Microservice.MovieService.Domain/"]
-COPY ["core/Microservice.Database.Abstractions/Microservice.Database.Abstractions.csproj", "core/Microservice.Database.Abstractions/"]
+COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
+COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
 COPY ["microservices/movie/Microservice.MovieService.Infrastructure/Microservice.MovieService.Infrastructure.csproj", "microservices/movie/Microservice.MovieService.Infrastructure/"]
-COPY ["core/Microservice.Database.EntityFrameworkCore/Microservice.Database.EntityFrameworkCore.csproj", "core/Microservice.Database.EntityFrameworkCore/"]
+COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 RUN dotnet restore "microservices/movie/Microservice.MovieService.Api/Microservice.MovieService.Api.csproj"
 COPY . .
 WORKDIR "/src/microservices/movie/Microservice.MovieService.Api"

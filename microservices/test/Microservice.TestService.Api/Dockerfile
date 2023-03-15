@@ -21,9 +21,10 @@ COPY ["core/Microservice.Application.Abstractions/Microservice.Application.Abstr
 COPY ["microservices/test/Microservice.TestService.Application.Abstractions/Microservice.TestService.Application.Abstrations.csproj", "microservices/test/Microservice.TestService.Application.Abstractions/"]
 COPY ["microservices/test/Microservice.TestService.Domain.Share/Microservice.TestService.Domain.Share.csproj", "microservices/test/Microservice.TestService.Domain.Share/"]
 COPY ["microservices/test/Microservice.TestService.Domain/Microservice.TestService.Domain.csproj", "microservices/test/Microservice.TestService.Domain/"]
-COPY ["core/Microservice.Database.Abstractions/Microservice.Database.Abstractions.csproj", "core/Microservice.Database.Abstractions/"]
+COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
+COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
 COPY ["microservices/test/Microservice.TestService.Infrastructure/Microservice.TestService.Infrastructure.csproj", "microservices/test/Microservice.TestService.Infrastructure/"]
-COPY ["core/Microservice.Database.EntityFrameworkCore/Microservice.Database.EntityFrameworkCore.csproj", "core/Microservice.Database.EntityFrameworkCore/"]
+COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 RUN dotnet restore "microservices/test/Microservice.TestService.Api/Microservice.TestService.Api.csproj"
 COPY . .
 WORKDIR "/src/microservices/test/Microservice.TestService.Api"

@@ -21,9 +21,10 @@ COPY ["core/Microservice.Application.Abstractions/Microservice.Application.Abstr
 COPY ["microservices/identity/Microservice.IdentityService.Application.Abstractions/Microservice.IdentityService.Application.Abstractions.csproj", "microservices/identity/Microservice.IdentityService.Application.Abstractions/"]
 COPY ["microservices/identity/Microservice.IdentityService.Domain.Share/Microservice.IdentityService.Domain.Share.csproj", "microservices/identity/Microservice.IdentityService.Domain.Share/"]
 COPY ["microservices/identity/Microservice.IdentityService.Domain/Microservice.IdentityService.Domain.csproj", "microservices/identity/Microservice.IdentityService.Domain/"]
-COPY ["core/Microservice.Database.Abstractions/Microservice.Database.Abstractions.csproj", "core/Microservice.Database.Abstractions/"]
+COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
+COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
 COPY ["microservices/identity/Microservice.IdentityService.Infrastructure/Microservice.IdentityService.Infrastructure.csproj", "microservices/identity/Microservice.IdentityService.Infrastructure/"]
-COPY ["core/Microservice.Database.EntityFrameworkCore/Microservice.Database.EntityFrameworkCore.csproj", "core/Microservice.Database.EntityFrameworkCore/"]
+COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 RUN dotnet restore "microservices/identity/Microservice.IdentityService.Api/Microservice.IdentityService.Api.csproj"
 COPY . .
 WORKDIR "/src/microservices/identity/Microservice.IdentityService.Api"

@@ -21,9 +21,10 @@ COPY ["core/Microservice.Application.Abstractions/Microservice.Application.Abstr
 COPY ["microservices/payment/Microservice.PaymentService.Application.Abstractions/Microservice.PaymentService.Application.Abstractions.csproj", "microservices/payment/Microservice.PaymentService.Application.Abstractions/"]
 COPY ["microservices/payment/Microservice.PaymentService.Domain.Share/Microservice.PaymentService.Domain.Share.csproj", "microservices/payment/Microservice.PaymentService.Domain.Share/"]
 COPY ["microservices/payment/Microservice.PaymentService.Domain/Microservice.PaymentService.Domain.csproj", "microservices/payment/Microservice.PaymentService.Domain/"]
-COPY ["core/Microservice.Database.Abstractions/Microservice.Database.Abstractions.csproj", "core/Microservice.Database.Abstractions/"]
+COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
+COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
 COPY ["microservices/payment/Microservice.PaymentService.Infrastructure/Microservice.PaymentService.Infrastructure.csproj", "microservices/payment/Microservice.PaymentService.Infrastructure/"]
-COPY ["core/Microservice.Database.EntityFrameworkCore/Microservice.Database.EntityFrameworkCore.csproj", "core/Microservice.Database.EntityFrameworkCore/"]
+COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 RUN dotnet restore "microservices/payment/Microservice.PaymentService.Api/Microservice.PaymentService.Api.csproj"
 COPY . .
 WORKDIR "/src/microservices/payment/Microservice.PaymentService.Api"
