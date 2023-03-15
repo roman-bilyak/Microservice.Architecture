@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Microservice.Core\Microservice.Core.csproj" />
     <ProjectReference Include="..\..\..\core\Microservice.Database.EntityFrameworkCore\Microservice.Database.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj" />
   </ItemGroup>

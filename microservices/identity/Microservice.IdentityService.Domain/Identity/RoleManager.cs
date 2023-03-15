@@ -1,5 +1,4 @@
-﻿using Microservice.Core.Domain;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Microservice.IdentityService.Identity;

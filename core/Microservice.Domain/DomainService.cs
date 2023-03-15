@@ -1,4 +1,4 @@
-﻿namespace Microservice.Core.Domain;
+﻿namespace Microservice;
 
 public abstract class DomainService : IDomainService
 {

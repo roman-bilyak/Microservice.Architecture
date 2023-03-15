@@ -1,5 +1,4 @@
-﻿using Microservice.Core.Domain;
-using Microservice.Database;
+﻿using Microservice.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

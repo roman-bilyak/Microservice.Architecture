@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Microservice.Core\Microservice.Core.csproj" />
-    <ProjectReference Include="..\..\..\core\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\core\Microservice.Domain\Microservice.Domain.csproj" />
     <ProjectReference Include="..\Microservice.PaymentService.Domain.Share\Microservice.PaymentService.Domain.Share.csproj" />
   </ItemGroup>
 
