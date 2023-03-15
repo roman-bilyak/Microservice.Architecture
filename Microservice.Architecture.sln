@@ -88,9 +88,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Infrastructure", "microservices\identity\Microservice.IdentityService.Infrastructure\Microservice.IdentityService.Infrastructure.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.Abstractions", "core\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj", "{B451A1DC-0463-412F-80D2-81F95E787750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.Abstractions", "core\Microservice.Infrastructure.Abstractions\Microservice.Infrastructure.Abstractions.csproj", "{B451A1DC-0463-412F-80D2-81F95E787750}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Database.EntityFrameworkCore", "core\Microservice.Database.EntityFrameworkCore\Microservice.Database.EntityFrameworkCore.csproj", "{D2F03CFF-DF50-4B92-A793-301935FDB510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.EntityFrameworkCore", "core\Microservice.Infrastructure.EntityFrameworkCore\Microservice.Infrastructure.EntityFrameworkCore.csproj", "{D2F03CFF-DF50-4B92-A793-301935FDB510}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api", "core\Microservice.Api\Microservice.Api.csproj", "{2295BC2F-B11A-4396-AC66-E725BC837E52}"
 EndProject
@@ -118,8 +118,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Api", "microservices\test\Microservice.TestService.Api\Microservice.TestService.Api.csproj", "{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application.Abstractions", "microservices\identity\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj", "{B86FE410-97AA-4DF8-8308-C05CF4C37F3E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Application.Abstractions", "microservices\movie\Microservice.MovieService.Application.Abstractions\Microservice.MovieService.Application.Abstractions.csproj", "{8B64B5CF-6C36-4215-BD45-246EE9473474}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Application.Abstractions", "microservices\payment\Microservice.PaymentService.Application.Abstractions\Microservice.PaymentService.Application.Abstractions.csproj", "{E89EAB31-6476-4639-AE53-A8125D1EC5B1}"
@@ -141,6 +139,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Tests", "microservices\test\Microservice.TestService.Tests\Microservice.TestService.Tests.csproj", "{3ED14111-BCE7-410A-9F42-D226E6E078A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain", "core\Microservice.Domain\Microservice.Domain.csproj", "{2007B239-FF61-4297-A1A6-476322321BD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application.Abstractions", "microservices\identity\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj", "{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -324,10 +324,6 @@ Global
 		{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B86FE410-97AA-4DF8-8308-C05CF4C37F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B86FE410-97AA-4DF8-8308-C05CF4C37F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B86FE410-97AA-4DF8-8308-C05CF4C37F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B86FE410-97AA-4DF8-8308-C05CF4C37F3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B64B5CF-6C36-4215-BD45-246EE9473474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B64B5CF-6C36-4215-BD45-246EE9473474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B64B5CF-6C36-4215-BD45-246EE9473474}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -372,6 +368,10 @@ Global
 		{2007B239-FF61-4297-A1A6-476322321BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2007B239-FF61-4297-A1A6-476322321BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2007B239-FF61-4297-A1A6-476322321BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -425,7 +425,6 @@ Global
 		{455F5F9A-C3AA-4757-AA13-89AF514784DB} = {99CE6AAF-5CC2-41A7-8808-2736CB07170A}
 		{D32E1B54-7B1F-44CF-A526-40595A982C20} = {F09C4AF3-9069-4DED-A26D-035511BA908E}
 		{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
-		{B86FE410-97AA-4DF8-8308-C05CF4C37F3E} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{8B64B5CF-6C36-4215-BD45-246EE9473474} = {EB840A0F-A6F0-405C-AD95-74E8B555B7A0}
 		{E89EAB31-6476-4639-AE53-A8125D1EC5B1} = {99CE6AAF-5CC2-41A7-8808-2736CB07170A}
 		{A2BBD6EA-711B-4F1F-A6F1-C012D04495ED} = {F09C4AF3-9069-4DED-A26D-035511BA908E}
@@ -437,6 +436,7 @@ Global
 		{62F3C7AA-1510-4E9F-A3A0-8E60951C143E} = {F09C4AF3-9069-4DED-A26D-035511BA908E}
 		{3ED14111-BCE7-410A-9F42-D226E6E078A4} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{2007B239-FF61-4297-A1A6-476322321BD7} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
+		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

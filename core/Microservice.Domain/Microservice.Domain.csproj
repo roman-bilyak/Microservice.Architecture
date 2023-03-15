@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microservice.Core\Microservice.Core.csproj" />
-    <ProjectReference Include="..\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj" />
+    <ProjectReference Include="..\Microservice.Infrastructure.Abstractions\Microservice.Infrastructure.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

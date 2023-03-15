@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\Microservice.Database.Abstractions\Microservice.Database.Abstractions.csproj" />
+    <ProjectReference Include="..\Microservice.Infrastructure.Abstractions\Microservice.Infrastructure.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
