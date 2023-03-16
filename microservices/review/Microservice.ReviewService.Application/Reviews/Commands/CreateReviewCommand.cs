@@ -18,14 +18,22 @@ public class CreateReviewCommand : CreateCommand<CreateReviewDto, ReviewDto>
     {
         private readonly IReviewManager _reviewManager;
         private readonly IValidator<CreateReviewDto> _validator;
+        private readonly ICurrentUser _currentUser;
 
-        public CreateReviewCommandHandler(IReviewManager reviewManager, IValidator<CreateReviewDto> validator)
+        public CreateReviewCommandHandler
+        (
+            IReviewManager reviewManager, 
+            IValidator<CreateReviewDto> validator, 
+            ICurrentUser currentUser
+        )
         {
             ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
             ArgumentNullException.ThrowIfNull(validator, nameof(validator));
+            ArgumentNullException.ThrowIfNull(currentUser, nameof(_currentUser));
 
             _reviewManager = reviewManager;
             _validator = validator;
+            _currentUser = currentUser;
         }
 
         protected override async Task<ReviewDto> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
@@ -37,7 +45,7 @@ public class CreateReviewCommand : CreateCommand<CreateReviewDto, ReviewDto>
                 throw new DataValidationException(validationResult.ToDictionary());
             }
 
-            Guid userId = Guid.Empty; //TODO: use current user id
+            Guid userId = _currentUser.Id.Value;
             Review review = new(Guid.NewGuid(), request.MovieId, userId, model.Comment, model.Rating);
 
             review = await _reviewManager.AddAsync(review, cancellationToken);

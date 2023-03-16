@@ -2,7 +2,9 @@
 using Microservice.Core.Modularity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using NUnit.Framework;
+using System.Security.Claims;
 
 namespace Microservice.Tests;
 
@@ -29,9 +31,30 @@ public abstract class BaseIntegrationTests<TStartupModule>
         _application.Configure();
     }
 
+    protected Mock<ICurrentPrincipleAccessor> CurrentPrincipleAccessor = new();
+
     protected virtual void ConfigureServices(IServiceCollection services)
     {
+        CurrentPrincipleAccessor.Setup(x => x.Principal)
+            .Returns
+            (
+                new ClaimsPrincipal
+                (
+                    new ClaimsIdentity
+                    (
+                        new List<Claim>
+                        {
+                            new Claim(ClaimTypes.NameIdentifier, "afa85f64-5717-4562-b3fc-2c963f66afa6"),
+                            new Claim(ClaimTypes.Name, "admin"),
+                            new Claim(ClaimTypes.GivenName, "System"),
+                            new Claim(ClaimTypes.Surname, "Administrator"),
+                            new Claim(ClaimTypes.Email, "admin@test.com"),
+                        }
+                    )
+                )
+            );
 
+        services.AddTransient(x => CurrentPrincipleAccessor.Object);
     }
 
     protected T? GetService<T>()

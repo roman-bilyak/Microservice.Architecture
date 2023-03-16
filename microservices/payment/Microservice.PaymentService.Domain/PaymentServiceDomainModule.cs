@@ -2,6 +2,7 @@
 
 namespace Microservice.PaymentService;
 
+[DependsOn<DomainModule>]
 public sealed class PaymentServiceDomainModule : StartupModule
 {
 }

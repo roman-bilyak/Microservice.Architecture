@@ -1,4 +1,5 @@
-﻿using Microservice.Core;
+﻿using Microservice.Api.AspNetCore.Security;
+using Microservice.Core;
 using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,9 @@ public sealed class AspNetCoreModule : StartupModule
         services.AddWrappedService<IApplicationBuilder>();
         services.AddTransient<DynamicControllerConvention>();
         services.AddTransient<DynamicControllerFeatureProvider>();
+
+        services.AddTransient<ICurrentPrincipleAccessor, HttpContextCurrentPrincipleAccessor>();
+        services.AddHttpContextAccessor();
 
         //TODO: move list of allowed origins into config file
         services.AddCors(options =>

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice.ReviewService;
 
+[DependsOn<DomainModule>]
 public sealed class ReviewServiceDomainModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
