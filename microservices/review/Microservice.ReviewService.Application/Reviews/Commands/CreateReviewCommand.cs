@@ -45,7 +45,7 @@ public class CreateReviewCommand : CreateCommand<CreateReviewDto, ReviewDto>
                 throw new DataValidationException(validationResult.ToDictionary());
             }
 
-            Guid userId = _currentUser.Id.Value;
+            Guid userId = _currentUser.Id;
             Review review = new(Guid.NewGuid(), request.MovieId, userId, model.Comment, model.Rating);
 
             review = await _reviewManager.AddAsync(review, cancellationToken);

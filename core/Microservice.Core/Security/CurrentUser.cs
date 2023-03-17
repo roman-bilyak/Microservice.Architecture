@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Security.Authentication;
+using System.Security.Claims;
 
 namespace Microservice.Core;
 
@@ -16,34 +17,29 @@ internal class CurrentUser : ICurrentUser
         _currentPrincipleAccessor = currentPrincipleAccessor;
     }
 
-    public Guid? Id
+    public Guid Id
     {
         get
         {
             string? id = GetClaimValue(ClaimTypes.NameIdentifier);
-            if (id is null)
+            if (id is null || !Guid.TryParse(id, out Guid result))
             {
-                return null;
-            }
-
-            if (!Guid.TryParse(id, out Guid result))
-            {
-                return null;
+                throw new AuthenticationException();
             }
 
             return result;
         }
     }
 
-    public string? Name => GetClaimValue(ClaimTypes.Name);
+    public string Name => GetClaimValue(ClaimTypes.Name) ?? throw new AuthenticationException();
 
-    public string? FirstName => GetClaimValue(ClaimTypes.GivenName);
+    public string FirstName => GetClaimValue(ClaimTypes.GivenName) ?? throw new AuthenticationException();
 
-    public string? LastName => GetClaimValue(ClaimTypes.Surname);
+    public string LastName => GetClaimValue(ClaimTypes.Surname) ?? throw new AuthenticationException();
 
-    public string? Email => GetClaimValue(ClaimTypes.Email);
+    public string Email => GetClaimValue(ClaimTypes.Email) ?? throw new AuthenticationException();
 
-    public bool IsAuthenticated => Id.HasValue;
+    public bool IsAuthenticated => GetClaimValue(ClaimTypes.NameIdentifier) is not null;
 
     #region helper methods
 

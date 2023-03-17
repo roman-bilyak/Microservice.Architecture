@@ -2,15 +2,15 @@
 
 public interface ICurrentUser
 {
-    Guid? Id { get; }
+    Guid Id { get; }
 
-    string? Name { get; }
+    string Name { get; }
 
-    string? FirstName { get; }
+    string FirstName { get; }
 
-    string? LastName { get; }
+    string LastName { get; }
 
-    string? Email { get; }
+    string Email { get; }
 
     bool IsAuthenticated { get; }
 }

@@ -29,6 +29,7 @@ public sealed class IdentityServerModule : StartupModule
             .AddInMemoryApiScopes(configuration.GetSection("IdentityServer:ApiScopes"))
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
             .AddAspNetIdentity<User>()
+            .AddProfileService<ProfileService>()
             .AddDeveloperSigningCredential();//not recommended for production - you need to store your key material somewhere secure
     }
 
