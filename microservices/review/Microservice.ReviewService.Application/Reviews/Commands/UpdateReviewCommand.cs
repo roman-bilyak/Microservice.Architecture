@@ -18,14 +18,22 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
     {
         private readonly IReviewManager _reviewManager;
         private readonly IValidator<UpdateReviewDto> _validator;
+        private readonly ICurrentUser _currentUser;
 
-        public UpdateMovieCommandHandler(IReviewManager reviewManager, IValidator<UpdateReviewDto> validator)
+        public UpdateMovieCommandHandler
+        (
+            IReviewManager reviewManager,
+            IValidator<UpdateReviewDto> validator,
+            ICurrentUser currentUser
+        )
         {
             ArgumentNullException.ThrowIfNull(reviewManager, nameof(reviewManager));
             ArgumentNullException.ThrowIfNull(validator, nameof(validator));
+            ArgumentNullException.ThrowIfNull(currentUser, nameof(currentUser));
 
             _reviewManager = reviewManager;
             _validator = validator;
+            _currentUser = currentUser;
         }
 
         protected override async Task<ReviewDto> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
@@ -38,7 +46,7 @@ public class UpdateReviewCommand : UpdateCommand<Guid, UpdateReviewDto, ReviewDt
             }
 
             Review? review = await _reviewManager.GetByIdAsync(request.MovieId, request.Id, cancellationToken);
-            if (review is null || review.MovieId != request.MovieId)
+            if (review is null || review.UserId != _currentUser.Id)
             {
                 throw new EntityNotFoundException(typeof(Review), request.Id);
             }

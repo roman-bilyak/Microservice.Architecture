@@ -19,7 +19,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     public async Task GetReviewList_WithValidData_ReturnsReviews()
     {
         // Arrange
-        Guid userId = Guid.Empty;
+        Guid userId = new("afa85f64-5717-4562-b3fc-2c963f66afa6");
         int pageIndex = 0;
         int pageSize = 5;
         for (int i = 0; i < 5; i++)
@@ -49,7 +49,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     public void GetReviewList_WithCanceledToken_ThrowsTaskCanceledException()
     {
         // Arrange
-        Guid userId = Guid.Empty;
+        Guid userId = new("afa85f64-5717-4562-b3fc-2c963f66afa6");
         int pageIndex = 0;
         int pageSize = 10;
         CancellationToken cancellationToken = new(true);
@@ -62,7 +62,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     public async Task GetReviewList_WithNegativePageIndex_ReturnsFirstPage()
     {
         // Arrange
-        Guid userId = Guid.Empty;
+        Guid userId = new("afa85f64-5717-4562-b3fc-2c963f66afa6");
         int pageIndex = -10;
         int pageSize = 5;
         for (int i = 0; i < 9; i++)
@@ -92,7 +92,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     public async Task GetReviewList_WithNegativePageSize_ReturnsEmptyList()
     {
         // Arrange
-        Guid userId = Guid.Empty;
+        Guid userId = new("afa85f64-5717-4562-b3fc-2c963f66afa6");
         int pageIndex = 0;
         int pageSize = -2;
         for (int i = 0; i < 4; i++)
@@ -122,7 +122,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     public async Task GetReviewList_WithNoReviews_ReturnsEmptyList()
     {
         // Arrange
-        Guid userId = Guid.Empty;
+        Guid userId = new("afa85f64-5717-4562-b3fc-2c963f66afa6");
         int pageIndex = 0;
         int pageSize = 5;
 
@@ -142,7 +142,7 @@ internal class UserApplicationServiceTests : ReviewServiceTests
     public async Task GetReviewList_WithMultiplePages_ReturnsCorrectItemsAndTotalCount()
     {
         // Arrange
-        Guid userId = Guid.Empty;
+        Guid userId = new("afa85f64-5717-4562-b3fc-2c963f66afa6");
         int pageIndex = 0;
         int pageSize = 5;
         for (int i = 0; i < 7; i++)
