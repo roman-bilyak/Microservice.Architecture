@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B1233878
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core", "core\Microservice.Core\Microservice.Core.csproj", "{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose\docker-compose.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-api", "deploy\docker-compose\docker-compose-api.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{455F5F9A-C3AA-4757-AA13-89AF514784DB} = {455F5F9A-C3AA-4757-AA13-89AF514784DB}
 		{7824643D-297A-4C46-AE00-24F51279C6C2} = {7824643D-297A-4C46-AE00-24F51279C6C2}
