@@ -16,9 +16,7 @@
         "test-service": "StartDebugging",
         "redis": "StartWithoutDebugging",
         "sqlserver": "StartWithoutDebugging",
-        "angular-ui": "StartWithoutDebugging",
         "rabbitmq": "StartWithoutDebugging",
-        "react-ui": "StartWithoutDebugging"
       }
     }
   }

@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  angular-ui:
+    ports:
+      - 9001:80
+
+  react-ui:
+    ports:
+      - 9002:80

@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  angular-ui:
+    container_name: "Microservice.AngularUI"
+    image: ${DOCKER_REGISTRY-}angular-ui:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: applications/Microservice.AngularUI/docker/Dockerfile
+    depends_on:
+      - gateway
+
+  react-ui:
+    container_name: "Microservice.ReactUI"
+    image: ${DOCKER_REGISTRY-}react-ui:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: applications/Microservice.ReactUI/docker/Dockerfile
+    depends_on:
+      - gateway

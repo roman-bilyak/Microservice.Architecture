@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B1233878
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core", "core\Microservice.Core\Microservice.Core.csproj", "{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-api", "deploy\docker-compose\docker-compose-api.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-api", "deploy\docker-compose-api\docker-compose-api.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{455F5F9A-C3AA-4757-AA13-89AF514784DB} = {455F5F9A-C3AA-4757-AA13-89AF514784DB}
 		{7824643D-297A-4C46-AE00-24F51279C6C2} = {7824643D-297A-4C46-AE00-24F51279C6C2}
@@ -141,6 +141,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain", "core\Microservice.Domain\Microservice.Domain.csproj", "{2007B239-FF61-4297-A1A6-476322321BD7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application.Abstractions", "microservices\identity\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj", "{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -372,6 +374,10 @@ Global
 		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -437,6 +443,7 @@ Global
 		{3ED14111-BCE7-410A-9F42-D226E6E078A4} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{2007B239-FF61-4297-A1A6-476322321BD7} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
+		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED} = {0E6F3C16-2D1E-4FDC-9020-2F2034D22917}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}
