@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 services:
   gateway:
@@ -7,18 +7,33 @@ services:
       context: ../..
       dockerfile: applications/Microservice.Gateway/Dockerfile
     depends_on:
-      - identity-server
-      - identity-service
-      - movie-service
-      - payment-service
-      - review-service
-      - test-service
+      identity-server:
+        condition: service_started
+      identity-service:
+        condition: service_started
+      movie-service:
+        condition: service_started
+      payment-service:
+        condition: service_started
+      review-service:
+        condition: service_started
+      test-service:
+        condition: service_started
 
   identity-server:
     image: ${DOCKER_REGISTRY-}identity-server:${TAG:-latest}
     build:
       context: ../..
       dockerfile: applications/Microservice.IdentityServer/Dockerfile
+    depends_on:
+      identity-service-migrator:
+        condition: service_started
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
 
   identity-service:
     image: ${DOCKER_REGISTRY-}identity-service:${TAG:-latest}
@@ -26,7 +41,23 @@ services:
       context: ../..
       dockerfile: microservices/identity/Microservice.IdentityService.Api/Dockerfile
     depends_on:
-      - identity-server
+      identity-service-migrator:
+        condition: service_started
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+
+  identity-service-migrator:
+    image:  ${DOCKER_REGISTRY-}identity-service-migrator:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: microservices/identity/Microservice.IdentityService.Infrastructure.Migrator/Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started
 
   movie-service:
     image: ${DOCKER_REGISTRY-}movie-service:${TAG:-latest}
@@ -34,7 +65,23 @@ services:
       context: ../..
       dockerfile: microservices/movie/Microservice.MovieService.Api/Dockerfile
     depends_on:
-      - identity-server
+      movie-service-migrator:
+        condition: service_started
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+
+  movie-service-migrator:
+    image:  ${DOCKER_REGISTRY-}movie-service-migrator:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: microservices/movie/Microservice.MovieService.Infrastructure.Migrator/Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started
 
   payment-service:
     image: ${DOCKER_REGISTRY-}payment-service:${TAG:-latest}
@@ -42,7 +89,23 @@ services:
       context: ../..
       dockerfile: microservices/payment/Microservice.PaymentService.Api/Dockerfile
     depends_on:
-      - identity-server
+      payment-service-migrator:
+        condition: service_started
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+
+  payment-service-migrator:
+    image:  ${DOCKER_REGISTRY-}payment-service-migrator:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: microservices/payment/Microservice.PaymentService.Infrastructure.Migrator/Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started
 
   review-service:
     image: ${DOCKER_REGISTRY-}review-service:${TAG:-latest}
@@ -50,7 +113,23 @@ services:
       context: ../..
       dockerfile: microservices/review/Microservice.ReviewService.Api/Dockerfile
     depends_on:
-      - identity-server
+      review-service-migrator:
+        condition: service_started
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+
+  review-service-migrator:
+    image:  ${DOCKER_REGISTRY-}review-service-migrator:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: microservices/review/Microservice.ReviewService.Infrastructure.Migrator/Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started
 
   test-service:
     image: ${DOCKER_REGISTRY-}test-service:${TAG:-latest}
@@ -58,4 +137,20 @@ services:
       context: ../..
       dockerfile: microservices/test/Microservice.TestService.Api/Dockerfile
     depends_on:
-      - identity-server
+      test-service-migrator:
+        condition: service_started
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+
+  test-service-migrator:
+    image:  ${DOCKER_REGISTRY-}test-service-migrator:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: microservices/test/Microservice.TestService.Infrastructure.Migrator/Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started

@@ -10,13 +10,18 @@
         "gateway": "StartDebugging",
         "identity-server": "StartDebugging",
         "identity-service": "StartDebugging",
+        "identity-service-migrator": "StartWithoutDebugging",
         "movie-service": "StartDebugging",
+        "movie-service-migrator": "StartWithoutDebugging",
         "payment-service": "StartDebugging",
+        "payment-service-migrator": "StartWithoutDebugging",
         "review-service": "StartDebugging",
+        "review-service-migrator": "StartWithoutDebugging",
         "test-service": "StartDebugging",
+        "test-service-migrator": "StartWithoutDebugging",
         "redis": "StartWithoutDebugging",
         "sqlserver": "StartWithoutDebugging",
-        "rabbitmq": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging"
       }
     }
   }

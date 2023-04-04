@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Microservice.IdentityService.Infrastructure.Migrator": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

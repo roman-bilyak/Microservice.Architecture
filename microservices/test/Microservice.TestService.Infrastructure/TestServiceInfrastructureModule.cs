@@ -17,17 +17,4 @@ public sealed class TestServiceInfrastructureModule : StartupModule
             options.UseSqlServer(configuration.GetConnectionString("TestServiceDb"));
         });
     }
-
-    public override void Configure(IServiceProvider serviceProvider)
-    {
-        base.Configure(serviceProvider);
-
-        using IServiceScope scope = serviceProvider.CreateScope();
-
-        TestServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<TestServiceDbContext>();
-        if (dbContext.Database.IsRelational())
-        {
-            dbContext.Database.Migrate();
-        }
-    }
 }

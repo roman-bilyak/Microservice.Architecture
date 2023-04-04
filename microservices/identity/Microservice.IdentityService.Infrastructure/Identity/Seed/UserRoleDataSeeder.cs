@@ -6,12 +6,12 @@ internal class UserRoleDataSeeder : IDataSeeder
 {
     private readonly RoleManager _roleManager;
     private readonly UserManager _userManager;
-    private readonly List<Role> _roles = new List<Role>
+    private readonly List<Role> _roles = new()
     {
         new Role(Guid.NewGuid(), "admin")
     };
 
-    private readonly List<(User User, string Password, string[] Roles)> _users = new List<(User, string, string[])>
+    private readonly List<(User User, string Password, string[] Roles)> _users = new()
     {
         (new User(Guid.NewGuid(), "alice", "Alice", "Smith", "AliceSmith@gmail.com"), "alice", new []{ "admin" }),
         (new User(Guid.NewGuid(), "bob", "Bob", "Smith", "BobSmith@gmail.com"), "bob", new []{ "admin" })
