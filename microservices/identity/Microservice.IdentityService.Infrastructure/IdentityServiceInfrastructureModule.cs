@@ -28,17 +28,5 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
         services.AddTransient<IRepository<Role, Guid>, BaseRepository<IdentityServiceDbContext, Role, Guid>>();
         services.AddTransient<IReadRepository<Role>, BaseRepository<IdentityServiceDbContext, Role>>();
         services.AddTransient<IReadRepository<Role, Guid>, BaseRepository<IdentityServiceDbContext, Role, Guid>>();
-
-        services.AddTransient<UserRoleDataSeeder>();
-    }
-
-    public override void PostConfigure(IServiceProvider serviceProvider)
-    {
-        base.PostConfigure(serviceProvider);
-
-        using IServiceScope scope = serviceProvider.CreateScope();
-
-        IDataSeeder dataSeeder = scope.ServiceProvider.GetRequiredService<UserRoleDataSeeder>();
-        dataSeeder.SeedAsync(default).Wait();
     }
 }

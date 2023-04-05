@@ -32,7 +32,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ConnectionStrings__IdentityServiceDb="Server=sqlserver,1433;Database=Microservice.IdentityServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__IdentityServiceDb=Server=sqlserver,1433;Database=Microservice.IdentityServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - IdentityServer__Clients__0__RedirectUris__0=https://localhost:9100/oauth2-redirect.html
       - IdentityServer__Clients__0__RedirectUris__1=https://localhost:9201/oauth2-redirect.html
       - IdentityServer__Clients__0__RedirectUris__2=https://localhost:9202/oauth2-redirect.html
@@ -55,14 +55,14 @@ services:
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__IdentityServiceDb="Server=sqlserver,1433;Database=Microservice.IdentityServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__IdentityServiceDb=Server=sqlserver,1433;Database=Microservice.IdentityServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
     ports:
       - 9201:443
 
   identity-service-migrator:
     environment:
-      - ConnectionStrings__IdentityServiceDb="Server=sqlserver,1433;Database=Microservice.IdentityServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__IdentityServiceDb=Server=sqlserver,1433;Database=Microservice.IdentityServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   movie-service:
     environment:
@@ -71,14 +71,14 @@ services:
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__MovieServiceDb="Server=sqlserver,1433;Database=Microservice.MovieServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__MovieServiceDb=Server=sqlserver,1433;Database=Microservice.MovieServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
     ports:
       - 9202:443
 
   movie-service-migrator:
     environment:
-      - ConnectionStrings__MovieServiceDb="Server=sqlserver,1433;Database=Microservice.MovieServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__MovieServiceDb=Server=sqlserver,1433;Database=Microservice.MovieServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   payment-service:
     environment:
@@ -87,14 +87,14 @@ services:
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__PaymentServiceDb="Server=sqlserver,1433;Database=Microservice.PaymentServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__PaymentServiceDb=Server=sqlserver,1433;Database=Microservice.PaymentServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
     ports:
       - 9203:443
 
   payment-service-migrator:
     environment:
-      - ConnectionStrings__PaymentServiceDb="Server=sqlserver,1433;Database=Microservice.PaymentServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__PaymentServiceDb=Server=sqlserver,1433;Database=Microservice.PaymentServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   review-service:
     environment:
@@ -103,14 +103,14 @@ services:
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__ReviewServiceDb="Server=sqlserver,1433;Database=Microservice.ReviewServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__ReviewServiceDb=Server=sqlserver,1433;Database=Microservice.ReviewServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
     ports:
       - 9204:443
 
   review-service-migrator:
     environment:
-      - ConnectionStrings__ReviewServiceDb="Server=sqlserver,1433;Database=Microservice.ReviewServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__ReviewServiceDb=Server=sqlserver,1433;Database=Microservice.ReviewServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   test-service:
     environment:
@@ -119,7 +119,7 @@ services:
       - Authentication__JwtBearer__Authority=http://identity-server
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9111
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__TestServiceDb="Server=sqlserver,1433;Database=Microservice.TestServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__TestServiceDb=Server=sqlserver,1433;Database=Microservice.TestServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - RabbitMq__Host=rabbitmq
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
     ports:
@@ -127,4 +127,4 @@ services:
 
   test-service-migrator:
     environment:
-      - ConnectionStrings__TestServiceDb="Server=sqlserver,1433;Database=Microservice.TestServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      - ConnectionStrings__TestServiceDb=Server=sqlserver,1433;Database=Microservice.TestServiceDb;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;

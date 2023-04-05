@@ -1,8 +1,6 @@
-﻿using Microservice.Database;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Data;
 
 namespace Microservice.IdentityService.Identity;
 
