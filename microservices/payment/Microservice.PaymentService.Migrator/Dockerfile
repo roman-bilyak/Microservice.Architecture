@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["microservices/payment/Microservice.PaymentService.Infrastructure.Migrator/Microservice.PaymentService.Infrastructure.Migrator.csproj", "microservices/payment/Microservice.PaymentService.Infrastructure.Migrator/"]
+COPY ["microservices/payment/Microservice.PaymentService.Migrator/Microservice.PaymentService.Migrator.csproj", "microservices/payment/Microservice.PaymentService.Migrator/"]
 COPY ["microservices/payment/Microservice.PaymentService.Infrastructure/Microservice.PaymentService.Infrastructure.csproj", "microservices/payment/Microservice.PaymentService.Infrastructure/"]
 COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
@@ -13,15 +13,15 @@ COPY ["microservices/payment/Microservice.PaymentService.Domain/Microservice.Pay
 COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
 COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/payment/Microservice.PaymentService.Domain.Share/Microservice.PaymentService.Domain.Share.csproj", "microservices/payment/Microservice.PaymentService.Domain.Share/"]
-RUN dotnet restore "microservices/payment/Microservice.PaymentService.Infrastructure.Migrator/Microservice.PaymentService.Infrastructure.Migrator.csproj"
+RUN dotnet restore "microservices/payment/Microservice.PaymentService.Migrator/Microservice.PaymentService.Migrator.csproj"
 COPY . .
-WORKDIR "/src/microservices/payment/Microservice.PaymentService.Infrastructure.Migrator"
-RUN dotnet build "Microservice.PaymentService.Infrastructure.Migrator.csproj" -c Release -o /app/build
+WORKDIR "/src/microservices/payment/Microservice.PaymentService.Migrator"
+RUN dotnet build "Microservice.PaymentService.Migrator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Microservice.PaymentService.Infrastructure.Migrator.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Microservice.PaymentService.Migrator.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Microservice.PaymentService.Infrastructure.Migrator.dll"]
+ENTRYPOINT ["dotnet", "Microservice.PaymentService.Migrator.dll"]

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Microservice.IdentityService.Infrastructure.Migrator": {
+    "Microservice.IdentityService.Migrator": {
       "commandName": "Project"
     },
     "Docker": {

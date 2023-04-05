@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Microservice.MovieService.Migrator": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "CONNECTIONSTRINGS__IDENTITYSERVICEDB": "Server=sqlserver,1433;Database=Microservice.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

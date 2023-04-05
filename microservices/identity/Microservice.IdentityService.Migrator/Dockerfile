@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["microservices/identity/Microservice.IdentityService.Infrastructure.Migrator/Microservice.IdentityService.Infrastructure.Migrator.csproj", "microservices/identity/Microservice.IdentityService.Infrastructure.Migrator/"]
+COPY ["microservices/identity/Microservice.IdentityService.Migrator/Microservice.IdentityService.Migrator.csproj", "microservices/identity/Microservice.IdentityService.Migrator/"]
 COPY ["microservices/identity/Microservice.IdentityService.Infrastructure/Microservice.IdentityService.Infrastructure.csproj", "microservices/identity/Microservice.IdentityService.Infrastructure/"]
 COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
@@ -13,15 +13,15 @@ COPY ["microservices/identity/Microservice.IdentityService.Domain/Microservice.I
 COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
 COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/identity/Microservice.IdentityService.Domain.Share/Microservice.IdentityService.Domain.Share.csproj", "microservices/identity/Microservice.IdentityService.Domain.Share/"]
-RUN dotnet restore "microservices/identity/Microservice.IdentityService.Infrastructure.Migrator/Microservice.IdentityService.Infrastructure.Migrator.csproj"
+RUN dotnet restore "microservices/identity/Microservice.IdentityService.Migrator/Microservice.IdentityService.Migrator.csproj"
 COPY . .
-WORKDIR "/src/microservices/identity/Microservice.IdentityService.Infrastructure.Migrator"
-RUN dotnet build "Microservice.IdentityService.Infrastructure.Migrator.csproj" -c Release -o /app/build
+WORKDIR "/src/microservices/identity/Microservice.IdentityService.Migrator"
+RUN dotnet build "Microservice.IdentityService.Migrator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Microservice.IdentityService.Infrastructure.Migrator.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Microservice.IdentityService.Migrator.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Microservice.IdentityService.Infrastructure.Migrator.dll"]
+ENTRYPOINT ["dotnet", "Microservice.IdentityService.Migrator.dll"]

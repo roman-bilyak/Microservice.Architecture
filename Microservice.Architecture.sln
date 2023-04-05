@@ -144,15 +144,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServic
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.IdentityService.Infrastructure.Migrator", "microservices\identity\Microservice.IdentityService.Infrastructure.Migrator\Microservice.IdentityService.Infrastructure.Migrator.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Migrator", "microservices\identity\Microservice.IdentityService.Migrator\Microservice.IdentityService.Migrator.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.MovieService.Infrastructure.Migrator", "microservices\movie\Microservice.MovieService.Infrastructure.Migrator\Microservice.MovieService.Infrastructure.Migrator.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Migrator", "microservices\movie\Microservice.MovieService.Migrator\Microservice.MovieService.Migrator.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.PaymentService.Infrastructure.Migrator", "microservices\payment\Microservice.PaymentService.Infrastructure.Migrator\Microservice.PaymentService.Infrastructure.Migrator.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Migrator", "microservices\payment\Microservice.PaymentService.Migrator\Microservice.PaymentService.Migrator.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.ReviewService.Infrastructure.Migrator", "microservices\review\Microservice.ReviewService.Infrastructure.Migrator\Microservice.ReviewService.Infrastructure.Migrator.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Migrator", "microservices\review\Microservice.ReviewService.Migrator\Microservice.ReviewService.Migrator.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.TestService.Infrastructure.Migrator", "microservices\test\Microservice.TestService.Infrastructure.Migrator\Microservice.TestService.Infrastructure.Migrator.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Migrator", "microservices\test\Microservice.TestService.Migrator\Microservice.TestService.Migrator.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
