@@ -9,7 +9,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .Build();
 
 DbContextOptionsBuilder<TestServiceDbContext> optionsBuilder = new();
-optionsBuilder.UseSqlServer(configuration.GetConnectionString("TestServiceDb"));
+optionsBuilder.UseSqlServer(configuration.GetConnectionString(nameof(TestServiceDbContext)));
 
 using TestServiceDbContext dbContext = new(optionsBuilder.Options);
 dbContext.Database.Migrate();

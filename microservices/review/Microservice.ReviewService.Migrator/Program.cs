@@ -9,7 +9,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .Build();
 
 DbContextOptionsBuilder<ReviewServiceDbContext> optionsBuilder = new();
-optionsBuilder.UseSqlServer(configuration.GetConnectionString("ReviewServiceDb"));
+optionsBuilder.UseSqlServer(configuration.GetConnectionString(nameof(ReviewServiceDbContext)));
 
 using ReviewServiceDbContext dbContext = new(optionsBuilder.Options);
 dbContext.Database.Migrate();

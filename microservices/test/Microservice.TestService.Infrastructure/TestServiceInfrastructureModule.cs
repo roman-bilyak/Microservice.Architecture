@@ -14,7 +14,7 @@ public sealed class TestServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<TestServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("TestServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(TestServiceDbContext)));
         });
     }
 }

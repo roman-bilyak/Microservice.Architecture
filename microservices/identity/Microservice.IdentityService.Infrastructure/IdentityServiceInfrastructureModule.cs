@@ -16,7 +16,7 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<IdentityServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("IdentityServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(IdentityServiceDbContext)));
         });
 
         services.AddTransient<IRepository<User>, BaseRepository<IdentityServiceDbContext, User>>();

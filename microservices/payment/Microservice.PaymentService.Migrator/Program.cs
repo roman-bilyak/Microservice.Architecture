@@ -9,7 +9,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .Build();
 
 DbContextOptionsBuilder<PaymentServiceDbContext> optionsBuilder = new();
-optionsBuilder.UseSqlServer(configuration.GetConnectionString("PaymentServiceDb"));
+optionsBuilder.UseSqlServer(configuration.GetConnectionString(nameof(PaymentServiceDbContext)));
 
 using PaymentServiceDbContext dbContext = new(optionsBuilder.Options);
 dbContext.Database.Migrate();

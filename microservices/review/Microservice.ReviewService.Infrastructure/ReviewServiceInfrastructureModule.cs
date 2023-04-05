@@ -16,7 +16,7 @@ public sealed class ReviewServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<ReviewServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("ReviewServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(ReviewServiceDbContext)));
         });
 
         services.AddTransient<IRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();

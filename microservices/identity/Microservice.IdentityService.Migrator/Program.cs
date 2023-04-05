@@ -9,7 +9,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .Build();
 
 DbContextOptionsBuilder<IdentityServiceDbContext> optionsBuilder = new();
-optionsBuilder.UseSqlServer(configuration.GetConnectionString("IdentityServiceDb"));
+optionsBuilder.UseSqlServer(configuration.GetConnectionString(nameof(IdentityServiceDbContext)));
 
 using IdentityServiceDbContext dbContext = new(optionsBuilder.Options);
 dbContext.Database.Migrate();

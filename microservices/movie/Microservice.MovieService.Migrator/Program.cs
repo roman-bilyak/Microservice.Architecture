@@ -9,7 +9,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .Build();
 
 DbContextOptionsBuilder<MovieServiceDbContext> optionsBuilder = new();
-optionsBuilder.UseSqlServer(configuration.GetConnectionString("MovieServiceDb"));
+optionsBuilder.UseSqlServer(configuration.GetConnectionString(nameof(MovieServiceDbContext)));
 
 using MovieServiceDbContext dbContext = new(optionsBuilder.Options);
 dbContext.Database.Migrate();

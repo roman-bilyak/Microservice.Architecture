@@ -14,7 +14,7 @@ public sealed class PaymentServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<PaymentServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("PaymentServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(PaymentServiceDbContext)));
         });
     }
 }
