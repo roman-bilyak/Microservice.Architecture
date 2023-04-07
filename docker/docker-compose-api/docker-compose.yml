@@ -9,15 +9,15 @@ services:
     depends_on:
       identity-server:
         condition: service_started
-      identity-service-api:
+      api-identity-service:
         condition: service_started
-      movie-service-api:
+      api-movie-service:
         condition: service_started
-      payment-service-api:
+      api-payment-service:
         condition: service_started
-      review-service-api:
+      api-review-service:
         condition: service_started
-      test-service-api:
+      api-test-service:
         condition: service_started
 
   identity-server:
@@ -26,7 +26,7 @@ services:
       context: ../..
       dockerfile: applications/Microservice.IdentityServer/Dockerfile
     depends_on:
-      identity-service-migrator:
+      migrator-identity-service:
         condition: service_completed_successfully
       sqlserver:
         condition: service_started
@@ -35,13 +35,13 @@ services:
       rabbitmq:
         condition: service_started
 
-  identity-service-api:
-    image: ${DOCKER_REGISTRY-}identity-service-api:${TAG:-latest}
+  api-identity-service:
+    image: ${DOCKER_REGISTRY-}api-identity-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/identity/Microservice.IdentityService.Api/Dockerfile
+      dockerfile: microservices/identity/Microservice.Api.IdentityService/Dockerfile
     depends_on:
-      identity-service-migrator:
+      migrator-identity-service:
         condition: service_completed_successfully
       sqlserver:
         condition: service_started
@@ -50,22 +50,22 @@ services:
       rabbitmq:
         condition: service_started
 
-  identity-service-migrator:
-    image:  ${DOCKER_REGISTRY-}identity-service-migrator:${TAG:-latest}
+  migrator-identity-service:
+    image:  ${DOCKER_REGISTRY-}migrator-identity-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/identity/Microservice.IdentityService.Migrator/Dockerfile
+      dockerfile: microservices/identity/Microservice.Migrator.IdentityService/Dockerfile
     depends_on:
       sqlserver:
         condition: service_started
 
-  movie-service-api:
-    image: ${DOCKER_REGISTRY-}movie-service-api:${TAG:-latest}
+  api-movie-service:
+    image: ${DOCKER_REGISTRY-}api-movie-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/movie/Microservice.MovieService.Api/Dockerfile
+      dockerfile: microservices/movie/Microservice.Api.MovieService/Dockerfile
     depends_on:
-      movie-service-migrator:
+      migrator-movie-service:
         condition: service_completed_successfully
       sqlserver:
         condition: service_started
@@ -74,22 +74,22 @@ services:
       rabbitmq:
         condition: service_started
 
-  movie-service-migrator:
-    image:  ${DOCKER_REGISTRY-}movie-service-migrator:${TAG:-latest}
+  migrator-movie-service:
+    image:  ${DOCKER_REGISTRY-}migrator-movie-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/movie/Microservice.MovieService.Migrator/Dockerfile
+      dockerfile: microservices/movie/Microservice.Migrator.MovieService/Dockerfile
     depends_on:
       sqlserver:
         condition: service_started
 
-  payment-service-api:
-    image: ${DOCKER_REGISTRY-}payment-service-api:${TAG:-latest}
+  api-payment-service:
+    image: ${DOCKER_REGISTRY-}api-payment-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/payment/Microservice.PaymentService.Api/Dockerfile
+      dockerfile: microservices/payment/Microservice.Api.PaymentService/Dockerfile
     depends_on:
-      payment-service-migrator:
+      migrator-payment-service:
         condition: service_completed_successfully
       sqlserver:
         condition: service_started
@@ -98,22 +98,22 @@ services:
       rabbitmq:
         condition: service_started
 
-  payment-service-migrator:
-    image:  ${DOCKER_REGISTRY-}payment-service-migrator:${TAG:-latest}
+  migrator-payment-service:
+    image:  ${DOCKER_REGISTRY-}migrator-payment-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/payment/Microservice.PaymentService.Migrator/Dockerfile
+      dockerfile: microservices/payment/Microservice.Migrator.PaymentService/Dockerfile
     depends_on:
       sqlserver:
         condition: service_started
 
-  review-service-api:
-    image: ${DOCKER_REGISTRY-}review-service-api:${TAG:-latest}
+  api-review-service:
+    image: ${DOCKER_REGISTRY-}api-review-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/review/Microservice.ReviewService.Api/Dockerfile
+      dockerfile: microservices/review/Microservice.Api.ReviewService/Dockerfile
     depends_on:
-      review-service-migrator:
+      migrator-review-service:
         condition: service_completed_successfully
       sqlserver:
         condition: service_started
@@ -122,22 +122,22 @@ services:
       rabbitmq:
         condition: service_started
 
-  review-service-migrator:
-    image:  ${DOCKER_REGISTRY-}review-service-migrator:${TAG:-latest}
+  migrator-review-service:
+    image:  ${DOCKER_REGISTRY-}migrator-review-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/review/Microservice.ReviewService.Migrator/Dockerfile
+      dockerfile: microservices/review/Microservice.Migrator.ReviewService/Dockerfile
     depends_on:
       sqlserver:
         condition: service_started
 
-  test-service-api:
-    image: ${DOCKER_REGISTRY-}test-service-api:${TAG:-latest}
+  api-test-service:
+    image: ${DOCKER_REGISTRY-}api-test-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/test/Microservice.TestService.Api/Dockerfile
+      dockerfile: microservices/test/Microservice.Api.TestService/Dockerfile
     depends_on:
-      test-service-migrator:
+      migrator-test-service:
         condition: service_completed_successfully
       sqlserver:
         condition: service_started
@@ -146,11 +146,11 @@ services:
       rabbitmq:
         condition: service_started
 
-  test-service-migrator:
-    image:  ${DOCKER_REGISTRY-}test-service-migrator:${TAG:-latest}
+  migrator-test-service:
+    image:  ${DOCKER_REGISTRY-}migrator-test-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: microservices/test/Microservice.TestService.Migrator/Dockerfile
+      dockerfile: microservices/test/Microservice.Migrator.TestService/Dockerfile
     depends_on:
       sqlserver:
         condition: service_started

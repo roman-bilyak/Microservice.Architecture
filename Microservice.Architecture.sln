@@ -40,37 +40,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "review", "review", "{F09C4A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{086DE3B5-C2DE-48E1-B89E-A331DBCA944D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Domain.Share", "microservices\movie\Microservice.MovieService.Domain.Share\Microservice.MovieService.Domain.Share.csproj", "{B8857A48-6940-4123-ACFC-8FD535B10A5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.MovieService.Shared", "microservices\movie\Microservice.Domain.MovieService.Shared\Microservice.Domain.MovieService.Shared.csproj", "{B8857A48-6940-4123-ACFC-8FD535B10A5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Domain", "microservices\movie\Microservice.MovieService.Domain\Microservice.MovieService.Domain.csproj", "{97BE86F1-DDF1-45FC-81B4-0B1611C0C61B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.MovieService", "microservices\movie\Microservice.Domain.MovieService\Microservice.Domain.MovieService.csproj", "{97BE86F1-DDF1-45FC-81B4-0B1611C0C61B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Infrastructure", "microservices\movie\Microservice.MovieService.Infrastructure\Microservice.MovieService.Infrastructure.csproj", "{1B59553A-5CCB-421B-867C-DA056C799A34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.MovieService", "microservices\movie\Microservice.Infrastructure.MovieService\Microservice.Infrastructure.MovieService.csproj", "{1B59553A-5CCB-421B-867C-DA056C799A34}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Application", "microservices\movie\Microservice.MovieService.Application\Microservice.MovieService.Application.csproj", "{9CBEFC55-FD14-4E13-988B-1E8924DC8AA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.MovieService", "microservices\movie\Microservice.Application.MovieService\Microservice.Application.MovieService.csproj", "{9CBEFC55-FD14-4E13-988B-1E8924DC8AA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Domain.Share", "microservices\payment\Microservice.PaymentService.Domain.Share\Microservice.PaymentService.Domain.Share.csproj", "{A0C7A70D-7AC7-42B2-884B-6AF3BA3C9541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.PaymentService.Shared", "microservices\payment\Microservice.Domain.PaymentService.Shared\Microservice.Domain.PaymentService.Shared.csproj", "{A0C7A70D-7AC7-42B2-884B-6AF3BA3C9541}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Domain", "microservices\payment\Microservice.PaymentService.Domain\Microservice.PaymentService.Domain.csproj", "{A3144435-0B2A-418A-9C25-8E0F12FE3AB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.PaymentService", "microservices\payment\Microservice.Domain.PaymentService\Microservice.Domain.PaymentService.csproj", "{A3144435-0B2A-418A-9C25-8E0F12FE3AB9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Application", "microservices\payment\Microservice.PaymentService.Application\Microservice.PaymentService.Application.csproj", "{3F810594-7889-41B7-B06A-47791C913E30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.PaymentService", "microservices\payment\Microservice.Application.PaymentService\Microservice.Application.PaymentService.csproj", "{3F810594-7889-41B7-B06A-47791C913E30}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Infrastructure", "microservices\payment\Microservice.PaymentService.Infrastructure\Microservice.PaymentService.Infrastructure.csproj", "{E12CF4F3-0993-4B28-B281-F5ACCDA3CD98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.PaymentService", "microservices\payment\Microservice.Infrastructure.PaymentService\Microservice.Infrastructure.PaymentService.csproj", "{E12CF4F3-0993-4B28-B281-F5ACCDA3CD98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Domain.Share", "microservices\review\Microservice.ReviewService.Domain.Share\Microservice.ReviewService.Domain.Share.csproj", "{94C14CDD-178F-4BFB-A7B6-6F81E0A83335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.ReviewService.Shared", "microservices\review\Microservice.Domain.ReviewService.Shared\Microservice.Domain.ReviewService.Shared.csproj", "{94C14CDD-178F-4BFB-A7B6-6F81E0A83335}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Domain", "microservices\review\Microservice.ReviewService.Domain\Microservice.ReviewService.Domain.csproj", "{26DD961F-AA55-4E8E-92A2-FF24BD9C8CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.ReviewService", "microservices\review\Microservice.Domain.ReviewService\Microservice.Domain.ReviewService.csproj", "{26DD961F-AA55-4E8E-92A2-FF24BD9C8CCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Infrastructure", "microservices\review\Microservice.ReviewService.Infrastructure\Microservice.ReviewService.Infrastructure.csproj", "{AC9C26A1-025A-4D5A-AB5D-A94F18ACF752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.ReviewService", "microservices\review\Microservice.Infrastructure.ReviewService\Microservice.Infrastructure.ReviewService.csproj", "{AC9C26A1-025A-4D5A-AB5D-A94F18ACF752}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Application", "microservices\review\Microservice.ReviewService.Application\Microservice.ReviewService.Application.csproj", "{1624C8CC-5E6B-4E67-8329-9C927F4162D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.ReviewService", "microservices\review\Microservice.Application.ReviewService\Microservice.Application.ReviewService.csproj", "{1624C8CC-5E6B-4E67-8329-9C927F4162D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Domain.Share", "microservices\test\Microservice.TestService.Domain.Share\Microservice.TestService.Domain.Share.csproj", "{A32DC5AE-F902-41BF-BF5D-4555BE64E3A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.TestService.Shared", "microservices\test\Microservice.Domain.TestService.Shared\Microservice.Domain.TestService.Shared.csproj", "{A32DC5AE-F902-41BF-BF5D-4555BE64E3A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Domain", "microservices\test\Microservice.TestService.Domain\Microservice.TestService.Domain.csproj", "{A61682EC-D662-44E8-B484-D4A915ADEC44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.TestService", "microservices\test\Microservice.Domain.TestService\Microservice.Domain.TestService.csproj", "{A61682EC-D662-44E8-B484-D4A915ADEC44}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Infrastructure", "microservices\test\Microservice.TestService.Infrastructure\Microservice.TestService.Infrastructure.csproj", "{202A89BC-8C87-4657-9ECD-A6CC932D8250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.TestService", "microservices\test\Microservice.Infrastructure.TestService\Microservice.Infrastructure.TestService.csproj", "{202A89BC-8C87-4657-9ECD-A6CC932D8250}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Application", "microservices\test\Microservice.TestService.Application\Microservice.TestService.Application.csproj", "{37FB9A07-80F9-4A1F-8489-880B11173546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.TestService", "microservices\test\Microservice.Application.TestService\Microservice.Application.TestService.csproj", "{37FB9A07-80F9-4A1F-8489-880B11173546}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.AngularUI", "applications\Microservice.AngularUI\Microservice.AngularUI.esproj", "{6F7204B4-23B6-45EB-918A-DD869B1B6A98}"
 EndProject
@@ -80,13 +80,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Gateway", "applications\Microservice.Gateway\Microservice.Gateway.csproj", "{D8D3B9EA-83FB-449A-961D-3AA287B3381C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application", "microservices\identity\Microservice.IdentityService.Application\Microservice.IdentityService.Application.csproj", "{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.IdentityService", "microservices\identity\Microservice.Application.IdentityService\Microservice.Application.IdentityService.csproj", "{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Domain", "microservices\identity\Microservice.IdentityService.Domain\Microservice.IdentityService.Domain.csproj", "{E9B81C44-4574-4099-9FA3-832838580F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.IdentityService", "microservices\identity\Microservice.Domain.IdentityService\Microservice.Domain.IdentityService.csproj", "{E9B81C44-4574-4099-9FA3-832838580F76}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Domain.Share", "microservices\identity\Microservice.IdentityService.Domain.Share\Microservice.IdentityService.Domain.Share.csproj", "{32433017-2EB7-4ED6-A085-E6A15EB3D9E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain.IdentityService.Shared", "microservices\identity\Microservice.Domain.IdentityService.Shared\Microservice.Domain.IdentityService.Shared.csproj", "{32433017-2EB7-4ED6-A085-E6A15EB3D9E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Infrastructure", "microservices\identity\Microservice.IdentityService.Infrastructure\Microservice.IdentityService.Infrastructure.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.IdentityService", "microservices\identity\Microservice.Infrastructure.IdentityService\Microservice.Infrastructure.IdentityService.csproj", "{9FA7C51D-2C23-454C-9B35-7C6E5BC6B092}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure.Abstractions", "core\Microservice.Infrastructure.Abstractions\Microservice.Infrastructure.Abstractions.csproj", "{B451A1DC-0463-412F-80D2-81F95E787750}"
 EndProject
@@ -108,51 +108,51 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.CQRS", "core\Microservice.Application.CQRS\Microservice.Application.CQRS.csproj", "{055CB038-4E4A-4E2F-B532-8D590D21033C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Api", "microservices\identity\Microservice.IdentityService.Api\Microservice.IdentityService.Api.csproj", "{7824643D-297A-4C46-AE00-24F51279C6C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.IdentityService", "microservices\identity\Microservice.Api.IdentityService\Microservice.Api.IdentityService.csproj", "{7824643D-297A-4C46-AE00-24F51279C6C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Api", "microservices\movie\Microservice.MovieService.Api\Microservice.MovieService.Api.csproj", "{B0FD236C-B4AF-481F-B427-3D9029E12A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.MovieService", "microservices\movie\Microservice.Api.MovieService\Microservice.Api.MovieService.csproj", "{B0FD236C-B4AF-481F-B427-3D9029E12A4D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Api", "microservices\payment\Microservice.PaymentService.Api\Microservice.PaymentService.Api.csproj", "{455F5F9A-C3AA-4757-AA13-89AF514784DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.PaymentService", "microservices\payment\Microservice.Api.PaymentService\Microservice.Api.PaymentService.csproj", "{455F5F9A-C3AA-4757-AA13-89AF514784DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Api", "microservices\review\Microservice.ReviewService.Api\Microservice.ReviewService.Api.csproj", "{D32E1B54-7B1F-44CF-A526-40595A982C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.ReviewService", "microservices\review\Microservice.Api.ReviewService\Microservice.Api.ReviewService.csproj", "{D32E1B54-7B1F-44CF-A526-40595A982C20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Api", "microservices\test\Microservice.TestService.Api\Microservice.TestService.Api.csproj", "{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.TestService", "microservices\test\Microservice.Api.TestService\Microservice.Api.TestService.csproj", "{CA6D7869-833E-4AC1-AA5F-6C0D9D421A43}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Application.Abstractions", "microservices\movie\Microservice.MovieService.Application.Abstractions\Microservice.MovieService.Application.Abstractions.csproj", "{8B64B5CF-6C36-4215-BD45-246EE9473474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.MovieService.Abstractions", "microservices\movie\Microservice.Application.MovieService.Abstractions\Microservice.Application.MovieService.Abstractions.csproj", "{8B64B5CF-6C36-4215-BD45-246EE9473474}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Application.Abstractions", "microservices\payment\Microservice.PaymentService.Application.Abstractions\Microservice.PaymentService.Application.Abstractions.csproj", "{E89EAB31-6476-4639-AE53-A8125D1EC5B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.PaymentService.Abstractions", "microservices\payment\Microservice.Application.PaymentService.Abstractions\Microservice.Application.PaymentService.Abstractions.csproj", "{E89EAB31-6476-4639-AE53-A8125D1EC5B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Application.Abstractions", "microservices\review\Microservice.ReviewService.Application.Abstractions\Microservice.ReviewService.Application.Abstractions.csproj", "{A2BBD6EA-711B-4F1F-A6F1-C012D04495ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.ReviewService.Abstractions", "microservices\review\Microservice.Application.ReviewService.Abstractions\Microservice.Application.ReviewService.Abstractions.csproj", "{A2BBD6EA-711B-4F1F-A6F1-C012D04495ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Application.Abstrations", "microservices\test\Microservice.TestService.Application.Abstractions\Microservice.TestService.Application.Abstrations.csproj", "{51173305-A151-4CAD-8660-95090A9AF578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.TestService.Abstrations", "microservices\test\Microservice.Application.TestService.Abstractions\Microservice.Application.TestService.Abstrations.csproj", "{51173305-A151-4CAD-8660-95090A9AF578}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests", "core\Microservice.Tests\Microservice.Tests.csproj", "{234F9F12-F4EB-4C21-98E9-12B23B1F2004}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Tests", "microservices\identity\Microservice.IdentityService.Tests\Microservice.IdentityService.Tests.csproj", "{80507D46-98C5-497C-9DFE-7E014C7C2906}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests.IdentityService", "microservices\identity\Microservice.Tests.IdentityService\Microservice.Tests.IdentityService.csproj", "{80507D46-98C5-497C-9DFE-7E014C7C2906}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Tests", "microservices\movie\Microservice.MovieService.Tests\Microservice.MovieService.Tests.csproj", "{68C37037-EE4C-4A3C-A90F-A021EF7C0C8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests.MovieService", "microservices\movie\Microservice.Tests.MovieService\Microservice.Tests.MovieService.csproj", "{68C37037-EE4C-4A3C-A90F-A021EF7C0C8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Tests", "microservices\payment\Microservice.PaymentService.Tests\Microservice.PaymentService.Tests.csproj", "{FD19E4C4-A694-40A7-887F-98E15CAAC0D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests.PaymentService", "microservices\payment\Microservice.Tests.PaymentService\Microservice.Tests.PaymentService.csproj", "{FD19E4C4-A694-40A7-887F-98E15CAAC0D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Tests", "microservices\review\Microservice.ReviewService.Tests\Microservice.ReviewService.Tests.csproj", "{62F3C7AA-1510-4E9F-A3A0-8E60951C143E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests.ReviewService", "microservices\review\Microservice.Tests.ReviewService\Microservice.Tests.ReviewService.csproj", "{62F3C7AA-1510-4E9F-A3A0-8E60951C143E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Tests", "microservices\test\Microservice.TestService.Tests\Microservice.TestService.Tests.csproj", "{3ED14111-BCE7-410A-9F42-D226E6E078A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Tests.TestService", "microservices\test\Microservice.Tests.TestService\Microservice.Tests.TestService.csproj", "{3ED14111-BCE7-410A-9F42-D226E6E078A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain", "core\Microservice.Domain\Microservice.Domain.csproj", "{2007B239-FF61-4297-A1A6-476322321BD7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application.Abstractions", "microservices\identity\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj", "{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.IdentityService.Abstractions", "microservices\identity\Microservice.Application.IdentityService.Abstractions\Microservice.Application.IdentityService.Abstractions.csproj", "{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Migrator", "microservices\identity\Microservice.IdentityService.Migrator\Microservice.IdentityService.Migrator.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.IdentityService", "microservices\identity\Microservice.Migrator.IdentityService\Microservice.Migrator.IdentityService.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Migrator", "microservices\movie\Microservice.MovieService.Migrator\Microservice.MovieService.Migrator.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.MovieService", "microservices\movie\Microservice.Migrator.MovieService\Microservice.Migrator.MovieService.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Migrator", "microservices\payment\Microservice.PaymentService.Migrator\Microservice.PaymentService.Migrator.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.PaymentService", "microservices\payment\Microservice.Migrator.PaymentService\Microservice.Migrator.PaymentService.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Migrator", "microservices\review\Microservice.ReviewService.Migrator\Microservice.ReviewService.Migrator.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.ReviewService", "microservices\review\Microservice.Migrator.ReviewService\Microservice.Migrator.ReviewService.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Migrator", "microservices\test\Microservice.TestService.Migrator\Microservice.TestService.Migrator.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.TestService", "microservices\test\Microservice.Migrator.TestService\Microservice.Migrator.TestService.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}"
 	ProjectSection(SolutionItems) = preProject

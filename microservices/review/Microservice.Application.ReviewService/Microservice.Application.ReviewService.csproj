@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Application", ""))</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.Application.CQRS\Microservice.Application.CQRS.csproj" />
+    <ProjectReference Include="..\Microservice.Application.ReviewService.Abstractions\Microservice.Application.ReviewService.Abstractions.csproj" />
+    <ProjectReference Include="..\Microservice.Domain.ReviewService\Microservice.Domain.ReviewService.csproj" />
+  </ItemGroup>
+
+</Project>

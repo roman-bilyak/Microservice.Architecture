@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Application", "").Replace(".Abstractions", ""))</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.Application.Abstractions\Microservice.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\Microservice.Domain.PaymentService.Shared\Microservice.Domain.PaymentService.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

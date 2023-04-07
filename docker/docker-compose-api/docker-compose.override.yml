@@ -11,19 +11,19 @@ services:
       - Authentication__JwtBearer__RequireHttpsMetadata=false
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9111
       - Routes__0__DownstreamScheme=http
-      - Routes__0__DownstreamHostAndPorts__0__Host=identity-service-api
+      - Routes__0__DownstreamHostAndPorts__0__Host=api-identity-service
       - Routes__0__DownstreamHostAndPorts__0__Port=80
       - Routes__1__DownstreamScheme=http
-      - Routes__1__DownstreamHostAndPorts__0__Host=movie-service-api
+      - Routes__1__DownstreamHostAndPorts__0__Host=api-movie-service
       - Routes__1__DownstreamHostAndPorts__0__Port=80
       - Routes__2__DownstreamScheme=http
-      - Routes__2__DownstreamHostAndPorts__0__Host=payment-service-api
+      - Routes__2__DownstreamHostAndPorts__0__Host=api-payment-service
       - Routes__2__DownstreamHostAndPorts__0__Port=80
       - Routes__3__DownstreamScheme=http
-      - Routes__3__DownstreamHostAndPorts__0__Host=review-service-api
+      - Routes__3__DownstreamHostAndPorts__0__Host=api-review-service
       - Routes__3__DownstreamHostAndPorts__0__Port=80
       - Routes__4__DownstreamScheme=http
-      - Routes__4__DownstreamHostAndPorts__0__Host=test-service-api
+      - Routes__4__DownstreamHostAndPorts__0__Host=api-test-service
       - Routes__4__DownstreamHostAndPorts__0__Port=80
     ports:
       - 9100:443
@@ -48,7 +48,7 @@ services:
     ports:
       - 9111:443
       
-  identity-service-api:
+  api-identity-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -60,11 +60,11 @@ services:
     ports:
       - 9201:443
 
-  identity-service-migrator:
+  migrator-identity-service:
     environment:
       - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
-  movie-service-api:
+  api-movie-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -76,11 +76,11 @@ services:
     ports:
       - 9202:443
 
-  movie-service-migrator:
+  migrator-movie-service:
     environment:
       - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
-  payment-service-api:
+  api-payment-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -92,11 +92,11 @@ services:
     ports:
       - 9203:443
 
-  payment-service-migrator:
+  migrator-payment-service:
     environment:
       - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
-  review-service-api:
+  api-review-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -108,11 +108,11 @@ services:
     ports:
       - 9204:443
 
-  review-service-migrator:
+  migrator-review-service:
     environment:
       - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
-  test-service-api:
+  api-test-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -125,6 +125,6 @@ services:
     ports:
       - 9205:443
 
-  test-service-migrator:
+  migrator-test-service:
     environment:
       - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
