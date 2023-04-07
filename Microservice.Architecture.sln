@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "applications", "application
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{B448F306-A893-42D0-9F4C-2D239C4C99F7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{0E6F3C16-2D1E-4FDC-9020-2F2034D22917}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{0E6F3C16-2D1E-4FDC-9020-2F2034D22917}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservices", "microservices", "{385E7CA7-8210-4F3F-BA13-E6BD98C0A91C}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B1233878
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Core", "core\Microservice.Core\Microservice.Core.csproj", "{6E8F33BB-2EAE-4582-8BDB-C6395C5703A8}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-api", "deploy\docker-compose-api\docker-compose-api.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-api", "docker\docker-compose-api\docker-compose-api.dcproj", "{9CA8CA0E-C847-4072-B29E-95F779E47ADF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{455F5F9A-C3AA-4757-AA13-89AF514784DB} = {455F5F9A-C3AA-4757-AA13-89AF514784DB}
 		{7824643D-297A-4C46-AE00-24F51279C6C2} = {7824643D-297A-4C46-AE00-24F51279C6C2}
@@ -26,7 +26,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-api", "deplo
 		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB} = {EA4A79D3-5B63-4258-9315-362DD8AD2DBB}
 	EndProjectSection
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-infrastructure", "deploy\docker-compose-infrastructure\docker-compose-infrastructure.dcproj", "{D458CA0E-4072-C847-B29E-12F559E47ADF}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-infrastructure", "docker\docker-compose-infrastructure\docker-compose-infrastructure.dcproj", "{D458CA0E-4072-C847-B29E-12F559E47ADF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Performance.Tests", "tests\Microservice.Performance.Tests\Microservice.Performance.Tests.csproj", "{1F518EB4-9579-489E-BCFD-9EAFE769933F}"
 EndProject
@@ -142,7 +142,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Domain", "core
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Application.Abstractions", "microservices\identity\Microservice.IdentityService.Application.Abstractions\Microservice.IdentityService.Application.Abstractions.csproj", "{7F8BF764-B995-409F-8C53-65BC7BFD5C2F}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Migrator", "microservices\identity\Microservice.IdentityService.Migrator\Microservice.IdentityService.Migrator.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
 EndProject
