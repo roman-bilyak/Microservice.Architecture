@@ -1,5 +1,45 @@
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-service
+spec:
+  selector:
+    matchLabels:
+      app: test-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-service
+    spec:
+      containers:
+        - name: test-service
+          image: "test-service"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production
+          - name: ASPNETCORE_URLS
+            value: http://0.0.0.0:80
+          ports:
+            - name: http
+              containerPort: 80
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: test-service-autoscaler
+spec:
+  minReplicas: 1
+  maxReplicas: 20
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: test-service
+  targetCPUUtilizationPercentage: 50
+---
 apiVersion: v1
+kind: Service
 metadata:
   name: test-service
 spec:
