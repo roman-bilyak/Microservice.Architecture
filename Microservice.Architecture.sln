@@ -154,6 +154,43 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Migrator", "microservices\test\Microservice.TestService.Migrator\Microservice.TestService.Migrator.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\run-with-local-registry.ps1 = k8s\run-with-local-registry.ps1
+		k8s\run-with-remote-registry.ps1 = k8s\run-with-remote-registry.ps1
+		k8s\run.cmd = k8s\run.cmd
+		k8s\run.ps1 = k8s\run.ps1
+		k8s\stop.ps1 = k8s\stop.ps1
+		k8s\_build.ps1 = k8s\_build.ps1
+		k8s\_deploy.ps1 = k8s\_deploy.ps1
+		k8s\_expose.ps1 = k8s\_expose.ps1
+		k8s\_start.ps1 = k8s\_start.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6830-4DA4-9C78-0EA193143CE7}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\base\gateway.yaml = k8s\base\gateway.yaml
+		k8s\base\identity-server.yaml = k8s\base\identity-server.yaml
+		k8s\base\identity-service.yaml = k8s\base\identity-service.yaml
+		k8s\base\kustomization.yaml = k8s\base\kustomization.yaml
+		k8s\base\movie-service.yaml = k8s\base\movie-service.yaml
+		k8s\base\payment-service.yaml = k8s\base\payment-service.yaml
+		k8s\base\review-service.yaml = k8s\base\review-service.yaml
+		k8s\base\test-service.yaml = k8s\base\test-service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{8703BCEA-CE9B-4351-A4B5-5DA718DA785E}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\base\infrastructure\dbdata.yaml = k8s\base\infrastructure\dbdata.yaml
+		k8s\base\infrastructure\metrics-server-components.yaml = k8s\base\infrastructure\metrics-server-components.yaml
+		k8s\base\infrastructure\redis.yaml = k8s\base\infrastructure\redis.yaml
+		k8s\base\infrastructure\resource-limit-all.yaml = k8s\base\infrastructure\resource-limit-all.yaml
+		k8s\base\infrastructure\resource-limit-container.yaml = k8s\base\infrastructure\resource-limit-container.yaml
+		k8s\base\infrastructure\sqlserver.yaml = k8s\base\infrastructure\sqlserver.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "overlays", "overlays", "{01AACB30-15A1-4DB1-AD16-20FAA43F7F40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -479,6 +516,9 @@ Global
 		{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41} = {99CE6AAF-5CC2-41A7-8808-2736CB07170A}
 		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23} = {F09C4AF3-9069-4DED-A26D-035511BA908E}
 		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
+		{26F2A7A7-6830-4DA4-9C78-0EA193143CE7} = {00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}
+		{8703BCEA-CE9B-4351-A4B5-5DA718DA785E} = {26F2A7A7-6830-4DA4-9C78-0EA193143CE7}
+		{01AACB30-15A1-4DB1-AD16-20FAA43F7F40} = {00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

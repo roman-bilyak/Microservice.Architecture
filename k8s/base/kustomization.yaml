@@ -8,14 +8,6 @@ resources:
 - infrastructure/redis.yaml
 - infrastructure/sqlserver.yaml
 
-- gateway-deployment.yaml
-- identity-server-deployment.yaml
-- identity-service-deployment.yaml
-- movie-service-deployment.yaml
-- payment-service-deployment.yaml
-- review-service-deployment.yaml
-- test-service-deployment.yaml
-
 - gateway.yaml
 - identity-server.yaml
 - identity-service.yaml
@@ -23,8 +15,3 @@ resources:
 - payment-service.yaml
 - review-service.yaml
 - test-service.yaml
-
-- gateway-autoscaler.yaml
-- test-service-autoscaler.yaml
-
-- gateway-expose.yaml

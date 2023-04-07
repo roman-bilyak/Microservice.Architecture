@@ -4,7 +4,7 @@
 )
 
 echo '📌 Deploy to minikube'
-$directory = '.\k8s\overlays\temp'
+$directory = '.\overlays\temp'
 $file = $directory + '\kustomization.yaml'
 
 New-Item $directory -ItemType Directory -Force | Out-Null
