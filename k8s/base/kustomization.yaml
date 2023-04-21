@@ -11,4 +11,7 @@ resources:
 - review-service.yaml
 - test-service.yaml
 
+- angular-ui.yaml
+- react-ui.yaml
+
 - _ingress.yaml

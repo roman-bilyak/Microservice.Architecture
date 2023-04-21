@@ -19,7 +19,7 @@ spec:
   tls:
     - hosts:
       - localhost
-        secretName: tls-certs
+      secretName: tls-certs
   rules:
     - host: localhost
       http:

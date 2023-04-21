@@ -1,26 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-movie-service
+  name: angular-ui
 spec:
   selector:
     matchLabels:
-      app: api-movie-service
+      app: angular-ui
   replicas: 1
   template:
     metadata:
       labels:
-        app: api-movie-service
+        app: angular-ui
     spec:
       containers:
-        - name: api-movie-service
-          image: "api-movie-service"
+        - name: angular-ui
+          image: "angular-ui"
           imagePullPolicy: IfNotPresent
-          env:
-          - name: ASPNETCORE_ENVIRONMENT
-            value: Production
-          - name: ASPNETCORE_URLS
-            value: http://0.0.0.0:80
           ports:
             - name: http
               containerPort: 80
@@ -28,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-movie-service
+  name: angular-ui
 spec:
   selector:
-    app: api-movie-service
+    app: angular-ui
   ports:
   - name: http
     protocol: TCP

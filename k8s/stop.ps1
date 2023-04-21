@@ -1,1 +1,0 @@
-﻿minikube delete --all
