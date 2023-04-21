@@ -1,11 +1,26 @@
 version: '3.8'
 
 services:
-  gateway:
-    image: ${DOCKER_REGISTRY-}gateway:${TAG:-latest}
+  api-auth-service:
+    image: ${DOCKER_REGISTRY-}api-auth-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: applications/Microservice.Gateway/Dockerfile
+      dockerfile: applications/Microservice.Api.AuthService/Dockerfile
+    depends_on:
+      migrator-identity-service:
+        condition: service_completed_successfully
+      sqlserver:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+  
+  api-gateway:
+    image: ${DOCKER_REGISTRY-}api-gateway:${TAG:-latest}
+    build:
+      context: ../..
+      dockerfile: applications/Microservice.Api.Gateway/Dockerfile
     depends_on:
       identity-server:
         condition: service_started
@@ -18,21 +33,6 @@ services:
       api-review-service:
         condition: service_started
       api-test-service:
-        condition: service_started
-
-  identity-server:
-    image: ${DOCKER_REGISTRY-}identity-server:${TAG:-latest}
-    build:
-      context: ../..
-      dockerfile: applications/Microservice.IdentityServer/Dockerfile
-    depends_on:
-      migrator-identity-service:
-        condition: service_completed_successfully
-      sqlserver:
-        condition: service_started
-      redis:
-        condition: service_started
-      rabbitmq:
         condition: service_started
 
   api-identity-service:

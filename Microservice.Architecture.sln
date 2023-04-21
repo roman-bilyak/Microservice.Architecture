@@ -72,13 +72,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.TestService", "microservices\test\Microservice.Application.TestService\Microservice.Application.TestService.csproj", "{37FB9A07-80F9-4A1F-8489-880B11173546}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.AngularUI", "applications\Microservice.AngularUI\Microservice.AngularUI.esproj", "{6F7204B4-23B6-45EB-918A-DD869B1B6A98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.AuthService", "applications\Microservice.Api.AuthService\Microservice.Api.AuthService.csproj", "{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.ReactUI", "applications\Microservice.ReactUI\Microservice.ReactUI.esproj", "{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.Gateway", "applications\Microservice.Api.Gateway\Microservice.Api.Gateway.csproj", "{D8D3B9EA-83FB-449A-961D-3AA287B3381C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServer", "applications\Microservice.IdentityServer\Microservice.IdentityServer.csproj", "{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.App.Angular", "applications\Microservice.App.Angular\Microservice.App.Angular.esproj", "{6F7204B4-23B6-45EB-918A-DD869B1B6A98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Gateway", "applications\Microservice.Gateway\Microservice.Gateway.csproj", "{D8D3B9EA-83FB-449A-961D-3AA287B3381C}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.App.React", "applications\Microservice.App.React\Microservice.App.React.esproj", "{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.IdentityService", "microservices\identity\Microservice.Application.IdentityService\Microservice.Application.IdentityService.csproj", "{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}"
 EndProject
@@ -156,37 +156,26 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.TestS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}"
 	ProjectSection(SolutionItems) = preProject
-		k8s\run-with-local-registry.ps1 = k8s\run-with-local-registry.ps1
-		k8s\run-with-remote-registry.ps1 = k8s\run-with-remote-registry.ps1
-		k8s\run.cmd = k8s\run.cmd
+		k8s\build.ps1 = k8s\build.ps1
 		k8s\run.ps1 = k8s\run.ps1
-		k8s\stop.ps1 = k8s\stop.ps1
-		k8s\_build.ps1 = k8s\_build.ps1
-		k8s\_deploy.ps1 = k8s\_deploy.ps1
-		k8s\_expose.ps1 = k8s\_expose.ps1
-		k8s\_start.ps1 = k8s\_start.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6830-4DA4-9C78-0EA193143CE7}"
 	ProjectSection(SolutionItems) = preProject
+		k8s\base\angular-ui.yaml = k8s\base\angular-ui.yaml
 		k8s\base\gateway.yaml = k8s\base\gateway.yaml
 		k8s\base\identity-server.yaml = k8s\base\identity-server.yaml
 		k8s\base\identity-service.yaml = k8s\base\identity-service.yaml
 		k8s\base\kustomization.yaml = k8s\base\kustomization.yaml
 		k8s\base\movie-service.yaml = k8s\base\movie-service.yaml
 		k8s\base\payment-service.yaml = k8s\base\payment-service.yaml
+		k8s\base\react-ui.yaml = k8s\base\react-ui.yaml
 		k8s\base\review-service.yaml = k8s\base\review-service.yaml
 		k8s\base\test-service.yaml = k8s\base\test-service.yaml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{8703BCEA-CE9B-4351-A4B5-5DA718DA785E}"
-	ProjectSection(SolutionItems) = preProject
-		k8s\base\infrastructure\dbdata.yaml = k8s\base\infrastructure\dbdata.yaml
-		k8s\base\infrastructure\metrics-server-components.yaml = k8s\base\infrastructure\metrics-server-components.yaml
-		k8s\base\infrastructure\redis.yaml = k8s\base\infrastructure\redis.yaml
-		k8s\base\infrastructure\resource-limit-all.yaml = k8s\base\infrastructure\resource-limit-all.yaml
-		k8s\base\infrastructure\resource-limit-container.yaml = k8s\base\infrastructure\resource-limit-container.yaml
-		k8s\base\infrastructure\sqlserver.yaml = k8s\base\infrastructure\sqlserver.yaml
+		k8s\base\_infrastructure.yaml = k8s\base\_infrastructure.yaml
+		k8s\base\_ingress.yaml = k8s\base\_ingress.yaml
+		k8s\base\_metrics-components.yaml = k8s\base\_metrics-components.yaml
+		k8s\base\_resourse-limit.yaml = k8s\base\_resourse-limit.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "overlays", "overlays", "{01AACB30-15A1-4DB1-AD16-20FAA43F7F40}"
@@ -517,7 +506,6 @@ Global
 		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23} = {F09C4AF3-9069-4DED-A26D-035511BA908E}
 		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{26F2A7A7-6830-4DA4-9C78-0EA193143CE7} = {00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}
-		{8703BCEA-CE9B-4351-A4B5-5DA718DA785E} = {26F2A7A7-6830-4DA4-9C78-0EA193143CE7}
 		{01AACB30-15A1-4DB1-AD16-20FAA43F7F40} = {00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
