@@ -1,10 +1,10 @@
 using Microservice.AspNetCore;
 using Microservice.Core;
-using Microservice.Gateway;
+using Microservice.GatewayService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddApplication<GatewayModule>()
+builder.AddApplication<GatewayServiceApiModule>()
     .ConfigureServices();
 
 var app = builder.Build();

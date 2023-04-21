@@ -4,7 +4,7 @@ using Microservice.Core.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
-namespace Microservice.Gateway;
+namespace Microservice.GatewayService;
 
 internal static class ServiceCollectionExtensions
 {

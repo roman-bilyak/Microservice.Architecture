@@ -5,10 +5,10 @@ using Microservice.Core.Modularity;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
-namespace Microservice.Gateway;
+namespace Microservice.GatewayService;
 
 [DependsOn<ApiModule>]
-public sealed class GatewayApiModule : StartupModule
+public sealed class GatewayServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {

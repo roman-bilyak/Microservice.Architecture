@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["applications/Microservice.Gateway/Microservice.Gateway.csproj", "applications/Microservice.Gateway/"]
+COPY ["applications/Microservice.Api.GatewayService/Microservice.Api.GatewayService.csproj", "applications/Microservice.Api.GatewayService/"]
 COPY ["core/Microservice.Api/Microservice.Api.csproj", "core/Microservice.Api/"]
 COPY ["core/Microservice.Api.AspNetCore.Authentication/Microservice.Api.AspNetCore.Authentication.csproj", "core/Microservice.Api.AspNetCore.Authentication/"]
 COPY ["core/Microservice.Api.AspNetCore/Microservice.Api.AspNetCore.csproj", "core/Microservice.Api.AspNetCore/"]
@@ -25,15 +25,15 @@ COPY ["microservices/review/Microservice.Application.ReviewService.Abstractions/
 COPY ["microservices/review/Microservice.Domain.ReviewService.Shared/Microservice.Domain.ReviewService.Shared.csproj", "microservices/review/Microservice.Domain.ReviewService.Shared/"]
 COPY ["microservices/test/Microservice.Application.TestService.Abstractions/Microservice.Application.TestService.Abstrations.csproj", "microservices/test/Microservice.Application.TestService.Abstractions/"]
 COPY ["microservices/test/Microservice.Domain.TestService.Shared/Microservice.Domain.TestService.Shared.csproj", "microservices/test/Microservice.Domain.TestService.Shared/"]
-RUN dotnet restore "applications/Microservice.Gateway/Microservice.Gateway.csproj"
+RUN dotnet restore "applications/Microservice.Api.GatewayService/Microservice.Api.GatewayService.csproj"
 COPY . .
-WORKDIR "/src/applications/Microservice.Gateway"
-RUN dotnet build "Microservice.Gateway.csproj" -c Release -o /app/build
+WORKDIR "/src/applications/Microservice.Api.GatewayService"
+RUN dotnet build "Microservice.Api.GatewayService.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Microservice.Gateway.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Microservice.Api.GatewayService.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Microservice.Gateway.dll"]
+ENTRYPOINT ["dotnet", "Microservice.Api.GatewayService.dll"]
