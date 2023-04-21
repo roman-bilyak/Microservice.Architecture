@@ -33,6 +33,7 @@ spec:
   selector:
     app: payment-service
   ports:
-  - protocol: TCP
+  - name: http
+    protocol: TCP
     port: 80
     targetPort: http

@@ -1,12 +1,7 @@
 resources:
-- infrastructure/metrics-server-components.yaml
-
-- infrastructure/resource-limit-all.yaml
-- infrastructure/resource-limit-container.yaml
-
-- infrastructure/dbdata.yaml
-- infrastructure/redis.yaml
-- infrastructure/sqlserver.yaml
+- _infrastructure.yaml
+- _metrics-components.yaml
+- _resource-limit.yaml
 
 - gateway.yaml
 - identity-server.yaml
@@ -15,3 +10,5 @@ resources:
 - payment-service.yaml
 - review-service.yaml
 - test-service.yaml
+
+- _ingress.yaml

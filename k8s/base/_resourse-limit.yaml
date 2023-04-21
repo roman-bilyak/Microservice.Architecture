@@ -1,4 +1,15 @@
 apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-limit-all
+spec:
+  hard:
+    limits.cpu: 8
+    limits.memory: 8Gi
+    requests.cpu: 4
+    requests.memory: 4Gi
+---
+apiVersion: v1
 kind: LimitRange
 metadata:
   name: resource-limit-container

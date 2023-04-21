@@ -33,6 +33,7 @@ spec:
   selector:
     app: identity-server
   ports:
-  - protocol: TCP
+  - name: http
+    protocol: TCP
     port: 80
     targetPort: http
