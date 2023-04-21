@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     [SecurityHeaders]
     [AllowAnonymous]

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     [Authorize]
     [SecurityHeaders]

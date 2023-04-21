@@ -4,7 +4,7 @@ using Microservice.IdentityService.Identity;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
-namespace Microservice.IdentityServer;
+namespace Microservice.AuthService;
 
 internal class ProfileService : IProfileService
 {

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     public class DiagnosticsViewModel
     {

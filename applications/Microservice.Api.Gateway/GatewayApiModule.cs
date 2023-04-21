@@ -8,7 +8,7 @@ using Ocelot.Middleware;
 namespace Microservice.Gateway;
 
 [DependsOn<ApiModule>]
-public sealed class GatewayModule : StartupModule
+public sealed class GatewayApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {

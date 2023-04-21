@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     public class GrantsViewModel
     {

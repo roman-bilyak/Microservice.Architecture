@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     [SecurityHeaders]
     [AllowAnonymous]

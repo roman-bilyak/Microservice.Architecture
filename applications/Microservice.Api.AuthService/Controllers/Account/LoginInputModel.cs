@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     public class LoginInputModel
     {

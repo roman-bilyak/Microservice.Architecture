@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     public class AccountOptions
     {

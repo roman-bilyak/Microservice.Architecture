@@ -1,9 +1,9 @@
 ﻿using Microservice.AspNetCore;
-using Microservice.IdentityServer;
+using Microservice.AuthService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddApplication<IdentityServerModule>()
+builder.AddApplication<AuthServiceApiModule>()
     .ConfigureServices();
 
 var app = builder.Build();

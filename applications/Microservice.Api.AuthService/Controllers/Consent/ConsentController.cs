@@ -11,7 +11,7 @@ using IdentityServer4.Validation;
 using System.Collections.Generic;
 using System;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     /// <summary>
     /// This controller processes the consent UI

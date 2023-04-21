@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
 
-namespace IdentityServer.Controllers
+namespace Microservice.AuthService.Controllers
 {
     /// <summary>
     /// This sample controller allows a user to revoke grants given to clients

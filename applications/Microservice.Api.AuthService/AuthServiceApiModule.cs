@@ -4,11 +4,11 @@ using Microservice.IdentityService;
 using Microservice.IdentityService.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace Microservice.IdentityServer;
+namespace Microservice.AuthService;
 
 [DependsOn<AspNetCoreModule>]
 [DependsOn<IdentityServiceInfrastructureModule>]
-public sealed class IdentityServerModule : StartupModule
+public sealed class AuthServiceApiModule : StartupModule
 {
     public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
