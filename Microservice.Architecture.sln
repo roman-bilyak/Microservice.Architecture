@@ -162,20 +162,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-989
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6830-4DA4-9C78-0EA193143CE7}"
 	ProjectSection(SolutionItems) = preProject
-		k8s\base\angular-ui.yaml = k8s\base\angular-ui.yaml
-		k8s\base\gateway.yaml = k8s\base\gateway.yaml
-		k8s\base\identity-server.yaml = k8s\base\identity-server.yaml
-		k8s\base\identity-service.yaml = k8s\base\identity-service.yaml
-		k8s\base\kustomization.yaml = k8s\base\kustomization.yaml
-		k8s\base\movie-service.yaml = k8s\base\movie-service.yaml
-		k8s\base\payment-service.yaml = k8s\base\payment-service.yaml
-		k8s\base\react-ui.yaml = k8s\base\react-ui.yaml
-		k8s\base\review-service.yaml = k8s\base\review-service.yaml
-		k8s\base\test-service.yaml = k8s\base\test-service.yaml
 		k8s\base\_infrastructure.yaml = k8s\base\_infrastructure.yaml
 		k8s\base\_ingress.yaml = k8s\base\_ingress.yaml
 		k8s\base\_metrics-components.yaml = k8s\base\_metrics-components.yaml
 		k8s\base\_resourse-limit.yaml = k8s\base\_resourse-limit.yaml
+		k8s\base\api-auth-service.yaml = k8s\base\api-auth-service.yaml
+		k8s\base\api-gateway.yaml = k8s\base\api-gateway.yaml
+		k8s\base\api-identity-service.yaml = k8s\base\api-identity-service.yaml
+		k8s\base\api-movie-service.yaml = k8s\base\api-movie-service.yaml
+		k8s\base\api-payment-service.yaml = k8s\base\api-payment-service.yaml
+		k8s\base\api-review-service.yaml = k8s\base\api-review-service.yaml
+		k8s\base\api-test-service.yaml = k8s\base\api-test-service.yaml
+		k8s\base\app-angular.yaml = k8s\base\app-angular.yaml
+		k8s\base\app-react.yaml = k8s\base\app-react.yaml
+		k8s\base\kustomization.yaml = k8s\base\kustomization.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "overlays", "overlays", "{01AACB30-15A1-4DB1-AD16-20FAA43F7F40}"

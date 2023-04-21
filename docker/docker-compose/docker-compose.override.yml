@@ -1,10 +1,10 @@
 version: '3.8'
 
 services:
-  angular-ui:
+  app-angular:
     ports:
       - 9001:80
 
-  react-ui:
+  app-react:
     ports:
       - 9002:80

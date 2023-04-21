@@ -1,22 +1,20 @@
 version: '3.8'
 
 services:
-  angular-ui:
-    container_name: "Microservice.AngularUI"
-    image: ${DOCKER_REGISTRY-}angular-ui:${TAG:-latest}
+  app-angular:
+    image: ${DOCKER_REGISTRY-}app-angular:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: applications/Microservice.AngularUI/docker/Dockerfile
+      dockerfile: applications/Microservice.App.Angular/docker/Dockerfile
     depends_on:
       gateway:
         condition: service_started
 
-  react-ui:
-    container_name: "Microservice.ReactUI"
-    image: ${DOCKER_REGISTRY-}react-ui:${TAG:-latest}
+  app-react:
+    image: ${DOCKER_REGISTRY-}app-react:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: applications/Microservice.ReactUI/docker/Dockerfile
+      dockerfile: applications/Microservice.App.React/docker/Dockerfile
     depends_on:
       gateway:
         condition: service_started

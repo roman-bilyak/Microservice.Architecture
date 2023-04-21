@@ -4,11 +4,11 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "angular-ui",
+      "composeLaunchServiceName": "app-angular",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
-        "angular-ui": "StartWithoutDebugging",
-        "react-ui": "StartWithoutDebugging"
+        "app-angular": "StartWithoutDebugging",
+        "app-react": "StartWithoutDebugging"
       }
     }
   }
