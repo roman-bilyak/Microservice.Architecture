@@ -28,20 +28,27 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: angular
+              name: app-angular
+              port:
+                name: http
+        - path: /react
+          pathType: Prefix
+          backend:
+            service:
+              name: app-react
               port:
                 name: http
         - path: /auth
           pathType: Prefix
           backend:
             service:
-              name: identity-server
+              name: api-auth-service
               port:
                 name: http
         - path: /api
           pathType: Prefix
           backend:
             service:
-              name: gateway
+              name: api-gateway
               port:
                 name: http

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payment-service
+  name: api-payment-service
 spec:
   selector:
     matchLabels:
-      app: payment-service
+      app: api-payment-service
   replicas: 1
   template:
     metadata:
       labels:
-        app: payment-service
+        app: api-payment-service
     spec:
       containers:
-        - name: payment-service
-          image: "payment-service"
+        - name: api-payment-service
+          image: "api-payment-service"
           imagePullPolicy: IfNotPresent
           env:
           - name: ASPNETCORE_ENVIRONMENT
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: payment-service
+  name: api-payment-service
 spec:
   selector:
-    app: payment-service
+    app: api-payment-service
   ports:
   - name: http
     protocol: TCP

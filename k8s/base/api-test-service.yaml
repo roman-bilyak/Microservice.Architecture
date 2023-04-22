@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-service
+  name: api-test-service
 spec:
   selector:
     matchLabels:
-      app: test-service
+      app: api-test-service
   replicas: 1
   template:
     metadata:
       labels:
-        app: test-service
+        app: api-test-service
     spec:
       containers:
-        - name: test-service
-          image: "test-service"
+        - name: api-test-service
+          image: "api-test-service"
           imagePullPolicy: IfNotPresent
           env:
           - name: ASPNETCORE_ENVIRONMENT
@@ -28,23 +28,23 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: test-service-autoscaler
+  name: api-test-service-autoscaler
 spec:
   minReplicas: 1
   maxReplicas: 20
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: test-service
+    name: api-test-service
   targetCPUUtilizationPercentage: 50
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-service
+  name: api-test-service
 spec:
   selector:
-    app: test-service
+    app: api-test-service
   ports:
   - name: http
     protocol: TCP

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: angular-ui
+  name: app-angular
 spec:
   selector:
     matchLabels:
-      app: angular-ui
+      app: app-angular
   replicas: 1
   template:
     metadata:
       labels:
-        app: angular-ui
+        app: app-angular
     spec:
       containers:
-        - name: angular-ui
-          image: "angular-ui"
+        - name: app-angular
+          image: "app-angular"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-ui
+  name: app-angular
 spec:
   selector:
-    app: angular-ui
+    app: app-angular
   ports:
   - name: http
     protocol: TCP

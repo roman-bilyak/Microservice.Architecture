@@ -3,15 +3,15 @@ resources:
 - _metrics-components.yaml
 - _resource-limit.yaml
 
-- gateway.yaml
-- identity-server.yaml
-- identity-service.yaml
-- movie-service.yaml
-- payment-service.yaml
-- review-service.yaml
-- test-service.yaml
+- api-auth-service.yaml
+- api-gateway-service.yaml
+- api-identity-service.yaml
+- api-movie-service.yaml
+- api-payment-service.yaml
+- api-review-service.yaml
+- api-test-service.yaml
 
-- angular-ui.yaml
-- react-ui.yaml
+- app-angular.yaml
+- app-react.yaml
 
 - _ingress.yaml

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: identity-service
+  name: api-identity-service
 spec:
   selector:
     matchLabels:
-      app: identity-service
+      app: api-identity-service
   replicas: 1
   template:
     metadata:
       labels:
-        app: identity-service
+        app: api-identity-service
     spec:
       containers:
-        - name: identity-service
-          image: "identity-service"
+        - name: api-identity-service
+          image: "api-identity-service"
           imagePullPolicy: IfNotPresent
           env:
           - name: ASPNETCORE_ENVIRONMENT
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: identity-service
+  name: api-identity-service
 spec:
   selector:
-    app: identity-service
+    app: api-identity-service
   ports:
   - name: http
     protocol: TCP
