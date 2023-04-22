@@ -16,13 +16,13 @@ services:
       rabbitmq:
         condition: service_started
   
-  api-gateway:
-    image: ${DOCKER_REGISTRY-}api-gateway:${TAG:-latest}
+  api-gateway-service:
+    image: ${DOCKER_REGISTRY-}api-gateway-service:${TAG:-latest}
     build:
       context: ../..
-      dockerfile: applications/Microservice.Api.Gateway/Dockerfile
+      dockerfile: applications/Microservice.Api.GatewayService/Dockerfile
     depends_on:
-      identity-server:
+      api-auth-service:
         condition: service_started
       api-identity-service:
         condition: service_started

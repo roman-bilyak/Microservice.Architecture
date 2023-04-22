@@ -7,7 +7,7 @@ services:
       context: ../..
       dockerfile: applications/Microservice.App.Angular/docker/Dockerfile
     depends_on:
-      gateway:
+      api-gateway-service:
         condition: service_started
 
   app-react:
@@ -16,5 +16,5 @@ services:
       context: ../..
       dockerfile: applications/Microservice.App.React/docker/Dockerfile
     depends_on:
-      gateway:
+      api-gateway-service:
         condition: service_started

@@ -6,7 +6,7 @@
     <ProjectGuid>a47cb9c5-a04b-49c0-85aa-b989c6d84bed</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>angular-ui</DockerServiceName>
+    <DockerServiceName>app-angular</DockerServiceName>
     <AdditionalComposeFilePaths>..\docker-compose-api\docker-compose.yml;..\docker-compose-api\docker-compose.override.yml;..\docker-compose-infrastructure\docker-compose.yml;..\docker-compose-infrastructure\docker-compose.override.yml</AdditionalComposeFilePaths>
   </PropertyGroup>
   <ItemGroup>

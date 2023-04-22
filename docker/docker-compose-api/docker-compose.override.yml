@@ -5,7 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - IdentityServer__Clients__0__RedirectUris__0=https://localhost:9200/oauth2-redirect.html
       - IdentityServer__Clients__0__RedirectUris__1=https://localhost:9201/oauth2-redirect.html
       - IdentityServer__Clients__0__RedirectUris__2=https://localhost:9202/oauth2-redirect.html
@@ -21,12 +21,12 @@ services:
     ports:
       - 9100:443
 
-  api-gateway:
+  api-gateway-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443
-      - GlobalConfiguration__BaseUrl=http://gateway
-      - Authentication__JwtBearer__Authority=http://identity-server
+      - GlobalConfiguration__BaseUrl=http://api-gateway-service
+      - Authentication__JwtBearer__Authority=http://api-auth-service
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9100
       - Authentication__JwtBearer__RequireHttpsMetadata=false
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9100
@@ -52,74 +52,74 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - Authentication__JwtBearer__Authority=http://identity-server
+      - Authentication__JwtBearer__Authority=http://api-auth-service
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9100
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9100
     ports:
       - 9201:443
 
   migrator-identity-service:
     environment:
-      - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   api-movie-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - Authentication__JwtBearer__Authority=http://identity-server
+      - Authentication__JwtBearer__Authority=http://api-auth-service
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9100
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9100
     ports:
       - 9202:443
 
   migrator-movie-service:
     environment:
-      - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   api-payment-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - Authentication__JwtBearer__Authority=http://identity-server
+      - Authentication__JwtBearer__Authority=http://api-auth-service
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9100
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9100
     ports:
       - 9203:443
 
   migrator-payment-service:
     environment:
-      - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   api-review-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - Authentication__JwtBearer__Authority=http://identity-server
+      - Authentication__JwtBearer__Authority=http://api-auth-service
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9100
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9100
     ports:
       - 9204:443
 
   migrator-review-service:
     environment:
-      - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
   api-test-service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - Authentication__JwtBearer__Authority=http://identity-server
+      - Authentication__JwtBearer__Authority=http://api-auth-service
       - Authentication__JwtBearer__ValidIssuer=https://localhost:9100
       - Authentication__JwtBearer__RequireHttpsMetadata=false
-      - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       - RabbitMq__Host=rabbitmq
       - Swagger__Security__Flow__AuthorityUrl=https://localhost:9100
     ports:
@@ -127,4 +127,4 @@ services:
 
   migrator-test-service:
     environment:
-      - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;

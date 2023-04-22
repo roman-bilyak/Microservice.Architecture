@@ -4,11 +4,11 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "api-gateway",
+      "composeLaunchServiceName": "api-gateway-service",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
-        "api-gateway": "StartDebugging",
         "api-auth-service": "StartDebugging",
+        "api-gateway-service": "StartDebugging",
         "api-identity-service": "StartDebugging",
         "migrator-identity-service": "StartWithoutDebugging",
         "api-movie-service": "StartDebugging",
