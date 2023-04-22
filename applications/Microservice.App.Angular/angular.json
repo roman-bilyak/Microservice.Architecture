@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Microservice.AngularUI": {
+    "Microservice.App.Angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/microservice.angular-ui",
+            "outputPath": "dist/microservice.app.angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Microservice.AngularUI:build:production"
+              "browserTarget": "Microservice.App.Angular:build:production"
             },
             "development": {
-              "browserTarget": "Microservice.AngularUI:build:development"
+              "browserTarget": "Microservice.App.Angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Microservice.AngularUI:build"
+            "browserTarget": "Microservice.App.Angular:build"
           }
         },
         "test": {
@@ -102,5 +102,5 @@
       }
     }
   },
-  "defaultProject": "Microservice.AngularUI"
+  "defaultProject": "Microservice.App.Angular"
 }

@@ -3,9 +3,9 @@
 FROM node:latest as node
 WORKDIR /app
 
-COPY ["applications/Microservice.AngularUI", "./"]
+COPY ["applications/Microservice.App.Angular", "./"]
 RUN npm install
 RUN npm run build --prod
 
 FROM nginx:alpine
-COPY --from=node /app/dist/microservice.angular-ui /usr/share/nginx/html
+COPY --from=node /app/dist/microservice.app.angular /usr/share/nginx/html
