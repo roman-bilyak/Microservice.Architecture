@@ -82,7 +82,7 @@ The script will:
 
 Go to http://localhost to view gateway methods.
 
-### Local Docker Host
+### Docker Compose
 
 Prerequisites:
 
@@ -114,17 +114,17 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 ## Applications & Microservices
 
-|                  | [Visual Studio](#visual-studio)         | [Local Docker Host](#local-docker-host) | [Kubernates Cluster](#kubernates-cluster) |
-| ---------------- | --------------------------------------- | --------------------------------------- | ----------------------------------------- |
-| angular-ui       | [localhost:7001](http://localhost:7001) | [localhost:9001](http://localhost:9001) |                                           |
-| react-ui         | [localhost:7002](http://localhost:7002) | [localhost:9002](http://localhost:9002) |                                           |
-| gateway          | [localhost:7100](http://localhost:7100) | [localhost:9100](http://localhost:9100) | [localhost](http://localhost)             |
-| identity-server  | [localhost:7111](http://localhost:7111) | [localhost:9111](http://localhost:9111) |                                           |
-| identity-service | [localhost:7201](http://localhost:7201) | [localhost:9201](http://localhost:9201) |                                           |
-| movie-service    | [localhost:7202](http://localhost:7202) | [localhost:9202](http://localhost:9202) |                                           |
-| review-service   | [localhost:7203](http://localhost:7203) | [localhost:9203](http://localhost:9203) |                                           |
-| payment-service  | [localhost:7204](http://localhost:7204) | [localhost:9204](http://localhost:9204) |                                           |
-| test-service     | [localhost:7205](http://localhost:7205) | [localhost:9205](http://localhost:9205) |                                           |
+|                      | [Visual Studio](#visual-studio)          | [Docker Compose](#docker-compose)        | [Kubernates Cluster](#kubernates-cluster)      |
+| -------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------------- |
+| app-angular          | [localhost:7001](https://localhost:7001) | [localhost:9001](https://localhost:9001) | [localhost](https://localhost) |
+| app-react            | [localhost:7002](https://localhost:7002) | [localhost:9002](https://localhost:9002) | [localhost/react](https://localhost/react)     |
+| api-auth-service     | [localhost:7100](https://localhost:7100) | [localhost:9100](https://localhost:9100) | [localhost/auth](https://localhost/auth)       |
+| api-gateway-service  | [localhost:7200](https://localhost:7200) | [localhost:9200](https://localhost:9200) | [localhost/api](https://localhost/api)         |
+| api-identity-service | [localhost:7201](https://localhost:7201) | [localhost:9201](https://localhost:9201) |                                                |
+| api-movie-service    | [localhost:7202](https://localhost:7202) | [localhost:9202](https://localhost:9202) |                                                |
+| api-review-service   | [localhost:7203](https://localhost:7203) | [localhost:9203](https://localhost:9203) |                                                |
+| api-payment-service  | [localhost:7204](https://localhost:7204) | [localhost:9204](https://localhost:9204) |                                                |
+| api-test-service     | [localhost:7205](https://localhost:7205) | [localhost:9205](https://localhost:9205) |                                                |
 
 ## Project Structure
 

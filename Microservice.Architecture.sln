@@ -74,7 +74,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.AuthService", "applications\Microservice.Api.AuthService\Microservice.Api.AuthService.csproj", "{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.Gateway", "applications\Microservice.Api.Gateway\Microservice.Api.Gateway.csproj", "{D8D3B9EA-83FB-449A-961D-3AA287B3381C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.GatewayService", "applications\Microservice.Api.GatewayService\Microservice.Api.GatewayService.csproj", "{D8D3B9EA-83FB-449A-961D-3AA287B3381C}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Microservice.App.Angular", "applications\Microservice.App.Angular\Microservice.App.Angular.esproj", "{6F7204B4-23B6-45EB-918A-DD869B1B6A98}"
 EndProject
@@ -167,7 +167,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6
 		k8s\base\_metrics-components.yaml = k8s\base\_metrics-components.yaml
 		k8s\base\_resourse-limit.yaml = k8s\base\_resourse-limit.yaml
 		k8s\base\api-auth-service.yaml = k8s\base\api-auth-service.yaml
-		k8s\base\api-gateway.yaml = k8s\base\api-gateway.yaml
+		k8s\base\api-gateway-service.yaml = k8s\base\api-gateway-service.yaml
 		k8s\base\api-identity-service.yaml = k8s\base\api-identity-service.yaml
 		k8s\base\api-movie-service.yaml = k8s\base\api-movie-service.yaml
 		k8s\base\api-payment-service.yaml = k8s\base\api-payment-service.yaml
