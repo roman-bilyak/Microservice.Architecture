@@ -3,7 +3,7 @@
 FROM node:latest as node
 WORKDIR /app
 
-COPY ["applications/Microservice.ReactUI", "./"]
+COPY ["applications/Microservice.App.React", "./"]
 RUN npm install
 RUN npm run-script build
 

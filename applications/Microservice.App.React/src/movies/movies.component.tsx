@@ -18,7 +18,7 @@ export const MoviesComponent = () => {
   const fetchData = async (page: number, size: number | undefined = perPage) => {
     setLoading(true);
 
-    let moviesAPIService = new MoviesAPIService('https://localhost:7100'); //TODO: move API base url into config file
+    let moviesAPIService = new MoviesAPIService('https://localhost:7200'); //TODO: move API base url into config file
     var response = await moviesAPIService.getMovieList(page - 1, size);
 
     setItems(response.items || []);
