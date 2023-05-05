@@ -1,7 +1,7 @@
 resources:
 - _infrastructure.yaml
 - _metrics-components.yaml
-- _resource-limit.yaml
+#- _resource-limit.yaml
 
 - api-auth-service.yaml
 - api-gateway-service.yaml
