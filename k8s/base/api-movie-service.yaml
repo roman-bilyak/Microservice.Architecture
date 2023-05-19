@@ -38,19 +38,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: migrator-movie-service
+  name: api-movie-service-migrator
 spec:
   selector:
     matchLabels:
-      app: migrator-movie-service
+      app: api-movie-service-migrator
   template:
     metadata:
       labels:
-        app: migrator-movie-service
+        app: api-movie-service-migrator
     spec:
       containers:
-        - name: migrator-movie-service
-          image: "migrator-movie-service"
+        - name: api-movie-service-migrator
+          image: "api-movie-service-migrator"
           imagePullPolicy: IfNotPresent
           env:
           - name: APP_ENVIRONMENT

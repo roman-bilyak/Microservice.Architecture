@@ -38,19 +38,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: migrator-identity-service
+  name: api-identity-service-migrator
 spec:
   selector:
     matchLabels:
-      app: migrator-identity-service
+      app: api-identity-service-migrator
   template:
     metadata:
       labels:
-        app: migrator-identity-service
+        app: api-identity-service-migrator
     spec:
       containers:
-        - name: migrator-identity-service
-          image: "migrator-identity-service"
+        - name: api-identity-service-migrator
+          image: "api-identity-service-migrator"
           imagePullPolicy: IfNotPresent
           env:
           - name: APP_ENVIRONMENT

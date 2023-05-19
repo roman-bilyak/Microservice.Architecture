@@ -1,4 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Microservice.Migrator.TestService")]
+[assembly: InternalsVisibleTo("Microservice.Api.TestService.Migrator")]
 [assembly: InternalsVisibleTo("Microservice.Tests.TestService")]

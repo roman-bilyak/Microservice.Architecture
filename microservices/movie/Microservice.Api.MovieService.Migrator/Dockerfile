@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["microservices/movie/Microservice.Migrator.MovieService/Microservice.Migrator.MovieService.csproj", "microservices/movie/Microservice.Migrator.MovieService/"]
+COPY ["microservices/movie/Microservice.Api.MovieService.Migrator/Microservice.Api.MovieService.Migrator.csproj", "microservices/movie/Microservice.Api.MovieService.Migrator/"]
 COPY ["microservices/movie/Microservice.Infrastructure.MovieService/Microservice.Infrastructure.MovieService.csproj", "microservices/movie/Microservice.Infrastructure.MovieService/"]
 COPY ["core/Microservice.Infrastructure.EntityFrameworkCore/Microservice.Infrastructure.EntityFrameworkCore.csproj", "core/Microservice.Infrastructure.EntityFrameworkCore/"]
 COPY ["core/Microservice.Infrastructure.Abstractions/Microservice.Infrastructure.Abstractions.csproj", "core/Microservice.Infrastructure.Abstractions/"]
@@ -13,15 +13,15 @@ COPY ["microservices/movie/Microservice.Domain.MovieService/Microservice.Domain.
 COPY ["core/Microservice.Domain/Microservice.Domain.csproj", "core/Microservice.Domain/"]
 COPY ["core/Microservice.Core/Microservice.Core.csproj", "core/Microservice.Core/"]
 COPY ["microservices/movie/Microservice.Domain.MovieService.Shared/Microservice.Domain.MovieService.Shared.csproj", "microservices/movie/Microservice.Domain.MovieService.Shared/"]
-RUN dotnet restore "microservices/movie/Microservice.Migrator.MovieService/Microservice.Migrator.MovieService.csproj"
+RUN dotnet restore "microservices/movie/Microservice.Api.MovieService.Migrator/Microservice.Api.MovieService.Migrator.csproj"
 COPY . .
-WORKDIR "/src/microservices/movie/Microservice.Migrator.MovieService"
-RUN dotnet build "Microservice.Migrator.MovieService.csproj" -c Release -o /app/build
+WORKDIR "/src/microservices/movie/Microservice.Api.MovieService.Migrator"
+RUN dotnet build "Microservice.Api.MovieService.Migrator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Microservice.Migrator.MovieService.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Microservice.Api.MovieService.Migrator.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Microservice.Migrator.MovieService.dll"]
+ENTRYPOINT ["dotnet", "Microservice.Api.MovieService.Migrator.dll"]

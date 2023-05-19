@@ -144,15 +144,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Application.Id
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.IdentityService", "microservices\identity\Microservice.Migrator.IdentityService\Microservice.Migrator.IdentityService.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.IdentityService.Migrator", "microservices\identity\Microservice.Api.IdentityService.Migrator\Microservice.Api.IdentityService.Migrator.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.MovieService", "microservices\movie\Microservice.Migrator.MovieService\Microservice.Migrator.MovieService.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.MovieService.Migrator", "microservices\movie\Microservice.Api.MovieService.Migrator\Microservice.Api.MovieService.Migrator.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.PaymentService", "microservices\payment\Microservice.Migrator.PaymentService\Microservice.Migrator.PaymentService.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.PaymentService.Migrator", "microservices\payment\Microservice.Api.PaymentService.Migrator\Microservice.Api.PaymentService.Migrator.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.ReviewService", "microservices\review\Microservice.Migrator.ReviewService\Microservice.Migrator.ReviewService.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.ReviewService.Migrator", "microservices\review\Microservice.Api.ReviewService.Migrator\Microservice.Api.ReviewService.Migrator.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Migrator.TestService", "microservices\test\Microservice.Migrator.TestService\Microservice.Migrator.TestService.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.Api.TestService.Migrator", "microservices\test\Microservice.Api.TestService.Migrator\Microservice.Api.TestService.Migrator.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}"
 	ProjectSection(SolutionItems) = preProject
@@ -162,10 +162,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-989
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6830-4DA4-9C78-0EA193143CE7}"
 	ProjectSection(SolutionItems) = preProject
-		k8s\base\_infrastructure.yaml = k8s\base\_infrastructure.yaml
-		k8s\base\_ingress.yaml = k8s\base\_ingress.yaml
-		k8s\base\_metrics-components.yaml = k8s\base\_metrics-components.yaml
-		k8s\base\_resourse-limit.yaml = k8s\base\_resourse-limit.yaml
 		k8s\base\api-auth-service.yaml = k8s\base\api-auth-service.yaml
 		k8s\base\api-gateway-service.yaml = k8s\base\api-gateway-service.yaml
 		k8s\base\api-identity-service.yaml = k8s\base\api-identity-service.yaml
@@ -176,6 +172,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6
 		k8s\base\app-angular.yaml = k8s\base\app-angular.yaml
 		k8s\base\app-react.yaml = k8s\base\app-react.yaml
 		k8s\base\kustomization.yaml = k8s\base\kustomization.yaml
+		k8s\base\_infrastructure.yaml = k8s\base\_infrastructure.yaml
+		k8s\base\_ingress.yaml = k8s\base\_ingress.yaml
+		k8s\base\_metrics-components.yaml = k8s\base\_metrics-components.yaml
+		k8s\base\_resourse-limit.yaml = k8s\base\_resourse-limit.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "overlays", "overlays", "{01AACB30-15A1-4DB1-AD16-20FAA43F7F40}"
@@ -266,6 +266,14 @@ Global
 		{37FB9A07-80F9-4A1F-8489-880B11173546}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37FB9A07-80F9-4A1F-8489-880B11173546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37FB9A07-80F9-4A1F-8489-880B11173546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F7204B4-23B6-45EB-918A-DD869B1B6A98}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -278,14 +286,6 @@ Global
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8D3B9EA-83FB-449A-961D-3AA287B3381C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -464,10 +464,10 @@ Global
 		{A61682EC-D662-44E8-B484-D4A915ADEC44} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{202A89BC-8C87-4657-9ECD-A6CC932D8250} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 		{37FB9A07-80F9-4A1F-8489-880B11173546} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
-		{6F7204B4-23B6-45EB-918A-DD869B1B6A98} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
-		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
 		{EA4A79D3-5B63-4258-9315-362DD8AD2DBB} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
 		{D8D3B9EA-83FB-449A-961D-3AA287B3381C} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
+		{6F7204B4-23B6-45EB-918A-DD869B1B6A98} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
+		{D7867A0F-D4C8-4648-B5A6-CDD4006AF9AE} = {013B1BFA-086A-4A03-A852-609A270BE9D5}
 		{BFCA81BE-9F5A-4C96-92BA-1E210967F1C9} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{E9B81C44-4574-4099-9FA3-832838580F76} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{32433017-2EB7-4ED6-A085-E6A15EB3D9E0} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}

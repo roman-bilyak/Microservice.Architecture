@@ -40,19 +40,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: migrator-test-service
+  name: api-test-service-migrator
 spec:
   selector:
     matchLabels:
-      app: migrator-test-service
+      app: api-test-service-migrator
   template:
     metadata:
       labels:
-        app: migrator-test-service
+        app: api-test-service-migrator
     spec:
       containers:
-        - name: migrator-test-service
-          image: "migrator-test-service"
+        - name: api-test-service-migrator
+          image: "api-test-service-migrator"
           imagePullPolicy: IfNotPresent
           env:
           - name: APP_ENVIRONMENT

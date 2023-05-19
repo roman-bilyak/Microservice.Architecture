@@ -5,7 +5,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Migrator", ""))</RootNamespace>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Api", "").Replace(".Migrator", ""))</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
   </PropertyGroup>
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microservice.Infrastructure.PaymentService\Microservice.Infrastructure.PaymentService.csproj" />
+    <ProjectReference Include="..\Microservice.Infrastructure.MovieService\Microservice.Infrastructure.MovieService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

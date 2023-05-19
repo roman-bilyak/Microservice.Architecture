@@ -38,19 +38,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: migrator-payment-service
+  name: api-payment-service-migrator
 spec:
   selector:
     matchLabels:
-      app: migrator-payment-service
+      app: api-payment-service-migrator
   template:
     metadata:
       labels:
-        app: migrator-payment-service
+        app: api-payment-service-migrator
     spec:
       containers:
-        - name: migrator-payment-service
-          image: "migrator-payment-service"
+        - name: api-payment-service-migrator
+          image: "api-payment-service-migrator"
           imagePullPolicy: IfNotPresent
           env:
           - name: APP_ENVIRONMENT

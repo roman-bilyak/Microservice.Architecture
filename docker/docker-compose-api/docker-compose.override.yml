@@ -61,7 +61,7 @@ services:
     ports:
       - 9201:443
 
-  migrator-identity-service:
+  api-identity-service-migrator:
     environment:
       - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
@@ -77,7 +77,7 @@ services:
     ports:
       - 9202:443
 
-  migrator-movie-service:
+  api-movie-service-migrator:
     environment:
       - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
@@ -93,7 +93,7 @@ services:
     ports:
       - 9203:443
 
-  migrator-payment-service:
+  api-payment-service-migrator:
     environment:
       - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
@@ -109,7 +109,7 @@ services:
     ports:
       - 9204:443
 
-  migrator-review-service:
+  api-review-service-migrator:
     environment:
       - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
       
@@ -126,6 +126,6 @@ services:
     ports:
       - 9205:443
 
-  migrator-test-service:
+  api-test-service-migrator:
     environment:
       - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;

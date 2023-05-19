@@ -38,19 +38,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: migrator-review-service
+  name: api-review-service-migrator
 spec:
   selector:
     matchLabels:
-      app: migrator-review-service
+      app: api-review-service-migrator
   template:
     metadata:
       labels:
-        app: migrator-review-service
+        app: api-review-service-migrator
     spec:
       containers:
-        - name: migrator-review-service
-          image: "migrator-review-service"
+        - name: api-review-service-migrator
+          image: "api-review-service-migrator"
           imagePullPolicy: IfNotPresent
           env:
           - name: APP_ENVIRONMENT
