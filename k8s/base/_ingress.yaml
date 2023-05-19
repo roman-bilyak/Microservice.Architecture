@@ -11,9 +11,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
@@ -24,20 +21,6 @@ spec:
     - host: localhost
       http:
         paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: app-angular
-              port:
-                name: http
-        - path: /react
-          pathType: Prefix
-          backend:
-            service:
-              name: app-react
-              port:
-                name: http
         - path: /auth
           pathType: Prefix
           backend:
@@ -49,6 +32,20 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: api-gateway
+              name: api-gateway-service
+              port:
+                name: http
+        - path: /app
+          pathType: Prefix
+          backend:
+            service:
+              name: app-react
+              port:
+                name: http
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: app-angular
               port:
                 name: http

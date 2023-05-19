@@ -20,7 +20,15 @@ spec:
           - name: ASPNETCORE_ENVIRONMENT
             value: Production
           - name: ASPNETCORE_URLS
-            value: http://0.0.0.0:80
+            value: http://+:80
+          - name: ConnectionStrings__IdentityServiceDbContext
+            value: Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+          - name: IdentityServer__IssuerUri
+            value: https://localhost/auth
+          - name: IdentityServer__Clients__0__RedirectUris__0
+            value: https://localhost/api/oauth2-redirect.html
+          - name: IdentityServer__Clients__0__AllowedCorsOrigins__0
+            value: https://localhost
           ports:
             - name: http
               containerPort: 80

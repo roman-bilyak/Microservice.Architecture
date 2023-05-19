@@ -20,10 +20,43 @@ spec:
           - name: ASPNETCORE_ENVIRONMENT
             value: Production
           - name: ASPNETCORE_URLS
-            value: http://0.0.0.0:80
+            value: http://+:80
+          - name: Authentication__JwtBearer__Authority
+            value: http://api-auth-service/auth
+          - name: Authentication__JwtBearer__ValidIssuer
+            value: https://localhost/auth
+          - name: Authentication__JwtBearer__RequireHttpsMetadata
+            value: "false"
+          - name: ConnectionStrings__IdentityServiceDbContext
+            value: Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+          - name: Swagger__Security__Flow__AuthorityUrl
+            value: https://localhost/auth
           ports:
             - name: http
               containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: migrator-identity-service
+spec:
+  selector:
+    matchLabels:
+      app: migrator-identity-service
+  template:
+    metadata:
+      labels:
+        app: migrator-identity-service
+    spec:
+      containers:
+        - name: migrator-identity-service
+          image: "migrator-identity-service"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: APP_ENVIRONMENT
+            value: Production
+          - name: ConnectionStrings__IdentityServiceDbContext
+            value: Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
 ---
 apiVersion: v1
 kind: Service

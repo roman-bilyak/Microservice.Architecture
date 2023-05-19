@@ -20,10 +20,43 @@ spec:
           - name: ASPNETCORE_ENVIRONMENT
             value: Production
           - name: ASPNETCORE_URLS
-            value: http://0.0.0.0:80
+            value: http://+:80
+          - name: Authentication__JwtBearer__Authority
+            value: http://api-auth-service/auth
+          - name: Authentication__JwtBearer__ValidIssuer
+            value: https://localhost/auth
+          - name: Authentication__JwtBearer__RequireHttpsMetadata
+            value: "false"
+          - name: ConnectionStrings__MovieServiceDbContext
+            value: Server=sqlserver,1433;Database=Microservice.DB.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+          - name: Swagger__Security__Flow__AuthorityUrl
+            value: https://localhost/auth
           ports:
             - name: http
               containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: migrator-movie-service
+spec:
+  selector:
+    matchLabels:
+      app: migrator-movie-service
+  template:
+    metadata:
+      labels:
+        app: migrator-movie-service
+    spec:
+      containers:
+        - name: migrator-movie-service
+          image: "migrator-movie-service"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: APP_ENVIRONMENT
+            value: Production
+          - name: ConnectionStrings__MovieServiceDbContext
+            value: Server=sqlserver,1433;Database=Microservice.DB.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
 ---
 apiVersion: v1
 kind: Service
