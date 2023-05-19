@@ -4,6 +4,7 @@ using Microservice.Core.Modularity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -11,7 +12,7 @@ namespace Microservice.AspNetCore;
 
 public sealed class AspNetCoreModule : StartupModule
 {
-    public override void ConfigureServices(IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
+    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
         base.ConfigureServices(services, configuration);
 
@@ -40,6 +41,10 @@ public sealed class AspNetCoreModule : StartupModule
     public override void PreConfigure(IServiceProvider serviceProvider)
     {
         base.PreConfigure(serviceProvider);
+        
+        string pathBase = serviceProvider.GetRequiredService<IConfiguration>().GetValue<string>("PathBase") ?? string.Empty;
+        IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
+        app.UsePathBase(pathBase);
 
         MvcOptions mvcOptions = serviceProvider.GetOptions<MvcOptions>();
         mvcOptions.Conventions.Add(serviceProvider.GetRequiredService<DynamicControllerConvention>());
