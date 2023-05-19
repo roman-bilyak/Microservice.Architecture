@@ -19,6 +19,7 @@ public sealed class AuthServiceApiModule : StartupModule
 
         services.AddIdentityServer(options =>
             {
+                options.IssuerUri = configuration.GetValue<string>("IdentityServer:IssuerUri");
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
