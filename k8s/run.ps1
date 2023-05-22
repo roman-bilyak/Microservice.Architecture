@@ -33,7 +33,7 @@ Add-Content $file '  - "../../base"'
 
 Add-Content $file 'images:'
 
-$images = @('api-auth-service', 'api-gateway','api-identity-service','api-movie-service','api-payment-service','api-review-service','api-test-service')
+$images = @('api-auth-service', 'api-gateway','api-identity-service','api-identity-service-migrator','api-movie-service','api-movie-service-migrator','api-payment-service','api-payment-service-migrator','api-review-service','api-review-service-migrator','api-test-service','api-test-service-migrator')
 Foreach ($image in $images)
 {
 	Add-Content $file ('  - name: ' + $image)

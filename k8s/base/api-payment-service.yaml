@@ -35,18 +35,12 @@ spec:
             - name: http
               containerPort: 80
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: api-payment-service-migrator
 spec:
-  selector:
-    matchLabels:
-      app: api-payment-service-migrator
   template:
-    metadata:
-      labels:
-        app: api-payment-service-migrator
     spec:
       containers:
         - name: api-payment-service-migrator
@@ -57,6 +51,7 @@ spec:
             value: Production
           - name: ConnectionStrings__PaymentServiceDbContext
             value: Server=sqlserver,1433;Database=Microservice.DB.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+      restartPolicy: Never
 ---
 apiVersion: v1
 kind: Service
