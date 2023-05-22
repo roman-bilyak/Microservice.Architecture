@@ -51,7 +51,7 @@ spec:
             value: Production
           - name: ConnectionStrings__PaymentServiceDbContext
             value: Server=sqlserver,1433;Database=Microservice.DB.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
-      restartPolicy: Never
+      restartPolicy: OnFailure
 ---
 apiVersion: v1
 kind: Service

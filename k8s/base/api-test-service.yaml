@@ -53,7 +53,7 @@ spec:
             value: Production
           - name: ConnectionStrings__TestServiceDbContext
             value: Server=sqlserver,1433;Database=Microservice.DB.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
-      restartPolicy: Never
+      restartPolicy: OnFailure
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
