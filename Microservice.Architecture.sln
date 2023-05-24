@@ -157,7 +157,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{00F9D6E6-9899-4DE4-A8B5-FF228AD6B948}"
 	ProjectSection(SolutionItems) = preProject
 		k8s\build.ps1 = k8s\build.ps1
+		k8s\deploy.ps1 = k8s\deploy.ps1
 		k8s\run.ps1 = k8s\run.ps1
+		k8s\start.ps1 = k8s\start.ps1
+		k8s\stop.ps1 = k8s\stop.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{26F2A7A7-6830-4DA4-9C78-0EA193143CE7}"

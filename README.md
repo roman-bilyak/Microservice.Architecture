@@ -14,16 +14,8 @@ This demo shows a working sample of microservices architecture using ASP.NET Cor
 
 The fastest and easiest way to run this project is a [Kubernates Cluster](#kubernates-cluster). You just need to install [Docker Desktop](https://docs.docker.com/desktop/windows/install/) and [Minikube](https://minikube.sigs.k8s.io/docs/start/) tools. Instead of building sources you can use latest version of images from public Docker Hub registry ([romanbilyak](https://hub.docker.com/u/romanbilyak)). Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) script with specified registry parameter.
 
-PowerShell:
-
-```
-.\run.ps1 -registry 'romanbilyak'
-```
-
-CMD:
-
-```
-run -registry 'romanbilyak'
+```powershell
+.\run.ps1 -r 'romanbilyak'
 ```
 
 Other methods of running this project are described below:
@@ -41,19 +33,9 @@ Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) or [run.cmd]
 
 #### Examples
 
-PowerShell:
-
+```powershell
+.\run.ps1 -nodes 2 -cpus 4 -memory 4096 -r 'romanbilyak' -t 'v1.0'
 ```
-.\run.ps1 -nodes 2 -cpus 4 -memory 4096 -r 'localhost:5000' -t 'v1.0' -b
-```
-
-CMD:
-
-```
-run -nodes 2 -cpus 4 -memory 4096 -r 'localhost:5000' -t 'v1.0' -b
-```
-
-#### Supported params:
 
 | Param     | Short Form | Default | Description                              |
 | --------- | ---------- | ------- | ---------------------------------------- |
@@ -62,7 +44,6 @@ run -nodes 2 -cpus 4 -memory 4096 -r 'localhost:5000' -t 'v1.0' -b
 | -memory   | -m         | 2048    | Amount of RAM to allocate to Kubernetes. |
 | -registry | -r         | ''      | Name of docker images registry.          |
 | -tag      | -t         | ''      | Tag of images.                           |
-| -build    | -b         | false   | Flag to build images.                    |
 
 The script will:
 
@@ -80,7 +61,7 @@ The script will:
 
 5. Expose gateway service and start Kubernates Cluster dashboard.
 
-Go to http://localhost to view gateway methods.
+Go to [https://localhost](https://localhost) to browse application.
 
 ### Docker Compose
 
@@ -114,17 +95,17 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 ## Applications & Microservices
 
-|                      | [Visual Studio](#visual-studio)          | [Docker Compose](#docker-compose)        | [Kubernates Cluster](#kubernates-cluster)      |
-| -------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------------- |
-| app-angular          | [localhost:7001](https://localhost:7001) | [localhost:9001](https://localhost:9001) | [localhost](https://localhost) |
-| app-react            | [localhost:7002](https://localhost:7002) | [localhost:9002](https://localhost:9002) | [localhost/react](https://localhost/react)     |
-| api-auth-service     | [localhost:7100](https://localhost:7100) | [localhost:9100](https://localhost:9100) | [localhost/auth](https://localhost/auth)       |
-| api-gateway-service  | [localhost:7200](https://localhost:7200) | [localhost:9200](https://localhost:9200) | [localhost/api](https://localhost/api)         |
-| api-identity-service | [localhost:7201](https://localhost:7201) | [localhost:9201](https://localhost:9201) |                                                |
-| api-movie-service    | [localhost:7202](https://localhost:7202) | [localhost:9202](https://localhost:9202) |                                                |
-| api-review-service   | [localhost:7203](https://localhost:7203) | [localhost:9203](https://localhost:9203) |                                                |
-| api-payment-service  | [localhost:7204](https://localhost:7204) | [localhost:9204](https://localhost:9204) |                                                |
-| api-test-service     | [localhost:7205](https://localhost:7205) | [localhost:9205](https://localhost:9205) |                                                |
+|                      | [Visual Studio](#visual-studio)                  | [Docker Compose](#docker-compose)                | [Kubernates Cluster](#kubernates-cluster)        |
+| -------------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| app-angular          | [https://localhost:7001](https://localhost:7001) | [https://localhost:9001](https://localhost:9001) | [https://localhost](https://localhost)           |
+| app-react            | [https://localhost:7002](https://localhost:7002) | [https://localhost:9002](https://localhost:9002) | [https://localhost/app](https://localhost/app)   |
+| api-auth-service     | [https://localhost:7100](https://localhost:7100) | [https://localhost:9100](https://localhost:9100) | [https://localhost/auth](https://localhost/auth) |
+| api-gateway-service  | [https://localhost:7200](https://localhost:7200) | [https://localhost:9200](https://localhost:9200) | [https://localhost/api](https://localhost/api)   |
+| api-identity-service | [https://localhost:7201](https://localhost:7201) | [https://localhost:9201](https://localhost:9201) |                                                  |
+| api-movie-service    | [https://localhost:7202](https://localhost:7202) | [https://localhost:9202](https://localhost:9202) |                                                  |
+| api-review-service   | [https://localhost:7203](https://localhost:7203) | [https://localhost:9203](https://localhost:9203) |                                                  |
+| api-payment-service  | [https://localhost:7204](https://localhost:7204) | [https://localhost:9204](https://localhost:9204) |                                                  |
+| api-test-service     | [https://localhost:7205](https://localhost:7205) | [https://localhost:9205](https://localhost:9205) |                                                  |
 
 ## Project Structure
 
