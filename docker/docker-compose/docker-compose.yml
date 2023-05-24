@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app-angular:
-    image: ${DOCKER_REGISTRY-}app-angular:${TAG:-latest}
+    image: ${DOCKER_REGISTRY}${DOCKER_REGISTRY:+/}app-angular:${TAG:-latest}
     build:
       context: ../..
       dockerfile: applications/Microservice.App.Angular/docker/Dockerfile
@@ -11,7 +11,7 @@ services:
         condition: service_started
 
   app-react:
-    image: ${DOCKER_REGISTRY-}app-react:${TAG:-latest}
+    image: ${DOCKER_REGISTRY}${DOCKER_REGISTRY:+/}app-react:${TAG:-latest}
     build:
       context: ../..
       dockerfile: applications/Microservice.App.React/docker/Dockerfile

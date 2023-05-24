@@ -34,16 +34,16 @@ Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) or [run.cmd]
 #### Examples
 
 ```powershell
-.\run.ps1 -nodes 2 -cpus 4 -memory 4096 -r 'romanbilyak' -t 'v1.0'
+.\run.ps1 -nodes 2 -cpus 4 -memory 4096 -r 'romanbilyak' -t 'latest'
 ```
 
-| Param     | Short Form | Default | Description                              |
-| --------- | ---------- | ------- | ---------------------------------------- |
-| -nodes    | -n         | 1       | Number of nodes.                         |
-| -cpus     | -c         | 2       | Number of CPUs allocated to Kubernetes.  |
-| -memory   | -m         | 2048    | Amount of RAM to allocate to Kubernetes. |
-| -registry | -r         | ''      | Name of docker images registry.          |
-| -tag      | -t         | ''      | Tag of images.                           |
+| Param     | Short Form | Default  | Description                              |
+| --------- | ---------- | -------- | ---------------------------------------- |
+| -nodes    | -n         | 1        | Number of nodes.                         |
+| -cpus     | -c         | 2        | Number of CPUs allocated to Kubernetes.  |
+| -memory   | -m         | 2048     | Amount of RAM to allocate to Kubernetes. |
+| -registry | -r         | ''       | Name of docker images registry.          |
+| -tag      | -t         | 'latest' | Tag of images.                           |
 
 The script will:
 
