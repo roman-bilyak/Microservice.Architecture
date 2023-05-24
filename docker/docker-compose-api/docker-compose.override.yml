@@ -64,6 +64,8 @@ services:
   api-identity-service-migrator:
     environment:
       - ConnectionStrings__IdentityServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.IdentityService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
       
   api-movie-service:
     environment:
@@ -80,6 +82,8 @@ services:
   api-movie-service-migrator:
     environment:
       - ConnectionStrings__MovieServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.MovieService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
       
   api-payment-service:
     environment:
@@ -96,6 +100,8 @@ services:
   api-payment-service-migrator:
     environment:
       - ConnectionStrings__PaymentServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.PaymentService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
       
   api-review-service:
     environment:
@@ -112,6 +118,8 @@ services:
   api-review-service-migrator:
     environment:
       - ConnectionStrings__ReviewServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.ReviewService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
       
   api-test-service:
     environment:
@@ -129,3 +137,5 @@ services:
   api-test-service-migrator:
     environment:
       - ConnectionStrings__TestServiceDbContext=Server=sqlserver,1433;Database=Microservice.DB.TestService;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver

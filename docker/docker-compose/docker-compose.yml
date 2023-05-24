@@ -6,15 +6,9 @@ services:
     build:
       context: ../..
       dockerfile: applications/Microservice.App.Angular/docker/Dockerfile
-    depends_on:
-      api-gateway-service:
-        condition: service_started
 
   app-react:
     image: ${DOCKER_REGISTRY}${DOCKER_REGISTRY:+/}app-react:${TAG:-latest}
     build:
       context: ../..
       dockerfile: applications/Microservice.App.React/docker/Dockerfile
-    depends_on:
-      api-gateway-service:
-        condition: service_started
