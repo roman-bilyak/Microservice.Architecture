@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 services:
   angular-ui:
@@ -8,7 +8,8 @@ services:
       context: ../..
       dockerfile: applications/Microservice.AngularUI/docker/Dockerfile
     depends_on:
-      - gateway
+      gateway:
+        condition: service_started
 
   react-ui:
     container_name: "Microservice.ReactUI"
@@ -17,4 +18,5 @@ services:
       context: ../..
       dockerfile: applications/Microservice.ReactUI/docker/Dockerfile
     depends_on:
-      - gateway
+      gateway:
+        condition: service_started

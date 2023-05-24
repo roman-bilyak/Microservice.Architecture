@@ -144,6 +144,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityServic
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "deploy\docker-compose\docker-compose.dcproj", "{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.IdentityService.Migrator", "microservices\identity\Microservice.IdentityService.Migrator\Microservice.IdentityService.Migrator.csproj", "{871EC46C-F753-4829-BC48-810CA4E6955A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.MovieService.Migrator", "microservices\movie\Microservice.MovieService.Migrator\Microservice.MovieService.Migrator.csproj", "{F19E3500-F64D-4457-A929-1C37FB39CC59}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.PaymentService.Migrator", "microservices\payment\Microservice.PaymentService.Migrator\Microservice.PaymentService.Migrator.csproj", "{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.ReviewService.Migrator", "microservices\review\Microservice.ReviewService.Migrator\Microservice.ReviewService.Migrator.csproj", "{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservice.TestService.Migrator", "microservices\test\Microservice.TestService.Migrator\Microservice.TestService.Migrator.csproj", "{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -378,6 +388,26 @@ Global
 		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871EC46C-F753-4829-BC48-810CA4E6955A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871EC46C-F753-4829-BC48-810CA4E6955A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871EC46C-F753-4829-BC48-810CA4E6955A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871EC46C-F753-4829-BC48-810CA4E6955A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19E3500-F64D-4457-A929-1C37FB39CC59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19E3500-F64D-4457-A929-1C37FB39CC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19E3500-F64D-4457-A929-1C37FB39CC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19E3500-F64D-4457-A929-1C37FB39CC59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -444,6 +474,11 @@ Global
 		{2007B239-FF61-4297-A1A6-476322321BD7} = {B448F306-A893-42D0-9F4C-2D239C4C99F7}
 		{7F8BF764-B995-409F-8C53-65BC7BFD5C2F} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
 		{A47CB9C5-A04B-49C0-85AA-B989C6D84BED} = {0E6F3C16-2D1E-4FDC-9020-2F2034D22917}
+		{871EC46C-F753-4829-BC48-810CA4E6955A} = {F030A6DD-82A6-4F7E-AAA5-7BDC93C0502E}
+		{F19E3500-F64D-4457-A929-1C37FB39CC59} = {EB840A0F-A6F0-405C-AD95-74E8B555B7A0}
+		{DF6CCEFA-4F12-41FA-8E96-E6976D89AC41} = {99CE6AAF-5CC2-41A7-8808-2736CB07170A}
+		{481CE384-84E1-4EA7-A8EE-5FACAD4BBB23} = {F09C4AF3-9069-4DED-A26D-035511BA908E}
+		{E2501392-2F3C-4FDD-8B95-8C9059E5B4D7} = {086DE3B5-C2DE-48E1-B89E-A331DBCA944D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D9A0272-73E2-49BA-87C8-20881814B17B}

@@ -14,20 +14,7 @@ public sealed class PaymentServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<PaymentServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("PaymentServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(PaymentServiceDbContext)));
         });
-    }
-
-    public override void Configure(IServiceProvider serviceProvider)
-    {
-        base.Configure(serviceProvider);
-
-        using IServiceScope scope = serviceProvider.CreateScope();
-
-        PaymentServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<PaymentServiceDbContext>();
-        if (dbContext.Database.IsRelational())
-        {
-            dbContext.Database.Migrate();
-        }
     }
 }

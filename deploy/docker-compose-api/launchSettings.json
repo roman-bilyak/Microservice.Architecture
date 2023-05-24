@@ -9,14 +9,19 @@
       "serviceActions": {
         "gateway": "StartDebugging",
         "identity-server": "StartDebugging",
-        "identity-service": "StartDebugging",
-        "movie-service": "StartDebugging",
-        "payment-service": "StartDebugging",
-        "review-service": "StartDebugging",
-        "test-service": "StartDebugging",
+        "identity-service-api": "StartDebugging",
+        "identity-service-migrator": "StartWithoutDebugging",
+        "movie-service-api": "StartDebugging",
+        "movie-service-migrator": "StartWithoutDebugging",
+        "payment-service-api": "StartDebugging",
+        "payment-service-migrator": "StartWithoutDebugging",
+        "review-service-api": "StartDebugging",
+        "review-service-migrator": "StartWithoutDebugging",
+        "test-service-api": "StartDebugging",
+        "test-service-migrator": "StartWithoutDebugging",
         "redis": "StartWithoutDebugging",
         "sqlserver": "StartWithoutDebugging",
-        "rabbitmq": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging"
       }
     }
   }

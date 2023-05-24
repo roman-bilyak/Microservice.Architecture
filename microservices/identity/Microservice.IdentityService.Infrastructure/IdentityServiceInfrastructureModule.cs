@@ -16,7 +16,7 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<IdentityServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("IdentityServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(IdentityServiceDbContext)));
         });
 
         services.AddTransient<IRepository<User>, BaseRepository<IdentityServiceDbContext, User>>();
@@ -28,23 +28,5 @@ public sealed class IdentityServiceInfrastructureModule : StartupModule
         services.AddTransient<IRepository<Role, Guid>, BaseRepository<IdentityServiceDbContext, Role, Guid>>();
         services.AddTransient<IReadRepository<Role>, BaseRepository<IdentityServiceDbContext, Role>>();
         services.AddTransient<IReadRepository<Role, Guid>, BaseRepository<IdentityServiceDbContext, Role, Guid>>();
-
-        services.AddTransient<UserRoleDataSeeder>();
-    }
-
-    public override void PostConfigure(IServiceProvider serviceProvider)
-    {
-        base.PostConfigure(serviceProvider);
-
-        using IServiceScope scope = serviceProvider.CreateScope();
-
-        IdentityServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<IdentityServiceDbContext>();
-        if (dbContext.Database.IsRelational())
-        {
-            dbContext.Database.Migrate();
-        }
-
-        IDataSeeder dataSeeder = scope.ServiceProvider.GetRequiredService<UserRoleDataSeeder>();
-        dataSeeder.SeedAsync(default).Wait();
     }
 }

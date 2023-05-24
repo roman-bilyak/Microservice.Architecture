@@ -16,25 +16,12 @@ public sealed class ReviewServiceInfrastructureModule : StartupModule
 
         services.AddDbContext<ReviewServiceDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("ReviewServiceDb"));
+            options.UseSqlServer(configuration.GetConnectionString(nameof(ReviewServiceDbContext)));
         });
 
         services.AddTransient<IRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();
         services.AddTransient<IRepository<Review, Guid>, BaseRepository<ReviewServiceDbContext, Review, Guid>>();
         services.AddTransient<IReadRepository<Review>, BaseRepository<ReviewServiceDbContext, Review>>();
         services.AddTransient<IReadRepository<Review, Guid>, BaseRepository<ReviewServiceDbContext, Review, Guid>>();
-    }
-
-    public override void Configure(IServiceProvider serviceProvider)
-    {
-        base.Configure(serviceProvider);
-
-        using IServiceScope scope = serviceProvider.CreateScope();
-
-        ReviewServiceDbContext dbContext = scope.ServiceProvider.GetRequiredService<ReviewServiceDbContext>();
-        if (dbContext.Database.IsRelational())
-        {
-            dbContext.Database.Migrate();
-        }
     }
 }
