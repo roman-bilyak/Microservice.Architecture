@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "api-gateway-service",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "serviceActions": {
+        "api-auth-service": "StartDebugging",
+        "api-gateway-service": "StartDebugging",
+        "api-identity-service": "StartDebugging",
+        "api-identity-service-migrator": "StartWithoutDebugging",
+        "api-movie-service": "StartDebugging",
+        "api-movie-service-migrator": "StartWithoutDebugging",
+        "api-payment-service": "StartDebugging",
+        "api-payment-service-migrator": "StartWithoutDebugging",
+        "api-review-service": "StartDebugging",
+        "api-review-service-migrator": "StartWithoutDebugging",
+        "api-test-service": "StartDebugging",
+        "api-test-service-migrator": "StartWithoutDebugging",
+        "redis": "StartWithoutDebugging",
+        "sqlserver": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging"
+      }
+    }
+  }
+}

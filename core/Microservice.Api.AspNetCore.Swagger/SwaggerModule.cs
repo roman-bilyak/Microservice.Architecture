@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace Microservice.AspNetCore.Swagger;
@@ -66,12 +67,16 @@ public class SwaggerModule : StartupModule
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
 
         SwaggerOptions swaggerOptions = serviceProvider.GetOptions<SwaggerOptions>();
-        app.UseSwagger();
+        app.UseSwagger(options =>
+        {
+            options.RouteTemplate = "{documentName}/swagger.json";
+        });
+
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", swaggerOptions.Version);
-            options.EnableTryItOutByDefault();
             options.RoutePrefix = string.Empty;
+            options.SwaggerEndpoint("v1/swagger.json", swaggerOptions.Version);
+            options.EnableTryItOutByDefault();
             options.DefaultModelsExpandDepth(-1);
             options.DisplayRequestDuration();
 

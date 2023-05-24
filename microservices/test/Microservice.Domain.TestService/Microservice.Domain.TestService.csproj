@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Domain", ""))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\core\Microservice.Domain\Microservice.Domain.csproj" />
+    <ProjectReference Include="..\Microservice.Domain.TestService.Shared\Microservice.Domain.TestService.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

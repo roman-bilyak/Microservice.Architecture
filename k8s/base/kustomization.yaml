@@ -1,0 +1,17 @@
+resources:
+- _infrastructure.yaml
+- _metrics-components.yaml
+#- _resource-limit.yaml
+
+- api-auth-service.yaml
+- api-gateway-service.yaml
+- api-identity-service.yaml
+- api-movie-service.yaml
+- api-payment-service.yaml
+- api-review-service.yaml
+- api-test-service.yaml
+
+- app-angular.yaml
+- app-react.yaml
+
+- _ingress.yaml

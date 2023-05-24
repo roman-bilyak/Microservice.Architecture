@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Microservice.MovieService.Migrator": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

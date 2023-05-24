@@ -93,7 +93,7 @@ public class DynamicControllerConvention : IApplicationModelConvention
 
         foreach (var selector in controller.Selectors)
         {
-            selector.AttributeRouteModel ??= new AttributeRouteModel(new RouteAttribute("api"));
+            selector.AttributeRouteModel ??= new AttributeRouteModel(new RouteAttribute(""));
         }
     }
 
