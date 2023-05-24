@@ -4,20 +4,10 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "gateway",
+      "composeLaunchServiceName": "angular-ui",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
-        "gateway": "StartDebugging",
-        "identity-server": "StartDebugging",
-        "identity-service": "StartDebugging",
-        "movie-service": "StartDebugging",
-        "payment-service": "StartDebugging",
-        "review-service": "StartDebugging",
-        "test-service": "StartDebugging",
-        "redis": "StartWithoutDebugging",
-        "sqlserver": "StartWithoutDebugging",
         "angular-ui": "StartWithoutDebugging",
-        "rabbitmq": "StartWithoutDebugging",
         "react-ui": "StartWithoutDebugging"
       }
     }

@@ -13,7 +13,7 @@ If ([string]::IsNullOrEmpty($registry))
 	& minikube -p minikube docker-env | Invoke-Expression
 }
 
-docker-compose -f docker-compose/docker-compose.yml -f docker-compose/docker-compose.override.yml build
+docker-compose -f docker-compose/docker-compose.yml -f docker-compose/docker-compose.override.yml -f docker-compose-api/docker-compose.yml -f docker-compose-api/docker-compose.override.yml build
 
 If ([string]::IsNullOrEmpty($registry))
 {
@@ -22,5 +22,5 @@ If ([string]::IsNullOrEmpty($registry))
 Else
 {
 	echo '📌 Push images to registry'
-	docker-compose -f docker-compose/docker-compose.yml -f docker-compose/docker-compose.override.yml push
+	docker-compose -f docker-compose/docker-compose.yml -f docker-compose/docker-compose.override.yml -f docker-compose-api/docker-compose.yml -f docker-compose-api/docker-compose.override.yml push
 }
