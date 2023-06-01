@@ -12,7 +12,7 @@ This demo shows a working sample of microservices architecture using ASP.NET Cor
 
 ## Quick Start
 
-The fastest and easiest way to run this project is a [Kubernates Cluster](#kubernates-cluster). You just need to install [Docker Desktop](https://docs.docker.com/desktop/windows/install/) and [Minikube](https://minikube.sigs.k8s.io/docs/start/) tools. Instead of building sources you can use latest version of images from public Docker Hub registry ([romanbilyak](https://hub.docker.com/u/romanbilyak)). Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) script with specified registry parameter.
+The fastest and easiest way to run this project is a [Kubernates Cluster](#kubernates-cluster). You just need to install [Docker Desktop](https://docs.docker.com/desktop/windows/install/) and [Minikube](https://minikube.sigs.k8s.io/docs/start/) tools. Instead of building sources you can use latest version of images from public Docker Hub registry ([romanbilyak](https://hub.docker.com/u/romanbilyak)). Go to the folder [k8s](k8s) and run PowerShell script [run.ps1](k8s/run.ps1) with specified registry parameter.
 
 ```powershell
 .\run.ps1 -r 'romanbilyak'
@@ -29,7 +29,7 @@ Prerequisites:
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [Kubernates](https://kubernetes.io/releases/download/)
 
-Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) or [run.cmd](deploy/run.cmd) script.
+Go to the folder [k8s](k8s) and run PowerShell script [run.ps1](k8s/run.ps1).
 
 #### Examples
 
@@ -37,29 +37,21 @@ Go to the folder [deploy](deploy) and run [run.ps1](deploy/run.ps1) or [run.cmd]
 .\run.ps1 -nodes 2 -cpus 4 -memory 4096 -r 'romanbilyak' -t 'latest'
 ```
 
-| Param     | Short Form | Default  | Description                              |
-| --------- | ---------- | -------- | ---------------------------------------- |
-| -nodes    | -n         | 1        | Number of nodes.                         |
-| -cpus     | -c         | 2        | Number of CPUs allocated to Kubernetes.  |
-| -memory   | -m         | 2048     | Amount of RAM to allocate to Kubernetes. |
-| -registry | -r         | ''       | Name of docker images registry.          |
-| -tag      | -t         | 'latest' | Tag of images.                           |
+| Param     | Short Form | Default | Description                              |
+| --------- | ---------- | ------- | ---------------------------------------- |
+| -nodes    | -n         | 1       | Number of nodes.                         |
+| -cpus     | -c         | 2       | Number of CPUs allocated to Kubernetes.  |
+| -memory   | -m         | 2048    | Amount of RAM to allocate to Kubernetes. |
+| -registry | -r         | ''      | Name of docker images registry.          |
+| -tag      | -t         | ''      | Tag of images.                           |
 
 The script will:
 
 1. Start Kubernates Cluster localy using Minikube.
 
-2. Build microservices images.
+2. Deploy services from specified images registry to local Kubernates Cluster.
 
-3. Push images to specified registry.
-   
-   > In a case when registry is not specified images will be pushed into Docker Deamon of cluster.
-   
-   > In a case when registry is set to 'localhost:5000' local registry inside cluster will be created.
-
-4. Deploy services to local Kubernates Cluster.
-
-5. Expose gateway service and start Kubernates Cluster dashboard.
+3. Expose applications and api gateway services.
 
 Go to [https://localhost](https://localhost) to browse application.
 
@@ -70,15 +62,21 @@ Prerequisites:
 - [.Net 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) (Included in [Visual Studio Community 2022 v17.4.4](https://visualstudio.microsoft.com/vs/community/))
 
 - [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
-1. Go to the folder [deploy\docker-compose-infrastructure](deploy/docker-compose-infrastructure) and run the following docker-compose command in CMD or PowerShell:
+1. Go to the folder [docker\docker-compose-infrastructure](docker/docker-compose-infrastructure) and run the following docker-compose command in PowerShell:
    
-   ```
+   ```powershell
    docker-compose -f docker-compose.yml -f docker-compose.override.yml up
    ```
 
-2. Go to the folder [deploy\docker-compose](deploy/docker-compose) and run the following docker-compose command in CMD or PowerShell:
+2. Go to the folder [docker\docker-compose-api](docker/docker-compose-api) and run the following docker-compose command in PowerShell:
    
+   ```powershell
+   docker-compose -f docker-compose.yml -f docker-compose.override.yml up
    ```
+
+3. Go to the folder [docker\docker-compose](docker/docker-compose) and run the following docker-compose command in PowerShell:
+   
+   ```powershell
    docker-compose -f docker-compose.yml -f docker-compose.override.yml up
    ```
 
@@ -113,7 +111,9 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 - **core** - 
 
-- **deploy** -
+- **docker** -
+
+- **k8s** -
 
 - **microservices** -
 
