@@ -51,6 +51,10 @@ Foreach ($image in $images)
     }
 }
 
+# wait until ingress pod ready
+kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=180s
+
+# apply deployment configurations
 kubectl apply -k $directory
 
 Remove-Item -Path $directory -Recurse -Force
