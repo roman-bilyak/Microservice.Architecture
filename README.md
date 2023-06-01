@@ -17,8 +17,9 @@ The fastest and easiest way to run this project is a [Kubernates Cluster](#kuber
 ```powershell
 .\run.ps1 -r 'romanbilyak'
 ```
+Go to https://localhost to browse application.
 
-Other methods of running this project are described below:
+*Other methods of running this project are described below:*
 
 ### Kubernates Cluster
 
