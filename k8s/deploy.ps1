@@ -4,7 +4,8 @@
 )
 
 echo '📌 Deploy to minikube'
-$directory = '.\overlays\temp'
+
+$directory = '.\overlays\' + [guid]::NewGuid().ToString()
 $file = $directory + '\kustomization.yaml'
 
 New-Item $directory -ItemType Directory -Force | Out-Null
@@ -15,7 +16,8 @@ Add-Content $file '  - "../../base"'
 
 Add-Content $file 'images:'
 
-$images = @(
+$images = 
+@(
     'app-angular', 
     'app-react',
  
@@ -51,7 +53,7 @@ Foreach ($image in $images)
     }
 }
 
-# wait until ingress pod ready
+# wait until ingress pod is ready
 kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=180s
 
 # apply deployment configurations
