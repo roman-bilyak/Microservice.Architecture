@@ -1,21 +1,21 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { merge } from "rxjs";
 import { tap } from 'rxjs/operators';
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { MoviesAPIService } from '../api-services/api-services';
-import { MoviesDataSource } from './movies.datasource';
-
+import { MoviesAPIService } from '../../api-services/api-services';
+import { MovieListDataSource } from './movie-list.datasource';
 
 @Component({
-  selector: 'movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.css']
 })
-export class MoviesComponent implements OnInit, AfterViewInit {
+export class MovieListComponent implements OnInit, AfterViewInit {
+
   displayedColumns = ["title"];
 
-  dataSource: MoviesDataSource;
+  dataSource: MovieListDataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -26,7 +26,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MoviesDataSource(this.moviesAPIService);
+    this.dataSource = new MovieListDataSource(this.moviesAPIService);
     this.dataSource.load(0, 5);
   }
 

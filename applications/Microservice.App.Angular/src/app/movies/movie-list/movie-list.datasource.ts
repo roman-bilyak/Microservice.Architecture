@@ -1,9 +1,9 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { Observable, BehaviorSubject, of } from "rxjs";
 import { catchError, finalize } from "rxjs/operators";
-import { MovieDto, MovieListDto, MoviesAPIService } from "../api-services/api-services";
+import { MovieDto, MovieListDto, MoviesAPIService } from "../../api-services/api-services";
 
-export class MoviesDataSource implements DataSource<MovieDto> {
+export class MovieListDataSource implements DataSource<MovieDto> {
 
   private itemsSubject = new BehaviorSubject<MovieDto[]>([]);
 
