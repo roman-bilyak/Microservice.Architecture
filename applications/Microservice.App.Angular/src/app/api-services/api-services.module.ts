@@ -7,7 +7,7 @@ import * as APIServices from './api-services';
 
 @NgModule({
   providers: [
-    { provide: APIServices.API_BASE_URL, useValue: environment.baseUrl },
+    { provide: APIServices.API_BASE_URL, useValue: environment.apiUrl },
     { provide: HTTP_INTERCEPTORS, useClass: JwtBearerInterceptor, multi: true },
     APIServices.MoviesAPIService,
     APIServices.TestsAPIService,
