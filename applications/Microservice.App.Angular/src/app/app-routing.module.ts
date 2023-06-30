@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'movies', pathMatch: 'full' },
-  { path: 'movies', loadChildren: () => import('./movies/movie-routing.module').then(m => m.MovieRoutingModule) },
+  { path: 'signin', loadChildren: () => import('./signin/signin.module').then(m => m.SigninModule) },
+  { path: 'movies', loadChildren: () => import('./movies/movie.module').then(m => m.MovieModule) },
 ];
 
 @NgModule({
