@@ -9,18 +9,15 @@ export class AuthGuardService implements CanActivate {
 
   constructor(private authService: AuthService) { }
 
-  canActivate(): Promise<boolean> {
-    return this.authService.isAuthenticated().then((isAuthenticated) => {
-      if (isAuthenticated) {
+  async canActivate(): Promise<boolean> {
+    try {
+      if (!await this.authService.isAuthenticated()) {
+        await this.authService.login();
         return true;
       }
-      return this.authService.login().then(() => {
-        return true;
-      }).catch(() => {
-        return false;
-      });
-    }).catch(() => {
+      return true;
+    } catch {
       return false;
-    });
+    }
   }
 }
