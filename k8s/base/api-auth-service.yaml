@@ -26,6 +26,8 @@ spec:
           - name: IdentityServer__IssuerUri
             value: https://localhost/auth
           - name: IdentityServer__Clients__0__RedirectUris__0
+            value: https://localhost/signin
+          - name: IdentityServer__Clients__0__RedirectUris__1
             value: https://localhost/api/oauth2-redirect.html
           - name: IdentityServer__Clients__0__AllowedCorsOrigins__0
             value: https://localhost
