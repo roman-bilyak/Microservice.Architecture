@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
 
-  baseUrl: "https://localhost",
+  baseUrl: 'ENVIRONMENT_BASE_URL',
 
-  authority: "https://localhost/auth",
-  clientId: "api_client",
-  clientScope: "api-identity-service api-movie-service api-payment-service api-review-service api-test-service",
+  authUrl: 'ENVIRONMENT_AUTH_URL',
+  authClientId: "api_client",
+  authClientScope: "api-identity-service api-movie-service api-payment-service api-review-service api-test-service",
 
-  apiUrl: 'https://localhost/api'
+  apiUrl: 'ENVIRONMENT_API_URL'
 };

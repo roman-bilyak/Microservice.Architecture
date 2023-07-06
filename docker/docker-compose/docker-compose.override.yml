@@ -2,6 +2,10 @@ version: '3.8'
 
 services:
   app-angular:
+    environment:
+      - BASE_URL=http://localhost:9001
+      - AUTH_URL=https://localhost:9100/auth
+      - API_URL=https://localhost:9200
     ports:
       - 9001:80
 

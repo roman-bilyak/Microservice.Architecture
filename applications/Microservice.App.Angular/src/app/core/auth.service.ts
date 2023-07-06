@@ -11,13 +11,13 @@ export class AuthService {
 
   constructor() {
     const settings = {
-      authority: environment.authority,
-      client_id: environment.clientId,
+      authority: environment.authUrl,
+      client_id: environment.authClientId,
       redirect_uri: `${environment.baseUrl}/signin`,
       silent_redirect_uri: `${environment.baseUrl}/silent-callback.html`,
       post_logout_redirect_uri: `${environment.baseUrl}`,
       response_type: 'code',
-      scope: environment.clientScope
+      scope: environment.authClientScope
     };
     this.userManager = new UserManager(settings);
   }
