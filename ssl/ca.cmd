@@ -1,0 +1,1 @@
+openssl req -x509 -keyout ca.key -out ca.crt -config ca.conf -days 365

@@ -21,6 +21,16 @@ Go to https://localhost to browse application.
 
 *Other methods of running this project are described below:*
 
+### SSL certificate
+
+SSL certificate for localhost domain signed by custom self-signed root certificate. To avoid browser warnings please install it ([ca.crt](ssl/ca.crt)) to the list of trusted root certification authorities.
+
+### User
+
+Name: **bob**
+
+Password: **bob**
+
 ### Kubernates Cluster
 
 Prerequisites:

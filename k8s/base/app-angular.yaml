@@ -16,6 +16,13 @@ spec:
         - name: app-angular
           image: "app-angular"
           imagePullPolicy: IfNotPresent
+          env:
+          - name: BASE_URL
+            value: https://localhost
+          - name: AUTH_URL
+            value: https://localhost/auth
+          - name: API_URL
+            value: https://localhost/api
           ports:
             - name: http
               containerPort: 80
