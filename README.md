@@ -23,12 +23,13 @@ Go to https://localhost to browse application.
 
 ### SSL certificate
 
-SSL certificate for localhost domain signed by custom root self-signed certificate. To avoid browser warnings please install certificate [ca.crt](ssl/ca.crt) to "Trusted Root Certification Authorities".
+SSL certificate for localhost domain signed by custom self-signed root certificate. To avoid browser warnings please install it ([ca.crt](ssl/ca.crt)) to the list of trusted root certification authorities.
 
-### Authentification
+### User
 
-Name: bob
-Password: bob
+Name: **bob**
+
+Password: **bob**
 
 ### Kubernates Cluster
 
