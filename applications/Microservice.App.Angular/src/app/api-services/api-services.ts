@@ -29,12 +29,13 @@ export class MoviesAPIService {
     }
 
     /**
-     * @param pageIndex (optional) 
-     * @param pageSize (optional) 
+     * Retrieves a paginated list of movies based on the provided page index and page size.
+     * @param pageIndex (optional) The index of the page to retrieve.
+     * @param pageSize (optional) The size of the page to retrieve.
      * @return Success
      */
     getMovieList(pageIndex: number | undefined, pageSize: number | undefined): Observable<MovieListDto> {
-        let url_ = this.baseUrl + "/api/MS/Movies?";
+        let url_ = this.baseUrl + "/MS/Movies?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
         else if (pageIndex !== undefined)
@@ -90,11 +91,12 @@ export class MoviesAPIService {
     }
 
     /**
+     * Creates a new movie based on the provided movie data.
      * @param body (optional) 
      * @return Success
      */
     createMovie(body: CreateMovieDto | undefined): Observable<MovieDto> {
-        let url_ = this.baseUrl + "/api/MS/Movies";
+        let url_ = this.baseUrl + "/MS/Movies";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -146,10 +148,12 @@ export class MoviesAPIService {
     }
 
     /**
+     * Retrieves the details of a movie based on the provided movie id.
+     * @param movieId The id of the movie to retrieve.
      * @return Success
      */
     getMovie(movieId: string): Observable<MovieDto> {
-        let url_ = this.baseUrl + "/api/MS/Movies/{movieId}";
+        let url_ = this.baseUrl + "/MS/Movies/{movieId}";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -200,11 +204,13 @@ export class MoviesAPIService {
     }
 
     /**
+     * Updates the details of an existing movie based on the provided movie id and movie data.
+     * @param movieId The id of the movie to retrieve.
      * @param body (optional) 
      * @return Success
      */
     updateMovie(movieId: string, body: UpdateMovieDto | undefined): Observable<MovieDto> {
-        let url_ = this.baseUrl + "/api/MS/Movies/{movieId}";
+        let url_ = this.baseUrl + "/MS/Movies/{movieId}";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -259,10 +265,12 @@ export class MoviesAPIService {
     }
 
     /**
+     * Deletes an existing movie based on the provided movie id.
+     * @param movieId The id of the movie to retrieve.
      * @return Success
      */
     deleteMovie(movieId: string): Observable<void> {
-        let url_ = this.baseUrl + "/api/MS/Movies/{movieId}";
+        let url_ = this.baseUrl + "/MS/Movies/{movieId}";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -309,12 +317,14 @@ export class MoviesAPIService {
     }
 
     /**
-     * @param pageIndex (optional) 
-     * @param pageSize (optional) 
+     * Retrieves a paginated list of reviews for a movie based on the provided movie id, page index, and page size.
+     * @param movieId The id of the movie for which to retrieve reviews.
+     * @param pageIndex (optional) The index of the page to retrieve.
+     * @param pageSize (optional) The size of the page to retrieve.
      * @return Success
      */
     getMovieReviewList(movieId: string, pageIndex: number | undefined, pageSize: number | undefined): Observable<MovieReviewListDto> {
-        let url_ = this.baseUrl + "/api/RS/Movies/{movieId}/Reviews?";
+        let url_ = this.baseUrl + "/RS/Movies/{movieId}/Reviews?";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -373,11 +383,13 @@ export class MoviesAPIService {
     }
 
     /**
+     * Creates a new review for a movie based on the provided movie id and review data.
+     * @param movieId The id of the movie for which to retrieve reviews.
      * @param body (optional) 
      * @return Success
      */
     createMovieReview(movieId: string, body: CreateReviewDto | undefined): Observable<ReviewDto> {
-        let url_ = this.baseUrl + "/api/RS/Movies/{movieId}/Reviews";
+        let url_ = this.baseUrl + "/RS/Movies/{movieId}/Reviews";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -432,10 +444,13 @@ export class MoviesAPIService {
     }
 
     /**
+     * Retrieves the details of a review for a movie based on the provided movie id and review id.
+     * @param movieId The id of the movie for which to retrieve reviews.
+     * @param reviewId The id of the review to retrieve.
      * @return Success
      */
     getMovieReview(movieId: string, reviewId: string): Observable<ReviewDto> {
-        let url_ = this.baseUrl + "/api/RS/Movies/{movieId}/Reviews/{reviewId}";
+        let url_ = this.baseUrl + "/RS/Movies/{movieId}/Reviews/{reviewId}";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -489,10 +504,78 @@ export class MoviesAPIService {
     }
 
     /**
+     * Updates the details of an existing review for a movie based on the provided movie id, review id, and review data.
+     * @param movieId The id of the movie for which to retrieve reviews.
+     * @param reviewId The id of the review to retrieve.
+     * @param body (optional) 
+     * @return Success
+     */
+    updateMovieReview(movieId: string, reviewId: string, body: UpdateReviewDto | undefined): Observable<ReviewDto> {
+        let url_ = this.baseUrl + "/RS/Movies/{movieId}/Reviews/{reviewId}";
+        if (movieId === undefined || movieId === null)
+            throw new Error("The parameter 'movieId' must be defined.");
+        url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
+        if (reviewId === undefined || reviewId === null)
+            throw new Error("The parameter 'reviewId' must be defined.");
+        url_ = url_.replace("{reviewId}", encodeURIComponent("" + reviewId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateMovieReview(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateMovieReview(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ReviewDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ReviewDto>;
+        }));
+    }
+
+    protected processUpdateMovieReview(response: HttpResponseBase): Observable<ReviewDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ReviewDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<ReviewDto>(null as any);
+    }
+
+    /**
+     * Deletes an existing review for a movie based on the provided movie id and review id.
+     * @param movieId The id of the movie for which to retrieve reviews.
+     * @param reviewId The id of the review to retrieve.
      * @return Success
      */
     deleteMovieReview(movieId: string, reviewId: string): Observable<void> {
-        let url_ = this.baseUrl + "/api/RS/Movies/{movieId}/Reviews/{reviewId}";
+        let url_ = this.baseUrl + "/RS/Movies/{movieId}/Reviews/{reviewId}";
         if (movieId === undefined || movieId === null)
             throw new Error("The parameter 'movieId' must be defined.");
         url_ = url_.replace("{movieId}", encodeURIComponent("" + movieId));
@@ -554,12 +637,13 @@ export class RolesAPIService {
     }
 
     /**
-     * @param pageIndex (optional) 
-     * @param pageSize (optional) 
+     * Retrieves a paginated list of roles based on the provided page index and page size.
+     * @param pageIndex (optional) The index of the page to retrieve.
+     * @param pageSize (optional) The size of the page to retrieve.
      * @return Success
      */
     getRoleList(pageIndex: number | undefined, pageSize: number | undefined): Observable<RoleListDto> {
-        let url_ = this.baseUrl + "/api/IS/Roles?";
+        let url_ = this.baseUrl + "/IS/Roles?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
         else if (pageIndex !== undefined)
@@ -615,11 +699,12 @@ export class RolesAPIService {
     }
 
     /**
+     * Creates a new role based on the provided role data.
      * @param body (optional) 
      * @return Success
      */
     createRole(body: CreateRoleDto | undefined): Observable<RoleDto> {
-        let url_ = this.baseUrl + "/api/IS/Roles";
+        let url_ = this.baseUrl + "/IS/Roles";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -671,10 +756,12 @@ export class RolesAPIService {
     }
 
     /**
+     * Retrieves the details of a role based on the provided role id.
+     * @param roleId The id of the role to retrieve.
      * @return Success
      */
     getRole(roleId: string): Observable<RoleDto> {
-        let url_ = this.baseUrl + "/api/IS/Roles/{roleId}";
+        let url_ = this.baseUrl + "/IS/Roles/{roleId}";
         if (roleId === undefined || roleId === null)
             throw new Error("The parameter 'roleId' must be defined.");
         url_ = url_.replace("{roleId}", encodeURIComponent("" + roleId));
@@ -725,11 +812,13 @@ export class RolesAPIService {
     }
 
     /**
+     * Updates the details of an existing role based on the provided role id and role data.
+     * @param roleId The id of the role to retrieve.
      * @param body (optional) 
      * @return Success
      */
     updateRole(roleId: string, body: UpdateRoleDto | undefined): Observable<RoleDto> {
-        let url_ = this.baseUrl + "/api/IS/Roles/{roleId}";
+        let url_ = this.baseUrl + "/IS/Roles/{roleId}";
         if (roleId === undefined || roleId === null)
             throw new Error("The parameter 'roleId' must be defined.");
         url_ = url_.replace("{roleId}", encodeURIComponent("" + roleId));
@@ -784,10 +873,12 @@ export class RolesAPIService {
     }
 
     /**
+     * Deletes an existing role based on the provided role id.
+     * @param roleId The id of the role to retrieve.
      * @return Success
      */
     deleteRole(roleId: string): Observable<void> {
-        let url_ = this.baseUrl + "/api/IS/Roles/{roleId}";
+        let url_ = this.baseUrl + "/IS/Roles/{roleId}";
         if (roleId === undefined || roleId === null)
             throw new Error("The parameter 'roleId' must be defined.");
         url_ = url_.replace("{roleId}", encodeURIComponent("" + roleId));
@@ -846,10 +937,11 @@ export class TestsAPIService {
     }
 
     /**
+     * Test method.
      * @return Success
      */
     getTest(): Observable<void> {
-        let url_ = this.baseUrl + "/api/TS/Tests";
+        let url_ = this.baseUrl + "/TS/Tests";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -893,11 +985,13 @@ export class TestsAPIService {
     }
 
     /**
-     * @param message (optional) 
+     * Sends a message for a given test id and message.
+     * @param testId The id of the test.
+     * @param message (optional) The message to send.
      * @return Success
      */
     testSendMessage(testId: number, message: string | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/TS/Tests/{testId}/SendMessage?";
+        let url_ = this.baseUrl + "/TS/Tests/{testId}/SendMessage?";
         if (testId === undefined || testId === null)
             throw new Error("The parameter 'testId' must be defined.");
         url_ = url_.replace("{testId}", encodeURIComponent("" + testId));
@@ -960,12 +1054,13 @@ export class UsersAPIService {
     }
 
     /**
-     * @param pageIndex (optional) 
-     * @param pageSize (optional) 
+     * Retrieves a paginated list of users based on the provided page index and page size.
+     * @param pageIndex (optional) The index of the page to retrieve.
+     * @param pageSize (optional) The size of the page to retrieve.
      * @return Success
      */
     getUserList(pageIndex: number | undefined, pageSize: number | undefined): Observable<UserListDto> {
-        let url_ = this.baseUrl + "/api/IS/Users?";
+        let url_ = this.baseUrl + "/IS/Users?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
         else if (pageIndex !== undefined)
@@ -1021,11 +1116,12 @@ export class UsersAPIService {
     }
 
     /**
+     * Creates a new user based on the provided user data.
      * @param body (optional) 
      * @return Success
      */
     createUser(body: CreateUserDto | undefined): Observable<UserDto> {
-        let url_ = this.baseUrl + "/api/IS/Users";
+        let url_ = this.baseUrl + "/IS/Users";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -1077,10 +1173,12 @@ export class UsersAPIService {
     }
 
     /**
+     * Retrieves the details of a user based on the provided user id.
+     * @param userId The id of the user to retrieve.
      * @return Success
      */
     getUser(userId: string): Observable<UserDto> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}";
+        let url_ = this.baseUrl + "/IS/Users/{userId}";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
@@ -1131,11 +1229,13 @@ export class UsersAPIService {
     }
 
     /**
+     * Updates the details of an existing user based on the provided user id and user data.
+     * @param userId The id of the user to retrieve.
      * @param body (optional) 
      * @return Success
      */
     updateUser(userId: string, body: UpdateUserDto | undefined): Observable<UserDto> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}";
+        let url_ = this.baseUrl + "/IS/Users/{userId}";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
@@ -1190,10 +1290,12 @@ export class UsersAPIService {
     }
 
     /**
+     * Deletes an existing user based on the provided user id.
+     * @param userId The id of the user to retrieve.
      * @return Success
      */
     deleteUser(userId: string): Observable<void> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}";
+        let url_ = this.baseUrl + "/IS/Users/{userId}";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
@@ -1240,11 +1342,13 @@ export class UsersAPIService {
     }
 
     /**
+     * Updates the password of an existing user based on the provided user id and password data.
+     * @param userId The id of the user to retrieve.
      * @param body (optional) 
      * @return Success
      */
     updateUserPassword(userId: string, body: UpdateUserPasswordDto | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}/Passwords";
+        let url_ = this.baseUrl + "/IS/Users/{userId}/Passwords";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
@@ -1295,10 +1399,12 @@ export class UsersAPIService {
     }
 
     /**
+     * Retrieves a list of roles assigned to the specified user.
+     * @param userId The id of the user to retrieve.
      * @return Success
      */
     getUserRoleList(userId: string): Observable<UserRoleListDto> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}/Roles";
+        let url_ = this.baseUrl + "/IS/Users/{userId}/Roles";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
@@ -1349,18 +1455,19 @@ export class UsersAPIService {
     }
 
     /**
-     * @param roleName (optional) 
+     * Adds a role to the user identified by the provided user id and role id.
+     * @param userId The id of the user to retrieve.
+     * @param roleId The id of the role to retrieve.
      * @return Success
      */
-    addUserRole(userId: string, roleName: string | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}/Roles?";
+    addUserRole(userId: string, roleId: string): Observable<void> {
+        let url_ = this.baseUrl + "/IS/Users/{userId}/Roles/{roleId}";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
-        if (roleName === null)
-            throw new Error("The parameter 'roleName' cannot be null.");
-        else if (roleName !== undefined)
-            url_ += "roleName=" + encodeURIComponent("" + roleName) + "&";
+        if (roleId === undefined || roleId === null)
+            throw new Error("The parameter 'roleId' must be defined.");
+        url_ = url_.replace("{roleId}", encodeURIComponent("" + roleId));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1404,18 +1511,19 @@ export class UsersAPIService {
     }
 
     /**
-     * @param roleName (optional) 
+     * Removes a role from the user identified by the provided user id and role id.
+     * @param userId The id of the user to retrieve.
+     * @param roleId The id of the role to retrieve.
      * @return Success
      */
-    removeUserRole(userId: string, roleName: string | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/IS/Users/{userId}/Roles?";
+    removeUserRole(userId: string, roleId: string): Observable<void> {
+        let url_ = this.baseUrl + "/IS/Users/{userId}/Roles/{roleId}";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
-        if (roleName === null)
-            throw new Error("The parameter 'roleName' cannot be null.");
-        else if (roleName !== undefined)
-            url_ += "roleName=" + encodeURIComponent("" + roleName) + "&";
+        if (roleId === undefined || roleId === null)
+            throw new Error("The parameter 'roleId' must be defined.");
+        url_ = url_.replace("{roleId}", encodeURIComponent("" + roleId));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1459,12 +1567,14 @@ export class UsersAPIService {
     }
 
     /**
-     * @param pageIndex (optional) 
-     * @param pageSize (optional) 
+     * Retrieves a paginated list of reviews for a user based on the provided user id, page index, and page size.
+     * @param userId The id of the user to retrieve the reviews for.
+     * @param pageIndex (optional) The index of the page to retrieve.
+     * @param pageSize (optional) The size of the page to retrieve.
      * @return Success
      */
     getUserReviewList(userId: string, pageIndex: number | undefined, pageSize: number | undefined): Observable<UserReviewListDto> {
-        let url_ = this.baseUrl + "/api/RS/Users/{userId}/Reviews?";
+        let url_ = this.baseUrl + "/RS/Users/{userId}/Reviews?";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined.");
         url_ = url_.replace("{userId}", encodeURIComponent("" + userId));
@@ -1568,7 +1678,7 @@ export interface IAggregateRouteConfig {
 }
 
 export class CreateMovieDto implements ICreateMovieDto {
-    title!: string;
+    title!: string | undefined;
 
     constructor(data?: ICreateMovieDto) {
         if (data) {
@@ -1600,11 +1710,11 @@ export class CreateMovieDto implements ICreateMovieDto {
 }
 
 export interface ICreateMovieDto {
-    title: string;
+    title: string | undefined;
 }
 
 export class CreateReviewDto implements ICreateReviewDto {
-    text!: string;
+    comment!: string | undefined;
     rating!: RatingEnum;
 
     constructor(data?: ICreateReviewDto) {
@@ -1618,7 +1728,7 @@ export class CreateReviewDto implements ICreateReviewDto {
 
     init(_data?: any) {
         if (_data) {
-            this.text = _data["text"];
+            this.comment = _data["comment"];
             this.rating = _data["rating"];
         }
     }
@@ -1632,19 +1742,19 @@ export class CreateReviewDto implements ICreateReviewDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["text"] = this.text;
+        data["comment"] = this.comment;
         data["rating"] = this.rating;
         return data;
     }
 }
 
 export interface ICreateReviewDto {
-    text: string;
+    comment: string | undefined;
     rating: RatingEnum;
 }
 
 export class CreateRoleDto implements ICreateRoleDto {
-    name!: string;
+    name!: string | undefined;
 
     constructor(data?: ICreateRoleDto) {
         if (data) {
@@ -1676,15 +1786,15 @@ export class CreateRoleDto implements ICreateRoleDto {
 }
 
 export interface ICreateRoleDto {
-    name: string;
+    name: string | undefined;
 }
 
 export class CreateUserDto implements ICreateUserDto {
-    name!: string;
-    firstName!: string;
-    lastName!: string;
-    email!: string;
-    password!: string;
+    name!: string | undefined;
+    firstName!: string | undefined;
+    lastName!: string | undefined;
+    email!: string | undefined;
+    password!: string | undefined;
 
     constructor(data?: ICreateUserDto) {
         if (data) {
@@ -1724,11 +1834,11 @@ export class CreateUserDto implements ICreateUserDto {
 }
 
 export interface ICreateUserDto {
-    name: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
+    name: string | undefined;
+    firstName: string | undefined;
+    lastName: string | undefined;
+    email: string | undefined;
+    password: string | undefined;
 }
 
 export class FileAggregateRoute implements IFileAggregateRoute {
@@ -2913,9 +3023,9 @@ export enum RatingEnum {
 
 export class ReviewDto implements IReviewDto {
     id!: string;
-    userId!: string;
     movieId!: string;
-    text!: string | undefined;
+    userId!: string;
+    comment!: string | undefined;
     rating!: RatingEnum;
 
     constructor(data?: IReviewDto) {
@@ -2930,9 +3040,9 @@ export class ReviewDto implements IReviewDto {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.userId = _data["userId"];
             this.movieId = _data["movieId"];
-            this.text = _data["text"];
+            this.userId = _data["userId"];
+            this.comment = _data["comment"];
             this.rating = _data["rating"];
         }
     }
@@ -2947,9 +3057,9 @@ export class ReviewDto implements IReviewDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["userId"] = this.userId;
         data["movieId"] = this.movieId;
-        data["text"] = this.text;
+        data["userId"] = this.userId;
+        data["comment"] = this.comment;
         data["rating"] = this.rating;
         return data;
     }
@@ -2957,9 +3067,9 @@ export class ReviewDto implements IReviewDto {
 
 export interface IReviewDto {
     id: string;
-    userId: string;
     movieId: string;
-    text: string | undefined;
+    userId: string;
+    comment: string | undefined;
     rating: RatingEnum;
 }
 
@@ -3052,7 +3162,7 @@ export interface IRoleListDto {
 }
 
 export class UpdateMovieDto implements IUpdateMovieDto {
-    title!: string;
+    title!: string | undefined;
 
     constructor(data?: IUpdateMovieDto) {
         if (data) {
@@ -3084,11 +3194,51 @@ export class UpdateMovieDto implements IUpdateMovieDto {
 }
 
 export interface IUpdateMovieDto {
-    title: string;
+    title: string | undefined;
+}
+
+export class UpdateReviewDto implements IUpdateReviewDto {
+    comment!: string | undefined;
+    rating!: RatingEnum;
+
+    constructor(data?: IUpdateReviewDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.comment = _data["comment"];
+            this.rating = _data["rating"];
+        }
+    }
+
+    static fromJS(data: any): UpdateReviewDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateReviewDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["comment"] = this.comment;
+        data["rating"] = this.rating;
+        return data;
+    }
+}
+
+export interface IUpdateReviewDto {
+    comment: string | undefined;
+    rating: RatingEnum;
 }
 
 export class UpdateRoleDto implements IUpdateRoleDto {
-    name!: string;
+    name!: string | undefined;
 
     constructor(data?: IUpdateRoleDto) {
         if (data) {
@@ -3120,14 +3270,14 @@ export class UpdateRoleDto implements IUpdateRoleDto {
 }
 
 export interface IUpdateRoleDto {
-    name: string;
+    name: string | undefined;
 }
 
 export class UpdateUserDto implements IUpdateUserDto {
-    name!: string;
-    firstName!: string;
-    lastName!: string;
-    email!: string;
+    name!: string | undefined;
+    firstName!: string | undefined;
+    lastName!: string | undefined;
+    email!: string | undefined;
 
     constructor(data?: IUpdateUserDto) {
         if (data) {
@@ -3165,15 +3315,15 @@ export class UpdateUserDto implements IUpdateUserDto {
 }
 
 export interface IUpdateUserDto {
-    name: string;
-    firstName: string;
-    lastName: string;
-    email: string;
+    name: string | undefined;
+    firstName: string | undefined;
+    lastName: string | undefined;
+    email: string | undefined;
 }
 
 export class UpdateUserPasswordDto implements IUpdateUserPasswordDto {
-    oldPassword!: string;
-    password!: string;
+    oldPassword!: string | undefined;
+    password!: string | undefined;
 
     constructor(data?: IUpdateUserPasswordDto) {
         if (data) {
@@ -3207,8 +3357,8 @@ export class UpdateUserPasswordDto implements IUpdateUserPasswordDto {
 }
 
 export interface IUpdateUserPasswordDto {
-    oldPassword: string;
-    password: string;
+    oldPassword: string | undefined;
+    password: string | undefined;
 }
 
 export class UserDto implements IUserDto {
@@ -3217,7 +3367,7 @@ export class UserDto implements IUserDto {
     firstName!: string | undefined;
     lastName!: string | undefined;
     email!: string | undefined;
-    isEmilConfirmed!: boolean;
+    isEmailConfirmed!: boolean;
 
     constructor(data?: IUserDto) {
         if (data) {
@@ -3235,7 +3385,7 @@ export class UserDto implements IUserDto {
             this.firstName = _data["firstName"];
             this.lastName = _data["lastName"];
             this.email = _data["email"];
-            this.isEmilConfirmed = _data["isEmilConfirmed"];
+            this.isEmailConfirmed = _data["isEmailConfirmed"];
         }
     }
 
@@ -3253,7 +3403,7 @@ export class UserDto implements IUserDto {
         data["firstName"] = this.firstName;
         data["lastName"] = this.lastName;
         data["email"] = this.email;
-        data["isEmilConfirmed"] = this.isEmilConfirmed;
+        data["isEmailConfirmed"] = this.isEmailConfirmed;
         return data;
     }
 }
@@ -3264,7 +3414,7 @@ export interface IUserDto {
     firstName: string | undefined;
     lastName: string | undefined;
     email: string | undefined;
-    isEmilConfirmed: boolean;
+    isEmailConfirmed: boolean;
 }
 
 export class UserListDto implements IUserListDto {
