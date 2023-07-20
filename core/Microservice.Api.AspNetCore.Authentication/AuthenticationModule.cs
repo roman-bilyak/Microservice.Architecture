@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Microservice.AspNetCore.Authentication;
@@ -14,6 +15,8 @@ public sealed class AuthenticationModule : StartupModule
     public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
         base.ConfigureServices(services, configuration);
+
+        IdentityModelEventSource.ShowPII = true;
 
         AuthenticationOptions? authenticationOptions = configuration.GetSection("Authentication").Get<AuthenticationOptions>();
 
