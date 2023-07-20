@@ -2,6 +2,7 @@
 using Microservice.Core.Modularity;
 using Microservice.IdentityService;
 using Microservice.IdentityService.Identity;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 
 namespace Microservice.AuthService;
@@ -34,16 +35,28 @@ public sealed class AuthServiceApiModule : StartupModule
             .AddDeveloperSigningCredential();//not recommended for production - you need to store your key material somewhere secure
     }
 
+    public override void PreConfigure(IServiceProvider serviceProvider)
+    {
+        base.PreConfigure(serviceProvider);
+
+        IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
+
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedHost | ForwardedHeaders.XForwardedProto
+        });
+
+        app.UseStaticFiles();
+    }
+
     public override void Configure(IServiceProvider serviceProvider)
     {
         base.Configure(serviceProvider);
 
         IApplicationBuilder app = serviceProvider.GetApplicationBuilder();
+
         app.UseDeveloperExceptionPage();
 
-        app.UseStaticFiles();
-
         app.UseIdentityServer();
-        app.UseAuthorization();
     }
 }

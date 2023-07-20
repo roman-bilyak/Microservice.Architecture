@@ -17,6 +17,7 @@ The fastest and easiest way to run this project is a [Kubernates Cluster](#kuber
 ```powershell
 .\run.ps1 -r 'romanbilyak'
 ```
+
 Go to https://localhost to browse application.
 
 *Other methods of running this project are described below:*
@@ -104,17 +105,17 @@ Set **gateway** and **microservices** as startup projects. Your can also run the
 
 ## Applications & Microservices
 
-|                      | [Visual Studio](#visual-studio)                  | [Docker Compose](#docker-compose)                | [Kubernates Cluster](#kubernates-cluster)        |
-| -------------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| app-angular          | [https://localhost:7001](https://localhost:7001) | [https://localhost:9001](https://localhost:9001) | [https://localhost](https://localhost)           |
-| app-react            | [https://localhost:7002](https://localhost:7002) | [https://localhost:9002](https://localhost:9002) | [https://localhost/app](https://localhost/app)   |
-| api-auth-service     | [https://localhost:7100](https://localhost:7100) | [https://localhost:9100](https://localhost:9100) | [https://localhost/auth](https://localhost/auth) |
-| api-gateway-service  | [https://localhost:7200](https://localhost:7200) | [https://localhost:9200](https://localhost:9200) | [https://localhost/api](https://localhost/api)   |
-| api-identity-service | [https://localhost:7201](https://localhost:7201) | [https://localhost:9201](https://localhost:9201) |                                                  |
-| api-movie-service    | [https://localhost:7202](https://localhost:7202) | [https://localhost:9202](https://localhost:9202) |                                                  |
-| api-review-service   | [https://localhost:7203](https://localhost:7203) | [https://localhost:9203](https://localhost:9203) |                                                  |
-| api-payment-service  | [https://localhost:7204](https://localhost:7204) | [https://localhost:9204](https://localhost:9204) |                                                  |
-| api-test-service     | [https://localhost:7205](https://localhost:7205) | [https://localhost:9205](https://localhost:9205) |                                                  |
+|                      | [Kubernates Cluster](#kubernates-cluster)          | [Visual Studio](#visual-studio)                  | [Docker Compose](#docker-compose)                |
+| -------------------- | -------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ |
+| app-angular          | [https://localhost](https://localhost)             | [https://localhost:7001](https://localhost:7001) | [https://localhost:9001](https://localhost:9001) |
+| app-react            | [https://localhost/app/](https://localhost/app/)   | [https://localhost:7002](https://localhost:7002) | [https://localhost:9002](https://localhost:9002) |
+| api-auth-service     | [https://localhost/auth/](https://localhost/auth/) | [https://localhost:7100](https://localhost:7100) | [https://localhost:9100](https://localhost:9100) |
+| api-gateway-service  | [https://localhost/api/](https://localhost/api/)   | [https://localhost:7200](https://localhost:7200) | [https://localhost:9200](https://localhost:9200) |
+| api-identity-service |                                                    | [https://localhost:7201](https://localhost:7201) | [https://localhost:9201](https://localhost:9201) |
+| api-movie-service    |                                                    | [https://localhost:7202](https://localhost:7202) | [https://localhost:9202](https://localhost:9202) |
+| api-review-service   |                                                    | [https://localhost:7203](https://localhost:7203) | [https://localhost:9203](https://localhost:9203) |
+| api-payment-service  |                                                    | [https://localhost:7204](https://localhost:7204) | [https://localhost:9204](https://localhost:9204) |
+| api-test-service     |                                                    | [https://localhost:7205](https://localhost:7205) | [https://localhost:9205](https://localhost:9205) |
 
 ## Project Structure
 
