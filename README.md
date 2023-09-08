@@ -175,11 +175,181 @@ Root layer for microservice's layers
 
 ## Technologies
 
-- [x] [Swagger UI](https://swagger.io/tools/swagger-ui/)
-- [x] [Ocelot API gateway](https://github.com/ThreeMammals/Ocelot)
-- [ ] [Serilog](https://serilog.net/)
-- [x] [CQRS pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
-- [ ] [Event Sourcing pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
-- [x] [MediatR](https://github.com/jbogard/MediatR)
-- [x] [MassTransit](http://masstransit-project.com/)
-- [x] [RabbitMQ](https://www.rabbitmq.com/)
+- [ ] General
+  - [ ] Version control
+    - [ ] Git
+    - [ ] GitHub
+    - [ ] GitLab
+  - [ ] Data structures
+    - [ ] Non-generic
+    - [ ] Generic
+    - [ ] Thread-safe
+  - [ ] Algorithms
+- [ ] C#
+  - [ ] C# 11
+  - [ ] .Net 7
+  - [ ] .Net CLI
+- [ ] Architecture Patterns
+  - [ ] [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+  - [ ] [Ocelot API Gateway](https://github.com/ThreeMammals/Ocelot)
+  - [ ] [Event Sourcing](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+- [ ] Design Patterns
+  - [ ] Creational Patterns
+  - [ ] Structural Patterns
+  - [ ] Behavioral Patterns
+- [ ] Design Principles
+  - [ ] SOLID
+    - [ ] Single Responsibility Principle
+    - [ ] Open-Closed Principle
+    - [ ] Liskov Substitution Principle
+    - [ ] Interface Segregation Principle
+    - [ ] Dependency Inversion Principle
+  - [ ] DRY
+  - [ ] YAGNI
+  - [ ] KISS
+- [ ] Asp.Net Core
+  - [ ] Web API
+  - [ ] Minimal APIs
+  - [ ] Routing
+  - [ ] Middlewares
+  - [ ] Filters & Attributes
+  - [ ] Configuration
+  - [ ] Authentication & Authorization
+  - [ ] Dependency Injection
+- [ ] APIs
+  - [ ] REST
+    - [ ] Web API
+    - [ ] Minimal APIs
+    - [ ] FastEndpoints
+  - [ ] OData
+  - [ ] GraphQL
+    - [ ] HotChocolate
+  - [ ] gRPC
+- [ ] API Documentation
+  - [ ] OpenAPI/Swagger
+  - [ ] AsyncAPI
+- [ ] API SDK Libraries
+  - [ ] Refit
+  - [ ] RestSharp
+  - [ ] Flurt
+- [ ] RDBMS Databases
+  - [ ] SQL Syntax
+  - [ ] Stored Procedures
+  - [ ] Databases
+    - [ ] SQL Server
+    - [ ] Postgress
+    - [ ] MySql/MariaDB
+- [ ] NoSQL Databases
+  - [ ] Cloud proprietary
+    - [ ] Azure CosmosDB
+    - [ ] AWS DynamoDB
+  - [ ] ElasticSearch
+  - [ ] Redis
+  - [ ] MongoDB
+- [ ] ORMs
+  - [ ] [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)
+    - [ ] Code first & Migrations
+    - [ ] Change Tracker API
+    - [ ] Lazy Loading, Eager Loading, Explicit Loading
+  - [ ] Dapper
+- [ ] Dependency Injection
+  - [ ] Microsoft Dependency Injection
+  - [ ] DryIoc
+  - [ ] Scrutor
+  - [ ] Castle Windsor 
+- [ ] Caching
+  - [ ] Output Caching
+  - [ ] Response Caching
+  - [ ] Redis
+- [ ] Logging
+  - [ ] Microsoft Logging
+  - [ ] NLogger
+  - [ ] [Serilog](https://serilog.net/)
+- [ ] Messaging
+  - [ ] Azure Service Bus
+  - [ ] AWS SQS/SNS
+  - [ ] [RabbitMQ](https://www.rabbitmq.com/)
+  - [ ] [MassTransit](http://masstransit-project.com/)
+- [ ] Streaming
+  - [ ] Apache Kafka
+  - [ ] AWS Kinesis
+  - [ ] Azure Event Hubs
+- [ ] Real-Time Communication
+  - [ ] SignalR
+  - [ ] Web Sockets
+- [ ] Task Scheduling
+  - [ ] BackgroundService
+  - [ ] PeriodicTimer
+  - [ ] HangFire
+- [ ] Testing
+  - [ ] Unit Testing
+    - [ ] Frameworks
+      - [ ] xUnit
+      - [ ] NUnit
+    - [ ] Mocking
+      - [ ] NSubstitute
+      - [ ] Moq
+    - [ ] Assertion
+      - [ ] FluentAssertions
+    - [ ] Test Data Generators
+      - [ ] Bogus
+      - [ ] AutiFixture
+  - [ ] Integration Testing
+    - [ ] WebApplicationFactory
+    - [ ] Respawn
+    - [ ] Docker
+      - [ ] Testcontainers
+  - [ ] Snapshot Testing
+    - [ ] Verify
+  - [ ] E2E Testing
+    - [ ] Playwright
+  - [ ] Performance Testing
+    - [ ] K6
+    - [ ] MBomber
+    - [ ] JMeter
+- [ ] Monitoring and Telemetry
+  - [ ] OpenTelemetry
+    - [ ] Jeager
+  - [ ] Prometheus
+  - [ ] Grafana
+  - [ ] ELK Stack
+  - [ ] Datadog
+- [ ] Containers
+  - [ ] Containerization
+    - [ ] Docker
+    - [ ] Podman
+  - [ ] Orchestration
+    - [ ] Kubernetes
+- [ ] Cloud
+  - [ ] Providers
+    - [ ] Azure
+    - [ ] AWS
+    - [ ] Google Cloud Platform
+  - [ ] Serverless
+    - [ ] Azure Functions
+    - [ ] AWS Lambda
+  - [ ] File Store
+    - [ ] Azure Store
+    - [ ] AWS S3
+- [ ] CI/CD
+  - [ ] GitHub Actions
+  - [ ] TeamCity
+  - [ ] Octopus Deploy
+  - [ ] Azure Pipelines
+  - [ ] Gitlab CI
+  - [ ] Jenkins
+  - [ ] Build Automation
+    - [ ] Cake
+    - [ ] Nuke
+- [ ] DevOps
+  - [ ] Infrastructure as code
+    - [ ] Terraform
+    - [ ] Pulumi
+- [ ] .Net Libraries
+  - [ ] Polly
+  - [ ] FluentValidation
+  - [ ] Humanizer.Core
+  - [ ] Benchmark.Net
+  - [ ] [MediatR](https://github.com/jbogard/MediatR)
+  - [ ] Units.NET
+  - [ ] NodeTime
