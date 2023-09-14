@@ -189,24 +189,42 @@ Root layer for microservice's layers
   - [ ] C# 11
   - [ ] .Net 7
   - [ ] .Net CLI
-- [ ] Architecture Patterns
-  - [ ] [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
-  - [ ] [Ocelot API Gateway](https://github.com/ThreeMammals/Ocelot)
+- [ ] Architectural Patterns
+  - [ ] MVC (Model-View-Controller)
+  - [ ] MVVM (Model-View-ViewModel)
+  - [ ] Microservices Architecture
+  - [ ] RESTful API Design
+  - [ ] Hexagonal Architecture
+  - [ ] SOA (Service-Oriented Architecture)
+  - [ ] EDA (Event-Driven Architecture)
+  - [ ] Serverless Architecture
+  - [ ] Layered Architecture
+  - [ ] Clean Architecture
+  - [ ] Multitier Architecture
+  - [ ] Distributed Architecture
+  - [ ] Serverless Architecture
+  - [ ] [CQRS (Command Query Responsibility Segregation)](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+  - [ ] Dependency Injection
+  - [ ] DDD (Domain-Driven Design)
+  - [ ] Containerization and Orchestration
+  - [ ] Gateway and Proxy Patterns
+    - [ ] [Ocelot API Gateway](https://github.com/ThreeMammals/Ocelot)
   - [ ] [Event Sourcing](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+  - [ ] Saga Pattern
 - [ ] Design Patterns
   - [ ] Creational Patterns
   - [ ] Structural Patterns
   - [ ] Behavioral Patterns
 - [ ] Design Principles
-  - [ ] SOLID
+  - [ ] SOLID Principles
     - [ ] Single Responsibility Principle
     - [ ] Open-Closed Principle
     - [ ] Liskov Substitution Principle
     - [ ] Interface Segregation Principle
     - [ ] Dependency Inversion Principle
-  - [ ] DRY
-  - [ ] YAGNI
-  - [ ] KISS
+  - [ ] DRY (Don't Repeat Yourself)
+  - [ ] YAGNI (You Ain't Gonna Need It)
+  - [ ] KISS (Keep It Simple, Stupid)
 - [ ] Asp.Net Core
   - [ ] Web API
   - [ ] Minimal APIs
@@ -215,23 +233,29 @@ Root layer for microservice's layers
   - [ ] Filters & Attributes
   - [ ] Configuration
   - [ ] Authentication & Authorization
+    - [ ] JWT (JSON Web Tokens)
+    - [ ] OAuth2 and OpenID Connect
+    - [ ] Identity Server
+  - [ ] CORS (Cross-Origin Resource Sharing)
   - [ ] Dependency Injection
 - [ ] APIs
-  - [ ] REST
-    - [ ] Web API
-    - [ ] Minimal APIs
-    - [ ] FastEndpoints
-  - [ ] OData
-  - [ ] GraphQL
-    - [ ] HotChocolate
-  - [ ] gRPC
-- [ ] API Documentation
-  - [ ] OpenAPI/Swagger
-  - [ ] AsyncAPI
-- [ ] API SDK Libraries
-  - [ ] Refit
-  - [ ] RestSharp
-  - [ ] Flurt
+  - [ ] Protocols
+    - [ ] SOAP (Simple object access protocol)
+    - [ ] REST (Representational state transfer)
+      - [ ] Web API
+      - [ ] Minimal APIs
+      - [ ] FastEndpoints
+    - [ ] gRPC (Google remote procedure call)
+    - [ ] GraphQL (Graph query language)
+      - [ ] HotChocolate
+    - [ ] OData (Open Data Protocol)
+  - [ ] Documentation
+    - [ ] OpenAPI/Swagger
+    - [ ] AsyncAPI
+  - [ ] SDK Libraries
+    - [ ] Refit
+    - [ ] RestSharp
+    - [ ] Flurt
 - [ ] RDBMS Databases
   - [ ] SQL Syntax
   - [ ] Stored Procedures
@@ -353,3 +377,18 @@ Root layer for microservice's layers
   - [ ] [MediatR](https://github.com/jbogard/MediatR)
   - [ ] Units.NET
   - [ ] NodeTime
+
+## Contributing
+
+Contributions to this repository are welcome. If you have a code sample or educational resource that you would like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Make your changes and commit them to your branch.
+4. Submit a pull request.
+
+Please ensure that your contributions adhere to the repository's code of conduct and that they are well-documented and follow best practices.
+
+## License
+
+This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
