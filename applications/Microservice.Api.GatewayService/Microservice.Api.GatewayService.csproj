@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="5.1.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-    <PackageReference Include="Ocelot" Version="18.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Ocelot" Version="22.0.1" />
   </ItemGroup>
 
   <ItemGroup>

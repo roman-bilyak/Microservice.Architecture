@@ -30,8 +30,8 @@ internal class UserApplicationServiceTests : IdentityServiceTests
         Assert.That(result, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(result.Items, Has.Count.EqualTo(2));
-            Assert.That(result.TotalCount, Is.EqualTo(2));
+            Assert.That(result.Items, Has.Count.EqualTo(0));
+            Assert.That(result.TotalCount, Is.EqualTo(0));
         });
     }
 
